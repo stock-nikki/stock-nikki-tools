@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ファンダメンタル分析ジェネレーター | Sから始まるStock日記</title>
+  <meta name="description" content="SBI証券のスクショをChatGPTに投げるだけ。ポートフォリオ全銘柄のPER・PBR・ROE等6指標をS〜D判定する分析テーブルを自動生成。">
+  <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <link rel="canonical" href="https://stock-nikki.com/tools/fundamental-analyzer/index.html">
+  <meta name="msapplication-TileImage" content="https://stock-nikki.com/wp-content/uploads/2026/06/cropped-site-icon-512x512-1-270x270.png">
+
+  <!-- OGP -->
+  <meta property="og:title" content="ファンダメンタル分析ジェネレーター | Sから始まるStock日記">
+  <meta property="og:description" content="SBI証券のスクショからChatGPTでデータ収集→S〜D判定付きの分析テーブルを自動生成する無料ツール">
+  <meta property="og:url" content="https://stock-nikki.com/tools/fundamental-analyzer/index.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="Sから始まるStock日記">
+  <meta property="og:image" content="https://stock-nikki.com/wp-content/uploads/2026/06/03e681d9dd492fb5fbd593d81e47bef4.png">
+  <meta property="og:image:secure_url" content="https://stock-nikki.com/wp-content/uploads/2026/06/03e681d9dd492fb5fbd593d81e47bef4.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="ファンダメンタル分析ジェネレーター">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ファンダメンタル分析ジェネレーター | Sから始まるStock日記">
+  <meta name="twitter:description" content="SBI証券のスクショからChatGPTでデータ収集→S〜D判定付きの分析テーブルを自動生成する無料ツール">
+  <meta name="twitter:image" content="https://stock-nikki.com/wp-content/uploads/2026/06/03e681d9dd492fb5fbd593d81e47bef4.png">
+
+  <!-- JSON-LD 構造化データ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ファンダメンタル分析ジェネレーター",
+    "description": "SBI証券のポートフォリオスクショからChatGPTでデータ収集し、S〜D判定付きの分析テーブルを自動生成する無料ツール",
+    "url": "https://stock-nikki.com/tools/fundamental-analyzer/index.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Sから始まる佐藤",
+      "url": "https://stock-nikki.com/about/"
+    }
+  }
+  </script>
+
+  <!-- GA4: measurement IDを差し替えてコメントを外してください -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9E0ZEGD533"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-9E0ZEGD533');
+  </script>
+
+  <style>
+    /* ========================================
+       Base
+       ======================================== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, 'Hiragino Sans', 'Meiryo', sans-serif;
+      background: #f5f5f0;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       Header
+       ======================================== */
+    .site-header {
+      background: #fff;
+      border-bottom: 2px solid #4caf50;
+      padding: 14px 20px;
+      text-align: center;
+    }
+    .site-header a { color: #333; text-decoration: none; }
+    .site-header .blog-name { font-size: 18px; font-weight: bold; letter-spacing: 1px; }
+    .site-header .blog-sub { font-size: 11px; color: #888; margin-top: 2px; }
+
+    /* ========================================
+       Main Layout
+       ======================================== */
+    .main-wrap { max-width: 860px; margin: 0 auto; padding: 20px 16px 40px; }
+    .page-title { font-size: 20px; font-weight: bold; text-align: center; margin-bottom: 6px; color: #2e7d32; }
+    .page-desc { text-align: center; font-size: 13px; color: #666; margin-bottom: 24px; }
+
+    /* ========================================
+       Step Cards
+       ======================================== */
+    .step {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .step-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .step-num {
+      background: #4caf50; color: #fff;
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: bold; flex-shrink: 0;
+    }
+    .step-label { font-size: 15px; font-weight: bold; color: #333; }
+    .step-note { font-size: 13px; color: #666; margin-bottom: 10px; }
+
+    /* ========================================
+       Form Elements
+       ======================================== */
+    .prompt-box, .tsv-box, .output-box {
+      width: 100%; height: 180px;
+      background: #fafaf5; border: 1px solid #ccc; border-radius: 4px;
+      padding: 12px; font-family: monospace; font-size: 11px;
+      line-height: 1.5; resize: vertical; color: #333;
+    }
+    .prompt-box:focus, .tsv-box:focus { outline: none; border-color: #4caf50; }
+    .output-box { height: 220px; margin-top: 10px; }
+    .date-row { margin-top: 10px; font-size: 13px; }
+    .date-input { border: 1px solid #ccc; border-radius: 4px; padding: 5px 10px; font-size: 13px; }
+    .dl-link { font-size: 12px; color: #1976d2; cursor: pointer; text-decoration: underline; margin-left: 12px; }
+
+    /* ========================================
+       Buttons
+       ======================================== */
+    .btn {
+      display: inline-block; padding: 9px 20px; border: none; border-radius: 4px;
+      font-size: 13px; font-weight: bold; cursor: pointer; transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-green { background: #4caf50; color: #fff; }
+    .btn-blue  { background: #1976d2; color: #fff; }
+    .btn-gray  { background: #888;    color: #fff; }
+    .actions { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* ========================================
+       Results
+       ======================================== */
+    .preview-area {
+      margin-top: 12px; background: #fff;
+      border: 1px solid #ddd; border-radius: 4px;
+      padding: 14px; overflow-x: auto;
+    }
+    .stats { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .stat { background: #f0f0ea; border-radius: 4px; padding: 6px 12px; font-size: 12px; }
+    .stat b { color: #2e7d32; }
+
+    /* ========================================
+       Error / Warning Messages
+       ======================================== */
+    .error-msg {
+      color: #c62828; font-size: 13px; font-weight: bold;
+      margin-top: 8px; padding: 8px 12px;
+      background: #fce4ec; border: 1px solid #e57373; border-radius: 4px;
+      display: none; line-height: 1.6;
+    }
+    .error-msg.show { display: block; }
+    .warn-msg {
+      color: #e65100; font-size: 13px;
+      margin-top: 8px; padding: 8px 12px;
+      background: #fff3e0; border: 1px solid #ffb74d; border-radius: 4px;
+      display: none; line-height: 1.6;
+    }
+    .warn-msg.show { display: block; }
+
+    /* ========================================
+       Affiliate
+       ======================================== */
+    .affiliate-area {
+      background: #fff; border: 1px solid #ddd; border-radius: 6px;
+      padding: 20px; margin-bottom: 20px; text-align: center;
+    }
+    .affiliate-area .af-label { font-size: 11px; color: #aaa; margin-bottom: 8px; }
+    .af-pc { display: block; }
+    .af-sp { display: none; }
+
+    /* ========================================
+       Footer
+       ======================================== */
+    .site-footer {
+      background: #fff; border-top: 2px solid #4caf50;
+      padding: 20px; text-align: center; font-size: 12px; color: #888;
+    }
+    .site-footer a { color: #4caf50; text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+    .footer-links { margin-bottom: 8px; }
+    .footer-links a { margin: 0 10px; }
+    .disclaimer { font-size: 11px; color: #aaa; margin-top: 8px; line-height: 1.6; }
+
+    /* ========================================
+       Utility
+       ======================================== */
+    .hidden { display: none; }
+
+    /* ========================================
+       Responsive
+       ======================================== */
+    @media screen and (max-width: 600px) {
+      .main-wrap { padding: 12px 10px 30px; }
+      .step { padding: 14px; }
+      .page-title { font-size: 17px; }
+      .prompt-box, .tsv-box, .output-box { font-size: 10px; height: 150px; }
+      .actions { flex-direction: column; }
+      .actions .btn { width: 100%; text-align: center; }
+      .stats { flex-direction: column; }
+      .af-pc { display: none; }
+      .af-sp { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================
+       Header
+       ======================================== -->
+  <header class="site-header">
+    <a href="https://stock-nikki.com/">
+      <div class="blog-name">Sから始まるStock日記</div>
+      <div class="blog-sub">AIと始めるS株積立、リアルな結果を全部見せます！</div>
+    </a>
+  </header>
+
+  <!-- ========================================
+       Main Content
+       ======================================== -->
+  <div class="main-wrap">
+    <h1 class="page-title">📊 ファンダメンタル分析ジェネレーター</h1>
+    <p class="page-desc">
+      ChatGPTにスクショを投げてデータ収集 → ここに貼って分析テーブルを自動生成
+    </p>
+    <p style="text-align:center; font-size:12px; margin-bottom:20px;">
+      <a href="https://stock-nikki.com/fundamental-analyzer-guide/" style="color:#4caf50; text-decoration:underline;">📖 使い方・見方の詳しい説明はこちら</a>
+    </p>
+
+    <!-- STEP 1: プロンプトコピー -->
+    <div class="step">
+      <div class="step-head">
+        <div class="step-num">1</div>
+        <div class="step-label">プロンプトをコピーしてChatGPTに投げる</div>
+      </div>
+      <p class="step-note">
+        コピー → ChatGPTに貼り付け → SBI証券のスクショを一緒に送信 → TSVが返ってきます
+      </p>
+      <textarea id="promptText" class="prompt-box" readonly>あなたはポートフォリオ分析アシスタントです。
+添付のポートフォリオのスクリーンショットから、保有銘柄を全て読み取り、Web検索でファンダメンタルデータと直近ニュースを収集してください。
+そして私はAIに対してパワハラ級の異常に厳しい鬼編集長です。納得が行くまでやり直させます。認められたければ一発で仕上げてください。
+
+＜分析方針＞
+- 速度より精度を最優先。全銘柄ぶん時間がかかって構わない
+- 証券コードを使って1銘柄ずつ丁寧にWeb検索し、途中で端折らないこと
+- 未検索の銘柄を「—」として処理することは禁止
+- 「—」は、実際にWeb検索を実行し信頼できる情報源で確認できなかった場合のみ使用可
+  - ただし、「—」は禁止
+- 出力が途中で切れる場合は「続きを出力して」で再開できるようにする
+
+【1】銘柄の読み取り
+添付のスクリーンショットから、保有銘柄を全て読み取る。
+- 証券コード・銘柄名・保有株数・取得単価・現在値・損益を読み取る
+- 読み取りに自信がない箇所は「⚠️要確認」を付ける
+
+【2】ファンダメンタルデータ取得（Web検索必須）
+各銘柄について以下の6指標を取得（★この辺の情報は取れないわけがないので必ず取ってくる！！取れるまでリトライ、ダメなら別の信頼できるサイトに問い合わせを繰り返す！！）：
+- PER（株価収益率）
+- PBR（株価純資産倍率）
+- ROE（自己資本利益率）
+- 配当利回り
+- 自己資本比率
+- 営業利益率
+
+※数値は必ずWeb検索で確認。AIの記憶ベースの数値は使わない
+※取得できなかった項目は「—」とし、推測で埋めない（★ただし、基本「—」は認めない！！）
+※情報源（サイト名）も記録する
+
+【3】直近ニュース・材料チェック
+各銘柄の直近3ヶ月以内の重要ニュースをWeb検索でがっつりすべて調べる。事細かに出力！！省略禁止！！★膨大な情報量を取得：
+必ず以下を確認する：
+- 決算発表（上方修正・下方修正）
+- 株主還元（増配・減配・自社株買い・株式分割）
+- 経営イベント（M&A・提携・経営陣交代）
+- 業界動向（規制変更・市場環境の変化）
+- 不祥事・リスク（品質問題・行政処分・訴訟）
+検索方法：「証券コード 銘柄名 決算」「証券コード 銘柄名 ニュース」等
+1銘柄につき最低2回検索。定量情報（成長率・配当額・M&A金額等）を必ず含めること。
+見つからなかった場合は「直近の重要材料なし」と記載。（しかし、基本無しは許さない！！）
+
+【3-a】材料の強弱評価
+
+直近材料を総合評価し、以下の5段階で判定すること。
+
+S：上方修正＋増配＋自社株買い＋中期計画上振れ
+A：増益＋増配、または強い成長材料あり
+B：増益またはポジティブ材料あり
+C：材料乏しい、または業績横ばい
+D：下方修正、減配、不祥事、大型リスクあり
+
+判定結果は直近材料の先頭に
+【S】
+【A】
+【B】
+【C】
+【D】
+を付与すること。
+
+【3-b】材料の鮮度評価
+
+材料ごとに発生日を明記すること。
+
+例：
+📈【A】
+2026/05/10 決算発表
+営業利益+18.5%
+増配発表
+自社株買い300億円
+
+直近30日以内の材料は「★最新」
+60日以内は「☆直近」
+90日以内は無印
+
+を付与すること。
+
+【A-3d：重要】
+
+「AI需要拡大」
+「事業が好調」
+「成長期待」
+「堅調に推移」
+
+などの抽象表現のみは禁止。
+
+必ず以下のいずれかを含めること。
+
+- 売上成長率
+- 営業利益成長率
+- 純利益成長率
+- 配当増減率
+- 自社株買い規模
+- 株式分割内容
+- M&A金額
+- 業界データ
+
+定量情報を含まない材料説明は不合格とする。
+複数材料がある場合は、決算→株主還元→経営イベント→業界動向→リスクの順に並べること。
+
+【4】出力フォーマット（厳守）
+以下のTSV形式で、```tsv コードブロックとして出力すること。
+数値には「倍」「%」を付けない。全銘柄出力。途中省略禁止。
+材料アイコンは「📈」「📉」「➖」を先頭に付ける
+全銘柄ぶん出力すること。途中省略は禁止
+
+ヘッダー：
+コード	銘柄名	株数	取得単価	現在値	損益	PER	PBR	ROE	配当利回り	自己資本比率	営業利益率	業種	直近材料	情報源
+
+出力例：
+4507	塩野義製薬	1	2857	2780	-77	12.3	1.2	11.5	2.8	65.0	22.0	医薬品	📈【A】☆直近 26/3期 営業利益+15%（5/10発表）	kabuyoho,irbank</textarea>
+      <div class="actions">
+        <button class="btn btn-green" id="btnCopyPrompt" onclick="copyPrompt()">📋 プロンプトをコピー</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: TSV入力 & 生成 -->
+    <div class="step">
+      <div class="step-head">
+        <div class="step-num">2</div>
+        <div class="step-label">ChatGPTの出力（TSV）を貼り付けて生成</div>
+      </div>
+      <div id="errorMsg" class="error-msg"></div>
+      <div id="warnMsg" class="warn-msg"></div>
+      <textarea id="tsvInput" class="tsv-box" placeholder="コード&#9;銘柄名&#9;株数&#9;取得単価&#9;現在値&#9;損益&#9;PER&#9;PBR&#9;ROE&#9;配当利回り&#9;自己資本比率&#9;営業利益率&#9;業種&#9;直近材料&#9;情報源&#10;&#10;↑ 上記のヘッダー構成のTSV（タブ区切り）データを貼り付けてください&#10;ChatGPTのコードブロック（```tsv 〜 ```）の中身をコピーしてください"></textarea>
+      <div class="date-row">
+        分析日：<input type="date" id="analysisDate" class="date-input">
+      </div>
+      <div class="date-row">
+        <p class="step-note">
+          手動でTSVファイルを作成する場合、テンプレートをダウンロードして作成してください。
+        </p>
+        <span class="dl-link" onclick="downloadTemplate()">📥 TSVテンプレートをダウンロード</span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-blue" onclick="generate()">▶ テーブルを生成</button>
+        <button class="btn btn-gray" onclick="resetAll()">リセット</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: 結果（生成後に表示） -->
+    <div id="resultArea" class="hidden">
+      <div class="step">
+        <div class="step-head">
+          <div class="step-num">3</div>
+          <div class="step-label">結果</div>
+        </div>
+        <div id="statsArea" class="stats"></div>
+        <div class="actions">
+          <button class="btn btn-blue" id="btnDownloadHTML" onclick="downloadHTML()">📥 HTMLファイルをダウンロード</button>
+          <button class="btn btn-green" id="btnCopyHTML" onclick="copyHTML()">📋 WordPress用HTMLをコピー</button>
+        </div>
+        <p style="font-size:12px; color:#888; margin-top:8px;">
+          📥 ダウンロード → そのままブラウザで開ける単体HTMLファイル<br>
+          📋 コピー → WordPressの「カスタムHTML」ブロックに貼り付け用
+        </p>
+        <textarea id="htmlOutput" class="output-box" readonly></textarea>
+      </div>
+      <div class="step">
+        <div class="step-head">
+          <span style="font-size:14px; font-weight:bold;">プレビュー</span>
+        </div>
+        <div class="preview-area" id="previewArea"></div>
+      </div>
+    </div>
+
+    <!-- Affiliate（PC/SP出し分け） -->
+    <div class="affiliate-area">
+      <div class="af-label">PR</div>
+      <div class="af-pc">
+        <!-- ↓ここにPC用の楽天アフィリエイトリンクを挿入 -->
+        <!-- MAF Rakuten Widget FROM HERE -->
+        <script type="text/javascript">MafRakutenWidgetParam=function() { return{ size:'728x200',design:'slide',recommend:'on',auto_mode:'on',a_id:'5629288', border:'off'};};</script><script type="text/javascript" src="https://dn.msmstatic.com/site/rakuten/widget.js"></script>
+        <!-- MAF Rakuten Widget TO HERE -->
+      </div>
+      <div class="af-sp">
+        <!-- ↓ここにスマホ用の楽天アフィリエイトリンクを挿入 -->
+        <!-- MAF Rakuten Widget FROM HERE -->
+        <script type="text/javascript">MafRakutenWidgetParam=function() { return{ size:'250x250',design:'slide',recommend:'on',auto_mode:'on',a_id:'5629288', border:'off'};};</script><script type="text/javascript" src="https://dn.msmstatic.com/site/rakuten/widget.js"></script>
+        <!-- MAF Rakuten Widget TO HERE -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       Footer
+       ======================================== -->
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="https://stock-nikki.com/">トップページ</a>
+      <a href="https://stock-nikki.com/about/">プロフィール</a>
+      <a href="https://stock-nikki.com/contact/">お問い合わせ</a>
+    </div>
+    <div>&copy; 2026 Sから始まるStock日記</div>
+    <div class="disclaimer">
+      ※本ツールの分析結果はAIが生成したものであり、投資助言ではありません。<br>
+      投資判断は必ずご自身の責任で行ってください。
+    </div>
+  </footer>
+
+  <!-- ========================================
+       JavaScript
+       ======================================== -->
+  <script>
+    /* ----------------------------------------
+       初期化
+       ---------------------------------------- */
+    document.getElementById('analysisDate').valueAsDate = new Date();
+
+    /* ----------------------------------------
+       判定ロジック（S/A/B/C/D）
+       ---------------------------------------- */
+    function rPer(v) {
+      if (v == null) return '—';
+      return v <= 10 ? 'S' : v <= 15 ? 'A' : v <= 20 ? 'B' : v <= 30 ? 'C' : 'D';
+    }
+    function rPbr(v) {
+      if (v == null) return '—';
+      return v <= 0.8 ? 'S' : v <= 1.0 ? 'A' : v <= 1.5 ? 'B' : v <= 3.0 ? 'C' : 'D';
+    }
+    function rRoe(v) {
+      if (v == null) return '—';
+      return v >= 15 ? 'S' : v >= 10 ? 'A' : v >= 8 ? 'B' : v >= 5 ? 'C' : 'D';
+    }
+    function rDiv(v) {
+      if (v == null) return '—';
+      return v >= 4 ? 'S' : v >= 3 ? 'A' : v >= 2 ? 'B' : v >= 1 ? 'C' : 'D';
+    }
+    function rEq(v) {
+      if (v == null) return '—';
+      return v >= 70 ? 'S' : v >= 50 ? 'A' : v >= 30 ? 'B' : v >= 20 ? 'C' : 'D';
+    }
+    function rOpm(v) {
+      if (v == null) return '—';
+      return v >= 20 ? 'S' : v >= 15 ? 'A' : v >= 10 ? 'B' : v >= 5 ? 'C' : 'D';
+    }
+
+    function totalGrade(rs) {
+      var m = { S: 5, A: 4, B: 3, C: 2, D: 1 };
+      var scores = rs.filter(function(r) { return m[r] != null; }).map(function(r) { return m[r]; });
+      if (!scores.length) return '—';
+      var avg = scores.reduce(function(a, b) { return a + b; }, 0) / scores.length;
+      return avg >= 4.5 ? 'S' : avg >= 3.5 ? 'A' : avg >= 2.5 ? 'B' : avg >= 1.5 ? 'C' : 'D';
+    }
+
+    /* ----------------------------------------
+       ユーティリティ
+       ---------------------------------------- */
+    function pf(s) {
+      if (!s || s.trim() === '' || s.trim() === '—') return null;
+      var n = parseFloat(s.trim());
+      return isNaN(n) ? null : n;
+    }
+
+    function esc(s) {
+      return s ? s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
+    }
+
+    function vs(v) {
+      if (v == null) return '';
+      if (v === Math.floor(v)) return String(Math.floor(v));
+      return v.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
+    }
+
+    function gc(g) {
+      return { S: 'grade-s', A: 'grade-a', B: 'grade-b', C: 'grade-c', D: 'grade-d' }[g] || 'grade-na';
+    }
+
+    /* ----------------------------------------
+       コメント自動生成（B-3 + B-3.5）
+       ---------------------------------------- */
+    function makeComment(s) {
+      var p = [];
+      var ind = s.industry;
+      var per = s.per, pbr = s.pbr, roe = s.roe;
+      var dy = s.div, eq = s.eq, opm = s.opm;
+      var pnl = s.pnl, mat = s.material || '';
+
+      // B-3: 業種別の機械的警告
+      if (ind === '保険業') p.push('⚠️保険業のため自己資本比率は業界構造上の数値');
+      else if (ind === '銀行業') p.push('⚠️銀行業のため自己資本比率・営業利益率は一般企業比較不可');
+      else if (ind === '海運業') p.push('⚠️海運は市況循環が大きくピークアウト罠に注意');
+
+      if (ind === '卸売業' && per != null && per < 15)
+        p.push('⚠️商社株の低PERは景気循環・資源価格の構造的要因');
+      if (per != null && per > 50)
+        p.push('⚠️PER' + Math.round(per) + '倍は超高水準');
+      else if (per != null && per > 30 && ind === '機械')
+        p.push('⚠️PER' + Math.round(per) + '倍はテーマ人気による過熱の可能性');
+
+      if (pbr != null && pbr > 5) {
+        if (['情報・通信業', 'サービス業', '精密機器'].indexOf(ind) >= 0)
+          p.push('⚠️高PBRだが無形資産・技術力を含む業種');
+        else
+          p.push('⚠️PBR' + pbr.toFixed(1) + 'は高水準');
+      }
+
+      if (roe != null && roe >= 15 && eq != null && eq < 20 && ind !== '保険業' && ind !== '銀行業')
+        p.push('⚠️高ROEだが自己資本比率が低くレバレッジ依存の可能性');
+      if (dy != null && dy === 0)
+        p.push('⚠️無配銘柄');
+      if (ind === '食料品' && opm != null && opm >= 10)
+        p.push('食品業界として営業利益率は高水準');
+      if (ind === '小売業' && opm != null && opm < 5)
+        p.push('小売業として営業利益率は標準的水準');
+      if (ind === '機械' && per != null && per < 15)
+        p.push('⚠️景気循環株のため低PERは業績ピーク罠の可能性');
+
+      // B-3.5: 材料×数値のクロスレビュー
+      var c = [];
+      var mg = mat.match(/【([SABCD])】/);
+      var mG = mg ? mg[1] : '';
+
+      if (mG === 'S' && per != null && per > 30)
+        c.push('💬 材料【S】だがPER' + Math.round(per) + '倍で織り込み済みの可能性。DCAで時間分散が有効');
+      else if (mG === 'S' && per != null && per <= 15)
+        c.push('💬 材料【S】かつPER割安圏。追加検討の観点あり');
+      else if (mG === 'S')
+        c.push('💬 材料【S】。成長テーマは強いがバリュエーションとのバランスに注目');
+      else if (mG === 'A' && pnl != null && pnl > 0)
+        c.push('💬 材料【A】で含み益あり。安定保有向き');
+      else if (mG === 'A' && pnl != null && pnl < 0)
+        c.push('💬 材料【A】だが含み損。押し目DCA追加検討の観点あり');
+      else if (mG === 'C' && pnl != null && pnl < 0)
+        c.push('💬 材料【C】＋含み損。カタリスト不足で様子見が無難');
+      else if (mG === 'D')
+        c.push('💬 材料【D】。リスク要因あり。慎重な判断が必要');
+      else if (mG === 'B' && pnl != null && pnl < 0)
+        c.push('💬 材料【B】で含み損。長期テーマ次第で判断');
+      else if (mG === 'B')
+        c.push('💬 材料【B】。安定的だが成長ドライバーに注目');
+
+      if (!p.length && !c.length) p.push(ind + 'セクター');
+      return p.concat(c).join('／');
+    }
+
+    /* ----------------------------------------
+       UI: エラー / 警告表示
+       ---------------------------------------- */
+    function showError(msg) {
+      var e = document.getElementById('errorMsg');
+      e.innerHTML = msg;
+      e.classList.add('show');
+      e.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    function hideError() { document.getElementById('errorMsg').classList.remove('show'); }
+    function showWarn(msg) {
+      document.getElementById('warnMsg').innerHTML = msg;
+      document.getElementById('warnMsg').classList.add('show');
+    }
+    function hideWarn() { document.getElementById('warnMsg').classList.remove('show'); }
+
+    /* ----------------------------------------
+       TSVテンプレートダウンロード
+       ---------------------------------------- */
+    function downloadTemplate() {
+      var tsv = 'コード\t銘柄名\t株数\t取得単価\t現在値\t損益\tPER\tPBR\tROE\t配当利回り\t自己資本比率\t営業利益率\t業種\t直近材料\t情報源\n';
+      tsv += '4507\t塩野義製薬\t1\t2857\t2780\t-77\t12.3\t1.2\t11.5\t2.8\t65.0\t22.0\t医薬品\t📈【A】☆直近 26/3期 営業利益+15%\tkabuyoho,irbank\n';
+      var blob = new Blob([tsv], { type: 'text/tab-separated-values;charset=utf-8' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'tsv-template.tsv';
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function() {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(a.href);
+      }, 1000);
+    }
+
+    /* ----------------------------------------
+       メイン: テーブル生成
+       ---------------------------------------- */
+    function generate() {
+      hideError();
+      hideWarn();
+
+      // --- バリデーション ---
+      var raw = document.getElementById('tsvInput').value.trim();
+      if (!raw) {
+        showError('⚠️ TSVデータが入力されていません。<br>STEP1でプロンプトをコピーし、ChatGPTにSBI証券のスクショと一緒に送信してください。<br>返ってきたTSVデータをここに貼り付けてください。');
+        return;
+      }
+
+      var lines = raw.split('\n').map(function(l) { return l.replace(/\r/g, ''); }).filter(function(l) { return l.trim() !== ''; });
+      if (lines.length < 2) {
+        showError('⚠️ データが不足しています。ヘッダー行＋1行以上のデータが必要です。');
+        return;
+      }
+
+      var hdr = lines[0].split('\t');
+      var idx = {};
+      hdr.forEach(function(h, i) { idx[h.trim()] = i; });
+
+      var requiredCols = ['コード', '銘柄名', 'PER', 'PBR', 'ROE', '配当利回り', '自己資本比率', '営業利益率', '業種', '直近材料'];
+      var missing = requiredCols.filter(function(c) { return idx[c] === undefined; });
+      if (missing.length > 0) {
+        showError('⚠️ TSVフォーマットエラー<br>以下の必須カラムが見つかりません：<br>・' + missing.join('<br>・') + '<br><br>ChatGPTの出力がTSV形式（タブ区切り）になっているか確認してください。<br>コードブロック（```tsv〜```）の中身だけをコピーしてください。');
+        return;
+      }
+      if (hdr.length < 10) {
+        showError('⚠️ カラム数が少なすぎます（' + hdr.length + '列）。<br>タブ区切り（TSV）ではなくスペースやカンマで区切られている可能性があります。');
+        return;
+      }
+
+      // --- データ解析 ---
+      var stocks = [];
+      for (var i = 1; i < lines.length; i++) {
+        var c = lines[i].split('\t');
+        if (c.length < 5) continue;
+        if ((c[0] || '').indexOf('出力例') >= 0) continue;
+        stocks.push({
+          code:    c[idx['コード']]      || '',
+          name:    c[idx['銘柄名']]      || '',
+          pnlRaw:  c[idx['損益']]        || '',
+          perRaw:  c[idx['PER']]         || '',
+          pbrRaw:  c[idx['PBR']]         || '',
+          roeRaw:  c[idx['ROE']]         || '',
+          divRaw:  c[idx['配当利回り']]   || '',
+          eqRaw:   c[idx['自己資本比率']] || '',
+          opmRaw:  c[idx['営業利益率']]   || '',
+          industry: c[idx['業種']]       || '',
+          material: c[idx['直近材料']]    || ''
+        });
+      }
+      if (!stocks.length) {
+        showError('⚠️ 銘柄データが見つかりません。ヘッダー行の下にデータ行があるか確認してください。');
+        return;
+      }
+
+      var noDataCount = stocks.filter(function(s) { return !s.perRaw && !s.pbrRaw && !s.roeRaw; }).length;
+      if (noDataCount === stocks.length) {
+        showError('⚠️ すべての銘柄でファンダメンタルデータが空です。<br>ChatGPTがデータを取得できていない可能性があります。TSVの中身を確認してください。');
+        return;
+      }
+      if (noDataCount > 0) {
+        showWarn('ℹ️ ' + noDataCount + '銘柄でファンダメンタルデータが一部空欄です。空欄の指標は「—」として判定されます。');
+      }
+
+      // --- 判定処理 ---
+      var gc2 = { S: 0, A: 0, B: 0, C: 0, D: 0 };
+      var proc = stocks.map(function(s) {
+        s.per = pf(s.perRaw); s.pbr = pf(s.pbrRaw); s.roe = pf(s.roeRaw);
+        s.div = pf(s.divRaw); s.eq  = pf(s.eqRaw);  s.opm = pf(s.opmRaw);
+        s.pnl = pf(s.pnlRaw);
+        s.rPer = rPer(s.per); s.rPbr = rPbr(s.pbr); s.rRoe = rRoe(s.roe);
+        s.rDiv = rDiv(s.div); s.rEq  = rEq(s.eq);   s.rOpm = rOpm(s.opm);
+        s.total = totalGrade([s.rPer, s.rPbr, s.rRoe, s.rDiv, s.rEq, s.rOpm]);
+        s.comment = makeComment(s);
+        gc2[s.total] = (gc2[s.total] || 0) + 1;
+        return s;
+      });
+
+      // --- サマリー表示 ---
+      var sh = '<div class="stat">銘柄数：<b>' + proc.length + '</b></div>';
+      ['S', 'A', 'B', 'C', 'D'].forEach(function(g) {
+        if (gc2[g]) sh += '<div class="stat">' + g + '評価：<b>' + gc2[g] + '</b></div>';
+      });
+      var pl = proc.filter(function(s) { return s.pnl != null && s.pnl > 0; }).length;
+      var mn = proc.filter(function(s) { return s.pnl != null && s.pnl < 0; }).length;
+      sh += '<div class="stat">含み益：<b>' + pl + '</b> / 含み損：<b>' + mn + '</b></div>';
+      document.getElementById('statsArea').innerHTML = sh;
+
+      // --- 分析日 ---
+      var dv = document.getElementById('analysisDate').value;
+      var ds = '';
+      if (dv) {
+        var dp = dv.split('-');
+        ds = dp[0] + '年' + dp[1] + '月' + dp[2] + '日';
+      } else {
+        ds = new Date().toLocaleDateString('ja-JP');
+      }
+
+      // --- テーブルHTML生成 ---
+      var tr = proc.map(function(s) {
+        return '<tr class="stock-main-row">'
+          + '<td class="code" rowspan="3">' + esc(s.code) + '</td>'
+          + '<td class="name" rowspan="3">' + esc(s.name) + '</td>'
+          + '<td>' + vs(s.per) + '</td><td class="' + gc(s.rPer) + '">' + s.rPer + '</td>'
+          + '<td>' + vs(s.pbr) + '</td><td class="' + gc(s.rPbr) + '">' + s.rPbr + '</td>'
+          + '<td>' + vs(s.roe) + '</td><td class="' + gc(s.rRoe) + '">' + s.rRoe + '</td>'
+          + '<td>' + vs(s.div) + '</td><td class="' + gc(s.rDiv) + '">' + s.rDiv + '</td>'
+          + '<td>' + vs(s.eq)  + '</td><td class="' + gc(s.rEq)  + '">' + s.rEq  + '</td>'
+          + '<td>' + vs(s.opm) + '</td><td class="' + gc(s.rOpm) + '">' + s.rOpm + '</td>'
+          + '<td class="' + gc(s.total) + ' overall" rowspan="3">' + s.total + '</td>'
+          + '</tr>\n'
+          + '<tr class="stock-material-row">'
+          + '<td class="row-label" colspan="2">直近材料</td>'
+          + '<td class="material" colspan="10">' + esc(s.material) + '</td>'
+          + '</tr>\n'
+          + '<tr class="stock-comment-row">'
+          + '<td class="row-label" colspan="2">コメント</td>'
+          + '<td class="comment" colspan="10">' + esc(s.comment) + '</td>'
+          + '</tr>';
+      }).join('\n');
+
+      // --- サマリーバッジHTML（WP版・ダウンロード版共通） ---
+      var gradeBadges = '';
+      ['S', 'A', 'B', 'C', 'D'].forEach(function(g) {
+        if (gc2[g]) {
+          var colors = {
+            S: 'background:#C6E4D4;color:#1F4D3A',
+            A: 'background:#E8F3DF;color:#426134',
+            B: 'background:#FFF1C7;color:#5B4300',
+            C: 'background:#FBE3CC;color:#70401D',
+            D: 'background:#F2D6D6;color:#763333'
+          };
+          gradeBadges += '<span class="stock-summary-badge" style="' + colors[g] + '">' + g + ':' + gc2[g] + '</span>\n';
+        }
+      });
+      var summaryHtml = '<div class="stock-summary">\n'
+        + '  <span class="stock-summary-badge" style="background:#e8f5e9;color:#2e7d32;">' + proc.length + '銘柄</span>\n'
+        + gradeBadges
+        + '</div>';
+
+      // --- WordPress用HTML組み立て ---
+      var wp = '<style>\n'
+        + '.stock-analysis-wrap { width: 100%; overflow-x: auto; margin: 16px 0; }\n'
+        + '.stock-analysis-table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 12px; line-height: 1.45; }\n'
+        + '.stock-analysis-table th, .stock-analysis-table td { border: 1px solid #ccc; padding: 6px 6px; vertical-align: middle; }\n'
+        + '.stock-analysis-table th { background: #f5f5f0; cursor: pointer; white-space: normal; font-weight: bold; text-align: center; }\n'
+        + '.stock-analysis-table th:hover { background: #e8e8e0; }\n'
+        + '.stock-analysis-table td { text-align: center; }\n'
+        + '.stock-analysis-table td.code { width: 6%; font-weight: bold; text-align: center; vertical-align: middle; }\n'
+        + '.stock-analysis-table td.name { width: 12%; font-weight: bold; text-align: left; vertical-align: middle; word-break: break-word; }\n'
+        + '.stock-analysis-table td.overall { width: 7%; font-weight: bold; text-align: center; vertical-align: middle; }\n'
+        + '.stock-analysis-table td.row-label { font-weight: bold; text-align: center; white-space: nowrap; background: #f7f7f3; }\n'
+        + '.stock-analysis-table td.material, .stock-analysis-table td.comment { text-align: left; line-height: 1.7; white-space: normal; word-break: break-word; overflow-wrap: anywhere; font-size: 12px; }\n'
+        + '.stock-material-row td.material { background: #fbfbf7; }\n'
+        + '.stock-comment-row td.comment { background: #f8fbff; }\n'
+        + '.grade-s { background: #C6E4D4; color: #1F4D3A; font-weight: bold; }\n'
+        + '.grade-a { background: #E8F3DF; color: #426134; font-weight: bold; }\n'
+        + '.grade-b { background: #FFF1C7; color: #5B4300; font-weight: bold; }\n'
+        + '.grade-c { background: #FBE3CC; color: #70401D; font-weight: bold; }\n'
+        + '.grade-d { background: #F2D6D6; color: #763333; font-weight: bold; }\n'
+        + '.grade-na { background: #EEEDE9; color: #5C5A55; font-weight: bold; }\n'
+        + '.stock-analysis-note { font-size: 12px; color: #555; margin-top: 12px; line-height: 1.8; }\n'
+        + '.stock-analysis-note b { color: #333; }\n'
+        + '.stock-summary { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 14px; font-size: 12px; }\n'
+        + '.stock-summary-badge { padding: 3px 10px; border-radius: 12px; font-weight: bold; font-size: 11px; }\n'
+        + '.stock-summary-link { font-size: 11px; margin-left: 8px; }\n'
+        + '.stock-summary-link a { color: #4caf50; text-decoration: underline; }\n'
+        + '@media screen and (max-width: 768px) {\n'
+        + '  .stock-analysis-table { font-size: 11px; }\n'
+        + '  .stock-analysis-table th, .stock-analysis-table td { padding: 5px 4px; }\n'
+        + '}\n'
+        + '</style>\n'
+        + summaryHtml + '\n'
+        + '<div class="stock-analysis-wrap">\n'
+        + '<table id="stockAnalysisTable" class="stock-analysis-table">\n'
+        + '<thead><tr>\n'
+        + '<th>コード ▲▼</th><th>銘柄名 ▲▼</th>\n'
+        + '<th>PER ▲▼</th><th>判定</th><th>PBR ▲▼</th><th>判定</th>\n'
+        + '<th>ROE ▲▼</th><th>判定</th><th>配当 ▲▼</th><th>判定</th>\n'
+        + '<th>自己資本 ▲▼</th><th>判定</th><th>営業利益率 ▲▼</th><th>判定</th>\n'
+        + '<th>総合 ▲▼</th>\n'
+        + '</tr></thead>\n'
+        + '<tbody>\n' + tr + '\n</tbody>\n'
+        + '</table>\n</div>\n'
+        + '<div class="stock-analysis-note">\n'
+        + '※AIによる自動分析です。数値は必ず一次情報で確認してください。<br>\n'
+        + '※⚠️＝機械判定による注意点　／　💬＝直近材料を踏まえた定性コメント<br>\n'
+        + '分析日：' + ds + '\n'
+        + '</div>\n'
+        + '<script>\n'
+        + '(function(){\n'
+        + '  var t = document.getElementById("stockAnalysisTable");\n'
+        + '  if (!t) return;\n'
+        + '  var hs = t.querySelectorAll("thead th"), tb = t.querySelector("tbody");\n'
+        + '  var go = {"S":0,"A":1,"B":2,"C":3,"D":4,"—":5,"":6};\n'
+        + '  var ss = {};\n'
+        + '  function getBlocks() {\n'
+        + '    var b = [], mrs = tb.querySelectorAll(".stock-main-row");\n'
+        + '    mrs.forEach(function(mr) {\n'
+        + '      var mt = mr.nextElementSibling, cm = mt ? mt.nextElementSibling : null;\n'
+        + '      b.push({main:mr, mat:mt, com:cm});\n'
+        + '    });\n'
+        + '    return b;\n'
+        + '  }\n'
+        + '  function gv(r, i) { var c = r.querySelectorAll("td"); return c[i] ? c[i].textContent.trim() : ""; }\n'
+        + '  function tn(v) { var c = v.replace(/[,▲▼]/g, "").trim(); if (c === "" || c === "—") return null; var n = parseFloat(c); return isNaN(n) ? null : n; }\n'
+        + '  function ig(i) { var x = hs[i].textContent.replace(/[▲▼]/g, "").trim(); return x === "判定" || x === "総合"; }\n'
+        + '  hs.forEach(function(h, i) {\n'
+        + '    h.addEventListener("click", function() {\n'
+        + '      var asc = !ss[i]; ss[i] = asc;\n'
+        + '      var blocks = getBlocks();\n'
+        + '      var isg = ig(i);\n'
+        + '      blocks.sort(function(a, b) {\n'
+        + '        var av = gv(a.main, i), bv = gv(b.main, i);\n'
+        + '        if (isg) { var ag = go[av] !== undefined ? go[av] : 6; var bg = go[bv] !== undefined ? go[bv] : 6; return asc ? ag - bg : bg - ag; }\n'
+        + '        var an = tn(av), bn = tn(bv);\n'
+        + '        if (an !== null && bn !== null) return asc ? an - bn : bn - an;\n'
+        + '        if (an !== null && bn === null) return -1;\n'
+        + '        if (an === null && bn !== null) return 1;\n'
+        + '        return asc ? av.localeCompare(bv, "ja") : bv.localeCompare(av, "ja");\n'
+        + '      });\n'
+        + '      blocks.forEach(function(bl) {\n'
+        + '        tb.appendChild(bl.main);\n'
+        + '        if (bl.mat) tb.appendChild(bl.mat);\n'
+        + '        if (bl.com) tb.appendChild(bl.com);\n'
+        + '      });\n'
+        + '    });\n'
+        + '  });\n'
+        + '})();\n'
+        + '</' + 'script>';
+
+      // --- スタンドアロンHTML（ダウンロード用） ---
+      var dataFilledCount = proc.filter(function(s) { return s.perRaw && s.pbrRaw && s.roeRaw; }).length;
+      var fullHtml = '<!DOCTYPE html>\n'
+        + '<html lang="ja">\n'
+        + '<head>\n'
+        + '  <meta charset="UTF-8">\n'
+        + '  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
+        + '  <title>ポートフォリオ ファンダメンタル分析（' + ds + '）</title>\n'
+        + '</head>\n'
+        + '<body style="margin:0; font-family:-apple-system,\'Hiragino Sans\',\'Meiryo\',sans-serif; background:#f5f5f0;">\n'
+        + '<div style="border-bottom:3px solid #4caf50; padding:28px 24px 20px; text-align:center; background:#fff;">\n'
+        + '  <div style="font-size:28px; margin-bottom:4px;">📊</div>\n'
+        + '  <h1 style="font-size:20px; font-weight:700; color:#2e7d32; letter-spacing:1px; margin:0 0 6px; line-height:1.5;">ポートフォリオ<br>ファンダメンタル分析</h1>\n'
+        + '  <div style="font-size:12px; color:#999; letter-spacing:0.5px;">分析日：' + ds + '</div>\n'
+        + '</div>\n'
+        + '<div style="max-width:100%; padding:16px;">\n'
+        + wp + '\n'
+        + '</div>\n'
+        + '<footer style="text-align:center; padding:20px 10px; font-size:12px; color:#888; border-top:1px solid #ddd; margin-top:24px; background:#fff;">\n'
+        + '  <p class="stock-analysis-credit">\n'
+        + '    AI分析・HTML生成：\n'
+        + '    <a href="https://stock-nikki.com/" target="_blank" rel="noopener noreferrer" style="color:#4caf50; text-decoration:none;">\n'
+        + '      Sから始まるStock日記\n'
+        + '    </a>\n'
+        + '  </p>\n'
+        + '</footer>\n'
+        + '</body>\n'
+        + '</html>';
+
+      // --- グローバルに保持（ダウンロード用） ---
+      window._generatedFullHtml = fullHtml;
+
+      // --- 出力 ---
+      document.getElementById('htmlOutput').value = wp;
+      var pv = document.getElementById('previewArea');
+      pv.innerHTML = wp;
+
+      // innerHTML で挿入した <script> はブラウザが実行しないため手動で再評価
+      pv.querySelectorAll('script').forEach(function(old) {
+        var ns = document.createElement('script');
+        ns.textContent = old.textContent;
+        old.parentNode.replaceChild(ns, old);
+      });
+
+      document.getElementById('resultArea').classList.remove('hidden');
+      document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ----------------------------------------
+       HTMLファイルダウンロード
+       ---------------------------------------- */
+    function downloadHTML() {
+      if (!window._generatedFullHtml) {
+        showError('⚠️ 先にテーブルを生成してください。');
+        return;
+      }
+      var ds = document.getElementById('analysisDate').value || 'analysis';
+      var filename = 'fundamental-analysis-' + ds + '.html';
+      var blob = new Blob([window._generatedFullHtml], { type: 'text/html;charset=utf-8' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function() {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(a.href);
+      }, 1000);
+    }
+
+    /* ----------------------------------------
+       クリップボード操作
+       ---------------------------------------- */
+    function copyPrompt() {
+      var text = document.getElementById('promptText').value;
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('btnCopyPrompt');
+        btn.textContent = '✅ コピーしました！';
+        setTimeout(function() { btn.textContent = '📋 プロンプトをコピー'; }, 2000);
+      }).catch(function() {
+        var ta = document.getElementById('promptText');
+        ta.select();
+        ta.setSelectionRange(0, 99999);
+        document.execCommand('copy');
+        var btn = document.getElementById('btnCopyPrompt');
+        btn.textContent = '✅ コピーしました！';
+        setTimeout(function() { btn.textContent = '📋 プロンプトをコピー'; }, 2000);
+      });
+    }
+
+    function copyHTML() {
+      var text = document.getElementById('htmlOutput').value;
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('btnCopyHTML');
+        btn.textContent = '✅ コピーしました！';
+        setTimeout(function() { btn.textContent = '📋 WordPress用HTMLをコピー'; }, 2000);
+      }).catch(function() {
+        var ta = document.getElementById('htmlOutput');
+        ta.select();
+        ta.setSelectionRange(0, 99999);
+        document.execCommand('copy');
+        var btn = document.getElementById('btnCopyHTML');
+        btn.textContent = '✅ コピーしました！';
+        setTimeout(function() { btn.textContent = '📋 WordPress用HTMLをコピー'; }, 2000);
+      });
+    }
+
+    /* ----------------------------------------
+       リセット
+       ---------------------------------------- */
+    function resetAll() {
+      document.getElementById('tsvInput').value = '';
+      document.getElementById('htmlOutput').value = '';
+      document.getElementById('previewArea').innerHTML = '';
+      document.getElementById('statsArea').innerHTML = '';
+      document.getElementById('resultArea').classList.add('hidden');
+      hideError();
+      hideWarn();
+    }
+  </script>
+</body>
+</html>

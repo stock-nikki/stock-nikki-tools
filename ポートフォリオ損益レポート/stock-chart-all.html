@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ポートフォリオ損益レポート</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+<style>
+  /* ============================================================
+   * デザイントークン（色・フォントはここだけ変更すればOK）
+   * SBI証券の色慣習：赤=利益、緑=損失（一般と逆）
+   * ============================================================ */
+  :root {
+    /* ベースカラー */
+    --bg:           #f7f3ee;
+    --surface:      #fffdf9;
+    --border:       #e0d9cf;
+    --border-muted: #c8bfb4;
+    --text:         #2e2a24;
+    --text-sub:     #4a4540;
+    --text-muted:   #8a8178;
+    --accent:       #1a6fa8;
+    --grid:         #e8e2d8;
+
+    /* 損益カラー（SBI慣習：赤=利益・緑=損失） */
+    --pnl-pos:      #cc0000;
+    --pnl-neg:      #007a3d;
+    --pnl-neu:      #999999;
+
+    /* フォント */
+    --font-chart:   bold 10px 'M PLUS 1p', sans-serif;
+    --font-label:   11px 'M PLUS 1p', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); padding: 24px 16px; }
+
+  /* ヘッダー */
+  .header { text-align: center; margin-bottom: 28px; }
+  .chart-h1 { font-size: 1.3rem; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 4px; }
+  .header p  { font-size: 0.75rem; color: var(--text-muted); }
+
+  /* サマリーカード */
+  .summary-row  { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+  .summary-card { flex: 1; min-width: 120px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+  .summary-card .label { font-size: 0.65rem; color: var(--text-muted); margin-bottom: 5px; }
+  .summary-card .value { font-size: 1.1rem; font-weight: 700; }
+  .value.positive { color: var(--pnl-pos); }
+  .value.negative { color: var(--pnl-neg); }
+  .value.neutral  { color: var(--accent); }
+
+  /* チャートブロック共通 */
+  .chart-block { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 14px; margin-bottom: 20px; }
+  .chart-h2 { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+  .chart-block-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .chart-block-header .chart-h2 { margin-bottom: 0; }
+  .chart-wrap { position: relative; }
+
+  /* タブボタン共通 */
+  .tab-btn {
+    font-size: 0.7rem; padding: 3px 10px; border-radius: 20px; cursor: pointer;
+    border: 1px solid var(--border-muted); background: transparent; color: var(--text-muted);
+    transition: background 0.15s, color 0.15s;
+  }
+  .tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* セクター折れ線 */
+  .sector-title { font-size: 0.85rem; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .badge { font-size: 0.62rem; padding: 2px 8px; border-radius: 20px; font-weight: 400; color: #000; }
+  .sector-label { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 10px; }
+
+  /* セクター円グラフ・トレンド共通 */
+  .pie-wrap { position: relative; max-width: 360px; margin: 0 auto; }
+  .tap-hint { text-align: center; font-size: 0.65rem; color: var(--text-muted); margin-top: 12px; }
+  .acc-list { list-style: none; margin-top: 16px; }
+  .acc-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; cursor: pointer;
+  }
+  .acc-left { display: flex; align-items: center; gap: 6px; }
+  .acc-right { display: flex; align-items: center; gap: 6px; }
+  .acc-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .acc-val { font-weight: 700; white-space: nowrap; }
+  .acc-pct { color: var(--text-muted); font-size: 0.75rem; margin-left: 4px; }
+  .acc-arrow { color: var(--text-muted); font-size: 0.7rem; transition: transform 0.2s; display: inline-block; margin-left: 4px; }
+  .acc-arrow.open { transform: rotate(90deg); }
+  .acc-panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .acc-panel.open { max-height: 600px; }
+  .acc-panel-inner { background: var(--bg); border-radius: 8px; padding: 8px 10px; margin: 6px 0 2px; }
+  .acc-stock {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 5px 0; font-size: 0.76rem; border-bottom: 1px dashed var(--border);
+  }
+  .acc-stock:last-child { border-bottom: none; }
+  .acc-stock-name { color: var(--text-sub); }
+  .acc-stock-vals { display: flex; gap: 6px; align-items: center; }
+  .pnl-tag { font-size: 0.72rem; font-weight: 600; }
+  .pnl-tag.pos { color: var(--pnl-pos); }
+  .pnl-tag.neg { color: var(--pnl-neg); }
+  .chg-badge {
+    font-size: 0.7rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; min-width: 62px; text-align: center; line-height: 1.3;
+  }
+  .chg-badge.pos { background: rgba(204,0,0,0.08); color: var(--pnl-pos); }
+  .chg-badge.neg { background: rgba(0,122,61,0.08); color: var(--pnl-neg); }
+  .chg-badge.neu { background: rgba(138,129,120,0.1); color: var(--text-muted); }
+  .chg-label { font-size: 0.56rem; color: var(--text-muted); display: block; text-align: center; line-height: 1; margin-bottom: 2px; }
+  .mini-badge { font-size: 0.68rem; font-weight: 600; padding: 2px 5px; border-radius: 3px; min-width: 62px; text-align: center; line-height: 1.3; }
+  .mini-badge.pos { color: var(--pnl-pos); background: rgba(204,0,0,0.06); }
+  .mini-badge.neg { color: var(--pnl-neg); background: rgba(0,122,61,0.06); }
+  .mini-badge.neu { color: var(--text-muted); background: rgba(138,129,120,0.08); }
+  .legend-row-inline { display: flex; gap: 14px; margin-top: 10px; justify-content: center; }
+  .legend-inline { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: var(--text-muted); }
+  .legend-swatch { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+  .note-sm { font-size: 0.62rem; color: var(--text-muted); margin-top: 8px; text-align: center; }
+
+  /* ⑧ 市場セクタートレンド */
+  .mkt-tabs { display: flex; gap: 4px; margin-bottom: 14px; flex-wrap: wrap; }
+  .mkt-tab {
+    padding: 5px 10px; border-radius: 6px; font-size: 0.72rem; font-weight: 600;
+    cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted);
+  }
+  .mkt-tab.active { background: var(--text); color: var(--surface); border-color: var(--text); }
+  .hot-tag { display: inline-block; font-size: 0.58rem; font-weight: 700; padding: 1px 4px; border-radius: 3px; margin-left: 3px; }
+  .hot-tag.hot { background: rgba(204,0,0,0.12); color: var(--pnl-pos); }
+  .hot-tag.cold { background: rgba(0,122,61,0.12); color: var(--pnl-neg); }
+  .zero-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; opacity: 0.5;
+  }
+  .zero-label { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="chart-h1">📊 ポートフォリオ損益レポート</div>
+  <p id="report-date"></p>
+</div>
+
+<!-- サマリーカード -->
+<div class="summary-row">
+  <div class="summary-card">
+    <div class="label">累計投資額</div>
+    <div class="value neutral" id="total-invested"></div>
+  </div>
+  <div class="summary-card">
+    <div class="label">時価総額</div>
+    <div class="value neutral" id="total-value"></div>
+  </div>
+  <div class="summary-card">
+    <div class="label">含み損益</div>
+    <div class="value" id="total-pnl"></div>
+  </div>
+  <div class="summary-card">
+    <div class="label">損益率</div>
+    <div class="value" id="total-pct"></div>
+  </div>
+</div>
+
+<!-- ① トータル推移 -->
+<div class="chart-block">
+  <div class="chart-h2">① 評価額 / 投資額 / 含み損益の推移</div>
+  <div class="chart-wrap" style="height:260px">
+    <canvas id="totalChart"></canvas>
+  </div>
+</div>
+
+<!-- ② ヒートマップ -->
+<div class="chart-block">
+  <div class="chart-block-header">
+    <div class="chart-h2">② ポートフォリオ ヒートマップ（評価額ベース）</div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <div class="filter-btns" style="display:flex;gap:6px">
+        <button class="tab-btn active" id="filter-all">すべて</button>
+        <button class="tab-btn" id="filter-plus">プラスのみ</button>
+        <button class="tab-btn" id="filter-minus">マイナスのみ</button>
+      </div>
+
+    </div>
+  </div>
+  <div id="echarts" style="width:100%;height:500px"></div>
+</div>
+
+<!-- ③ 銘柄別損益（棒グラフ） -->
+<div class="chart-block">
+  <div class="chart-h2">③ 銘柄別 含み損益（今週）</div>
+  <div class="chart-wrap">
+    <canvas id="barChart"></canvas>
+  </div>
+</div>
+
+<!-- ③ セクター別折れ線 -->
+<div class="chart-block">
+  <div class="chart-block-header">
+    <div class="chart-h2">④ セクター別 損益推移</div>
+  </div>
+  <div id="sector-tabs" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px"></div>
+  <div id="sector-chart-wrap" style="position:relative;height:600px">
+    <canvas id="sectorChart"></canvas>
+  </div>
+</div>
+
+<!-- ⑤ 前回比上昇率 -->
+<div class="chart-block">
+  <div class="chart-block-header">
+    <div class="chart-h2">⑤ 株価変化率（初動検知）</div>
+    <div style="display:flex;gap:6px">
+      <button id="tab-recent" class="tab-btn active">直近</button>
+      <button id="tab-1w"     class="tab-btn">約1週間前</button>
+    </div>
+  </div>
+  <div id="chg-date" style="font-size:0.7rem;color:var(--text-muted);margin-bottom:12px"></div>
+  <div class="chart-wrap">
+    <canvas id="chgChart"></canvas>
+  </div>
+</div>
+
+<!-- ⑥ セクター比率（円グラフ） -->
+<div class="chart-block">
+  <div class="chart-h2">⑥ セクター比率（評価額ベース）</div>
+  <div class="pie-wrap">
+    <canvas id="pieChart"></canvas>
+  </div>
+  <div class="tap-hint">▼ セクターをタップで構成銘柄を表示</div>
+  <ul class="acc-list" id="pieLegend"></ul>
+</div>
+
+<!-- ⑦ セクター別トレンド -->
+<div class="chart-block">
+  <div class="chart-h2">⑦ セクター別トレンド（前日比 / 前週比）</div>
+  <div class="chart-wrap">
+    <canvas id="trendChart"></canvas>
+  </div>
+  <div class="legend-row-inline">
+    <div class="legend-inline"><span class="legend-swatch" style="background:#1a6fa8"></span>前日比</div>
+    <div class="legend-inline"><span class="legend-swatch" style="background:#c47a00"></span>前週比</div>
+  </div>
+  <div class="tap-hint" style="margin-top:14px">▼ セクターをタップで構成銘柄を表示</div>
+  <ul class="acc-list" id="trendLegend"></ul>
+  <div class="note-sm">※ 前週に未保有の銘柄は「NEW」表示</div>
+</div>
+
+<!-- ⑧ 市場セクタートレンド -->
+<div class="chart-block">
+  <div class="chart-h2">⑧ 市場セクタートレンド（東証33業種→13セクター集約）</div>
+  <div class="mkt-tabs" id="mktTabs"></div>
+  <div class="chart-wrap">
+    <canvas id="mktChart"></canvas>
+  </div>
+  <div class="tap-hint" style="margin-top:14px">▼ セクターをタップで構成業種を表示</div>
+  <ul class="acc-list" id="mktLegend"></ul>
+  <div class="note-sm">※ 各セクターの値は構成業種の単純平均 ｜ 🟢保有あり 🔘未保有</div>
+</div>
+
+<script>
+// ============================================================
+// カラー定数（CSSのデザイントークンと対応）
+// SBI証券の色慣習：赤=利益、緑=損失（一般と逆）
+// ============================================================
+const C = {
+  pos:    "#cc0000",  // 利益（SBI赤）
+  neg:    "#007a3d",  // 損失（SBI緑）
+  neu:    "#999999",  // ゼロ
+  accent: "#1a6fa8",  // アクセントブルー
+  text:   "#4a4540",  // グラフ文字
+  grid:   "#e8e2d8",  // グリッド線
+  font:   "bold 10px 'M PLUS 1p', sans-serif",
+  fontSm: "11px 'M PLUS 1p', sans-serif",
+};
+// rgba用ヘルパー（透明度つき損益色）
+const rgba = (isPos, alpha) => isPos
+  ? `rgba(204,0,0,${alpha})`
+  : `rgba(0,122,61,${alpha})`;
+
+// ============================================================
+// 🔄 データブロック（毎週更新エリア）
+// ポートフォリオ更新時はこのエリアの BLOCK 1〜6 を差し替える
+// ⑥⑦は BLOCK 3〜5 から自動計算される
+// ⑧は BLOCK 6（チャッピーTSVから更新）
+// ============================================================
+
+// 🔄 BLOCK 1: HISTORY（週次推移 — 週追加時に1行追記）
+const HISTORY = [
+  { week: "5/29", invested:  69856, value:  71748, pnl:  1892 },
+  { week: "6/5",  invested: 175890, value: 178698, pnl:  2808 },
+  { week: "6/8",  invested: 205495, value: 204004, pnl: -1491 },
+  { week: "6/9",  invested: 205495, value: 207247, pnl:  1752 },
+  { week: "6/10", invested: 205495, value: 206556, pnl:  1061 },
+  { week: "6/11", invested: 216135, value: 216318, pnl:   183 },
+  { week: "6/12", invested: 216135, value: 219479, pnl:  3344 },
+  { week: "6/15", invested: 236477, value: 244623, pnl:  8146 },
+  { week: "6/16", invested: 236477, value: 246127, pnl:  9650 },
+  { week: "6/18", invested: 263817, value: 277694, pnl: 13877 },
+  { week: "6/19", invested: 293079, value: 303926, pnl: 10847 },
+  { week: "6/22", invested: 293079, value: 306057.2, pnl: 12978.2 },
+  { week: "6/23", invested: 293079, value: 300995.9, pnl: 7916.9 },
+  { week: "6/24", invested: 293079, value: 298899.8, pnl: 5820.8 },
+  { week: "6/25", invested: 312629, value: 324484.4, pnl: 11855.4 },
+  { week: "6/26", invested: 317400, value: 321146.4, pnl: 3746.4 },
+  { week: "6/29", invested: 329092, value: 333696.6, pnl: 4604.6 },
+  { week: "6/30", invested: 336197, value: 341922.9, pnl: 5725.9 },
+];
+
+// 🔄 BLOCK 2: STOCKS（銘柄別損益・前日比）
+const STOCKS = [
+  { name: "フジクラ",                      pnl:      1407, pct:  +29.12, chg:   +6.00 },
+  { name: "アドバンテスト",                   pnl:      6540, pct:  +25.35, chg:   +1.22 },
+  { name: "キッコーマン",                    pnl:      1936, pct:  +16.97, chg:   +1.09 },
+  { name: "リクルートHD",                   pnl:      1541, pct:  +15.74, chg:   +0.31 },
+  { name: "T&DHD",                     pnl:      2760, pct:  +12.97, chg:   +2.71 },
+  { name: "富士フイルム",                    pnl:      1208, pct:   +9.49, chg:   -0.85 },
+  { name: "スギHD",                      pnl:       270, pct:   +9.38, chg:   -1.13 },
+  { name: "花王",                        pnl:       526, pct:   +8.89, chg:   -0.83 },
+  { name: "ホシザキ",                      pnl:       530, pct:   +5.27, chg:   -0.09 },
+  { name: "アステラス製薬",                   pnl:       210, pct:   +5.07, chg:   +0.18 },
+  { name: "沖縄セルラー",                    pnl:       110, pct:   +3.09, chg:   -1.48 },
+  { name: "大塚HD",                      pnl:       295, pct:   +2.81, chg:   -0.96 },
+  { name: "トリドールHD",                   pnl:        56, pct:   +1.48, chg:   -1.06 },
+  { name: "信越化学",                      pnl:       176, pct:   +1.27, chg:   +0.95 },
+  { name: "伊藤忠",                       pnl:        30, pct:   +0.82, chg:   +0.24 },
+  { name: "タカミヤ",                      pnl:        20, pct:   +0.51, chg:    0.00 },
+  { name: "ミーク",                       pnl:         2, pct:   +0.20, chg:   +0.98 },
+  { name: "ユニ・チャーム",                   pnl:       2.4, pct:   +0.06, chg:   -0.10 },
+  { name: "IHI",                       pnl:        -6, pct:   -0.06, chg:   +1.36 },
+  { name: "ヒューリック",                    pnl:       -15, pct:   -0.18, chg:   -0.88 },
+  { name: "OLC",                       pnl:        -8, pct:   -0.32, chg:   -0.34 },
+  { name: "日本ライフライン",                  pnl:       -32, pct:   -0.61, chg:   -0.38 },
+  { name: "MRO",                       pnl:     -19.5, pct:   -1.04, chg:   +1.42 },
+  { name: "三菱UFJ",                     pnl:       -35, pct:   -1.08, chg:   -0.12 },
+  { name: "安川電機",                      pnl:       -78, pct:   -1.10, chg:   +1.81 },
+  { name: "東レ",                        pnl:     -12.5, pct:   -1.10, chg:   -0.97 },
+  { name: "三菱重工",                      pnl:       -47, pct:   -1.27, chg:   +0.41 },
+  { name: "ブラッツ",                      pnl:       -28, pct:   -1.55, chg:   -0.22 },
+  { name: "塩野義",                       pnl:       -68, pct:   -2.38, chg:   -0.59 },
+  { name: "サンリオ",                      pnl:       -54, pct:   -2.40, chg:   -2.35 },
+  { name: "エターナルHG",                   pnl:      -166, pct:   -2.95, chg:   -2.74 },
+  { name: "NRI",                       pnl:      -188, pct:   -3.93, chg:   -0.82 },
+  { name: "TIS",                       pnl:      -138, pct:   -4.18, chg:   -1.15 },
+  { name: "HOYA",                      pnl:     -2920, pct:   -5.33, chg:   +0.56 },
+  { name: "クボタ",                       pnl:    -157.5, pct:   -5.54, chg:   -0.68 },
+  { name: "川崎船",                       pnl:      -152, pct:   -5.76, chg:   +1.68 },
+  { name: "JDI",                       pnl:      -200, pct:   -6.67, chg:   -6.67 },
+  { name: "SHIFT",                     pnl:      -204, pct:   -7.03, chg:   +0.16 },
+  { name: "コマツ",                       pnl:      -535, pct:   -7.85, chg:   -0.57 },
+  { name: "JX金属",                      pnl:     -1362, pct:   -9.36, chg:   -1.61 },
+  { name: "住友電工",                      pnl:     -1932, pct:  -14.16, chg:   +1.12 },
+  { name: "ソフトバンクG",                   pnl:     -3070, pct:  -20.47, chg:   +1.17 },
+  { name: "ユーソナー",                     pnl:      -466, pct:  -20.48, chg:   +0.50 },
+];
+
+
+// 🔄 BLOCK 3: STOCKS_HEATMAP（銘柄別評価額 — ⑥円グラフの元データ）
+const STOCKS_HEATMAP = [
+  { name: "HOYA",                      value:     51900, pnl:     -2920, pct:   -5.33 },
+  { name: "アドバンテスト",                   value:     32340, pnl:      6540, pct:  +25.35 },
+  { name: "T&DHD",                     value:     24035, pnl:      2760, pct:  +12.97 },
+  { name: "信越化学",                      value:     14016, pnl:       176, pct:   +1.27 },
+  { name: "富士フイルム",                    value:     13932, pnl:      1208, pct:   +9.49 },
+  { name: "キッコーマン",                    value:     13344, pnl:      1936, pct:  +16.97 },
+  { name: "JX金属",                      value:     13194, pnl:     -1362, pct:   -9.36 },
+  { name: "ソフトバンクG",                   value:     11926, pnl:     -3070, pct:  -20.47 },
+  { name: "住友電工",                      value:     11708, pnl:     -1932, pct:  -14.16 },
+  { name: "リクルートHD",                   value:     11330, pnl:      1541, pct:  +15.74 },
+  { name: "IHI",                       value:     10846, pnl:        -6, pct:   -0.06 },
+  { name: "大塚HD",                      value:     10805, pnl:       295, pct:   +2.81 },
+  { name: "ホシザキ",                      value:     10590, pnl:       530, pct:   +5.27 },
+  { name: "ヒューリック",                    value:      8485, pnl:       -15, pct:   -0.18 },
+  { name: "安川電機",                      value:      7027, pnl:       -78, pct:   -1.10 },
+  { name: "花王",                        value:      6446, pnl:       526, pct:   +8.89 },
+  { name: "コマツ",                       value:      6282, pnl:      -535, pct:   -7.85 },
+  { name: "フジクラ",                      value:      6238, pnl:      1407, pct:  +29.12 },
+  { name: "エターナルHG",                   value:      5466, pnl:      -166, pct:   -2.95 },
+  { name: "日本ライフライン",                  value:      5180, pnl:       -32, pct:   -0.61 },
+  { name: "NRI",                       value:      4592, pnl:      -188, pct:   -3.93 },
+  { name: "アステラス製薬",                   value:      4350, pnl:       210, pct:   +5.07 },
+  { name: "タカミヤ",                      value:      3960, pnl:        20, pct:   +0.51 },
+  { name: "トリドールHD",                   value:      3845, pnl:        56, pct:   +1.48 },
+  { name: "ユニ・チャーム",                   value:    3774.4, pnl:       2.4, pct:   +0.06 },
+  { name: "伊藤忠",                       value:      3708, pnl:        30, pct:   +0.82 },
+  { name: "沖縄セルラー",                    value:      3670, pnl:       110, pct:   +3.09 },
+  { name: "三菱重工",                      value:      3666, pnl:       -47, pct:   -1.27 },
+  { name: "三菱UFJ",                     value:      3207, pnl:       -35, pct:   -1.08 },
+  { name: "TIS",                       value:      3167, pnl:      -138, pct:   -4.18 },
+  { name: "スギHD",                      value:      3150, pnl:       270, pct:   +9.38 },
+  { name: "JDI",                       value:      2800, pnl:      -200, pct:   -6.67 },
+  { name: "塩野義",                       value:      2789, pnl:       -68, pct:   -2.38 },
+  { name: "SHIFT",                     value:      2696, pnl:      -204, pct:   -7.03 },
+  { name: "クボタ",                       value:    2685.5, pnl:    -157.5, pct:   -5.54 },
+  { name: "OLC",                       value:      2490, pnl:        -8, pct:   -0.32 },
+  { name: "川崎船",                       value:      2485, pnl:      -152, pct:   -5.76 },
+  { name: "サンリオ",                      value:      2200, pnl:       -54, pct:   -2.40 },
+  { name: "MRO",                       value:    1855.5, pnl:     -19.5, pct:   -1.04 },
+  { name: "ユーソナー",                     value:      1809, pnl:      -466, pct:  -20.48 },
+  { name: "ブラッツ",                      value:      1780, pnl:       -28, pct:   -1.55 },
+  { name: "東レ",                        value:    1127.5, pnl:     -12.5, pct:   -1.10 },
+  { name: "ミーク",                       value:      1026, pnl:         2, pct:   +0.20 },
+];
+
+
+// 🔄 BLOCK 4: WEEKS（週ラベル — 週追加時に末尾追記）
+const WEEKS = ["5/29", "6/5", "6/8", "6/9", "6/10", "6/11", "6/12", "6/15", "6/16", "6/18", "6/19", "6/22", "6/23", "6/24", "6/25", "6/26", "6/29", "6/30"];
+
+// 🔄 BLOCK 5: SECTORS（セクター別pnl配列 — ⑥⑦の元データ）
+const SECTORS = [
+  {
+    name: "テック・IT", emoji: "💻", color: C.accent,
+    stocks: [
+      { name: "アドバンテスト",             pnl: [null, 965, -565, 530, -565, -625, 1525, 3620, 4540, 4500, 5940, 6370, 5630, 5400, 10100, 6640, 6150, 6540] },
+      { name: "TIS",                 pnl: [null, 84, 44, -66, -60, -88, -220, -140, -182, -128, -238, -258, -294, -214, -276, -220, -101, -138] },
+      { name: "ミーク",                 pnl: [null, 25, -3, 7, -11, -24, -24, 20, -14, 42, 13, 32, -1, -2, -31, -42, -8, 2] },
+      { name: "ソフトバンクG",             pnl: [null, -144, -1044, -900, -2074, -2248, -2052, -718, -792, -618, -774, -508, -1970, -1802, -760, -2544, -3208, -3070] },
+      { name: "MRO",                 pnl: [null, 10, 0, -23, 39, -82, -61, -64, -135, -83, -92.5, -100.5, -118, -151, -114.5, -94, -45.5, -19.5] },
+      { name: "SHIFT",               pnl: [null, null, -159, -230, -199, -185, -319, -353, -349, -319, -373.2, -415.6, -459.6, -434.8, -444, -432, -208.4, -204] },
+      { name: "JDI",                 pnl: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, -200] },
+    ]
+  },
+  {
+    name: "ヘルスケア・医薬", emoji: "💊", color: "#1a7a4a",
+    stocks: [
+      { name: "塩野義",                 pnl: [null, 8, -12, -89, -60, -88, -82, -70, -48, -24, -77, -45, -37.5, -36.5, -138.5, -102, -51.5, -68] },
+      { name: "スギHD",                pnl: [null, -30, 64, 56, 114, 88, 45, 41, 120, 157, 257, 238, 230, 210, 201, 212, 306, 270] },
+      { name: "ユニ・チャーム",             pnl: [20.8, -153, -140, -217, -162, -77, -112, -58, -40, -94, -56.8, -49.2, -112, -106.4, -33.6, 20.4, 6, 2.4] },
+      { name: "HOYA",                pnl: [null, -1140, -2200, -1875, -1770, -1830, -1060, -850, -415, 2210, -330, -870, -1850, -2120, -2580, -3670, -3210, -2920] },
+      { name: "日本ライフライン",            pnl: [null, null, 27, 36, 72, 48, 33, -9, -90, -96, -90, -93, -156, -153, -168, -88, -12, -32] },
+      { name: "大塚HD",                pnl: [null, null, 40, -235, -245, -290, -310, -280, -150, 320, 5, 100, 200, 360, 330, 385, 400, 295] },
+      { name: "アステラス製薬",             pnl: [null, null, null, null, null, 74, 140, 165, 148, 210, 151, 214, 126, 179, 154, 150, 202, 210] },
+    ]
+  },
+  {
+    name: "素材・製造", emoji: "🏭", color: "#c47a00",
+    stocks: [
+      { name: "東レ",                  pnl: [null, -19, -45, -47, -27, -22, 5, 57, 37, 53, 19, 31.5, 1, 7, 18, -1.5, -1.5, -12.5] },
+      { name: "フジクラ",                pnl: [null, -84, -430, -332, -637, -689, -575, -485, -93, -370, 330, 1330, 1656, 1482, 1605, 1300, 1054, 1407] },
+      { name: "IHI",                 pnl: [null, 4, -65, -113, -131, -212, -140, 135, 205, 296, 416, 414, 18, 278, 24, -162, -152, -6] },
+      { name: "三菱重工",                pnl: [null, 77, -14, -84, -135, -219, -173, -54, 97, 255, 204, 196, 29, 30, -95, -146, -62, -47] },
+      { name: "ホシザキ",                pnl: [476, 112, 62, 76, 376, 358, 350, 468, 322, 664, 370, 600, 426, 386, 546, 540, 540, 530] },
+      { name: "信越化学",                pnl: [null, null, null, null, null, 358, 688, 1064, 954, 959, 780, 774, 762, 360, 460, -170, 44, 176] },
+      { name: "コマツ",                 pnl: [null, null, null, null, null, null, null, 0, -167, -164, -325, -266, -278, -336, -567, -488, -499, -535] },
+      { name: "クボタ",                 pnl: [null, null, null, null, null, null, null, 0, 27, 12, 3.5, -5, -109, -74.5, -88, -91.5, -139, -157.5] },
+      { name: "住友電工",                pnl: [null, null, null, null, null, null, null, null, null, null, -155, -140, -1045, -1415, -1400, -1704, -2062, -1932] },
+      { name: "JX金属",                pnl: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, -12, -897, -1146, -1362] },
+      { name: "タカミヤ",                pnl: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 20, 20] },
+      { name: "安川電機",                pnl: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, -78] },
+    ]
+  },
+  {
+    name: "金融・商社", emoji: "💰", color: "#8e24aa",
+    stocks: [
+      { name: "T&DHD",               pnl: [304, 1088, 1108, 2160, 2272, 2152, 2376, 2735, 3235, 3375, 3195, 3645, 3270, 1860, 2175, 2135, 2125, 2760] },
+      { name: "ユーソナー",               pnl: [null, -191, -345, -312, -105, -167, -236, -330, -362, -435, -455, -494, -473, -511, -541, -589, -475, -466] },
+      { name: "沖縄セルラー",              pnl: [null, 105, 90, 170, 145, 145, 180, 145, 125, 70, 90, 100, 205, 115, 115, 125, 165, 110] },
+      { name: "NRI",                 pnl: [null, null, -81, -154, -130, -180, -284, -215, -275, -125, -422, -524, -476, -412, -513, -479, -150, -188] },
+      { name: "伊藤忠",                 pnl: [null, null, 10, 18, 33, -26, 75, 136, 41, 64, 17, 17, -17, -40, -50, -11, 21, 30] },
+      { name: "三菱UFJ",               pnl: [null, null, null, null, null, null, null, 0, -14, 132, 36, 91, 25, -37, -9, 3, -31, -35] },
+      { name: "サンリオ",                pnl: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, -1, -54] },
+    ]
+  },
+  {
+    name: "食品・消費財", emoji: "🍜", color: "#c0392b",
+    stocks: [
+      { name: "キッコーマン",              pnl: [-264, 88, 304, 1012, 1380, 1320, 1624, 1148, 1220, 968, 912, 1076, 1228, 1308, 1684, 1660, 1792, 1936] },
+      { name: "花王",                  pnl: [null, 2, 76, 12, 130, 151, 125, 136, 168, 234, 282, 150, 175, 159, 322, 546, 580, 526] },
+      { name: "ブラッツ",                pnl: [null, -10, 4, 32, 140, 130, 122, 122, 130, 82, 82, 80, 88, 100, 90, 90, -24, -28] },
+      { name: "トリドールHD",             pnl: [null, null, -1, -57, 67, 116, 32, -49, -56, -215, -220, -191, -189, -135, -25, -53, 97, 56] },
+      { name: "エターナルHG",             pnl: [10, -184, -148, -312, -348, -288, -210, -134, -246, -278, -370, -400, -348, -368, -312, -244, -12, -166] },
+    ]
+  },
+  {
+    name: "人材・サービス・精密", emoji: "📈", color: "#b8860b",
+    stocks: [
+      { name: "リクルートHD",             pnl: [781, 806, 966, 1396, 1591, 1366, 1001, 931, 961, 1376, 1076, 1261, 1326, 1436, 1451, 1251, 1506, 1541] },
+      { name: "富士フイルム",              pnl: [564, 1388, 980, 1292, 1360, 1216, 880, 1032, 792, 972, 808, 732, 556, 608, 928, 1020, 1328, 1208] },
+      { name: "OLC",                 pnl: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0.5, -8] },
+    ]
+  },
+  {
+    name: "海運", emoji: "🚢", color: "#0e6655",
+    stocks: [
+      { name: "川崎船",                 pnl: [null, null, null, null, null, null, null, 0, -42, -124, -161, -114, -101, -109, -190, -178, -193, -152] },
+    ]
+  },
+  {
+    name: "不動産", emoji: "🏠", color: "#7f8c8d",
+    stocks: [
+      { name: "ヒューリック",              pnl: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 75, 60, -15] },
+    ]
+  },
+];
+
+
+// 🔄 BLOCK 6: MKT_RAW（市場セクターデータ ← チャッピーTSVから更新）
+const MKT_RAW = [
+  { name:"水産・農林",               d:-1.15   , w:1.24    , m:0.61    , h:2.58     , y:29.26 },
+  { name:"鉱業",                  d:-0.48   , w:-3.74   , m:-4.83   , h:2.37     , y:52.94 },
+  { name:"建設",                  d:-0.58   , w:1.43    , m:4.74    , h:1.66     , y:40.35 },
+  { name:"食料品",                 d:-0.36   , w:2.87    , m:4.7     , h:13.91    , y:23.94 },
+  { name:"繊維",                  d:-0.8    , w:-0.21   , m:-0.41   , h:6.72     , y:20.78 },
+  { name:"パルプ・紙",               d:-1.0    , w:2.68    , m:2.26    , h:2.97     , y:22.34 },
+  { name:"化学",                  d:-0.11   , w:0.81    , m:-1.21   , h:23.59    , y:42.26 },
+  { name:"医薬品",                 d:-0.45   , w:1.07    , m:0.77    , h:-1.98    , y:15.06 },
+  { name:"石油・石炭",               d:-0.3    , w:-1.0    , m:-6.02   , h:5.42     , y:51.4 },
+  { name:"ゴム",                  d:-0.74   , w:0.52    , m:0.66    , h:-3.48    , y:24.66 },
+  { name:"ガラス・土石",              d:0.19    , w:0.16    , m:3.62    , h:56.47    , y:108.36 },
+  { name:"鉄鋼",                  d:-1.03   , w:-0.4    , m:-0.25   , h:-6.76    , y:10.82 },
+  { name:"非鉄金属",                d:2.69    , w:-3.46   , m:0.4     , h:92.85    , y:309.48 },
+  { name:"金属製品",                d:0.82    , w:3.63    , m:0.85    , h:29.49    , y:48.37 },
+  { name:"機械",                  d:0.77    , w:-0.21   , m:4.08    , h:21.07    , y:45.72 },
+  { name:"電気機器",                d:1.59    , w:1.7     , m:6.42    , h:46.25    , y:90.15 },
+  { name:"輸送用機器",               d:-1.06   , w:1.57    , m:-4.03   , h:-14.41   , y:8.51 },
+  { name:"精密機器",                d:0.29    , w:0.9     , m:-0.28   , h:10.04    , y:33.63 },
+  { name:"その他製品",               d:-1.29   , w:1.16    , m:-1.94   , h:-16.71   , y:-22.45 },
+  { name:"電気・ガス",               d:-0.48   , w:0.98    , m:0.51    , h:-0.78    , y:34.95 },
+  { name:"陸運",                  d:-0.59   , w:2.24    , m:1.81    , h:-6.42    , y:6.48 },
+  { name:"海運",                  d:0.27    , w:-2.48   , m:-2.92   , h:10.18    , y:9.62 },
+  { name:"空運",                  d:-0.82   , w:1.51    , m:3.23    , h:-2.96    , y:4.5 },
+  { name:"倉庫・運輸",               d:-0.43   , w:2.75    , m:1.43    , h:5.89     , y:18.4 },
+  { name:"情報・通信",               d:0.41    , w:-2.02   , m:-14.24  , h:0.13     , y:14.8 },
+  { name:"卸売",                  d:-0.37   , w:-0.73   , m:-6.68   , h:7.19     , y:43.89 },
+  { name:"小売",                  d:-1.19   , w:2.53    , m:4.04    , h:1.41     , y:13.95 },
+  { name:"銀行",                  d:0.11    , w:0.44    , m:6.91    , h:29.7     , y:77.34 },
+  { name:"証券・商品先物",             d:-0.28   , w:0.42    , m:3.83    , h:2.18     , y:40.8 },
+  { name:"保険",                  d:0.38    , w:1.71    , m:3.82    , h:19.84    , y:36.03 },
+  { name:"その他金融",               d:0.23    , w:0.34    , m:0.94    , h:18.92    , y:53.59 },
+  { name:"不動産",                 d:-0.71   , w:4.23    , m:3.35    , h:-3.73    , y:21.15 },
+  { name:"サービス",                d:0.32    , w:1.93    , m:4.33    , h:8.65     , y:19.01 },
+];
+
+// 🔄 ここまでが毎週更新エリア
+// ============================================================
+
+// ============================================================
+// 📌 静的設定（セクター追加・分類変更時のみ編集）
+// ============================================================
+const EMPTY_SECTORS = [
+  { name: "通信・メディア 📡", color: "#95a5a6" },
+  { name: "電力・ガス ⚡",     color: "#a3b1b8" },
+  { name: "小売・外食 🛒",     color: "#b0b8bf" },
+  { name: "建設 🔨",           color: "#bdc3c7" },
+  { name: "運輸・物流 🚚",     color: "#c8ced2" },
+  { name: "エネルギー ⛽",     color: "#d5d8dc" },
+];
+
+const MKT_MAP = [
+  { name:"テック・IT 💻",           held:true,  k:["電気機器","情報・通信"] },
+  { name:"ヘルスケア・医薬 💊",     held:true,  k:["医薬品"] },
+  { name:"素材・製造 🏭",           held:true,  k:["化学","ガラス・土石","鉄鋼","非鉄金属","金属製品","機械","繊維","パルプ・紙","ゴム","輸送用機器","その他製品"] },
+  { name:"金融・商社 💰",           held:true,  k:["銀行","証券・商品先物","保険","その他金融","卸売"] },
+  { name:"食品・消費財 🍜",         held:true,  k:["食料品","水産・農林"] },
+  { name:"人材・サービス・精密 📈", held:true,  k:["サービス","精密機器"] },
+  { name:"海運 🚢",                 held:true,  k:["海運"] },
+  { name:"エネルギー ⛽",           held:false, k:["鉱業","石油・石炭"] },
+  { name:"不動産 🏠",               held:true,  k:["不動産"] },
+  { name:"建設 🔨",                 held:false, k:["建設"] },
+  { name:"小売・外食 🛒",           held:false, k:["小売"] },
+  { name:"電力・ガス ⚡",           held:false, k:["電気・ガス"] },
+  { name:"運輸・物流 🚚",           held:false, k:["陸運","空運","倉庫・運輸"] },
+];
+
+const MKT_PERIODS = [
+  { key:"d", label:"前日比" },
+  { key:"w", label:"1週間" },
+  { key:"m", label:"1ヶ月" },
+  { key:"h", label:"6ヶ月" },
+  { key:"y", label:"1年" },
+];
+
+const HOT_TH = { d:3, w:5, m:10, h:30, y:80 };
+const COLD_TH = { d:-3, w:-5, m:-10, h:-15, y:-10 };
+
+// ============================================================
+// ⛔ 以下、描画ロジック（データ更新時は変更不要）
+// ============================================================
+
+
+// ---- サマリー ----
+const latest = HISTORY[HISTORY.length - 1];
+document.getElementById("report-date").textContent = "更新日: " + latest.week + " 時点";
+document.getElementById("total-invested").textContent = "¥" + latest.invested.toLocaleString();
+document.getElementById("total-value").textContent    = "¥" + latest.value.toLocaleString();
+const pnlEl = document.getElementById("total-pnl");
+pnlEl.textContent = (latest.pnl >= 0 ? "+" : "") + "¥" + latest.pnl.toLocaleString();
+pnlEl.className = "value " + (latest.pnl >= 0 ? "negative" : "positive");
+const pct = (latest.pnl / latest.invested * 100).toFixed(2);
+const pctEl = document.getElementById("total-pct");
+pctEl.textContent = (latest.pnl >= 0 ? "+" : "") + pct + "%";
+pctEl.className = "value " + (latest.pnl >= 0 ? "negative" : "positive");
+
+
+// ---- ① トータル折れ線（デュアルY軸） ----
+new Chart(document.getElementById("totalChart").getContext("2d"), {
+  data: {
+    labels: HISTORY.map(d => d.week),
+    datasets: [
+      {
+        type: "line", label: "時価総額",
+        data: HISTORY.map(d => d.value),
+        borderColor: C.accent, backgroundColor: "rgba(26,111,168,0.07)",
+        pointRadius: 5, borderWidth: 2, fill: true, tension: 0.3, yAxisID: "yLeft",
+      },
+      {
+        type: "line", label: "投資額",
+        data: HISTORY.map(d => d.invested),
+        borderColor: C.text, backgroundColor: "transparent",
+        pointRadius: 5, borderWidth: 2, borderDash: [5,4], tension: 0.3, yAxisID: "yLeft",
+      },
+      {
+        type: "line", label: "含み損益",
+        data: HISTORY.map(d => d.pnl),
+        borderColor: "#6b2040",
+        pointBackgroundColor: HISTORY.map(d => d.pnl > 0 ? C.pos : d.pnl < 0 ? C.neg : C.neu),
+        pointBorderColor:     HISTORY.map(d => d.pnl > 0 ? C.pos : d.pnl < 0 ? C.neg : C.neu),
+        pointRadius: 6, borderWidth: 2.5, tension: 0.3, yAxisID: "yRight",
+      },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    interaction: { mode: "index", intersect: false },
+    plugins: {
+      legend: { labels: { color: C.text, font: { size: 11 }, boxWidth: 14 } },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ": ¥" + (ctx.raw >= 0 ? "+" : "") + ctx.raw.toLocaleString() } }
+    },
+    scales: {
+      x: { ticks: { color: C.text }, grid: { color: C.grid } },
+      yLeft:  { position: "left",  ticks: { color: C.text, callback: v => "¥" + v.toLocaleString() }, grid: { color: C.grid } },
+      yRight: { position: "right", ticks: { color: ctx => ctx.tick.value > 0 ? C.pos : ctx.tick.value < 0 ? C.neg : C.text, callback: v => (v >= 0 ? "+" : "") + "¥" + v.toLocaleString() }, grid: { drawOnChartArea: false } }
+    }
+  }
+});
+
+
+// ---- ② 銘柄別棒グラフ ----
+const sorted = [...STOCKS].sort((a, b) => b.pct - a.pct);
+const barWrap = document.getElementById("barChart").parentElement;
+barWrap.style.height = Math.max(260, sorted.length * 32) + "px";
+
+// 損益率ラベルを自前描画するカスタムプラグイン
+const pctLabelPlugin = {
+  id: "pctLabel",
+  afterDatasetsDraw(chart) {
+    const { ctx, data, scales } = chart;
+    const xScale = scales.x;
+    const yScale = scales.y;
+    ctx.save();
+    ctx.font = C.font;
+    ctx.textBaseline = "middle";
+    data.datasets[0].data.forEach((val, i) => {
+      const s = sorted[i];
+      const sign = s.pct >= 0 ? "+" : "";
+      const label = sign + s.pct.toFixed(2) + "%";
+      const y = yScale.getPixelForValue(i);
+      const xZero = xScale.getPixelForValue(0);
+      const xVal  = xScale.getPixelForValue(val);
+      ctx.fillStyle = s.pct >= 0 ? C.pos : C.neg;
+      if (val >= 0) {
+        // プラス→損益率は左（外側）、金額は右（棒の先端外側）
+        ctx.textAlign = "right";
+        ctx.fillText(label, xZero - 4, y);
+        ctx.textAlign = "left";
+        ctx.fillText("+" + val.toLocaleString() + "円", xVal + 4, y);
+      } else {
+        // マイナス→損益率は右（外側）、金額は左（棒の先端外側）
+        ctx.textAlign = "left";
+        ctx.fillText(label, xZero + 4, y);
+        ctx.textAlign = "right";
+        ctx.fillText(val.toLocaleString() + "円", xVal - 4, y);
+      }
+    });
+    ctx.restore();
+  }
+};
+
+new Chart(document.getElementById("barChart").getContext("2d"), {
+  type: "bar",
+  plugins: [pctLabelPlugin],
+  data: {
+    labels: sorted.map(s => s.name),
+    datasets: [{
+      label: "含み損益",
+      data: sorted.map(s => s.pnl),
+      backgroundColor: sorted.map(s => s.pnl >= 0 ? rgba(true, 0.75) : rgba(false, 0.75)),
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    indexAxis: "y", responsive: true, maintainAspectRatio: false,
+    layout: { padding: { left: 10, right: 10 } },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => {
+            const s = sorted[ctx.dataIndex];
+            const sign = s.pnl >= 0 ? "+" : "";
+            const pctSign = s.pct >= 0 ? "+" : "";
+            return sign + "¥" + s.pnl.toLocaleString() + "  (" + pctSign + s.pct.toFixed(2) + "%)";
+          }
+        }
+      },
+    },
+    scales: {
+      x: { ticks: { color: ctx => ctx.tick.value > 0 ? C.pos : ctx.tick.value < 0 ? C.neg : C.text, callback: v => (v >= 0 ? "+" : "") + "¥" + v.toLocaleString() }, grid: { color: C.grid } },
+      y: { ticks: { color: C.text, font: { size: 11 } }, grid: { display: true, color: C.grid, lineWidth: 1 }, border: { dash: [4, 4] } }
+    }
+  }
+});
+
+
+// ---- ③ セクター別折れ線（タブ切り替え） ----
+function shadeColor(hex, idx, total) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  const f = 0.5 + 0.5 * (idx / Math.max(total-1,1));
+  return `rgba(${Math.round(r*f)},${Math.round(g*f)},${Math.round(b*f)},0.9)`;
+}
+
+(function() {
+  const tabsEl = document.getElementById("sector-tabs");
+  const canvas = document.getElementById("sectorChart");
+  let currentChart = null;
+
+  // タブボタン生成（「すべて」を先頭に追加）
+  const allSectors = [{ name: "すべてのセクター", emoji: "📊", color: C.accent, stocks: SECTORS.flatMap(s => s.stocks), _isAll: true }, ...SECTORS];
+
+  allSectors.forEach((sector, idx) => {
+    const btn = document.createElement("button");
+    btn.className = "tab-btn" + (idx === 0 ? " active" : "");
+    btn.textContent = sector.emoji + " " + sector.name;
+    btn.dataset.idx = idx;
+    btn.addEventListener("click", () => {
+      tabsEl.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderSector(idx);
+    });
+    tabsEl.appendChild(btn);
+  });
+
+  function renderSector(idx) {
+    const sector = allSectors[idx];
+    if (currentChart) { currentChart.destroy(); }
+
+    // すべてのセクター表示時は銘柄ごとに元セクターの色を使う
+    function getColor(stock, i, total) {
+      if (sector._isAll) {
+        const parentSector = SECTORS.find(s => s.stocks.includes(stock));
+        return parentSector ? shadeColor(parentSector.color, i % parentSector.stocks.length, parentSector.stocks.length) : "#888";
+      }
+      return shadeColor(sector.color, i, total);
+    }
+
+    currentChart = new Chart(canvas.getContext("2d"), {
+      type: "line",
+      data: {
+        labels: WEEKS,
+        datasets: sector.stocks.map((stock, i) => ({
+          label: stock.name,
+          data: stock.pnl,
+          borderColor: getColor(stock, i, sector.stocks.length),
+          backgroundColor: "transparent",
+          pointBackgroundColor: getColor(stock, i, sector.stocks.length),
+          pointRadius: 5, borderWidth: 2, tension: 0.3, spanGaps: true,
+        }))
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: C.text, font: { size: 11 }, boxWidth: 12 } },
+          tooltip: { callbacks: { label: ctx => ctx.raw === null ? "（未保有）" : ctx.dataset.label + ": " + (ctx.raw >= 0 ? "+" : "") + "¥" + ctx.raw.toLocaleString() } }
+        },
+        scales: {
+          x: { ticks: { color: C.text }, grid: { color: C.grid } },
+          y: { ticks: { color: ctx => ctx.tick.value > 0 ? C.pos : ctx.tick.value < 0 ? C.neg : C.text, callback: v => (v >= 0 ? "+" : "") + "¥" + v.toLocaleString() }, grid: { color: C.grid } }
+        }
+      }
+    });
+  }
+
+  renderSector(0);
+})();
+
+// ---- ④ ECharts ヒートマップ ----
+(function() {
+  const maxPct = Math.max(...STOCKS.map(s => s.pct));
+  const minPct = Math.min(...STOCKS.map(s => s.pct));
+
+  function interpolateRgb(c1, c2, t) {
+    const r1=parseInt(c1.slice(1,3),16), g1=parseInt(c1.slice(3,5),16), b1=parseInt(c1.slice(5,7),16);
+    const r2=parseInt(c2.slice(1,3),16), g2=parseInt(c2.slice(3,5),16), b2=parseInt(c2.slice(5,7),16);
+    return `rgb(${Math.round(r1+(r2-r1)*t)},${Math.round(g1+(g2-g1)*t)},${Math.round(b1+(b2-b1)*t)})`;
+  }
+  function cellColor(pct) {
+    if (pct > 0) return interpolateRgb("#fde8ec", C.pos, pct / maxPct);
+    if (pct < 0) return interpolateRgb("#e8f5e9", C.neg, (-pct) / (-minPct));
+    return "#f0ede8";
+  }
+  function textColor(pct) {
+    const t = pct > 0 ? pct/maxPct : pct < 0 ? (-pct)/(-minPct) : 0;
+    return t > 0.55 ? "#fff" : "#2e2a24";
+  }
+
+  // STOCKSにvalueが無い場合はHISTORYの最新評価額を参照できないので
+  // ヒートマップ用データはSTOCKS_HEATMAPを別途定義
+  const chart = echarts.init(document.getElementById("echarts"));
+  chart.setOption({
+    tooltip: {
+      formatter: p => {
+        if (!p.data || p.data.pnl === undefined) return p.name || "";
+        const s = p.data;
+        const sign = s.pnl >= 0 ? "+" : "";
+        const pctSign = s.pct >= 0 ? "+" : "";
+        const col = s.pnl >= 0 ? C.pos : C.neg;
+        return `
+          <div style="font-family:'M PLUS 1p',sans-serif;font-size:12px;line-height:2">
+            <div style="font-weight:700;font-size:13px">${s.name}</div>
+            <div>評価額：¥${s.value.toLocaleString()}</div>
+            <div style="color:${col}">含み損益：${sign}¥${s.pnl.toLocaleString()}</div>
+            <div style="color:${col}">損益率：${pctSign}${s.pct.toFixed(2)}%</div>
+          </div>
+        `;
+      }
+    },
+
+    series: [{
+      type: "treemap",
+      width: "100%",
+      height: "100%",
+      roam: true,
+      nodeClick: "zoomToNode",
+      breadcrumb: { show: false },
+      label: {
+        show: true,
+        formatter: p => {
+          if (!p.data || p.data.value === undefined) return "";
+          return `${p.data.name}\n¥${p.data.value.toLocaleString()}`;
+        },
+        fontSize: 11,
+        fontWeight: "bold",
+        },
+      itemStyle: { borderColor: "#fff", borderWidth: 2, gapWidth: 2 },
+      emphasis: { itemStyle: { borderColor: C.text, borderWidth: 2 } },
+      data: STOCKS_HEATMAP.map(s => ({
+        name: s.name,
+        value: s.value,
+        pnl: s.pnl,
+        pct: s.pct,
+        itemStyle: { color: cellColor(s.pct) },
+        label: { color: textColor(s.pct) }
+      })),
+    }]
+  });
+  function applyFilter(mode) {
+    ["filter-all","filter-plus","filter-minus"].forEach(id => {
+      document.getElementById(id).classList.remove("active");
+    });
+    if (mode === "all") {
+      document.getElementById("filter-all").classList.add("active");
+      filtered = STOCKS_HEATMAP;
+    } else if (mode === "plus") {
+      document.getElementById("filter-plus").classList.add("active");
+      filtered = STOCKS_HEATMAP.filter(s => s.pnl >= 0);
+    } else {
+      document.getElementById("filter-minus").classList.add("active");
+      filtered = STOCKS_HEATMAP.filter(s => s.pnl < 0);
+    }
+    chart.setOption({
+      series: [{ data: filtered.map(s => ({
+        name: s.name, value: s.value, pnl: s.pnl, pct: s.pct,
+        itemStyle: { color: cellColor(s.pct) },
+        label: { color: textColor(s.pct) }
+      }))}]
+    });
+    chart.dispatchAction({ type: "treemapRootToNode", seriesIndex: 0 });
+  }
+
+  let filtered = STOCKS_HEATMAP;
+  document.getElementById("filter-all").addEventListener("click",   () => applyFilter("all"));
+  document.getElementById("filter-plus").addEventListener("click",  () => applyFilter("plus"));
+  document.getElementById("filter-minus").addEventListener("click", () => applyFilter("minus"));
+
+  window.addEventListener("resize", () => chart.resize());
+})();
+
+// ---- ⑤ 株価変化率グラフ（タブ切り替え） ----
+(function() {
+  const lastIdx = WEEKS.length - 1;
+
+  // 約1週間前のインデックスを探す（"6/5"相当 = lastIdxから3つ以上前、なければ0）
+  const weekAgoIdx = Math.max(0, lastIdx - 3);
+
+  // SECTORSから銘柄別pnlを全セクター横断でフラット化
+  function buildStockPnlMap() {
+    const map = {};
+    SECTORS.forEach(sec => {
+      sec.stocks.forEach(st => {
+        map[st.name] = st.pnl;
+      });
+    });
+    return map;
+  }
+
+  // fromIdx→toIdxのpnl差分から変化率を計算
+  // 取得単価 = value - pnl なので変化率 = (pnl_to - pnl_from) / (value - pnl_to) * 100
+  function calcChg(fromIdx, toIdx) {
+    const pnlMap = buildStockPnlMap();
+    return STOCKS.map(s => {
+      const arr = pnlMap[s.name];
+      const pnlTo   = (arr && arr[toIdx]   != null) ? arr[toIdx]   : null;
+      const pnlFrom = (arr && arr[fromIdx]  != null) ? arr[fromIdx] : null;
+      // どちらかnullなら比較不能→0
+      if (pnlTo === null || pnlFrom === null) return { name: s.name, chg: 0 };
+      // 取得原価（現在の評価額 - 現在のpnl）
+      const hm = STOCKS_HEATMAP.find(h => h.name === s.name);
+      const cost = hm ? hm.value - hm.pnl : null;
+      if (!cost || cost <= 0) return { name: s.name, chg: 0 };
+      const chg = ((pnlTo - pnlFrom) / cost) * 100;
+      return { name: s.name, chg: Math.round(chg * 100) / 100 };
+    });
+  }
+
+  const datasets = {
+    recent: { fromIdx: lastIdx - 1, toIdx: lastIdx },
+    week1:  { fromIdx: weekAgoIdx,  toIdx: lastIdx },
+  };
+
+  let currentChart = null;
+
+  function renderChart(mode) {
+    const { fromIdx, toIdx } = datasets[mode];
+    const fromWeek = WEEKS[fromIdx];
+    const toWeek   = WEEKS[toIdx];
+    document.getElementById("chg-date").textContent = "比較期間：" + fromWeek + " → " + toWeek;
+
+    const data   = calcChg(fromIdx, toIdx);
+    const sorted = [...data].sort((a, b) => b.chg - a.chg);
+
+    const height = Math.max(400, sorted.length * 28 + 60);
+    document.querySelector("#chgChart").parentElement.style.height = height + "px";
+
+    if (currentChart) { currentChart.destroy(); }
+
+    const chgLabelPlugin = {
+      id: "chgLabel",
+      afterDatasetsDraw(chart) {
+        const { ctx, scales: { x: xScale, y: yScale } } = chart;
+        ctx.save();
+        ctx.font = C.font;
+        ctx.textBaseline = "middle";
+        sorted.forEach((s, i) => {
+          const val = s.chg;
+          const label = (val >= 0 ? "+" : "") + val.toFixed(2) + "%";
+          const y = yScale.getPixelForValue(i);
+          const xZero = xScale.getPixelForValue(0);
+          ctx.fillStyle = val >= 0 ? C.pos : C.neg;
+          if (val >= 0) {
+            ctx.textAlign = "right";
+            ctx.fillText(label, xZero - 4, y + 4);
+          } else {
+            ctx.textAlign = "left";
+            ctx.fillText(label, xZero + 4, y + 4);
+          }
+        });
+        ctx.restore();
+      }
+    };
+
+    currentChart = new Chart(document.getElementById("chgChart").getContext("2d"), {
+      type: "bar",
+      plugins: [chgLabelPlugin],
+      data: {
+        labels: sorted.map(s => s.name),
+        datasets: [{
+          data: sorted.map(s => s.chg),
+          backgroundColor: sorted.map(s =>
+            s.chg >= 5  ? rgba(true,  0.85) :
+            s.chg >= 0  ? rgba(true,  0.55) :
+            s.chg >= -5 ? rgba(false, 0.55) :
+                          rgba(false, 0.85)
+          ),
+          borderRadius: 4,
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: { left: 10, right: 10 } },
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: {
+            label: ctx => " " + (ctx.raw >= 0 ? "+" : "") + ctx.raw.toFixed(2) + "%"
+          }}
+        },
+        scales: {
+          x: {
+            ticks: { color: ctx => ctx.tick.value > 0 ? C.pos : ctx.tick.value < 0 ? C.neg : C.text, callback: v => (v >= 0 ? "+" : "") + v + "%" },
+            grid: { color: C.grid }
+          },
+          y: {
+            ticks: { color: C.text, font: { size: 11 } },
+            grid: { display: true, color: C.grid, lineWidth: 1 },
+            border: { dash: [4, 4] }
+          }
+        }
+      }
+    });
+  }
+
+  // タブ切り替え
+  function setTab(mode) {
+    document.getElementById("tab-recent").classList.toggle("active", mode === "recent");
+    document.getElementById("tab-1w").classList.toggle("active", mode === "week1");
+    renderChart(mode);
+  }
+
+  document.getElementById("tab-recent").addEventListener("click", () => setTab("recent"));
+  document.getElementById("tab-1w").addEventListener("click",     () => setTab("week1"));
+
+  renderChart("recent");
+})();
+
+// ---- ⑥ セクター比率（円グラフ + アコーディオン） ----
+(function() {
+  // SECTORSの構造からSTOCKS_HEATMAPのvalueを集計
+  const hmMap = {};
+  STOCKS_HEATMAP.forEach(s => { hmMap[s.name] = s; });
+
+  const sectorData = SECTORS.map(sec => {
+    const stocks = sec.stocks.map(st => {
+      const hm = hmMap[st.name] || { value: 0, pnl: 0, pct: 0 };
+      return { name: st.name, val: hm.value, pnl: hm.pnl, pct: hm.pct };
+    });
+    const total = stocks.reduce((s, st) => s + st.val, 0);
+    return { name: sec.emoji + " " + sec.name, color: sec.color, value: total, stocks };
+  });
+
+  const grandTotal = sectorData.reduce((s, d) => s + d.value, 0);
+
+  // 円グラフ
+  const pieChart = new Chart(document.getElementById("pieChart").getContext("2d"), {
+    type: "doughnut",
+    data: {
+      labels: sectorData.map(d => d.name),
+      datasets: [{
+        data: sectorData.map(d => d.value),
+        backgroundColor: sectorData.map(d => d.color),
+        borderColor: "#fffdf9", borderWidth: 2, hoverOffset: 8,
+      }]
+    },
+    options: {
+      responsive: true, cutout: "45%",
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          label: ctx => {
+            const pct = (ctx.raw / grandTotal * 100).toFixed(1);
+            return " ¥" + ctx.raw.toLocaleString() + "（" + pct + "%）";
+          }
+        }},
+      },
+      onClick: (evt, el) => { if (el.length) togglePie(el[0].index); }
+    }
+  });
+
+  // 凡例 + アコーディオン
+  let pieOpen = -1;
+  const pieEl = document.getElementById("pieLegend");
+
+  sectorData.forEach((sec, idx) => {
+    const pct = (sec.value / grandTotal * 100).toFixed(1);
+    const wrap = document.createElement("div");
+
+    const row = document.createElement("div");
+    row.className = "acc-row";
+    row.innerHTML =
+      '<span class="acc-left"><span class="acc-dot" style="background:' + sec.color + '"></span>' + sec.name + '</span>' +
+      '<span class="acc-right"><span class="acc-val">¥' + Math.round(sec.value).toLocaleString() + '</span><span class="acc-pct">' + pct + '%</span>' +
+      '<span class="acc-arrow" id="pie-arr-' + idx + '">▸</span></span>';
+    row.addEventListener("click", () => togglePie(idx));
+
+    const panel = document.createElement("div");
+    panel.className = "acc-panel";
+    panel.id = "pie-pan-" + idx;
+    let inner = '<div class="acc-panel-inner">';
+    sec.stocks.forEach(st => {
+      const cls = st.pnl >= 0 ? "pos" : "neg";
+      const sign = st.pnl >= 0 ? "+" : "";
+      inner += '<div class="acc-stock"><span class="acc-stock-name">' + st.name + '</span>' +
+        '<span class="acc-stock-vals"><span class="acc-val" style="font-size:0.76rem">¥' + Math.round(st.val).toLocaleString() + '</span>' +
+        '<span class="pnl-tag ' + cls + '">' + sign + Math.round(st.pnl).toLocaleString() + '(' + sign + st.pct.toFixed(1) + '%)</span></span></div>';
+    });
+    inner += '</div>';
+    panel.innerHTML = inner;
+
+    wrap.appendChild(row);
+    wrap.appendChild(panel);
+    pieEl.appendChild(wrap);
+  });
+
+  // 未保有セクター（0%表示）— データは上部の📌静的設定から参照
+  const divider = document.createElement("div");
+  divider.style.cssText = "padding:10px 0 4px;font-size:0.68rem;color:#8a8178;font-weight:600;letter-spacing:0.05em;border-top:2px solid #e0d9cf;margin-top:4px";
+  divider.textContent = "未保有セクター";
+  pieEl.appendChild(divider);
+  EMPTY_SECTORS.forEach(es => {
+    const row = document.createElement("div");
+    row.className = "zero-row";
+    row.innerHTML =
+      '<span class="acc-left"><span class="acc-dot" style="background:' + es.color + ';opacity:0.4"></span>' + es.name + '</span>' +
+      '<span class="acc-right"><span class="zero-label">¥0</span><span class="acc-pct">0.0%</span></span>';
+    pieEl.appendChild(row);
+  });
+
+  function togglePie(idx) {
+    if (pieOpen >= 0 && pieOpen !== idx) {
+      document.getElementById("pie-pan-" + pieOpen).classList.remove("open");
+      document.getElementById("pie-arr-" + pieOpen).classList.remove("open");
+    }
+    const p = document.getElementById("pie-pan-" + idx);
+    const a = document.getElementById("pie-arr-" + idx);
+    const isOpen = p.classList.contains("open");
+    p.classList.toggle("open");
+    a.classList.toggle("open");
+    pieOpen = isOpen ? -1 : idx;
+  }
+})();
+
+// ---- ⑦ セクター別トレンド（横棒 + アコーディオン） ----
+(function() {
+  const hmMap = {};
+  STOCKS_HEATMAP.forEach(s => { hmMap[s.name] = s; });
+
+  const lastIdx = WEEKS.length - 1;
+  const prevDayIdx = lastIdx - 1;
+  const prevWeekIdx = Math.max(0, lastIdx - 3);
+
+  // 各銘柄の各時点の評価額を計算: 投資額 + pnl
+  function evalAt(stockName, pnlArr, timeIdx) {
+    if (pnlArr[timeIdx] == null) return null;
+    const hm = hmMap[stockName];
+    if (!hm) return null;
+    const cost = hm.value - hm.pnl; // 投資額
+    return cost + pnlArr[timeIdx];
+  }
+
+  // セクター別に前日比・前週比を計算
+  const trendData = SECTORS.map(sec => {
+    let todayTotal = 0, prevDayTotal = 0, prevWeekTotal = 0;
+    let hasPrevDay = false, hasPrevWeek = false;
+
+    const stockDetails = sec.stocks.map(st => {
+      const hm = hmMap[st.name] || { value: 0, pnl: 0 };
+      const todayVal = hm.value;
+      const prevDayVal = evalAt(st.name, st.pnl, prevDayIdx);
+      const prevWeekVal = evalAt(st.name, st.pnl, prevWeekIdx);
+
+      todayTotal += todayVal;
+      if (prevDayVal !== null) { prevDayTotal += prevDayVal; hasPrevDay = true; } else { prevDayTotal += 0; }
+      if (prevWeekVal !== null) { prevWeekTotal += prevWeekVal; hasPrevWeek = true; } else { prevWeekTotal += 0; }
+
+      const dayChg = prevDayVal !== null ? +((todayVal - prevDayVal) / prevDayVal * 100).toFixed(2) : null;
+      const dayAmt = prevDayVal !== null ? Math.round(todayVal - prevDayVal) : null;
+      const weekChg = prevWeekVal !== null ? +((todayVal - prevWeekVal) / prevWeekVal * 100).toFixed(2) : null;
+      const weekAmt = prevWeekVal !== null ? Math.round(todayVal - prevWeekVal) : null;
+
+      return { name: st.name, val: todayVal, dayChg, dayAmt, weekChg, weekAmt };
+    });
+
+    const sectorDayChg = hasPrevDay && prevDayTotal > 0 ? +((todayTotal - prevDayTotal) / prevDayTotal * 100).toFixed(2) : 0;
+    const sectorDayAmt = Math.round(todayTotal - prevDayTotal);
+    const sectorWeekChg = hasPrevWeek && prevWeekTotal > 0 ? +((todayTotal - prevWeekTotal) / prevWeekTotal * 100).toFixed(2) : null;
+    const sectorWeekAmt = hasPrevWeek ? Math.round(todayTotal - prevWeekTotal) : null;
+
+    return {
+      name: sec.emoji + " " + sec.name, color: sec.color,
+      dayChg: sectorDayChg, dayAmt: sectorDayAmt, weekChg: sectorWeekChg, weekAmt: sectorWeekAmt,
+      stocks: stockDetails
+    };
+  });
+
+  // 横棒グラフ
+  const trendCanvas = document.getElementById("trendChart");
+  const trendWrap = trendCanvas.parentElement;
+  const chartH = trendData.length * 56 + 40;
+  trendWrap.style.height = chartH + "px";
+
+  const dayVals = trendData.map(d => d.dayChg);
+  const weekVals = trendData.map(d => d.weekChg === null ? 0 : d.weekChg);
+
+  const trendLabelPlugin = {
+    id: "trendLabel",
+    afterDatasetsDraw(chart) {
+      const ctx2 = chart.ctx;
+      chart.data.datasets.forEach((ds, dsIdx) => {
+        const meta = chart.getDatasetMeta(dsIdx);
+        meta.data.forEach((bar, i) => {
+          const sec = trendData[i];
+          const val = dsIdx === 0 ? sec.dayChg : sec.weekChg;
+          const xZero = chart.scales.x.getPixelForValue(0);
+          ctx2.save();
+          ctx2.font = C.font;
+          ctx2.textBaseline = "middle";
+          if (val === null) {
+            ctx2.fillStyle = "#8a8178";
+            ctx2.textAlign = "left";
+            ctx2.fillText("NEW", xZero + 4, bar.y);
+          } else {
+            const sign = val >= 0 ? "+" : "";
+            ctx2.fillStyle = val >= 0 ? C.pos : C.neg;
+            if (val >= 0) {
+              ctx2.textAlign = "left";
+              ctx2.fillText(sign + val.toFixed(2) + "%", bar.x + 4, bar.y);
+            } else {
+              ctx2.textAlign = "right";
+              ctx2.fillText(sign + val.toFixed(2) + "%", bar.x - 4, bar.y);
+            }
+          }
+          ctx2.restore();
+        });
+      });
+    }
+  };
+
+  new Chart(trendCanvas, {
+    type: "bar",
+    plugins: [trendLabelPlugin],
+    data: {
+      labels: trendData.map(d => d.name),
+      datasets: [
+        {
+          label: "前日比", data: dayVals,
+          backgroundColor: dayVals.map(v => v >= 0 ? "rgba(26,111,168,0.7)" : "rgba(26,111,168,0.4)"),
+          borderColor: "#1a6fa8", borderWidth: 1, barPercentage: 0.7, categoryPercentage: 0.6,
+        },
+        {
+          label: "前週比", data: weekVals,
+          backgroundColor: weekVals.map(v => v >= 0 ? "rgba(196,122,0,0.7)" : "rgba(196,122,0,0.4)"),
+          borderColor: "#c47a00", borderWidth: 1, barPercentage: 0.7, categoryPercentage: 0.6,
+        },
+      ]
+    },
+    options: {
+      indexAxis: "y", responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { grid: { color: C.grid }, ticks: { callback: v => v + "%", font: { size: 10 } } },
+        y: { grid: { display: false }, ticks: { font: { size: 11 } } }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          label: ctx => {
+            const sec = trendData[ctx.dataIndex];
+            const val = ctx.datasetIndex === 0 ? sec.dayChg : sec.weekChg;
+            if (val === null) return " " + ctx.dataset.label + "：新規追加";
+            return " " + ctx.dataset.label + "：" + (val >= 0 ? "+" : "") + val.toFixed(2) + "%";
+          }
+        }}
+      }
+    }
+  });
+
+  // アコーディオン
+  let trendOpen = -1;
+  const trendEl = document.getElementById("trendLegend");
+
+  function fmtBadge(v, amt, cls) {
+    if (v === null) return '<span class="' + cls + ' neu">NEW</span>';
+    const sign = v >= 0 ? "+" : "";
+    const c = v >= 0 ? "pos" : "neg";
+    const amtStr = amt !== null && amt !== undefined ? '<br>' + sign + '¥' + amt.toLocaleString() : '';
+    return '<span class="' + cls + " " + c + '">' + sign + v.toFixed(2) + '%' + amtStr + '</span>';
+  }
+
+  trendData.forEach((sec, idx) => {
+    const wrap = document.createElement("div");
+    const row = document.createElement("div");
+    row.className = "acc-row";
+    row.innerHTML =
+      '<span class="acc-left">' + sec.name + '</span>' +
+      '<span class="acc-right">' +
+        '<span><span class="chg-label">前日</span>' + fmtBadge(sec.dayChg, sec.dayAmt, "chg-badge") + '</span>' +
+        '<span><span class="chg-label">前週</span>' + fmtBadge(sec.weekChg, sec.weekAmt, "chg-badge") + '</span>' +
+        '<span class="acc-arrow" id="tr-arr-' + idx + '">▸</span>' +
+      '</span>';
+    row.addEventListener("click", () => toggleTrend(idx));
+
+    const panel = document.createElement("div");
+    panel.className = "acc-panel";
+    panel.id = "tr-pan-" + idx;
+    let inner = '<div class="acc-panel-inner">';
+    inner += '<div class="acc-stock" style="font-weight:600;font-size:0.7rem;color:' + sec.color + ';border-bottom:1px solid var(--border)">' +
+      '<span>銘柄</span><span class="acc-stock-vals"><span style="min-width:58px;text-align:center">前日比</span><span style="min-width:58px;text-align:center">前週比</span></span></div>';
+    sec.stocks.forEach(st => {
+      inner += '<div class="acc-stock"><span class="acc-stock-name">' + st.name + '</span>' +
+        '<span class="acc-stock-vals">' + fmtBadge(st.dayChg, st.dayAmt, "mini-badge") + fmtBadge(st.weekChg, st.weekAmt, "mini-badge") + '</span></div>';
+    });
+    inner += '</div>';
+    panel.innerHTML = inner;
+
+    wrap.appendChild(row);
+    wrap.appendChild(panel);
+    trendEl.appendChild(wrap);
+  });
+
+  function toggleTrend(idx) {
+    if (trendOpen >= 0 && trendOpen !== idx) {
+      document.getElementById("tr-pan-" + trendOpen).classList.remove("open");
+      document.getElementById("tr-arr-" + trendOpen).classList.remove("open");
+    }
+    const p = document.getElementById("tr-pan-" + idx);
+    const a = document.getElementById("tr-arr-" + idx);
+    const isOpen = p.classList.contains("open");
+    p.classList.toggle("open");
+    a.classList.toggle("open");
+    trendOpen = isOpen ? -1 : idx;
+  }
+})();
+
+// ---- ⑧ 市場セクタートレンド（東証33業種→13セクター） ----
+// データは上部の🔄 BLOCK 6 / 📌静的設定から参照
+(function() {
+  var mktRawMap = {};
+  MKT_RAW.forEach(function(r) { mktRawMap[r.name] = r; });
+
+  var mktSectors = MKT_MAP.map(function(m) {
+    var items = [];
+    m.k.forEach(function(k) { if (mktRawMap[k]) items.push(mktRawMap[k]); });
+    var vals = {};
+    MKT_PERIODS.forEach(function(p) {
+      var sum = items.reduce(function(s,i) { return s + i[p.key]; }, 0);
+      vals[p.key] = +(sum / items.length).toFixed(2);
+    });
+    return { name: m.name, held: m.held, vals: vals, sources: items };
+  });
+
+  function mktHotTag(v, pk) {
+    if (v >= HOT_TH[pk]) return '<span class="hot-tag hot">🔥過熱</span>';
+    if (v <= COLD_TH[pk]) return '<span class="hot-tag cold">🧊冷却</span>';
+    return '';
+  }
+  function mktBadge(v, cls) {
+    var s = v >= 0 ? "+" : "";
+    return '<span class="' + cls + ' ' + (v >= 0 ? "pos" : "neg") + '">' + s + v.toFixed(2) + '%</span>';
+  }
+
+  // タブ
+  var mktTabsEl = document.getElementById("mktTabs");
+  var mktCurPeriod = "w";
+  MKT_PERIODS.forEach(function(p) {
+    var t = document.createElement("div");
+    t.className = "mkt-tab" + (p.key === mktCurPeriod ? " active" : "");
+    t.textContent = p.label;
+    t.dataset.key = p.key;
+    t.addEventListener("click", function() { mktSwitch(p.key); });
+    mktTabsEl.appendChild(t);
+  });
+
+  var mktChart = null;
+  var mktCanvas = document.getElementById("mktChart");
+  var mktWrap = mktCanvas.parentElement;
+
+  function mktRenderChart(pk) {
+    var sorted = mktSectors.slice().sort(function(a,b) { return b.vals[pk] - a.vals[pk]; });
+    var labels = sorted.map(function(s) { return (s.held ? "🟢 " : "🔘 ") + s.name; });
+    var data = sorted.map(function(s) { return s.vals[pk]; });
+    mktWrap.style.height = (sorted.length * 42 + 40) + "px";
+
+    if (mktChart) mktChart.destroy();
+    mktChart = new Chart(mktCanvas, {
+      type: "bar",
+      plugins: [{
+        id: "mktLbl",
+        afterDatasetsDraw: function(c) {
+          var ctx = c.ctx;
+          c.getDatasetMeta(0).data.forEach(function(bar, i) {
+            var v = data[i]; var s = v >= 0 ? "+" : "";
+            ctx.save(); ctx.font = C.font;
+            ctx.fillStyle = v >= 0 ? C.pos : C.neg;
+            ctx.textBaseline = "middle";
+            if (v >= 0) { ctx.textAlign = "left"; ctx.fillText(s+v.toFixed(2)+"%", bar.x+4, bar.y); }
+            else { ctx.textAlign = "right"; ctx.fillText(s+v.toFixed(2)+"%", bar.x-4, bar.y); }
+            ctx.restore();
+          });
+        }
+      }],
+      data: {
+        labels: labels,
+        datasets: [{
+          data: data,
+          backgroundColor: data.map(function(v) { return v >= 0 ? "rgba(196,122,0,0.7)" : "rgba(196,122,0,0.4)"; }),
+          borderColor: "#c47a00", borderWidth: 1, barPercentage: 0.65, categoryPercentage: 0.75,
+        }]
+      },
+      options: {
+        indexAxis: "y", responsive: true, maintainAspectRatio: false,
+        scales: {
+          x: { grid: { color: C.grid }, ticks: { callback: function(v) { return v+"%"; }, font: { size: 10 } } },
+          y: { grid: { display: false }, ticks: { font: { size: 10 } } }
+        },
+        plugins: { legend: { display: false }, tooltip: { callbacks: {
+          label: function(ctx) { return " " + (ctx.raw >= 0 ? "+" : "") + ctx.raw.toFixed(2) + "%"; }
+        }}}
+      }
+    });
+    return sorted;
+  }
+
+  var mktOpenIdx = -1;
+  function mktRenderList(pk) {
+    var sorted = mktSectors.slice().sort(function(a,b) { return b.vals[pk] - a.vals[pk]; });
+    var el = document.getElementById("mktLegend");
+    el.innerHTML = "";
+    mktOpenIdx = -1;
+
+    sorted.forEach(function(sec, idx) {
+      var v = sec.vals[pk];
+      var wr = document.createElement("div");
+      var row = document.createElement("div");
+      row.className = "acc-row";
+      row.innerHTML =
+        '<span class="acc-left">' + (sec.held ? "🟢" : "🔘") + ' ' + sec.name + mktHotTag(v, pk) + '</span>' +
+        '<span class="acc-right">' + mktBadge(v, "chg-badge") +
+        '<span class="acc-arrow" id="ma-' + idx + '">▸</span></span>';
+      row.addEventListener("click", function() { mktToggle(idx); });
+
+      var panel = document.createElement("div");
+      panel.className = "acc-panel";
+      panel.id = "mp-" + idx;
+      var inner = '<div class="acc-panel-inner">';
+      inner += '<div class="acc-stock" style="font-weight:600;font-size:0.68rem;color:var(--text-muted);border-bottom:1px solid var(--border)"><span>東証業種</span><span>騰落率</span></div>';
+      var srcSorted = sec.sources.slice().sort(function(a,b) { return b[pk] - a[pk]; });
+      srcSorted.forEach(function(src) {
+        inner += '<div class="acc-stock"><span class="acc-stock-name">' + src.name + '</span>' + mktBadge(src[pk], "mini-badge") + '</div>';
+      });
+      inner += '</div>';
+      panel.innerHTML = inner;
+      wr.appendChild(row); wr.appendChild(panel);
+      el.appendChild(wr);
+    });
+
+    function mktToggle(idx) {
+      if (mktOpenIdx >= 0 && mktOpenIdx !== idx) {
+        document.getElementById("mp-" + mktOpenIdx).classList.remove("open");
+        document.getElementById("ma-" + mktOpenIdx).classList.remove("open");
+      }
+      var p = document.getElementById("mp-" + idx);
+      var a = document.getElementById("ma-" + idx);
+      var isO = p.classList.contains("open");
+      p.classList.toggle("open"); a.classList.toggle("open");
+      mktOpenIdx = isO ? -1 : idx;
+    }
+  }
+
+  function mktSwitch(pk) {
+    mktCurPeriod = pk;
+    document.querySelectorAll(".mkt-tab").forEach(function(t) {
+      t.classList.toggle("active", t.dataset.key === pk);
+    });
+    mktRenderChart(pk);
+    mktRenderList(pk);
+  }
+
+  mktSwitch("w");
+})();
+</script>
+</body>
+</html>

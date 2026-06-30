@@ -1,0 +1,8 @@
+﻿項目	値
+rows	197
+columns	15
+remaining_要再取得_or_確認中_cells	0
+avg_material_length	136.16
+max_material_length	190
+source_base_file	watchlist_recovered_final.tsv
+note	数値列は要再取得/確認中なし。直近材料は既存材料文を保持し、ファンダメンタル確認値を追記。

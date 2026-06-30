@@ -1,0 +1,359 @@
+name: Japan Stock Radar
+
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: "開始行番号"
+        required: true
+        default: "1"
+      end:
+        description: "終了行番号。最後まで実行する場合は空欄"
+        required: false
+        default: "500"
+
+  schedule:
+    # JST 4/1 00:00, 00:45, 01:30, 02:15, 03:00, 03:45, 04:30, 05:15
+    # UTCでは 3/31 15:00〜20:15
+    - cron: "0 15 31 3 *"
+    - cron: "45 15 31 3 *"
+    - cron: "30 16 31 3 *"
+    - cron: "15 17 31 3 *"
+    - cron: "0 18 31 3 *"
+    - cron: "45 18 31 3 *"
+    - cron: "30 19 31 3 *"
+    - cron: "15 20 31 3 *"
+
+    # JST 7/1
+    - cron: "0 15 30 6 *"
+    - cron: "45 15 30 6 *"
+    - cron: "30 16 30 6 *"
+    - cron: "15 17 30 6 *"
+    - cron: "0 18 30 6 *"
+    - cron: "45 18 30 6 *"
+    - cron: "30 19 30 6 *"
+    - cron: "15 20 30 6 *"
+
+    # JST 10/1
+    - cron: "0 15 30 9 *"
+    - cron: "45 15 30 9 *"
+    - cron: "30 16 30 9 *"
+    - cron: "15 17 30 9 *"
+    - cron: "0 18 30 9 *"
+    - cron: "45 18 30 9 *"
+    - cron: "30 19 30 9 *"
+    - cron: "15 20 30 9 *"
+
+    # JST 1/1
+    - cron: "0 15 31 12 *"
+    - cron: "45 15 31 12 *"
+    - cron: "30 16 31 12 *"
+    - cron: "15 17 31 12 *"
+    - cron: "0 18 31 12 *"
+    - cron: "45 18 31 12 *"
+    - cron: "30 19 31 12 *"
+    - cron: "15 20 31 12 *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: japan-stock-radar
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        working-directory: 日本株ファンダメンタル分析
+        run: |
+          python -m pip install --upgrade pip
+          pip install yfinance pandas
+
+      - name: Resolve range and output directory
+        id: vars
+        shell: bash
+        env:
+          INPUT_START: ${{ github.event.inputs.start }}
+          INPUT_END: ${{ github.event.inputs.end }}
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import os
+          from datetime import datetime, timezone, timedelta
+
+          JST = timezone(timedelta(hours=9))
+          now = datetime.now(JST)
+
+          event_name = os.environ.get("EVENT_NAME", "")
+          event_schedule = os.environ.get("EVENT_SCHEDULE", "").strip()
+
+          manual_start = os.environ.get("INPUT_START", "").strip()
+          manual_end = os.environ.get("INPUT_END", "").strip()
+
+          # GitHub Actions の schedule は遅延することがあるため、
+          # 実行開始時刻ではなく github.event.schedule の cron 文字列でチャンクを判定する。
+          schedule_slot_map = {
+              # 1本目: 1-500
+              "0 15 31 3 *": (1, 500),
+              "0 15 30 6 *": (1, 500),
+              "0 15 30 9 *": (1, 500),
+              "0 15 31 12 *": (1, 500),
+
+              # 2本目: 501-1000
+              "45 15 31 3 *": (501, 1000),
+              "45 15 30 6 *": (501, 1000),
+              "45 15 30 9 *": (501, 1000),
+              "45 15 31 12 *": (501, 1000),
+
+              # 3本目: 1001-1500
+              "30 16 31 3 *": (1001, 1500),
+              "30 16 30 6 *": (1001, 1500),
+              "30 16 30 9 *": (1001, 1500),
+              "30 16 31 12 *": (1001, 1500),
+
+              # 4本目: 1501-2000
+              "15 17 31 3 *": (1501, 2000),
+              "15 17 30 6 *": (1501, 2000),
+              "15 17 30 9 *": (1501, 2000),
+              "15 17 31 12 *": (1501, 2000),
+
+              # 5本目: 2001-2500
+              "0 18 31 3 *": (2001, 2500),
+              "0 18 30 6 *": (2001, 2500),
+              "0 18 30 9 *": (2001, 2500),
+              "0 18 31 12 *": (2001, 2500),
+
+              # 6本目: 2501-3000
+              "45 18 31 3 *": (2501, 3000),
+              "45 18 30 6 *": (2501, 3000),
+              "45 18 30 9 *": (2501, 3000),
+              "45 18 31 12 *": (2501, 3000),
+
+              # 7本目: 3001-3500
+              "30 19 31 3 *": (3001, 3500),
+              "30 19 30 6 *": (3001, 3500),
+              "30 19 30 9 *": (3001, 3500),
+              "30 19 31 12 *": (3001, 3500),
+
+              # 8本目: 3501-end
+              "15 20 31 3 *": (3501, None),
+              "15 20 30 6 *": (3501, None),
+              "15 20 30 9 *": (3501, None),
+              "15 20 31 12 *": (3501, None),
+          }
+
+          if event_name == "workflow_dispatch":
+              if not manual_start:
+                  raise SystemExit("workflow_dispatch requires start input")
+              start = int(manual_start)
+              end = int(manual_end) if manual_end else None
+          else:
+              if event_schedule not in schedule_slot_map:
+                  raise SystemExit(f"Unsupported schedule: {event_schedule}")
+              start, end = schedule_slot_map[event_schedule]
+
+          # 日本の年度・四半期判定
+          y = now.year
+          m = now.month
+
+          if 4 <= m <= 6:
+              fiscal_year = y
+              quarter = "1Q"
+              month_range = "04-06"
+          elif 7 <= m <= 9:
+              fiscal_year = y
+              quarter = "2Q"
+              month_range = "07-09"
+          elif 10 <= m <= 12:
+              fiscal_year = y
+              quarter = "3Q"
+              month_range = "10-12"
+          else:
+              fiscal_year = y - 1
+              quarter = "4Q"
+              month_range = "01-03"
+
+          fiscal_dir = f"output/japan-stock-radar/{fiscal_year}年度/{fiscal_year}_{quarter}_{month_range}"
+          range_label = f"{start:04d}-{end:04d}" if end else f"{start:04d}-end"
+          run_date = now.strftime("%Y%m%d")
+
+          print(f"start={start}")
+          print(f"end={end or ''}")
+          print(f"fiscal_dir={fiscal_dir}")
+          print(f"range_label={range_label}")
+          print(f"run_date={run_date}")
+          PY
+
+      - name: Show resolved variables
+        run: |
+          echo "start=${{ steps.vars.outputs.start }}"
+          echo "end=${{ steps.vars.outputs.end }}"
+          echo "fiscal_dir=${{ steps.vars.outputs.fiscal_dir }}"
+          echo "range_label=${{ steps.vars.outputs.range_label }}"
+          echo "run_date=${{ steps.vars.outputs.run_date }}"
+
+      - name: Run japan-stock-radar
+        working-directory: 日本株ファンダメンタル分析
+        shell: bash
+        run: |
+          if [ -n "${{ steps.vars.outputs.end }}" ]; then
+            python japan-stock-radar.py \
+              --s "${{ steps.vars.outputs.start }}" \
+              --e "${{ steps.vars.outputs.end }}" \
+              --detail
+          else
+            python japan-stock-radar.py \
+              --s "${{ steps.vars.outputs.start }}" \
+              --detail
+          fi
+
+      - name: Move outputs
+        shell: bash
+        run: |
+          mkdir -p "${{ steps.vars.outputs.fiscal_dir }}/raw"
+          mkdir -p "${{ steps.vars.outputs.fiscal_dir }}/logs"
+
+          mv 日本株ファンダメンタル分析/japan-stock-radar_*.tsv "${{ steps.vars.outputs.fiscal_dir }}/raw/" || true
+
+          for log_file in 日本株ファンダメンタル分析/japan-stock-radar_error_*.log; do
+            if [ -f "$log_file" ]; then
+              base="$(basename "$log_file" .log)"
+              mv "$log_file" "${{ steps.vars.outputs.fiscal_dir }}/logs/${base}_${{ steps.vars.outputs.range_label }}.log"
+            fi
+          done
+
+      - name: Merge chunk outputs
+        shell: bash
+        env:
+          FISCAL_DIR: ${{ steps.vars.outputs.fiscal_dir }}
+          RUN_DATE: ${{ steps.vars.outputs.run_date }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import os
+          import shutil
+          import pandas as pd
+
+          fiscal_dir = Path(os.environ["FISCAL_DIR"])
+          run_date = os.environ["RUN_DATE"]
+
+          raw_dir = fiscal_dir / "raw"
+          merged_dir = fiscal_dir / "merged"
+          latest_dir = Path("output/japan-stock-radar/latest")
+
+          merged_dir.mkdir(parents=True, exist_ok=True)
+          latest_dir.mkdir(parents=True, exist_ok=True)
+
+          # --detail 実行なので基本は *_detail.tsv が対象。
+          # 将来 detail なしで実行しても壊れないように、同日・同prefixのTSVをまとめて拾う。
+          files = sorted(raw_dir.glob(f"japan-stock-radar_{run_date}_*.tsv"))
+
+          # 念のため、結合済みっぽい名前が raw に混ざっても除外する。
+          files = [
+              p for p in files
+              if "_all" not in p.stem and "_partial" not in p.stem and "_latest" not in p.stem
+          ]
+
+          if not files:
+              print("No chunk files found. Skip merge.")
+              raise SystemExit(0)
+
+          print("Merge target files:")
+          for p in files:
+              print(f"  - {p}")
+
+          frames = []
+          for p in files:
+              df = pd.read_csv(p, sep="\t", dtype=str, encoding="utf-8-sig").fillna("")
+              df["_source_file"] = p.name
+              frames.append(df)
+
+          merged = pd.concat(frames, ignore_index=True)
+
+          # テスト実行や再実行で範囲が重複した場合に備えて、コード単位で最後のデータを優先する。
+          if "コード" in merged.columns:
+              merged = merged.drop_duplicates(subset=["コード"], keep="last")
+              merged = merged.sort_values("コード")
+
+          if "_source_file" in merged.columns:
+              merged = merged.drop(columns=["_source_file"])
+
+          expected_suffixes = [
+              "0001-0500",
+              "0501-1000",
+              "1001-1500",
+              "1501-2000",
+              "2001-2500",
+              "2501-3000",
+              "3001-3500",
+              "3501-end",
+          ]
+
+          # detailあり/なし両対応。ただしこのworkflowでは detail ありが通常。
+          def exists_chunk(suffix: str) -> bool:
+              return (
+                  (raw_dir / f"japan-stock-radar_{run_date}_{suffix}.tsv").exists()
+                  or (raw_dir / f"japan-stock-radar_{run_date}_{suffix}_detail.tsv").exists()
+              )
+
+          complete = all(exists_chunk(suffix) for suffix in expected_suffixes)
+
+          if complete:
+              merged_file = merged_dir / f"japan-stock-radar_{run_date}_all_detail.tsv"
+          else:
+              merged_file = merged_dir / f"japan-stock-radar_{run_date}_partial_detail.tsv"
+
+          merged.to_csv(merged_file, index=False, sep="\t", encoding="utf-8-sig")
+          print(f"Merged file created: {merged_file}")
+          print(f"Merged rows: {len(merged)}")
+          print(f"Complete: {complete}")
+
+          # 全8チャンクが揃った場合だけ latest を更新する。
+          # 途中実行やテスト実行で latest が壊れるのを防ぐ。
+          if complete:
+              latest_file = latest_dir / "japan-stock-radar_latest_detail.tsv"
+              shutil.copy2(merged_file, latest_file)
+              print(f"Latest file updated: {latest_file}")
+          else:
+              print("Not all chunks are present. latest was not updated.")
+          PY
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: japan-stock-radar-${{ steps.vars.outputs.run_date }}-${{ steps.vars.outputs.range_label }}
+          path: |
+            ${{ steps.vars.outputs.fiscal_dir }}/raw/*.tsv
+            ${{ steps.vars.outputs.fiscal_dir }}/merged/*.tsv
+            ${{ steps.vars.outputs.fiscal_dir }}/logs/*.log
+            output/japan-stock-radar/latest/*.tsv
+          retention-days: 30
+
+      - name: Commit outputs
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add output/japan-stock-radar
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update japan-stock-radar ${{ steps.vars.outputs.run_date }} ${{ steps.vars.outputs.range_label }}"
+            git pull --rebase
+            git push
+          fi

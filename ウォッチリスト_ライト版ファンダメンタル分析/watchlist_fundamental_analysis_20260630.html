@@ -1,0 +1,2270 @@
+<style>
+#wl-analyzer{all:initial;display:block;font-family:'Hiragino Kaku Gothic ProN',-apple-system,BlinkMacSystemFont,sans-serif;font-size:13px;line-height:1.6;color:#2e2a24;background:#f7f3ee;padding:20px 14px;border-radius:12px;box-sizing:border-box}
+#wl-analyzer *{box-sizing:border-box;margin:0;padding:0}
+
+/* Header */
+#wl-analyzer .wl-hdr{text-align:center;margin-bottom:24px}
+#wl-analyzer .wl-h1{font-size:1.2rem;color:#1a6fa8;letter-spacing:.05em;margin-bottom:4px;font-weight:700}
+#wl-analyzer .wl-sub{font-size:.72rem;color:#8a8178}
+
+/* Summary cards */
+#wl-analyzer .wl-srow{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+#wl-analyzer .wl-scard{flex:1;min-width:80px;background:#fffdf9;border:1px solid #e0d9cf;border-radius:10px;padding:10px 8px;text-align:center}
+#wl-analyzer .wl-scard-l{font-size:.62rem;color:#8a8178;margin-bottom:4px}
+#wl-analyzer .wl-scard-v{font-size:1rem;font-weight:700}
+
+/* Chart block */
+#wl-analyzer .wl-block{background:#fffdf9;border:1px solid #e0d9cf;border-radius:12px;padding:16px 12px;margin-bottom:16px}
+#wl-analyzer .wl-bh{font-size:.72rem;color:#8a8178;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;font-weight:600}
+
+/* Tabs */
+#wl-analyzer .wl-tabs{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+#wl-analyzer .wl-tab{font-size:.68rem;padding:4px 10px;border-radius:20px;cursor:pointer;border:1px solid #c8bfb4;background:transparent;color:#8a8178;font-weight:500}
+#wl-analyzer .wl-tab:hover{background:#e8e2d8}
+#wl-analyzer .wl-tab.wl-active{background:#1a6fa8;color:#fff;border-color:#1a6fa8}
+#wl-analyzer .wl-tab-radio{position:absolute;opacity:0;pointer-events:none}
+#wl-analyzer .wl-tab-radio:checked ~ .wl-tc.wl-active{display:none}
+#wl-analyzer #wl-tab-1:checked ~ #wl-t1,
+#wl-analyzer #wl-tab-2:checked ~ #wl-t2,
+#wl-analyzer #wl-tab-3:checked ~ #wl-t3,
+#wl-analyzer #wl-tab-4:checked ~ #wl-t4,
+#wl-analyzer #wl-tab-5:checked ~ #wl-t5,
+#wl-analyzer #wl-tab-6:checked ~ #wl-t6,
+#wl-analyzer #wl-tab-7:checked ~ #wl-t7{display:block}
+#wl-analyzer .wl-tab-radio:checked ~ .wl-tabs .wl-tab.wl-active{background:transparent;color:#8a8178;border-color:#c8bfb4}
+#wl-analyzer #wl-tab-1:checked ~ .wl-tabs label[for="wl-tab-1"],
+#wl-analyzer #wl-tab-2:checked ~ .wl-tabs label[for="wl-tab-2"],
+#wl-analyzer #wl-tab-3:checked ~ .wl-tabs label[for="wl-tab-3"],
+#wl-analyzer #wl-tab-4:checked ~ .wl-tabs label[for="wl-tab-4"],
+#wl-analyzer #wl-tab-5:checked ~ .wl-tabs label[for="wl-tab-5"],
+#wl-analyzer #wl-tab-6:checked ~ .wl-tabs label[for="wl-tab-6"],
+#wl-analyzer #wl-tab-7:checked ~ .wl-tabs label[for="wl-tab-7"]{background:#1a6fa8;color:#fff;border-color:#1a6fa8}
+#wl-analyzer #wl-tab-1:focus-visible ~ .wl-tabs label[for="wl-tab-1"],
+#wl-analyzer #wl-tab-2:focus-visible ~ .wl-tabs label[for="wl-tab-2"],
+#wl-analyzer #wl-tab-3:focus-visible ~ .wl-tabs label[for="wl-tab-3"],
+#wl-analyzer #wl-tab-4:focus-visible ~ .wl-tabs label[for="wl-tab-4"],
+#wl-analyzer #wl-tab-5:focus-visible ~ .wl-tabs label[for="wl-tab-5"],
+#wl-analyzer #wl-tab-6:focus-visible ~ .wl-tabs label[for="wl-tab-6"],
+#wl-analyzer #wl-tab-7:focus-visible ~ .wl-tabs label[for="wl-tab-7"]{outline:2px solid #1a6fa8;outline-offset:2px}
+#wl-analyzer .wl-tc{display:none}
+#wl-analyzer .wl-tc.wl-active{display:block}
+
+/* Tables */
+#wl-analyzer table{width:100%;border-collapse:collapse;font-size:.74rem}
+#wl-analyzer th{background:#f7f3ee;color:#8a8178;padding:6px 4px;text-align:left;position:sticky;top:0;z-index:2;cursor:pointer;white-space:nowrap;border-bottom:2px solid #e0d9cf;font-size:.66rem;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+#wl-analyzer th:hover{color:#1a6fa8}
+#wl-analyzer td{padding:5px 4px;border-bottom:1px solid #e8e2d8;vertical-align:top;color:#4a4540;font-size:.74rem}
+#wl-analyzer tr:hover{background:rgba(26,111,168,0.03)}
+#wl-analyzer .wl-tw{max-width:100%;max-height:70vh;overflow:auto;-webkit-overflow-scrolling:touch;border:1px solid #e0d9cf;border-radius:8px;background:#fffdf9;margin-bottom:12px}
+#wl-analyzer .wl-theme-tw{max-height:none}
+#wl-analyzer .wl-theme-tw table{min-width:720px}
+
+/* Grades */
+#wl-analyzer .wl-gb{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:700;min-width:22px;text-align:center}
+#wl-analyzer .wl-g-s{color:#b8860b;background:rgba(184,134,11,0.10)}
+#wl-analyzer .wl-g-a{color:#007a50;background:rgba(0,122,80,0.08)}
+#wl-analyzer .wl-g-b{color:#1a6fa8;background:rgba(26,111,168,0.08)}
+#wl-analyzer .wl-g-c{color:#8a8178;background:rgba(138,129,120,0.08)}
+#wl-analyzer .wl-g-d{color:#c83c3c;background:rgba(200,60,60,0.08)}
+#wl-analyzer .wl-g-x{color:#8a8178;background:rgba(138,129,120,0.06)}
+#wl-analyzer .wl-cv-s{color:#b8860b}#wl-analyzer .wl-cv-a{color:#007a50}#wl-analyzer .wl-cv-b{color:#1a6fa8}#wl-analyzer .wl-cv-c{color:#8a8178}#wl-analyzer .wl-cv-d{color:#c83c3c}
+
+/* Type badges */
+#wl-analyzer .wl-tb{display:inline-block;padding:1px 6px;border-radius:10px;font-size:.60rem;margin:1px;border:1px solid #e0d9cf;color:#4a4540}
+#wl-analyzer .wl-t-gr{border-color:rgba(0,122,80,0.4);color:#007a50}
+#wl-analyzer .wl-t-dv{border-color:rgba(184,134,11,0.4);color:#b8860b}
+#wl-analyzer .wl-t-vl{border-color:rgba(26,111,168,0.4);color:#1a6fa8}
+#wl-analyzer .wl-t-st{border-color:rgba(107,94,160,0.4);color:#6b5ea0}
+#wl-analyzer .wl-t-rt{border-color:rgba(122,79,160,0.4);color:#7a4fa0}
+#wl-analyzer .wl-t-ca{border-color:rgba(200,60,60,0.4);color:#c83c3c}
+
+/* Consensus */
+#wl-analyzer .wl-con-buy{color:#007a50;font-weight:600}
+#wl-analyzer .wl-con-hold{color:#b8860b;font-weight:600}
+#wl-analyzer .wl-con-sell{color:#c83c3c;font-weight:600}
+
+/* Detail accordion */
+#wl-analyzer .wl-dr{display:none}
+#wl-analyzer .wl-dr.wl-open{display:table-row}
+#wl-analyzer .wl-dc{background:#f7f3ee;border-radius:8px;padding:10px 12px;margin:4px 0;font-size:.70rem;color:#4a4540;line-height:1.7}
+#wl-analyzer .wl-dc strong{color:#1a6fa8}
+
+/* Section heading */
+#wl-analyzer .wl-sh{font-size:.80rem;font-weight:700;color:#2e2a24;margin:14px 0 8px;padding-bottom:6px;border-bottom:1px solid #e8e2d8;display:flex;align-items:center;gap:6px}
+
+/* Comment card */
+#wl-analyzer .wl-cc{background:#fffdf9;border:1px solid #e0d9cf;border-radius:10px;padding:14px;margin-bottom:12px}
+#wl-analyzer .wl-cc-h{font-size:.82rem;color:#1a6fa8;margin-bottom:6px;font-weight:700}
+#wl-analyzer .wl-cc-m{font-size:.70rem;color:#8a8178;margin-bottom:6px}
+#wl-analyzer .wl-cc-b{font-size:.74rem;color:#4a4540;line-height:1.7}
+#wl-analyzer .wl-cc-b div{margin-bottom:2px}
+
+/* Classification grid */
+#wl-analyzer .wl-cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:4px;margin-bottom:10px}
+#wl-analyzer .wl-ci{font-size:.74rem;padding:4px 6px;border-radius:4px;background:#f7f3ee}
+#wl-analyzer .wl-code{color:#1a6fa8;font-weight:600;margin-right:4px}
+
+/* Next action list */
+#wl-analyzer .wl-nl{list-style:none;margin-bottom:14px}
+#wl-analyzer .wl-nl li{padding:4px 0;border-bottom:1px solid #e8e2d8;font-size:.74rem}
+
+/* Filter bar */
+#wl-analyzer .wl-fb{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center}
+#wl-analyzer .wl-fb label{font-size:.66rem;color:#8a8178}
+#wl-analyzer .wl-fb select,#wl-analyzer .wl-fb input{background:#fffdf9;color:#2e2a24;border:1px solid #e0d9cf;padding:3px 6px;border-radius:6px;font-size:.70rem}
+
+#wl-analyzer .wl-note{font-size:.60rem;color:#8a8178;margin-top:6px;text-align:center}
+#wl-analyzer .wl-trend{font-size:.74rem;line-height:1.8;color:#4a4540}
+#wl-analyzer .wl-trend p{margin-bottom:4px}
+#wl-analyzer .wl-trend strong{color:#2e2a24}
+
+@media(max-width:768px){
+  #wl-analyzer .wl-tabs{gap:2px}
+  #wl-analyzer .wl-tab{padding:3px 6px;font-size:.60rem}
+  #wl-analyzer .wl-scard{min-width:65px;padding:6px 4px}
+  #wl-analyzer .wl-scard-v{font-size:.85rem}
+  #wl-analyzer .wl-cg{grid-template-columns:1fr}
+  #wl-analyzer table{font-size:.68rem}
+  #wl-analyzer td,#wl-analyzer th{padding:3px 2px}
+}
+</style>
+<div id="wl-analyzer">
+<input class="wl-tab-radio" type="radio" name="wl-tabs-20260630" id="wl-tab-1" checked>
+<input class="wl-tab-radio" type="radio" name="wl-tabs-20260630" id="wl-tab-2">
+<input class="wl-tab-radio" type="radio" name="wl-tabs-20260630" id="wl-tab-3">
+<input class="wl-tab-radio" type="radio" name="wl-tabs-20260630" id="wl-tab-4">
+<input class="wl-tab-radio" type="radio" name="wl-tabs-20260630" id="wl-tab-5">
+<input class="wl-tab-radio" type="radio" name="wl-tabs-20260630" id="wl-tab-6">
+<input class="wl-tab-radio" type="radio" name="wl-tabs-20260630" id="wl-tab-7">
+<div class="wl-hdr"><div class="wl-h1">📊 ウォッチリスト ライト版ファンダメンタル分析</div>
+<p class="wl-sub">2026-06-30 ｜ 全197銘柄 ｜ 分析対象176銘柄 ｜ 機械的スコアリング → 最終判断は編集長が行うこと</p></div>
+<div class="wl-tabs" id="wl-tabs">
+<label class="wl-tab wl-active" for="wl-tab-1" data-wltab="wl-t1" role="button" tabindex="0">①サマリー</label>
+<label class="wl-tab" for="wl-tab-2" data-wltab="wl-t2" role="button" tabindex="0">②全銘柄</label>
+<label class="wl-tab" for="wl-tab-3" data-wltab="wl-t3" role="button" tabindex="0">③評価別</label>
+<label class="wl-tab" for="wl-tab-4" data-wltab="wl-t4" role="button" tabindex="0">④テーマ別</label>
+<label class="wl-tab" for="wl-tab-5" data-wltab="wl-t5" role="button" tabindex="0">⑤TOP10</label>
+<label class="wl-tab" for="wl-tab-6" data-wltab="wl-t6" role="button" tabindex="0">⑥分類</label>
+<label class="wl-tab" for="wl-tab-7" data-wltab="wl-t7" role="button" tabindex="0">⑦次アクション</label>
+</div>
+<div class="wl-tc wl-active" id="wl-t1">
+<div class="wl-srow">
+<div class="wl-scard"><div class="wl-scard-l">全銘柄</div><div class="wl-scard-v wl-cv-b">197</div></div>
+<div class="wl-scard"><div class="wl-scard-l">分析対象</div><div class="wl-scard-v wl-cv-a">176</div></div>
+<div class="wl-scard"><div class="wl-scard-l">対象外</div><div class="wl-scard-v wl-cv-c">21</div></div>
+<div class="wl-scard"><div class="wl-scard-l">S評価</div><div class="wl-scard-v wl-cv-s">2</div></div>
+<div class="wl-scard"><div class="wl-scard-l">A評価</div><div class="wl-scard-v wl-cv-a">36</div></div>
+<div class="wl-scard"><div class="wl-scard-l">B評価</div><div class="wl-scard-v wl-cv-b">61</div></div>
+<div class="wl-scard"><div class="wl-scard-l">C評価</div><div class="wl-scard-v wl-cv-c">42</div></div>
+<div class="wl-scard"><div class="wl-scard-l">D評価</div><div class="wl-scard-v wl-cv-d">35</div></div>
+</div>
+<div class="wl-block"><div class="wl-bh">業種分布（上位10）</div>
+<table><tr><th>業種</th><th>件数</th></tr>
+<tr><td>小売業</td><td>27</td></tr>
+<tr><td>電気機器</td><td>22</td></tr>
+<tr><td>サービス業</td><td>19</td></tr>
+<tr><td>情報・通信業</td><td>15</td></tr>
+<tr><td>卸売業</td><td>15</td></tr>
+<tr><td>食料品</td><td>14</td></tr>
+<tr><td>化学</td><td>10</td></tr>
+<tr><td>輸送用機器</td><td>7</td></tr>
+<tr><td>機械</td><td>6</td></tr>
+<tr><td>その他製品</td><td>5</td></tr>
+</table></div>
+<div class="wl-block"><div class="wl-bh">全体的な傾向</div><div class="wl-trend">
+<p>・<strong>小売・電気機器・サービス業</strong>でリストの約45%。セクター分散はやや偏り</p>
+<p>・<strong>財務安定＋高ROE</strong>の銘柄がA評価に多く集中（M&amp;Aキャピタル、ノエビア、CIJ等）</p>
+<p>・<strong>高配当銘柄</strong>は多いが、利益率・ROEが伴わないケースも散見（減配リスク注意）</p>
+<p>・<strong>赤字銘柄6社</strong>（楽天G、KLab、エア・ウォーター等）は原則D評価</p>
+<p>・<strong>超高PER</strong>のアトム(74,743倍)、フィスコ(221倍)等は実質的な投資妙味が薄い</p>
+<p>・<strong>海外Buy/Strong Buy</strong>が36銘柄 — ソニー、第一三共、住友林業等は海外勢からも注目</p>
+</div></div></div>
+<div class="wl-tc" id="wl-t2">
+<div class="wl-fb"><label>評価</label><select id="wl-fg" onchange="(function(el){ var R=el.closest&&el.closest('#wl-analyzer'); if(!R)return; var fG=R.querySelector('#wl-fg'),fS=R.querySelector('#wl-fs'),fO=R.querySelector('#wl-fo'),fT=R.querySelector('#wl-ft'); var g=fG?fG.value:'',s=fS?fS.value:'',o=fO?fO.value:'',t=(fT?fT.value:'').toLowerCase().trim(); R.querySelectorAll('#wl-mt .wl-row').forEach(function(row){ var det=row.nextElementSibling,sh=true,c=row.getAttribute('data-c')||'',n=(row.getAttribute('data-n')||'').toLowerCase(),txt=row.textContent.toLowerCase(); if(g&&row.getAttribute('data-g')!==g)sh=false; if(s&&row.getAttribute('data-s')!==s)sh=false; if(o==='has'&&row.getAttribute('data-o')==='0')sh=false; if(o==='none'&&row.getAttribute('data-o')==='1')sh=false; if(t&&c.indexOf(t)<0&&n.indexOf(t)<0&&txt.indexOf(t)<0)sh=false; row.style.display=sh?'':'none'; if(det&&det.classList.contains('wl-dr')){if(!sh)det.classList.remove('wl-open');det.style.display=sh?'':'none';} }); })(this)"><option value="">全て</option><option>S</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+<label>業種</label><select id="wl-fs" onchange="(function(el){ var R=el.closest&&el.closest('#wl-analyzer'); if(!R)return; var fG=R.querySelector('#wl-fg'),fS=R.querySelector('#wl-fs'),fO=R.querySelector('#wl-fo'),fT=R.querySelector('#wl-ft'); var g=fG?fG.value:'',s=fS?fS.value:'',o=fO?fO.value:'',t=(fT?fT.value:'').toLowerCase().trim(); R.querySelectorAll('#wl-mt .wl-row').forEach(function(row){ var det=row.nextElementSibling,sh=true,c=row.getAttribute('data-c')||'',n=(row.getAttribute('data-n')||'').toLowerCase(),txt=row.textContent.toLowerCase(); if(g&&row.getAttribute('data-g')!==g)sh=false; if(s&&row.getAttribute('data-s')!==s)sh=false; if(o==='has'&&row.getAttribute('data-o')==='0')sh=false; if(o==='none'&&row.getAttribute('data-o')==='1')sh=false; if(t&&c.indexOf(t)<0&&n.indexOf(t)<0&&txt.indexOf(t)<0)sh=false; row.style.display=sh?'':'none'; if(det&&det.classList.contains('wl-dr')){if(!sh)det.classList.remove('wl-open');det.style.display=sh?'':'none';} }); })(this)"><option value="">全て</option>
+<option>その他製品</option>
+<option>その他金融業</option>
+<option>ガラス・土石製品</option>
+<option>ゴム製品</option>
+<option>サービス業</option>
+<option>パルプ・紙</option>
+<option>不動産業</option>
+<option>化学</option>
+<option>医薬品</option>
+<option>卸売業</option>
+<option>小売業</option>
+<option>建設業</option>
+<option>情報・通信業</option>
+<option>機械</option>
+<option>水産・農林業</option>
+<option>海運業</option>
+<option>石油・石炭製品</option>
+<option>空運業</option>
+<option>精密機器</option>
+<option>繊維製品</option>
+<option>輸送用機器</option>
+<option>金属製品</option>
+<option>鉄鋼</option>
+<option>銀行業</option>
+<option>陸運業</option>
+<option>電気機器</option>
+<option>食料品</option>
+</select><label>海外</label><select id="wl-fo" onchange="(function(el){ var R=el.closest&&el.closest('#wl-analyzer'); if(!R)return; var fG=R.querySelector('#wl-fg'),fS=R.querySelector('#wl-fs'),fO=R.querySelector('#wl-fo'),fT=R.querySelector('#wl-ft'); var g=fG?fG.value:'',s=fS?fS.value:'',o=fO?fO.value:'',t=(fT?fT.value:'').toLowerCase().trim(); R.querySelectorAll('#wl-mt .wl-row').forEach(function(row){ var det=row.nextElementSibling,sh=true,c=row.getAttribute('data-c')||'',n=(row.getAttribute('data-n')||'').toLowerCase(),txt=row.textContent.toLowerCase(); if(g&&row.getAttribute('data-g')!==g)sh=false; if(s&&row.getAttribute('data-s')!==s)sh=false; if(o==='has'&&row.getAttribute('data-o')==='0')sh=false; if(o==='none'&&row.getAttribute('data-o')==='1')sh=false; if(t&&c.indexOf(t)<0&&n.indexOf(t)<0&&txt.indexOf(t)<0)sh=false; row.style.display=sh?'':'none'; if(det&&det.classList.contains('wl-dr')){if(!sh)det.classList.remove('wl-open');det.style.display=sh?'':'none';} }); })(this)"><option value="">全て</option><option value="has">あり</option><option value="none">なし</option></select>
+<label>検索</label><input id="wl-ft" oninput="(function(el){ var R=el.closest&&el.closest('#wl-analyzer'); if(!R)return; var fG=R.querySelector('#wl-fg'),fS=R.querySelector('#wl-fs'),fO=R.querySelector('#wl-fo'),fT=R.querySelector('#wl-ft'); var g=fG?fG.value:'',s=fS?fS.value:'',o=fO?fO.value:'',t=(fT?fT.value:'').toLowerCase().trim(); R.querySelectorAll('#wl-mt .wl-row').forEach(function(row){ var det=row.nextElementSibling,sh=true,c=row.getAttribute('data-c')||'',n=(row.getAttribute('data-n')||'').toLowerCase(),txt=row.textContent.toLowerCase(); if(g&&row.getAttribute('data-g')!==g)sh=false; if(s&&row.getAttribute('data-s')!==s)sh=false; if(o==='has'&&row.getAttribute('data-o')==='0')sh=false; if(o==='none'&&row.getAttribute('data-o')==='1')sh=false; if(t&&c.indexOf(t)<0&&n.indexOf(t)<0&&txt.indexOf(t)<0)sh=false; row.style.display=sh?'':'none'; if(det&&det.classList.contains('wl-dr')){if(!sh)det.classList.remove('wl-open');det.style.display=sh?'':'none';} }); })(this)" placeholder="コード/銘柄名"></div>
+<div class="wl-tw"><table id="wl-mt"><thead><tr>
+<th>#</th>
+<th>コード</th>
+<th>銘柄名</th>
+<th>業種</th>
+<th>評価</th>
+<th>タイプ</th>
+<th>PER</th>
+<th>PBR</th>
+<th>ROE</th>
+<th>配当</th>
+<th>自己資本</th>
+<th>営利率</th>
+<th>海外</th>
+<th>上値余地</th>
+<th>評価理由</th>
+<th>リスク</th>
+<th>次アクション</th>
+</tr></thead><tbody>
+<tr class="wl-row" data-g="S" data-s="小売業" data-o="1" data-c="2670" data-n="エービーシー・マート">
+<td>1</td><td class="wl-code">2670</td><td>エービーシー・マート</td><td>小売業</td>
+<td><span class="wl-gb wl-g-s">S</span></td><td><span class="wl-tb wl-t-st">安定</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>15.21</td><td>1.77</td><td>11.66</td>
+<td>2.81</td><td>87.45</td><td>16.71</td>
+<td><span class="wl-con-buy">Buy</span></td><td>9.73%</td><td>PER15.2倍（業種内割安）; ROE11.7%; 自己資本87.5%（堅固）</td><td>-</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/01 韓国FOLDER事業譲受け。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 3101（2650〜3500） ｜ アナリスト9名 ｜ 上値余地9.73%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+9.73%。海外展開・小売収益性を見る。<br><strong>💴 現在値:</strong> 2850円</div></td></tr>
+<tr class="wl-row" data-g="S" data-s="サービス業" data-o="0" data-c="2127" data-n="日本Ｍ＆Ａセンターホールディングス">
+<td>2</td><td class="wl-code">2127</td><td>日本Ｍ＆Ａセンターホールディ</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-s">S</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-dv">高配当</span></td>
+<td>14.68</td><td>3.92</td><td>26.7</td>
+<td>4.68</td><td>75.78</td><td>37.33</td>
+<td>-</td><td>-</td><td>ROE26.7%（高水準）; 配当4.68%（高配当＋財務安定）; 自己資本75.8%（堅固）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/25 自己株式処分。高ROE・高配当。<br><strong>💴 現在値:</strong> 620円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="医薬品" data-o="1" data-c="4536" data-n="参天製薬">
+<td>3</td><td class="wl-code">4536</td><td>参天製薬</td><td>医薬品</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>16.45</td><td>2.21</td><td>13.47</td>
+<td>2.05</td><td>70.2</td><td>16.39</td>
+<td><span class="wl-con-buy">Buy</span></td><td>7.26%</td><td>ROE13.5%; 自己資本70.2%（堅固）; 海外Buy</td><td>-</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ROE・財務良好、決算中心。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 2303（1900〜2800） ｜ アナリスト9名 ｜ 上値余地7.26%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+7.26%。上値余地は限定的で業績確認優先。<br><strong>💴 現在値:</strong> 2045円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="化学" data-o="0" data-c="4928" data-n="ノエビアホールディングス">
+<td>4</td><td class="wl-code">4928</td><td>ノエビアホールディングス</td><td>化学</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-dv">高配当</span></td>
+<td>18.18</td><td>3.05</td><td>16.78</td>
+<td>5.27</td><td>68.11</td><td>17.11</td>
+<td>-</td><td>-</td><td>ROE16.8%（高水準）; 配当5.27%（高配当＋財務安定）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ROE16.78・配当5.27。<br><strong>💴 現在値:</strong> 4365円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="電気機器" data-o="1" data-c="6758" data-n="ソニーグループ">
+<td>5</td><td class="wl-code">6758</td><td>ソニーグループ</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>16.29</td><td>2.33</td><td>14.29</td>
+<td>1.09</td><td>51.77</td><td>11.6</td>
+<td><span class="wl-con-buy">Strong Buy</span></td><td>42.21%</td><td>ROE14.3%; 海外Strong Buy; 上値余地42%</td><td>-</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自社株買い・TSMC提携基本合意。<br><strong>🌍 海外評価:</strong> Strong Buy ｜ 目標株価 4691（3500〜5900） ｜ アナリスト23名 ｜ 上値余地42.21%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはStrong Buy、平均目標株価は現在値比+42.21%。ゲーム/音楽/半導体/金融分離評価を確認。<br><strong>💴 現在値:</strong> 3199円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="小売業" data-o="0" data-c="8214" data-n="ＡＯＫＩホールディングス">
+<td>6</td><td class="wl-code">8214</td><td>ＡＯＫＩホールディングス</td><td>小売業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-dv">高配当</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>13.72</td><td>0.95</td><td>6.9</td>
+<td>5.52</td><td>64.27</td><td>8.71</td>
+<td>-</td><td>-</td><td>PER13.7倍（業種内割安）; 配当5.52%（高配当＋財務安定）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 高配当・PBR1倍割れ。<br><strong>💴 現在値:</strong> 1630円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="サービス業" data-o="0" data-c="6080" data-n="Ｍ＆Ａキャピタルパートナーズ">
+<td>7</td><td class="wl-code">6080</td><td>Ｍ＆Ａキャピタルパートナーズ</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>14.88</td><td>2.36</td><td>15.89</td>
+<td>2.02</td><td>79.19</td><td>34.62</td>
+<td>-</td><td>-</td><td>ROE15.9%（高水準）; 自己資本79.2%（堅固）; 営業利益率34.6%（高収益）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 岐阜新聞社との業務提携。<br><strong>💴 現在値:</strong> 3390円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="サービス業" data-o="0" data-c="9672" data-n="東京都競馬">
+<td>8</td><td class="wl-code">9672</td><td>東京都競馬</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>11.76</td><td>1.34</td><td>11.36</td>
+<td>2.99</td><td>78.07</td><td>36.91</td>
+<td>-</td><td>-</td><td>ROE11.4%; 自己資本78.1%（堅固）; 営業利益率36.9%（高収益）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 収益性・財務安全性良好。<br><strong>💴 現在値:</strong> 4875円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="建設業" data-o="1" data-c="1911" data-n="住友林業">
+<td>9</td><td class="wl-code">1911</td><td>住友林業</td><td>建設業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>8.87</td><td>0.81</td><td>9.13</td>
+<td>3.64</td><td>39.84</td><td>7.44</td>
+<td><span class="wl-con-buy">Buy</span></td><td>34.73%</td><td>PER8.9倍（業種内割安）; 海外Buy; 上値余地35%</td><td>-</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/05/14 米Tri Pointe Homes株式取得完了、子会社化。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 1767（1500〜2140） ｜ アナリスト6名 ｜ 上値余地34.73%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+34.73%。米国住宅関連として海外勢の視点が入りやすい。<br><strong>💴 現在値:</strong> 1375円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="食料品" data-o="0" data-c="2270" data-n="雪印メグミルク">
+<td>10</td><td class="wl-code">2270</td><td>雪印メグミルク</td><td>食料品</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>9.11</td><td>0.94</td><td>10.31</td>
+<td>2.71</td><td>55.68</td><td>2.97</td>
+<td>-</td><td>-</td><td>PER9.1倍（業種内割安）; ROE10.3%</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/02 自己株式取得状況、代表取締役異動。<br><strong>💴 現在値:</strong> 3685円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="情報・通信業" data-o="0" data-c="3920" data-n="アイビーシー">
+<td>11</td><td class="wl-code">3920</td><td>アイビーシー</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>12.56</td><td>2.24</td><td>17.86</td>
+<td>2.26</td><td>63.23</td><td>23.5</td>
+<td>-</td><td>-</td><td>ROE17.9%（高水準）; 営業利益率23.5%（高収益）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ROE良好だが強材料限定。<br><strong>💴 現在値:</strong> 972円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="医薬品" data-o="1" data-c="4568" data-n="第一三共">
+<td>12</td><td class="wl-code">4568</td><td>第一三共</td><td>医薬品</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-rt">還元</span></td>
+<td>17.75</td><td>2.77</td><td>15.62</td>
+<td>3.94</td><td>41.55</td><td>10.79</td>
+<td><span class="wl-con-buy">Strong Buy</span></td><td>63.85%</td><td>ROE15.6%（高水準）; 海外Strong Buy; 上値余地64%</td><td>-</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ROE15.62・配当3.94。<br><strong>🌍 海外評価:</strong> Strong Buy ｜ 目標株価 4205（2750〜5500） ｜ アナリスト17名 ｜ 上値余地63.85%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはStrong Buy、平均目標株価は現在値比+63.85%。ADCパイプライン等への期待が大きい候補。<br><strong>💴 現在値:</strong> 2536円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="情報・通信業" data-o="0" data-c="4826" data-n="ＣＩＪ">
+<td>13</td><td class="wl-code">4826</td><td>ＣＩＪ</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-dv">高配当</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>16.69</td><td>1.88</td><td>11.28</td>
+<td>4.02</td><td>75.83</td><td>8.07</td>
+<td>-</td><td>-</td><td>ROE11.3%; 配当4.02%（高配当＋財務安定）; 自己資本75.8%（堅固）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 業績・配当予想修正、自社株買い終了。<br><strong>💴 現在値:</strong> 497円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="電気機器" data-o="1" data-c="6702" data-n="富士通">
+<td>14</td><td class="wl-code">6702</td><td>富士通</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>17.9</td><td>2.74</td><td>15.31</td>
+<td>1.72</td><td>59.56</td><td>9.94</td>
+<td><span class="wl-con-buy">Buy</span></td><td>40.62%</td><td>ROE15.3%（高水準）; 海外Buy; 上値余地41%</td><td>-</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 中長期経営ビジョン2035。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 4622（3960〜6000） ｜ アナリスト13名 ｜ 上値余地40.62%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+40.62%。DX/サービス化の評価を確認。<br><strong>💴 現在値:</strong> 3199円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="精密機器" data-o="0" data-c="7734" data-n="理研計器">
+<td>15</td><td class="wl-code">7734</td><td>理研計器</td><td>精密機器</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>17.12</td><td>1.92</td><td>11.24</td>
+<td>1.66</td><td>84.49</td><td>22.5</td>
+<td>-</td><td>-</td><td>ROE11.2%; 自己資本84.5%（堅固）; 営業利益率22.5%（高収益）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 中計・増配、財務厚い。<br><strong>💴 現在値:</strong> 3615円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="精密機器" data-o="1" data-c="4543" data-n="テルモ">
+<td>16</td><td class="wl-code">4543</td><td>テルモ</td><td>精密機器</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>19.74</td><td>2.06</td><td>10.43</td>
+<td>1.63</td><td>68.53</td><td>15.22</td>
+<td><span class="wl-con-buy">Buy</span></td><td>34.62%</td><td>ROE10.4%; 海外Buy; 上値余地35%</td><td>-</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 安定収益、決算中心。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 2978（2100〜3700） ｜ アナリスト14名 ｜ 上値余地34.62%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+34.62%。医療機器のグローバル成長評価あり。<br><strong>💴 現在値:</strong> 2212円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="電気機器" data-o="0" data-c="6741" data-n="日本信号">
+<td>17</td><td class="wl-code">6741</td><td>日本信号</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>9.92</td><td>0.87</td><td>8.75</td>
+<td>3.52</td><td>66.39</td><td>10.26</td>
+<td>-</td><td>-</td><td>PER9.9倍（業種内割安）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 増配修正履歴、低PBR・財務安定。<br><strong>💴 現在値:</strong> 1590円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="電気機器" data-o="1" data-c="6701" data-n="日本電気">
+<td>18</td><td class="wl-code">6701</td><td>日本電気</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>18.63</td><td>2.29</td><td>12.3</td>
+<td>1.05</td><td>49.18</td><td>10.05</td>
+<td><span class="wl-con-buy">Strong Buy</span></td><td>58.30%</td><td>ROE12.3%; 海外Strong Buy; 上値余地58%</td><td>-</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2030中計策定。<br><strong>🌍 海外評価:</strong> Strong Buy ｜ 目標株価 6008（5000〜8000） ｜ アナリスト12名 ｜ 上値余地58.30%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはStrong Buy、平均目標株価は現在値比+58.30%。防衛・AI・ITサービス期待が強い。<br><strong>💴 現在値:</strong> 3795円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="輸送用機器" data-o="0" data-c="7102" data-n="日本車輌製造">
+<td>19</td><td class="wl-code">7102</td><td>日本車輌製造</td><td>輸送用機器</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>6.26</td><td>0.57</td><td>9.12</td>
+<td>1.54</td><td>53.91</td><td>11.62</td>
+<td>-</td><td>-</td><td>PER6.3倍（業種内割安）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 低PER・PBR低い。<br><strong>💴 現在値:</strong> 3255円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="小売業" data-o="0" data-c="7611" data-n="ハイデイ日高">
+<td>20</td><td class="wl-code">7611</td><td>ハイデイ日高</td><td>小売業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>20.27</td><td>3.67</td><td>18.09</td>
+<td>2.05</td><td>72.75</td><td>10.58</td>
+<td>-</td><td>-</td><td>ROE18.1%（高水準）; 自己資本72.8%（堅固）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 月次、ROE18.09・財務強い。<br><strong>💴 現在値:</strong> 2533円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="サービス業" data-o="0" data-c="9765" data-n="オオバ">
+<td>21</td><td class="wl-code">9765</td><td>オオバ</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-dv">高配当</span></td>
+<td>12.43</td><td>1.32</td><td>10.59</td>
+<td>4.01</td><td>57.27</td><td>11.76</td>
+<td>-</td><td>-</td><td>ROE10.6%; 配当4.01%（高配当＋財務安定）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 高配当・ROE10%台。<br><strong>💴 現在値:</strong> 1096円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="小売業" data-o="0" data-c="9989" data-n="サンドラッグ">
+<td>22</td><td class="wl-code">9989</td><td>サンドラッグ</td><td>小売業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>13.85</td><td>1.56</td><td>11.24</td>
+<td>3.47</td><td>60.15</td><td>5.56</td>
+<td>-</td><td>-</td><td>PER13.8倍（業種内割安）; ROE11.2%</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 収益性・配当・財務バランス良好。<br><strong>💴 現在値:</strong> 3807円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="建設業" data-o="1" data-c="1802" data-n="大林組">
+<td>23</td><td class="wl-code">1802</td><td>大林組</td><td>建設業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>14.02</td><td>1.75</td><td>12.48</td>
+<td>2.94</td><td>40.03</td><td>7.53</td>
+<td><span class="wl-con-buy">Buy</span></td><td>37.13%</td><td>ROE12.5%; 海外Buy; 上値余地37%</td><td>-</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/18 Multiplex社子会社化、2026/05/13 インドネシア高速道路事業者株式取得。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 4213（3000〜4900） ｜ アナリスト8名 ｜ 上値余地37.13%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+37.13%。建設セクター内で上値余地大きめ。<br><strong>💴 現在値:</strong> 3202円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="石油・石炭製品" data-o="1" data-c="5020" data-n="ＥＮＥＯＳホールディングス">
+<td>24</td><td class="wl-code">5020</td><td>ＥＮＥＯＳホールディングス</td><td>石油・石炭製品</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>7.88</td><td>0.97</td><td>12.32</td>
+<td>2.8</td><td>37.05</td><td>0.86</td>
+<td><span class="wl-con-buy">Buy</span></td><td>24.54%</td><td>PER7.9倍（業種内割安）; ROE12.3%; 海外Buy</td><td>営業利益率0.9%（薄利）</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自社株買い・消却、低PER/PBR。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 1513（1260〜1700） ｜ アナリスト8名 ｜ 上値余地24.54%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+24.54%。資源・精製マージン・還元評価を確認。<br><strong>💴 現在値:</strong> 1215円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="機械" data-o="0" data-c="6420" data-n="フクシマガリレイ">
+<td>25</td><td class="wl-code">6420</td><td>フクシマガリレイ</td><td>機械</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>10.66</td><td>1.16</td><td>10.92</td>
+<td>2.71</td><td>73.36</td><td>12.32</td>
+<td>-</td><td>-</td><td>ROE10.9%; 自己資本73.4%（堅固）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 指標良好だが決算短信訂正・監査人異動。<br><strong>💴 現在値:</strong> 3290円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="卸売業" data-o="0" data-c="7466" data-n="ＳＰＫ">
+<td>26</td><td class="wl-code">7466</td><td>ＳＰＫ</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>9.39</td><td>0.88</td><td>9.36</td>
+<td>3.23</td><td>61.04</td><td>4.77</td>
+<td>-</td><td>-</td><td>PER9.4倍（業種内割安）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 低PER/PBR・配当3.23。<br><strong>💴 現在値:</strong> 1269円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="小売業" data-o="0" data-c="9974" data-n="ベルク">
+<td>27</td><td class="wl-code">9974</td><td>ベルク</td><td>小売業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>10.46</td><td>1.1</td><td>10.58</td>
+<td>2.07</td><td>54.47</td><td>4.23</td>
+<td>-</td><td>-</td><td>PER10.5倍（業種内割安）; ROE10.6%</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 食品スーパーとして収益性・財務バランス良好。<br><strong>💴 現在値:</strong> 6370円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="建設業" data-o="1" data-c="1801" data-n="大成建設">
+<td>28</td><td class="wl-code">1801</td><td>大成建設</td><td>建設業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>14.79</td><td>2.36</td><td>15.93</td>
+<td>2.77</td><td>34.93</td><td>6.24</td>
+<td><span class="wl-con-buy">Buy</span></td><td>30.94%</td><td>ROE15.9%（高水準）; 海外Buy; 上値余地31%</td><td>-</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/05/14 26/3期決算。純利益+37.29、27/3期売上+15.84予想。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 17429（13000〜22600） ｜ アナリスト7名 ｜ 上値余地30.94%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+30.94%。建設大手として海外カバレッジあり。<br><strong>💴 現在値:</strong> 13705円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="食料品" data-o="0" data-c="2288" data-n="丸大食品">
+<td>29</td><td class="wl-code">2288</td><td>丸大食品</td><td>食料品</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>8.5</td><td>0.71</td><td>8.41</td>
+<td>3.57</td><td>61.07</td><td>2.33</td>
+<td>-</td><td>-</td><td>PER8.5倍（業種内割安）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/01 自己株式取得状況、2026/05/14 中間配当制度導入。<br><strong>💴 現在値:</strong> 2239円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="不動産業" data-o="0" data-c="4666" data-n="パーク２４">
+<td>30</td><td class="wl-code">4666</td><td>パーク２４</td><td>不動産業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-rt">還元</span></td>
+<td>8.02</td><td>3.19</td><td>39.79</td>
+<td>3.15</td><td>32.12</td><td>9.25</td>
+<td>-</td><td>-</td><td>PER8.0倍（業種内割安）; ROE39.8%（高水準）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 業績予想修正・優待再開、ROE39.79。<br><strong>💴 現在値:</strong> 2066円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="石油・石炭製品" data-o="0" data-c="5015" data-n="ビーピー・カストロール">
+<td>31</td><td class="wl-code">5015</td><td>ビーピー・カストロール</td><td>石油・石炭製品</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-dv">高配当</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>20.26</td><td>2.36</td><td>11.65</td>
+<td>4.96</td><td>76.23</td><td>10.63</td>
+<td>-</td><td>-</td><td>ROE11.7%; 配当4.96%（高配当＋財務安定）; 自己資本76.2%（堅固）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 高配当・高自己資本だが中東情勢リスク。<br><strong>💴 現在値:</strong> 1008円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="機械" data-o="1" data-c="7003" data-n="三井Ｅ＆Ｓホールディングス">
+<td>32</td><td class="wl-code">7003</td><td>三井Ｅ＆Ｓホールディングス</td><td>機械</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>13.75</td><td>1.8</td><td>13.1</td>
+<td>1.47</td><td>46.32</td><td>7.06</td>
+<td><span class="wl-con-buy">Strong Buy</span></td><td>93.74%</td><td>ROE13.1%; 海外Strong Buy; 上値余地94%</td><td>-</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> Rolling Vision策定、ROE13%。<br><strong>🌍 海外評価:</strong> Strong Buy ｜ 目標株価 7920（7000〜8300） ｜ アナリスト5名 ｜ 上値余地93.74%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはStrong Buy、平均目標株価は現在値比+93.74%。船舶・港湾クレーン等のテーマ性が強い。<br><strong>💴 現在値:</strong> 4088円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="卸売業" data-o="0" data-c="7458" data-n="第一興商">
+<td>33</td><td class="wl-code">7458</td><td>第一興商</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-dv">高配当</span></td>
+<td>14.18</td><td>1.4</td><td>9.87</td>
+<td>4.06</td><td>56.09</td><td>11.06</td>
+<td>-</td><td>-</td><td>配当4.06%（高配当＋財務安定）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 配当利回り4.06。<br><strong>💴 現在値:</strong> 1673円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="電気機器" data-o="1" data-c="7751" data-n="キヤノン">
+<td>34</td><td class="wl-code">7751</td><td>キヤノン</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>11.11</td><td>1.08</td><td>9.7</td>
+<td>3.76</td><td>55.04</td><td>9.85</td>
+<td><span class="wl-con-hold">Hold</span></td><td>14.81%</td><td>PER11.1倍（業種内割安）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自己株式取得。<br><strong>🌍 海外評価:</strong> Hold ｜ 目標株価 4791（4100〜5900） ｜ アナリスト11名 ｜ 上値余地14.81%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはHold、平均目標株価は現在値比+14.81%。高配当・事業安定性評価。<br><strong>💴 現在値:</strong> 4258円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="その他製品" data-o="0" data-c="7846" data-n="パイロットコーポレーション">
+<td>35</td><td class="wl-code">7846</td><td>パイロットコーポレーション</td><td>その他製品</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>12.9</td><td>1.32</td><td>10.22</td>
+<td>1.63</td><td>79.22</td><td>13.17</td>
+<td>-</td><td>-</td><td>ROE10.2%; 自己資本79.2%（堅固）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自社株式取得・消却履歴。<br><strong>💴 現在値:</strong> 5150円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="小売業" data-o="0" data-c="8227" data-n="しまむら">
+<td>36</td><td class="wl-code">8227</td><td>しまむら</td><td>小売業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-st">安定</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>14.15</td><td>1.37</td><td>9.69</td>
+<td>2.48</td><td>88.08</td><td>8.78</td>
+<td>-</td><td>-</td><td>PER14.2倍（業種内割安）; 自己資本88.1%（堅固）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 決算待ち、安定感あり。<br><strong>💴 現在値:</strong> 3225円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="空運業" data-o="1" data-c="9201" data-n="日本航空">
+<td>37</td><td class="wl-code">9201</td><td>日本航空</td><td>空運業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>11.12</td><td>0.95</td><td>8.53</td>
+<td>3.37</td><td>40.32</td><td>10.3</td>
+<td><span class="wl-con-buy">Buy</span></td><td>5.65%</td><td>海外Buy</td><td>-</td><td>決算資料・中計を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 航空需要回復、燃油・為替リスク。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 3027（2500〜3600） ｜ アナリスト11名 ｜ 上値余地5.65%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+5.65%。燃油・為替・国際線需要を確認。<br><strong>💴 現在値:</strong> 2846円</div></td></tr>
+<tr class="wl-row" data-g="A" data-s="小売業" data-o="0" data-c="9936" data-n="王将フードサービス">
+<td>38</td><td class="wl-code">9936</td><td>王将フードサービス</td><td>小売業</td>
+<td><span class="wl-gb wl-g-a">A</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>20.79</td><td>2.27</td><td>10.91</td>
+<td>1.99</td><td>76.47</td><td>8.91</td>
+<td>-</td><td>-</td><td>ROE10.9%; 自己資本76.5%（堅固）</td><td>-</td><td>決算資料・中計を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 外食需要期待、割安感薄い。<br><strong>💴 現在値:</strong> 2808円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="サービス業" data-o="1" data-c="2371" data-n="カカクコム">
+<td>39</td><td class="wl-code">2371</td><td>カカクコム</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>31.63</td><td>10.08</td><td>31.85</td>
+<td>1.63</td><td>70.28</td><td>28.94</td>
+<td><span class="wl-con-buy">Buy</span></td><td>-28.62%</td><td>ROE31.9%（高水準）; 自己資本70.3%（堅固）; 営業利益率28.9%（高収益）</td><td>PBR10.08倍（割高）; 上値余地-29%（下落リスク）</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/04 公開買付関連訂正、ROE高いがPBR高い。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 2406（2030〜3400） ｜ アナリスト9名 ｜ 上値余地-28.62%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuyながら、平均目標株価は現在値比-28.62%。株価先行・割高警戒として要注意。<br><strong>💴 現在値:</strong> 3310円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="食料品" data-o="0" data-c="2915" data-n="ケンコーマヨネーズ">
+<td>40</td><td class="wl-code">2915</td><td>ケンコーマヨネーズ</td><td>食料品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>10.26</td><td>0.7</td><td>6.83</td>
+<td>3.46</td><td>65.02</td><td>4.5</td>
+<td>-</td><td>-</td><td>PER10.3倍（業種内割安）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 PBR0.70・配当3.46だが利益面弱め。<br><strong>💴 現在値:</strong> 2024円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="情報・通信業" data-o="0" data-c="3661" data-n="エムアップホールディングス">
+<td>41</td><td class="wl-code">3661</td><td>エムアップホールディングス</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-rt">還元</span></td>
+<td>12.94</td><td>4.82</td><td>37.28</td>
+<td>3.72</td><td>29.7</td><td>15.78</td>
+<td>-</td><td>-</td><td>ROE37.3%（高水準）</td><td>自己資本29.7%（やや低い）</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 高ROE・配当3%台、通期予想公表。<br><strong>💴 現在値:</strong> 645円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="電気機器" data-o="1" data-c="6954" data-n="ファナック">
+<td>42</td><td class="wl-code">6954</td><td>ファナック</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>35.46</td><td>3.52</td><td>9.91</td>
+<td>1.52</td><td>89.2</td><td>21.42</td>
+<td><span class="wl-con-buy">Buy</span></td><td>4.66%</td><td>自己資本89.2%（堅固）; 営業利益率21.4%（高収益）; 海外Buy</td><td>-</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自社株買い終了・消却、財務厚い。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 7380（5600〜9000） ｜ アナリスト20名 ｜ 上値余地4.66%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+4.66%。ロボット/FA回復は織り込み確認。<br><strong>💴 現在値:</strong> 7026円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="小売業" data-o="0" data-c="7692" data-n="アースインフィニティ">
+<td>43</td><td class="wl-code">7692</td><td>アースインフィニティ</td><td>小売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-rt">還元</span></td>
+<td>14.64</td><td>6.42</td><td>43.85</td>
+<td>3.56</td><td>42.45</td><td>10.24</td>
+<td>-</td><td>-</td><td>PER14.6倍（業種内割安）; ROE43.9%（高水準）</td><td>PBR6.42倍（割高）</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ROE高いがPBR高・小型ボラあり。<br><strong>💴 現在値:</strong> 73円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="銀行業" data-o="1" data-c="8316" data-n="三井住友フィナンシャルグループ">
+<td>44</td><td class="wl-code">8316</td><td>三井住友フィナンシャルグルー</td><td>銀行業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>14.35</td><td>1.55</td><td>10.77</td>
+<td>2.82</td><td>5.03</td><td>対象外</td>
+<td><span class="wl-con-buy">Buy</span></td><td>1.67%</td><td>ROE10.8%; 海外Buy</td><td>-</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自社株買い進捗。銀行業の営業利益率は対象外。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 6590（4500〜8000） ｜ アナリスト12名 ｜ 上値余地1.67%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuyだが平均目標株価は現在値比+1.67%。金利上昇メリットはかなり織り込み済みか。<br><strong>💴 現在値:</strong> 6391円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="サービス業" data-o="0" data-c="8876" data-n="リログループ">
+<td>45</td><td class="wl-code">8876</td><td>リログループ</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>13.97</td><td>3.41</td><td>24.44</td>
+<td>2.6</td><td>26.08</td><td>20.4</td>
+<td>-</td><td>-</td><td>ROE24.4%（高水準）; 営業利益率20.4%（高収益）</td><td>自己資本26.1%（やや低い）</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ROE24.44・営業利益率20.40。<br><strong>💴 現在値:</strong> 1887円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="情報・通信業" data-o="1" data-c="9433" data-n="ＫＤＤＩ">
+<td>46</td><td class="wl-code">9433</td><td>ＫＤＤＩ</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>14.43</td><td>2.01</td><td>13.93</td>
+<td>3.13</td><td>26.63</td><td>18.1</td>
+<td><span class="wl-con-hold">Hold</span></td><td>3.43%</td><td>ROE13.9%</td><td>自己資本26.6%（やや低い）</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自社株買い材料、内部統制不備はリスク。<br><strong>🌍 海外評価:</strong> Hold ｜ 目標株価 2810（1865〜3321） ｜ アナリスト14名 ｜ 上値余地3.43%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはHold、平均目標株価は現在値比+3.43%。通信安定性は評価済みで上値余地限定。<br><strong>💴 現在値:</strong> 2681円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="卸売業" data-o="0" data-c="9986" data-n="蔵王産業">
+<td>47</td><td class="wl-code">9986</td><td>蔵王産業</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-dv">高配当</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>17.7</td><td>1.02</td><td>5.74</td>
+<td>4.08</td><td>85.95</td><td>11.6</td>
+<td>-</td><td>-</td><td>配当4.08%（高配当＋財務安定）; 自己資本86.0%（堅固）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 高配当・財務安全性強いがROE低め。<br><strong>💴 現在値:</strong> 2448円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="繊維製品" data-o="0" data-c="3401" data-n="帝人">
+<td>48</td><td class="wl-code">3401</td><td>帝人</td><td>繊維製品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>6.99</td><td>0.86</td><td>12.35</td>
+<td>3.07</td><td>39.61</td><td>-7.14</td>
+<td>-</td><td>-</td><td>PER7.0倍（業種内割安）; ROE12.3%</td><td>営業利益率-7.1%（薄利）</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 子会社配当受領、低PER・PBR1倍割れ。<br><strong>💴 現在値:</strong> 1631円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="卸売業" data-o="0" data-c="3543" data-n="コメダホールディングス">
+<td>49</td><td class="wl-code">3543</td><td>コメダホールディングス</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>18.11</td><td>2.51</td><td>13.84</td>
+<td>2.26</td><td>45.17</td><td>16.47</td>
+<td>-</td><td>-</td><td>ROE13.8%</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 26/2期収益+21.61、営業利益+6.85。<br><strong>💴 現在値:</strong> 2746円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="ガラス・土石製品" data-o="0" data-c="5233" data-n="太平洋セメント">
+<td>50</td><td class="wl-code">5233</td><td>太平洋セメント</td><td>ガラス・土石製品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>9.5</td><td>0.67</td><td>7.05</td>
+<td>2.94</td><td>46.01</td><td>6.37</td>
+<td>-</td><td>-</td><td>PER9.5倍（業種内割安）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 米Vulcan社資産買収完了。<br><strong>💴 現在値:</strong> 4087円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="機械" data-o="1" data-c="6273" data-n="ＳＭＣ">
+<td>51</td><td class="wl-code">6273</td><td>ＳＭＣ</td><td>機械</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>26.6</td><td>2.14</td><td>8.04</td>
+<td>1.4</td><td>91.49</td><td>22.62</td>
+<td><span class="wl-con-buy">Buy</span></td><td>15.02%</td><td>自己資本91.5%（堅固）; 営業利益率22.6%（高収益）; 海外Buy</td><td>-</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自己株式取得状況。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 80493（60000〜100000） ｜ アナリスト14名 ｜ 上値余地15.02%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+15.02%。FA需要・中国回復期待を確認。<br><strong>💴 現在値:</strong> 71630円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="電気機器" data-o="1" data-c="6501" data-n="日立製作所">
+<td>52</td><td class="wl-code">6501</td><td>日立製作所</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>23.71</td><td>3.07</td><td>12.94</td>
+<td>1.12</td><td>43.67</td><td>11.33</td>
+<td><span class="wl-con-buy">Buy</span></td><td>31.84%</td><td>ROE12.9%; 海外Buy; 上値余地32%</td><td>-</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> Investor Day 2026、中計関連。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 5914（4600〜6800） ｜ アナリスト14名 ｜ 上値余地31.84%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+31.84%。AI/電力/デジタル/防衛周辺の海外評価が入りやすい。<br><strong>💴 現在値:</strong> 4478円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="電気機器" data-o="0" data-c="6745" data-n="ホーチキ">
+<td>53</td><td class="wl-code">6745</td><td>ホーチキ</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>16.66</td><td>2.19</td><td>13.16</td>
+<td>1.99</td><td>69.84</td><td>11.4</td>
+<td>-</td><td>-</td><td>ROE13.2%</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> アジア組織再編、ROE13%台。<br><strong>💴 現在値:</strong> 2010円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="電気機器" data-o="1" data-c="6861" data-n="キーエンス">
+<td>54</td><td class="wl-code">6861</td><td>キーエンス</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>42</td><td>5.39</td><td>13.04</td>
+<td>0.71</td><td>94.57</td><td>50.95</td>
+<td><span class="wl-con-buy">Buy</span></td><td>10.14%</td><td>ROE13.0%; 自己資本94.6%（堅固）; 営業利益率51.0%（高収益）</td><td>PBR5.39倍（割高）</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 超優良だがPER高い。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 84706（60000〜100200） ｜ アナリスト16名 ｜ 上値余地10.14%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+10.14%。優良株だがバリュエーション余地は限定的。<br><strong>💴 現在値:</strong> 77100円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="小売業" data-o="1" data-c="7453" data-n="良品計画">
+<td>55</td><td class="wl-code">7453</td><td>良品計画</td><td>小売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>29.98</td><td>4.93</td><td>16.45</td>
+<td>0.91</td><td>59.63</td><td>10.03</td>
+<td><span class="wl-con-buy">Buy</span></td><td>19.04%</td><td>ROE16.4%（高水準）; 海外Buy</td><td>-</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 業績・配当予想修正。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 4278（3500〜5400） ｜ アナリスト16名 ｜ 上値余地19.04%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+19.04%。海外店舗成長と国内既存店確認。<br><strong>💴 現在値:</strong> 3502円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="小売業" data-o="0" data-c="7564" data-n="ワークマン">
+<td>56</td><td class="wl-code">7564</td><td>ワークマン</td><td>小売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>24.63</td><td>3.58</td><td>14.55</td>
+<td>1.32</td><td>82.83</td><td>18.45</td>
+<td>-</td><td>-</td><td>ROE14.6%; 自己資本82.8%（堅固）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 月次、ROEと財務強いが割安感薄い。<br><strong>💴 現在値:</strong> 6740円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="不動産業" data-o="1" data-c="8801" data-n="三井不動産">
+<td>57</td><td class="wl-code">8801</td><td>三井不動産</td><td>不動産業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>14.11</td><td>1.23</td><td>8.7</td>
+<td>2.5</td><td>32.44</td><td>14.68</td>
+<td><span class="wl-con-buy">Strong Buy</span></td><td>47.17%</td><td>海外Strong Buy; 上値余地47%</td><td>-</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 総合デベロッパー、安定感あり。<br><strong>🌍 海外評価:</strong> Strong Buy ｜ 目標株価 2178（1800〜2560） ｜ アナリスト11名 ｜ 上値余地47.17%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはStrong Buy、平均目標株価は現在値比+47.17%。不動産大手として含み益・再開発・金利耐性を確認。<br><strong>💴 現在値:</strong> 1480円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="情報・通信業" data-o="1" data-c="9432" data-n="日本電信電話">
+<td>58</td><td class="wl-code">9432</td><td>日本電信電話</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>11.96</td><td>1.21</td><td>10.07</td>
+<td>3.75</td><td>20.82</td><td>11.84</td>
+<td><span class="wl-con-buy">Buy</span></td><td>19.73%</td><td>ROE10.1%; 海外Buy</td><td>自己資本20.8%（やや低い）</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 26/3期営業利益率11.84、高配当大型通信株。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 173（143〜215） ｜ アナリスト13名 ｜ 上値余地19.73%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+19.73%。通信ディフェンシブ＋AI/DC投資評価。<br><strong>💴 現在値:</strong> 144円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="小売業" data-o="0" data-c="9980" data-n="ＭＲＫホールディングス">
+<td>59</td><td class="wl-code">9980</td><td>ＭＲＫホールディングス</td><td>小売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>6.76</td><td>0.57</td><td>8.49</td>
+<td>1.1</td><td>77.71</td><td>2.73</td>
+<td>-</td><td>-</td><td>PER6.8倍（業種内割安）; 自己資本77.7%（堅固）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 26/3期営業利益+46.79、純利益+265.91。<br><strong>💴 現在値:</strong> 91円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="サービス業" data-o="1" data-c="2181" data-n="パーソルホールディングス">
+<td>60</td><td class="wl-code">2181</td><td>パーソルホールディングス</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-dv">高配当</span></td>
+<td>11.88</td><td>2.41</td><td>20.27</td>
+<td>5.49</td><td>35.37</td><td>3.96</td>
+<td><span class="wl-con-buy">Buy</span></td><td>23.70%</td><td>ROE20.3%（高水準）; 配当5.49%; 海外Buy</td><td>-</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/02 公取委による子会社立入検査。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 298（236〜430） ｜ アナリスト7名 ｜ 上値余地23.70%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+23.70%。人材系として景気敏感面も確認。<br><strong>💴 現在値:</strong> 237円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="食料品" data-o="1" data-c="2269" data-n="明治ホールディングス">
+<td>61</td><td class="wl-code">2269</td><td>明治ホールディングス</td><td>食料品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>16.42</td><td>1.33</td><td>8.09</td>
+<td>2.91</td><td>61.23</td><td>7.73</td>
+<td><span class="wl-con-hold">Hold</span></td><td>15.42%</td><td>-</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 26/3期営業利益+7.44、経常利益+13.40予想。<br><strong>🌍 海外評価:</strong> Hold ｜ 目標株価 4133（3300〜5000） ｜ アナリスト9名 ｜ 上値余地15.42%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはHold、平均目標株価は現在値比+15.42%。安定感はあるが強気一辺倒ではない。<br><strong>💴 現在値:</strong> 3786円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="食料品" data-o="0" data-c="2282" data-n="日本ハム">
+<td>62</td><td class="wl-code">2282</td><td>日本ハム</td><td>食料品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-dv">高配当</span></td>
+<td>15.09</td><td>1.07</td><td>7.08</td>
+<td>8.87</td><td>53.83</td><td>3.95</td>
+<td>-</td><td>-</td><td>配当8.87%</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/05/08 自己株式取得枠、株式分割、優待変更。<br><strong>💴 現在値:</strong> 6091円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="小売業" data-o="0" data-c="3046" data-n="ジンズホールディングス">
+<td>63</td><td class="wl-code">3046</td><td>ジンズホールディングス</td><td>小売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>21.98</td><td>5.59</td><td>25.45</td>
+<td>1.42</td><td>56.46</td><td>12.44</td>
+<td>-</td><td>-</td><td>ROE25.4%（高水準）</td><td>PBR5.59倍（割高）</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 月次と海外事業譲受け、ROE25.45。<br><strong>💴 現在値:</strong> 8120円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="情報・通信業" data-o="0" data-c="4768" data-n="大塚商会">
+<td>64</td><td class="wl-code">4768</td><td>大塚商会</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-rt">還元</span></td>
+<td>17.15</td><td>2.67</td><td>15.58</td>
+<td>3.44</td><td>52.35</td><td>6.71</td>
+<td>-</td><td>-</td><td>ROE15.6%（高水準）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ROE・配当・財務バランス良好。<br><strong>💴 現在値:</strong> 2764円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="電気機器" data-o="1" data-c="6503" data-n="三菱電機">
+<td>65</td><td class="wl-code">6503</td><td>三菱電機</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>25.24</td><td>2.67</td><td>10.59</td>
+<td>0.94</td><td>60.95</td><td>7.35</td>
+<td><span class="wl-con-buy">Buy</span></td><td>8.27%</td><td>ROE10.6%; 海外Buy</td><td>-</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> IR Day材料、決算短信訂正。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 6529（3100〜8000） ｜ アナリスト14名 ｜ 上値余地8.27%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+8.27%。株価水準はやや先行、FA・電力機器の評価確認。<br><strong>💴 現在値:</strong> 5858円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="精密機器" data-o="0" data-c="7781" data-n="平山ホールディングス">
+<td>66</td><td class="wl-code">7781</td><td>平山ホールディングス</td><td>精密機器</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-rt">還元</span></td>
+<td>13.54</td><td>2.14</td><td>15.81</td>
+<td>3.59</td><td>43.5</td><td>3.55</td>
+<td>-</td><td>-</td><td>ROE15.8%（高水準）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> M&amp;A材料、配当修正。<br><strong>💴 現在値:</strong> 1560円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="卸売業" data-o="1" data-c="8002" data-n="丸紅">
+<td>67</td><td class="wl-code">8002</td><td>丸紅</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>13.25</td><td>1.76</td><td>13.29</td>
+<td>2.45</td><td>41.43</td><td>対象外</td>
+<td><span class="wl-con-buy">Buy</span></td><td>28.16%</td><td>ROE13.3%; 海外Buy</td><td>-</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自己株式取得終了。商社の営業利益率は対象外。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 6263（5000〜7180） ｜ アナリスト14名 ｜ 上値余地28.16%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+28.16%。資源・非資源・還元評価。<br><strong>💴 現在値:</strong> 4692円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="その他製品" data-o="0" data-c="8022" data-n="美津濃">
+<td>68</td><td class="wl-code">8022</td><td>美津濃</td><td>その他製品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>13.93</td><td>1.53</td><td>10.96</td>
+<td>1.9</td><td>68.94</td><td>8.73</td>
+<td>-</td><td>-</td><td>ROE11.0%</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ROE・財務良好。<br><strong>💴 現在値:</strong> 3480円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="卸売業" data-o="1" data-c="8053" data-n="住友商事">
+<td>69</td><td class="wl-code">8053</td><td>住友商事</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>11.74</td><td>1.6</td><td>13.61</td>
+<td>0.65</td><td>33.94</td><td>対象外</td>
+<td><span class="wl-con-buy">Buy</span></td><td>410.93%</td><td>ROE13.6%; 海外Buy; 上値余地411%</td><td>-</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自社株取得、ニッケル損失材料。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 7830（6500〜9050） ｜ アナリスト12名 ｜ 上値余地410.93%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy。ただしStockAnalysis表示の現在値/目標株価に株式分割等の単位不整合疑義があり、上値余地+410.93%はそのままランキング採用しない方が安全。<br><strong>💴 現在値:</strong> 6201円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="海運業" data-o="1" data-c="9101" data-n="日本郵船">
+<td>70</td><td class="wl-code">9101</td><td>日本郵船</td><td>海運業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>10.95</td><td>0.69</td><td>6.35</td>
+<td>3.8</td><td>59.06</td><td>7.32</td>
+<td><span class="wl-con-hold">Hold</span></td><td>12.92%</td><td>-</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> PBR1倍割れ・配当3.80、海運市況リスク。<br><strong>🌍 海外評価:</strong> Hold ｜ 目標株価 5870（3440〜7400） ｜ アナリスト11名 ｜ 上値余地12.92%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはHold、平均目標株価は現在値比+12.92%。海運市況・還元継続性の見極め。<br><strong>💴 現在値:</strong> 5265円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="小売業" data-o="0" data-c="9843" data-n="ニトリホールディングス">
+<td>71</td><td class="wl-code">9843</td><td>ニトリホールディングス</td><td>小売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>15.15</td><td>1.39</td><td>9.21</td>
+<td>1.31</td><td>62.91</td><td>13.76</td>
+<td>-</td><td>-</td><td>PER15.2倍（業種内割安）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 財務安定、還元控えめ。<br><strong>💴 現在値:</strong> 2440円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="化学" data-o="0" data-c="4203" data-n="住友ベークライト">
+<td>72</td><td class="wl-code">4203</td><td>住友ベークライト</td><td>化学</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>23.45</td><td>1.92</td><td>8.21</td>
+<td>1.58</td><td>71.71</td><td>11.09</td>
+<td>-</td><td>-</td><td>自己資本71.7%（堅固）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 決算・株式報酬中心。<br><strong>💴 現在値:</strong> 7616円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="医薬品" data-o="1" data-c="4528" data-n="小野薬品工業">
+<td>73</td><td class="wl-code">4528</td><td>小野薬品工業</td><td>医薬品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>15.53</td><td>1.3</td><td>8.35</td>
+<td>3.41</td><td>76.88</td><td>12.27</td>
+<td><span class="wl-con-hold">Hold</span></td><td>3.04%</td><td>自己資本76.9%（堅固）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 財務安全性・配当良好。<br><strong>🌍 海外評価:</strong> Hold ｜ 目標株価 2483（1800〜3200） ｜ アナリスト12名 ｜ 上値余地3.04%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはHold、平均目標株価は現在値比+3.04%。新薬・特許切れリスクの評価が焦点。<br><strong>💴 現在値:</strong> 2346円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="情報・通信業" data-o="0" data-c="4689" data-n="Ｚホールディングス">
+<td>74</td><td class="wl-code">4689</td><td>Ｚホールディングス</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>14.52</td><td>0.94</td><td>6.46</td>
+<td>2.68</td><td>26.76</td><td>16.76</td>
+<td>-</td><td>-</td><td>-</td><td>自己資本26.8%（やや低い）</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> M&amp;A材料あり、決算短信訂正もあり。<br><strong>💴 現在値:</strong> 410円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="その他製品" data-o="1" data-c="7936" data-n="アシックス">
+<td>75</td><td class="wl-code">7936</td><td>アシックス</td><td>その他製品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>28.72</td><td>9.99</td><td>34.8</td>
+<td>0.85</td><td>49.38</td><td>17.57</td>
+<td><span class="wl-con-buy">Buy</span></td><td>22.19%</td><td>ROE34.8%（高水準）; 海外Buy</td><td>PBR9.99倍（割高）</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ROE34.80、ブランド成長。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 5458（4500〜6100） ｜ アナリスト14名 ｜ 上値余地22.19%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+22.19%。グローバルブランド成長評価あり。<br><strong>💴 現在値:</strong> 4456円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="卸売業" data-o="0" data-c="8136" data-n="サンリオ">
+<td>76</td><td class="wl-code">8136</td><td>サンリオ</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>20.75</td><td>8.5</td><td>40.95</td>
+<td>1.47</td><td>66.38</td><td>40.12</td>
+<td>-</td><td>-</td><td>ROE41.0%（高水準）; 営業利益率40.1%（高収益）</td><td>PBR8.50倍（割高）</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ROE40.95と高収益。<br><strong>💴 現在値:</strong> 1092円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="食料品" data-o="0" data-c="2587" data-n="サントリー食品インターナショナル">
+<td>77</td><td class="wl-code">2587</td><td>サントリー食品インターナショ</td><td>食料品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>15.45</td><td>1.05</td><td>6.77</td>
+<td>2.7</td><td>60.31</td><td>8.67</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/18 価格改定、2026/05/13 1Q決算。<br><strong>💴 現在値:</strong> 4449円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="卸売業" data-o="0" data-c="2751" data-n="テンポスホールディングス">
+<td>78</td><td class="wl-code">2751</td><td>テンポスホールディングス</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>16.02</td><td>2.51</td><td>15.64</td>
+<td>0.25</td><td>60.35</td><td>5.39</td>
+<td>-</td><td>-</td><td>ROE15.6%（高水準）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/10 26/4期決算。<br><strong>💴 現在値:</strong> 3670円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="食料品" data-o="1" data-c="2802" data-n="味の素">
+<td>79</td><td class="wl-code">2802</td><td>味の素</td><td>食料品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>45.69</td><td>7.11</td><td>15.57</td>
+<td>0.87</td><td>42.53</td><td>12.59</td>
+<td><span class="wl-con-buy">Buy</span></td><td>-2.56%</td><td>ROE15.6%（高水準）; 海外Buy</td><td>PBR7.11倍（割高）</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 26/3期営業利益+75.0、増配、自社株買い、子会社化材料。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 5632（3650〜6700） ｜ アナリスト14名 ｜ 上値余地-2.56%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuyながら平均目標株価は現在値比-2.56%。株価先行気味で押し目確認向き。<br><strong>💴 現在値:</strong> 5721円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="化学" data-o="0" data-c="3407" data-n="旭化成">
+<td>80</td><td class="wl-code">3407</td><td>旭化成</td><td>化学</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>15.21</td><td>1.17</td><td>7.66</td>
+<td>2.45</td><td>50.47</td><td>7.52</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自己株式取得状況。<br><strong>💴 現在値:</strong> 1794円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="電気機器" data-o="0" data-c="6788" data-n="日本トリム">
+<td>81</td><td class="wl-code">6788</td><td>日本トリム</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>15.31</td><td>1.42</td><td>9.27</td>
+<td>2.87</td><td>65.83</td><td>12.17</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 株式報酬制度、指標堅実。<br><strong>💴 現在値:</strong> 4530円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="卸売業" data-o="0" data-c="8031" data-n="三井物産">
+<td>82</td><td class="wl-code">8031</td><td>三井物産</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>13.89</td><td>1.46</td><td>10.49</td>
+<td>3.11</td><td>42.11</td><td>対象外</td>
+<td>-</td><td>-</td><td>ROE10.5%</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 総合商社。営業利益率は対象外。<br><strong>💴 現在値:</strong> 4508円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="卸売業" data-o="1" data-c="8058" data-n="三菱商事">
+<td>83</td><td class="wl-code">8058</td><td>三菱商事</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>14.66</td><td>1.71</td><td>11.65</td>
+<td>2.84</td><td>39.09</td><td>対象外</td>
+<td><span class="wl-con-buy">Buy</span></td><td>18.76%</td><td>ROE11.7%; 海外Buy</td><td>-</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 総合商社。営業利益率は対象外。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 5242（3281〜7000） ｜ アナリスト14名 ｜ 上値余地18.76%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+18.76%。商社セクター内で還元・資源/非資源バランスを確認。<br><strong>💴 現在値:</strong> 4403円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="情報・通信業" data-o="0" data-c="9412" data-n="スカパーＪＳＡＴホールディングス">
+<td>84</td><td class="wl-code">9412</td><td>スカパーＪＳＡＴホールディン</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>26.09</td><td>2.32</td><td>8.89</td>
+<td>1.93</td><td>74.44</td><td>27.65</td>
+<td>-</td><td>-</td><td>自己資本74.4%（堅固）; 営業利益率27.6%（高収益）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 衛星通信テーマだがPER高め。<br><strong>💴 現在値:</strong> 2485円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="水産・農林業" data-o="0" data-c="1377" data-n="サカタのタネ">
+<td>85</td><td class="wl-code">1377</td><td>サカタのタネ</td><td>水産・農林業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>17.69</td><td>1.02</td><td>5.78</td>
+<td>1.79</td><td>82.32</td><td>12.38</td>
+<td>-</td><td>-</td><td>自己資本82.3%（堅固）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/04/07 26/5期3Q決算。売上+9.43、純利益+11.24。通期営業利益125億円予想。<br><strong>💴 現在値:</strong> 4185円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="サービス業" data-o="0" data-c="2331" data-n="綜合警備保障">
+<td>86</td><td class="wl-code">2331</td><td>綜合警備保障</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>13.9</td><td>1.35</td><td>9.72</td>
+<td>3.09</td><td>56.83</td><td>7.86</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/05 TOB関連訂正、2026/06/01 自己株式取得状況。<br><strong>💴 現在値:</strong> 1067円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="サービス業" data-o="1" data-c="2432" data-n="ディー・エヌ・エー">
+<td>87</td><td class="wl-code">2432</td><td>ディー・エヌ・エー</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>13.29</td><td>1.09</td><td>8.19</td>
+<td>2.8</td><td>69.81</td><td>12.66</td>
+<td><span class="wl-con-hold">Hold</span></td><td>18.81%</td><td>-</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/16 GO上場に伴う持分法投資利益計上。<br><strong>🌍 海外評価:</strong> Hold ｜ 目標株価 2975（2070〜4400） ｜ アナリスト4名 ｜ 上値余地18.81%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはHold、平均目標株価は現在値比+18.81%。ゲーム・スポーツ・AI周辺の期待織り込み度を確認。<br><strong>💴 現在値:</strong> 2358円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="食料品" data-o="0" data-c="2811" data-n="カゴメ">
+<td>88</td><td class="wl-code">2811</td><td>カゴメ</td><td>食料品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>17.41</td><td>1.23</td><td>7.08</td>
+<td>2.25</td><td>52.59</td><td>7.69</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 2026/04/30 1Q決算、強材料は限定的。<br><strong>💴 現在値:</strong> 2581円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="小売業" data-o="0" data-c="3097" data-n="物語コーポレーション">
+<td>89</td><td class="wl-code">3097</td><td>物語コーポレーション</td><td>小売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>24.03</td><td>4.03</td><td>16.77</td>
+<td>0.86</td><td>52.36</td><td>7.46</td>
+<td>-</td><td>-</td><td>ROE16.8%（高水準）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 月次と子会社関連材料。<br><strong>💴 現在値:</strong> 4640円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="輸送用機器" data-o="1" data-c="7012" data-n="川崎重工業">
+<td>90</td><td class="wl-code">7012</td><td>川崎重工業</td><td>輸送用機器</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>21.55</td><td>2.7</td><td>12.53</td>
+<td>1.41</td><td>26.41</td><td>5.46</td>
+<td><span class="wl-con-buy">Buy</span></td><td>31.13%</td><td>ROE12.5%; 海外Buy; 上値余地31%</td><td>自己資本26.4%（やや低い）</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 増配、防衛・航空宇宙関連。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 3810（3000〜4700） ｜ アナリスト13名 ｜ 上値余地31.13%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+31.13%。防衛・航空宇宙・二輪/エネルギー関連を確認。<br><strong>💴 現在値:</strong> 2836円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="輸送用機器" data-o="1" data-c="7272" data-n="ヤマハ発動機">
+<td>91</td><td class="wl-code">7272</td><td>ヤマハ発動機</td><td>輸送用機器</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>12.23</td><td>1.05</td><td>8.6</td>
+<td>3.97</td><td>37.67</td><td>4.99</td>
+<td><span class="wl-con-hold">Hold</span></td><td>1.27%</td><td>-</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 配当3.97、決算・格付中心。<br><strong>🌍 海外評価:</strong> Hold ｜ 目標株価 1276（1200〜1500） ｜ アナリスト10名 ｜ 上値余地1.27%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはHold、平均目標株価は現在値比+1.27%。二輪・マリンは堅いが上値余地は限定的。<br><strong>💴 現在値:</strong> 1260円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="電気機器" data-o="0" data-c="7752" data-n="リコー">
+<td>92</td><td class="wl-code">7752</td><td>リコー</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>13.2</td><td>0.71</td><td>5.36</td>
+<td>3.06</td><td>45.51</td><td>3.48</td>
+<td>-</td><td>-</td><td>PER13.2倍（業種内割安）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自己株式取得・消却。<br><strong>💴 現在値:</strong> 1438円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="その他製品" data-o="0" data-c="7984" data-n="コクヨ">
+<td>93</td><td class="wl-code">7984</td><td>コクヨ</td><td>その他製品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>17.7</td><td>1.4</td><td>7.89</td>
+<td>2.93</td><td>73.09</td><td>7.29</td>
+<td>-</td><td>-</td><td>自己資本73.1%（堅固）</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 優待変更・自社株式取得状況。<br><strong>💴 現在値:</strong> 835円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="銀行業" data-o="1" data-c="8411" data-n="みずほフィナンシャルグループ">
+<td>94</td><td class="wl-code">8411</td><td>みずほフィナンシャルグループ</td><td>銀行業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>14.62</td><td>1.68</td><td>11.49</td>
+<td>1.92</td><td>3.74</td><td>対象外</td>
+<td><span class="wl-con-buy">Buy</span></td><td>-1.79%</td><td>ROE11.5%; 海外Buy</td><td>-</td><td>株価推移を確認／海外レポート確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自社株買い進捗。銀行業の営業利益率は対象外。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 7831（4650〜9530） ｜ アナリスト11名 ｜ 上値余地-1.79%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuyながら平均目標株価は現在値比-1.79%。銀行株上昇後の割高感に注意。<br><strong>💴 現在値:</strong> 7794円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="食料品" data-o="1" data-c="2229" data-n="カルビー">
+<td>95</td><td class="wl-code">2229</td><td>カルビー</td><td>食料品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>20.25</td><td>1.67</td><td>8.26</td>
+<td>2.38</td><td>64.28</td><td>9.6</td>
+<td><span class="wl-con-sell">Sell</span></td><td>1.86%</td><td>-</td><td>海外Sell</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/26 価格改定、2026/06/02 自己株式取得関連。<br><strong>🌍 海外評価:</strong> Sell ｜ 目標株価 3017（2600〜3600） ｜ アナリスト6名 ｜ 上値余地1.86%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはSell、平均目標株価は現在値比+1.86%にとどまる。国内食品ディフェンシブだが海外評価は弱め。<br><strong>💴 現在値:</strong> 2898円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="食料品" data-o="0" data-c="2809" data-n="キユーピー">
+<td>96</td><td class="wl-code">2809</td><td>キユーピー</td><td>食料品</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>22.73</td><td>1.79</td><td>7.86</td>
+<td>1.55</td><td>67.18</td><td>6.26</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 1Q営業利益+35.0、自社株式取得状況。<br><strong>💴 現在値:</strong> 4205円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="小売業" data-o="0" data-c="3099" data-n="三越伊勢丹ホールディングス">
+<td>97</td><td class="wl-code">3099</td><td>三越伊勢丹ホールディングス</td><td>小売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>23.49</td><td>2.33</td><td>9.94</td>
+<td>1.94</td><td>50.82</td><td>14.66</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自己株式取得状況、決算説明会資料。<br><strong>💴 現在値:</strong> 4119円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="機械" data-o="0" data-c="6298" data-n="ワイエイシイホールディングス">
+<td>98</td><td class="wl-code">6298</td><td>ワイエイシイホールディングス</td><td>機械</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>12.25</td><td>1.45</td><td>11.81</td>
+<td>3.26</td><td>38.66</td><td>4.98</td>
+<td>-</td><td>-</td><td>ROE11.8%</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 決算短信訂正と株主提案関連。<br><strong>💴 現在値:</strong> 1380円</div></td></tr>
+<tr class="wl-row" data-g="B" data-s="小売業" data-o="1" data-c="7550" data-n="ゼンショーホールディングス">
+<td>99</td><td class="wl-code">7550</td><td>ゼンショーホールディングス</td><td>小売業</td>
+<td><span class="wl-gb wl-g-b">B</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>24.82</td><td>3.64</td><td>14.66</td>
+<td>1.01</td><td>35.5</td><td>6.44</td>
+<td><span class="wl-con-hold">Hold</span></td><td>31.55%</td><td>ROE14.7%; 上値余地32%</td><td>-</td><td>株価推移を確認</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 増配・外食大手成長。<br><strong>🌍 海外評価:</strong> Hold ｜ 目標株価 10433（8300〜12000） ｜ アナリスト4名 ｜ 上値余地31.55%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはHoldながら平均目標株価は現在値比+31.55%。外食大型株として成長継続性を確認。<br><strong>💴 現在値:</strong> 7931円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="食料品" data-o="0" data-c="2009" data-n="鳥越製粉">
+<td>100</td><td class="wl-code">2009</td><td>鳥越製粉</td><td>食料品</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-dv">高配当</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>22.5</td><td>0.7</td><td>3.09</td>
+<td>4.53</td><td>79.49</td><td>4.99</td>
+<td>-</td><td>-</td><td>配当4.53%; 自己資本79.5%（堅固）</td><td>ROE3.1%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 2026/05/11 1Q決算。高自己資本・高配当だがROE低め。<br><strong>💴 現在値:</strong> 1082円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="化学" data-o="0" data-c="4229" data-n="群栄化学工業">
+<td>101</td><td class="wl-code">4229</td><td>群栄化学工業</td><td>化学</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>16.03</td><td>0.58</td><td>4.25</td>
+<td>2.1</td><td>80.35</td><td>7.51</td>
+<td>-</td><td>-</td><td>自己資本80.3%（堅固）</td><td>ROE4.2%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 PBR0.58・財務厚いがROE低め。<br><strong>💴 現在値:</strong> 4765円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="サービス業" data-o="0" data-c="4293" data-n="セプテーニ・ホールディングス">
+<td>102</td><td class="wl-code">4293</td><td>セプテーニ・ホールディングス</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>17.98</td><td>1.44</td><td>8.01</td>
+<td>3.96</td><td>64.69</td><td>13.99</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 業績予想修正と子会社異動。<br><strong>💴 現在値:</strong> 455円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="鉄鋼" data-o="1" data-c="5411" data-n="ＪＦＥホールディングス">
+<td>103</td><td class="wl-code">5411</td><td>ＪＦＥホールディングス</td><td>鉄鋼</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-dv">高配当</span></td>
+<td>6.56</td><td>0.38</td><td>5.73</td>
+<td>5.17</td><td>44.43</td><td>4.27</td>
+<td><span class="wl-con-hold">Hold</span></td><td>25.08%</td><td>配当5.17%</td><td>PBR0.38倍（万年割安の可能性）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 低PER・PBR・高配当。<br><strong>🌍 海外評価:</strong> Hold ｜ 目標株価 1940（1700〜2200） ｜ アナリスト9名 ｜ 上値余地25.08%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはHold、平均目標株価は現在値比+25.08%。鉄鋼市況と還元の継続性が焦点。<br><strong>💴 現在値:</strong> 1546円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="輸送用機器" data-o="0" data-c="5949" data-n="ユニプレス">
+<td>104</td><td class="wl-code">5949</td><td>ユニプレス</td><td>輸送用機器</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-dv">高配当</span></td>
+<td>12.09</td><td>0.41</td><td>3.39</td>
+<td>5.74</td><td>45.37</td><td>3.26</td>
+<td>-</td><td>-</td><td>配当5.74%</td><td>PBR0.41倍（万年割安の可能性）; ROE3.4%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 中計・配当。低PBR高配当だがROE低い。<br><strong>💴 現在値:</strong> 1220円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="電気機器" data-o="0" data-c="6952" data-n="カシオ計算機">
+<td>105</td><td class="wl-code">6952</td><td>カシオ計算機</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>24.2</td><td>1.9</td><td>7.87</td>
+<td>2.26</td><td>66.91</td><td>8.35</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自社株買い・消却。<br><strong>💴 現在値:</strong> 1991円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="陸運業" data-o="0" data-c="9006" data-n="京浜急行電鉄">
+<td>106</td><td class="wl-code">9006</td><td>京浜急行電鉄</td><td>陸運業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>12.94</td><td>1</td><td>7.73</td>
+<td>3.18</td><td>34.4</td><td>12.13</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 配当3.18、鉄道・不動産回復期待。<br><strong>💴 現在値:</strong> 1447円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="陸運業" data-o="1" data-c="9020" data-n="東日本旅客鉄道">
+<td>107</td><td class="wl-code">9020</td><td>東日本旅客鉄道</td><td>陸運業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>14.99</td><td>1.25</td><td>8.37</td>
+<td>2.48</td><td>28.16</td><td>13.43</td>
+<td><span class="wl-con-buy">Buy</span></td><td>21.32%</td><td>海外Buy</td><td>自己資本28.2%（やや低い）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 旅客需要回復と不動産収益。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 4069（3400〜4700） ｜ アナリスト12名 ｜ 上値余地21.32%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+21.32%。鉄道・不動産・インバウンド回復評価。<br><strong>💴 現在値:</strong> 3386円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="情報・通信業" data-o="0" data-c="9434" data-n="ソフトバンク">
+<td>108</td><td class="wl-code">9434</td><td>ソフトバンク</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-dv">高配当</span></td>
+<td>17.49</td><td>3.31</td><td>18.93</td>
+<td>4.29</td><td>15.99</td><td>14.81</td>
+<td>-</td><td>-</td><td>ROE18.9%（高水準）; 配当4.29%</td><td>自己資本16.0%（低い）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 営業利益率14.81、ROE18.93、高配当。<br><strong>💴 現在値:</strong> 205円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="食料品" data-o="0" data-c="2810" data-n="ハウス食品グループ本社">
+<td>109</td><td class="wl-code">2810</td><td>ハウス食品グループ本社</td><td>食料品</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>19.63</td><td>1.14</td><td>5.81</td>
+<td>2.72</td><td>66.96</td><td>5.76</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自己株式取得状況、投資有価証券売却益見込み。<br><strong>💴 現在値:</strong> 3674円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="情報・通信業" data-o="0" data-c="3031" data-n="ラクーンホールディングス">
+<td>110</td><td class="wl-code">3031</td><td>ラクーンホールディングス</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-rt">還元</span></td>
+<td>36.77</td><td>2.64</td><td>7.17</td>
+<td>3.87</td><td>21.6</td><td>20.08</td>
+<td>-</td><td>-</td><td>営業利益率20.1%（高収益）</td><td>自己資本21.6%（やや低い）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/11 新サービス開始、有償SO発行。<br><strong>💴 現在値:</strong> 569円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="化学" data-o="0" data-c="4912" data-n="ライオン">
+<td>111</td><td class="wl-code">4912</td><td>ライオン</td><td>化学</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>19.09</td><td>1.48</td><td>7.74</td>
+<td>1.97</td><td>62.11</td><td>6.87</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 財務安定、強材料限定。<br><strong>💴 現在値:</strong> 1725円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="ガラス・土石製品" data-o="0" data-c="5332" data-n="ＴＯＴＯ">
+<td>112</td><td class="wl-code">5332</td><td>ＴＯＴＯ</td><td>ガラス・土石製品</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>30.5</td><td>2.66</td><td>8.71</td>
+<td>1.41</td><td>63.82</td><td>6.09</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 増配材料。<br><strong>💴 現在値:</strong> 8533円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="機械" data-o="0" data-c="6460" data-n="セガサミーホールディングス">
+<td>113</td><td class="wl-code">6460</td><td>セガサミーホールディングス</td><td>機械</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>13.56</td><td>1.24</td><td>9.16</td>
+<td>2.53</td><td>56.53</td><td>9.67</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 決算・経営体制。<br><strong>💴 現在値:</strong> 2175円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="電気機器" data-o="0" data-c="6724" data-n="セイコーエプソン">
+<td>114</td><td class="wl-code">6724</td><td>セイコーエプソン</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>14.62</td><td>1.01</td><td>6.91</td>
+<td>2.97</td><td>55.61</td><td>3.51</td>
+<td>-</td><td>-</td><td>PER14.6倍（業種内割安）</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 減損損失・業績予想差異。<br><strong>💴 現在値:</strong> 2692円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="輸送用機器" data-o="1" data-c="7309" data-n="シマノ">
+<td>115</td><td class="wl-code">7309</td><td>シマノ</td><td>輸送用機器</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>36.26</td><td>1.76</td><td>4.85</td>
+<td>2.05</td><td>92.45</td><td>14.43</td>
+<td><span class="wl-con-hold">Hold</span></td><td>4.50%</td><td>自己資本92.5%（堅固）</td><td>ROE4.8%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自己株式取得状況、財務厚いがROE低め。<br><strong>🌍 海外評価:</strong> Hold ｜ 目標株価 17248（15000〜21000） ｜ アナリスト11名 ｜ 上値余地4.50%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはHold、平均目標株価は現在値比+4.50%。自転車市況回復待ち。<br><strong>💴 現在値:</strong> 17700円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="空運業" data-o="0" data-c="9202" data-n="ＡＮＡホールディングス">
+<td>116</td><td class="wl-code">9202</td><td>ＡＮＡホールディングス</td><td>空運業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>14.18</td><td>0.91</td><td>6.43</td>
+<td>2</td><td>37.72</td><td>8.56</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自社株買い進捗。<br><strong>💴 現在値:</strong> 3000円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="サービス業" data-o="0" data-c="2193" data-n="クックパッド">
+<td>117</td><td class="wl-code">2193</td><td>クックパッド</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>11.25</td><td>0.68</td><td>5.75</td>
+<td>0</td><td>90.84</td><td>4.95</td>
+<td>-</td><td>-</td><td>自己資本90.8%（堅固）</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 直近材料は決算・業績レビュー中心。大型の上方修正、増配、自社株買い、M&amp;A等の強材料は調査範囲では見当たらず。<br><strong>💴 現在値:</strong> 116円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="小売業" data-o="0" data-c="3391" data-n="ツルハホールディングス">
+<td>118</td><td class="wl-code">3391</td><td>ツルハホールディングス</td><td>小売業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>21.52</td><td>1.02</td><td>4.74</td>
+<td>2.43</td><td>53.11</td><td>4.48</td>
+<td>-</td><td>-</td><td>-</td><td>ROE4.7%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 決算待ち、ROE低め。<br><strong>💴 現在値:</strong> 1972円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="化学" data-o="0" data-c="4922" data-n="コーセー">
+<td>119</td><td class="wl-code">4922</td><td>コーセー</td><td>化学</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>23.62</td><td>1.02</td><td>4.33</td>
+<td>2.99</td><td>72.14</td><td>5.38</td>
+<td>-</td><td>-</td><td>自己資本72.1%（堅固）</td><td>ROE4.3%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 財務厚いがROE低め。<br><strong>💴 現在値:</strong> 5024円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="金属製品" data-o="0" data-c="5943" data-n="ノーリツ">
+<td>120</td><td class="wl-code">5943</td><td>ノーリツ</td><td>金属製品</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>11.89</td><td>0.72</td><td>6.03</td>
+<td>4.2</td><td>61.18</td><td>1.18</td>
+<td>-</td><td>-</td><td>-</td><td>配当4.20%（利益率低く減配リスク）; 営業利益率1.2%（薄利）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自己株式取得状況、高配当・PBR1倍割れ。<br><strong>💴 現在値:</strong> 2363円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="サービス業" data-o="0" data-c="6027" data-n="弁護士ドットコム">
+<td>121</td><td class="wl-code">6027</td><td>弁護士ドットコム</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>22.97</td><td>6.46</td><td>28.11</td>
+<td>0</td><td>53.18</td><td>13.53</td>
+<td>-</td><td>-</td><td>ROE28.1%（高水準）</td><td>PBR6.46倍（割高）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 法務AIエージェント化、ROE高い。<br><strong>💴 現在値:</strong> 2050円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="建設業" data-o="0" data-c="6366" data-n="千代田化工建設">
+<td>122</td><td class="wl-code">6366</td><td>千代田化工建設</td><td>建設業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>14.84</td><td>1.56</td><td>10.54</td>
+<td>0</td><td>22.16</td><td>16.62</td>
+<td>-</td><td>-</td><td>ROE10.5%</td><td>自己資本22.2%（やや低い）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 無配・自己資本比率低め、資料差替。<br><strong>💴 現在値:</strong> 687円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="電気機器" data-o="1" data-c="6506" data-n="安川電機">
+<td>123</td><td class="wl-code">6506</td><td>安川電機</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>37.58</td><td>3.65</td><td>9.72</td>
+<td>1.06</td><td>59.52</td><td>8.73</td>
+<td><span class="wl-con-buy">Buy</span></td><td>-2.39%</td><td>海外Buy</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 FA・ロボット関連だがPER高め。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 6647（4700〜9200） ｜ アナリスト17名 ｜ 上値余地-2.39%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuyながら平均目標株価は現在値比-2.39%。FA/ロボット期待の織り込みに注意。<br><strong>💴 現在値:</strong> 6810円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="卸売業" data-o="0" data-c="7461" data-n="キムラ">
+<td>124</td><td class="wl-code">7461</td><td>キムラ</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>10.61</td><td>0.4</td><td>3.82</td>
+<td>3.04</td><td>45.74</td><td>2.87</td>
+<td>-</td><td>-</td><td>-</td><td>PBR0.40倍（万年割安の可能性）; ROE3.8%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 PBR0.40・配当3.04だがROE低い。<br><strong>💴 現在値:</strong> 460円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="精密機器" data-o="0" data-c="7762" data-n="シチズン時計">
+<td>125</td><td class="wl-code">7762</td><td>シチズン時計</td><td>精密機器</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>22.28</td><td>2.09</td><td>9.38</td>
+<td>1.99</td><td>62.61</td><td>8.72</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> PBR2.09で割安感は薄い。<br><strong>💴 現在値:</strong> 2511円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="繊維製品" data-o="0" data-c="3101" data-n="東洋紡">
+<td>126</td><td class="wl-code">3101</td><td>東洋紡</td><td>繊維製品</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>13.01</td><td>0.68</td><td>7</td>
+<td>2.43</td><td>33.99</td><td>6.62</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 業績予想と実績差異の開示。<br><strong>💴 現在値:</strong> 1648円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="ゴム製品" data-o="0" data-c="5110" data-n="住友ゴム工業">
+<td>127</td><td class="wl-code">5110</td><td>住友ゴム工業</td><td>ゴム製品</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>10.4</td><td>0.79</td><td>7.58</td>
+<td>3.86</td><td>48.69</td><td>1.36</td>
+<td>-</td><td>-</td><td>-</td><td>営業利益率1.4%（薄利）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 低PER・PBR1倍割れ・配当3.86。<br><strong>💴 現在値:</strong> 2176円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="電気機器" data-o="1" data-c="6752" data-n="パナソニック　ホールディングス">
+<td>128</td><td class="wl-code">6752</td><td>パナソニック　ホールディング</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>25.24</td><td>2.03</td><td>8.06</td>
+<td>1.19</td><td>51.23</td><td>2.94</td>
+<td><span class="wl-con-buy">Buy</span></td><td>-14.12%</td><td>海外Buy</td><td>上値余地-14%（下落リスク）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> グループ成長戦略。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 3720（2585〜5200） ｜ アナリスト15名 ｜ 上値余地-14.12%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuyながら平均目標株価は現在値比-14.12%。EV電池・事業再編期待の織り込み過多に注意。<br><strong>💴 現在値:</strong> 4540円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="食料品" data-o="0" data-c="2220" data-n="亀田製菓">
+<td>129</td><td class="wl-code">2220</td><td>亀田製菓</td><td>食料品</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>17.78</td><td>0.74</td><td>4.18</td>
+<td>1.99</td><td>54.68</td><td>5.45</td>
+<td>-</td><td>-</td><td>-</td><td>ROE4.2%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/05/13 決算。売上+33.69、純利益+354.99。<br><strong>💴 現在値:</strong> 1209円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="小売業" data-o="0" data-c="2678" data-n="アスクル">
+<td>130</td><td class="wl-code">2678</td><td>アスクル</td><td>小売業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>16.44</td><td>1.95</td><td>11.85</td>
+<td>0.83</td><td>25.08</td><td>-5.19</td>
+<td>-</td><td>-</td><td>ROE11.8%</td><td>自己資本25.1%（やや低い）; 営業利益率-5.2%（薄利）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/03 代表取締役異動、月次開示。<br><strong>💴 現在値:</strong> 1212円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="小売業" data-o="0" data-c="3197" data-n="すかいらーくホールディングス">
+<td>131</td><td class="wl-code">3197</td><td>すかいらーくホールディングス</td><td>小売業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>32.29</td><td>3.31</td><td>10.26</td>
+<td>0.94</td><td>36.47</td><td>6.54</td>
+<td>-</td><td>-</td><td>ROE10.3%</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 月次IRレポート、1Q決算。<br><strong>💴 現在値:</strong> 2769円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="電気機器" data-o="0" data-c="6844" data-n="新電元工業">
+<td>132</td><td class="wl-code">6844</td><td>新電元工業</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>15.38</td><td>0.57</td><td>3.72</td>
+<td>2.45</td><td>50.16</td><td>3.38</td>
+<td>-</td><td>-</td><td>-</td><td>ROE3.7%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 PBR低いがROE弱い。<br><strong>💴 現在値:</strong> 4080円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="電気機器" data-o="0" data-c="6971" data-n="京セラ">
+<td>133</td><td class="wl-code">6971</td><td>京セラ</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>31.87</td><td>1.35</td><td>4.22</td>
+<td>1.64</td><td>71.87</td><td>5.71</td>
+<td>-</td><td>-</td><td>自己資本71.9%（堅固）</td><td>ROE4.2%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 還元/資本政策材料だがROE低め。<br><strong>💴 現在値:</strong> 3411円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="銀行業" data-o="0" data-c="7182" data-n="ゆうちょ銀行">
+<td>134</td><td class="wl-code">7182</td><td>ゆうちょ銀行</td><td>銀行業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>17.32</td><td>1.24</td><td>7.16</td>
+<td>2.9</td><td>4.07</td><td>対象外</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 中計と配当予想。銀行業の営業利益率は対象外。<br><strong>💴 現在値:</strong> 3210円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="サービス業" data-o="0" data-c="9735" data-n="セコム">
+<td>135</td><td class="wl-code">9735</td><td>セコム</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>24.46</td><td>1.97</td><td>8.05</td>
+<td>1.88</td><td>58.95</td><td>12.76</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 安定収益、営業利益率12.76。<br><strong>💴 現在値:</strong> 6398円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="サービス業" data-o="0" data-c="2341" data-n="アルバイトタイムス">
+<td>136</td><td class="wl-code">2341</td><td>アルバイトタイムス</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>20.92</td><td>1.02</td><td>4.87</td>
+<td>3.14</td><td>79.04</td><td>3.39</td>
+<td>-</td><td>-</td><td>自己資本79.0%（堅固）</td><td>ROE4.9%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 2026/04/09 自己株式消却、財務安全性は高いがROE低め。<br><strong>💴 現在値:</strong> 159円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="化学" data-o="1" data-c="4911" data-n="資生堂">
+<td>137</td><td class="wl-code">4911</td><td>資生堂</td><td>化学</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>23.83</td><td>1.65</td><td>6.92</td>
+<td>2.4</td><td>47.78</td><td>-2.97</td>
+<td><span class="wl-con-buy">Buy</span></td><td>26.37%</td><td>海外Buy</td><td>営業利益率-3.0%（薄利）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 黒字回復予想だが強材料限定。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 3258（2494〜4288） ｜ アナリスト17名 ｜ 上値余地26.37%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+26.37%。中国・免税・ブランド回復の見極め。<br><strong>💴 現在値:</strong> 2505円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="化学" data-o="0" data-c="4967" data-n="小林製薬">
+<td>138</td><td class="wl-code">4967</td><td>小林製薬</td><td>化学</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>41.48</td><td>1.99</td><td>4.81</td>
+<td>1.9</td><td>81.65</td><td>9</td>
+<td>-</td><td>-</td><td>自己資本81.7%（堅固）</td><td>ROE4.8%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> PER高・ROE低、信頼回復リスク。<br><strong>💴 現在値:</strong> 5580円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="電気機器" data-o="0" data-c="6753" data-n="シャープ">
+<td>139</td><td class="wl-code">6753</td><td>シャープ</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>9.37</td><td>1.41</td><td>15</td>
+<td>0</td><td>19.6</td><td>2.57</td>
+<td>-</td><td>-</td><td>PER9.4倍（業種内割安）; ROE15.0%</td><td>自己資本19.6%（低い）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 配当0・決算短信訂正。<br><strong>💴 現在値:</strong> 606円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="卸売業" data-o="0" data-c="7459" data-n="メディパルホールディングス">
+<td>140</td><td class="wl-code">7459</td><td>メディパルホールディングス</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>13.78</td><td>0.82</td><td>5.98</td>
+<td>2.59</td><td>33.93</td><td>1.39</td>
+<td>-</td><td>-</td><td>-</td><td>営業利益率1.4%（薄利）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 増配・PBR1倍割れ。<br><strong>💴 現在値:</strong> 2626円</div></td></tr>
+<tr class="wl-row" data-g="C" data-s="不動産業" data-o="0" data-c="8999" data-n="グランディハウス">
+<td>141</td><td class="wl-code">8999</td><td>グランディハウス</td><td>不動産業</td>
+<td><span class="wl-gb wl-g-c">C</span></td><td><span class="wl-tb wl-t-dv">高配当</span></td>
+<td>13.31</td><td>0.58</td><td>4.37</td>
+<td>6.34</td><td>36.51</td><td>3.57</td>
+<td>-</td><td>-</td><td>配当6.34%</td><td>ROE4.4%（改善待ち）</td><td>次回決算で再評価</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 高配当・低PBRだがROE低い。<br><strong>💴 現在値:</strong> 505円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="サービス業" data-o="0" data-c="2177" data-n="ベンチャーリパブリック">
+<td>142</td><td class="wl-code">2177</td><td>ベンチャーリパブリック</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>対象外</td><td>2.03</td><td>対象外</td>
+<td>対象外</td><td>72.54</td><td>対象外</td>
+<td>-</td><td>-</td><td>自己資本72.5%（堅固）</td><td>-</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 現行上場/投資対象として要確認。過去情報中心。<br><strong>💴 現在値:</strong> 1092円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="繊維製品" data-o="0" data-c="3103" data-n="ユニチカ">
+<td>143</td><td class="wl-code">3103</td><td>ユニチカ</td><td>繊維製品</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>11.9</td><td>1.11</td><td>9.3</td>
+<td>0</td><td>35.69</td><td>8.9</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 債務免除益と構造改善費用、無配。<br><strong>💴 現在値:</strong> 1032円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="卸売業" data-o="0" data-c="3140" data-n="ＢＲＵＮＯ">
+<td>144</td><td class="wl-code">3140</td><td>ＢＲＵＮＯ</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>40.31</td><td>2.66</td><td>6.61</td>
+<td>0.37</td><td>55.01</td><td>3.03</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 減資、PER高め。<br><strong>💴 現在値:</strong> 1068円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="化学" data-o="1" data-c="4188" data-n="三菱ケミカルグループ">
+<td>145</td><td class="wl-code">4188</td><td>三菱ケミカルグループ</td><td>化学</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>11.62</td><td>0.84</td><td>7.21</td>
+<td>2.95</td><td>29.98</td><td>0.81</td>
+<td><span class="wl-con-hold">Hold</span></td><td>-13.91%</td><td>PER11.6倍（業種内割安）</td><td>自己資本30.0%（やや低い）; 営業利益率0.8%（薄利）; 上値余地-14%（下落リスク）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 26/3期営業利益-78.75。<br><strong>🌍 海外評価:</strong> Hold ｜ 目標株価 988（790〜1300） ｜ アナリスト12名 ｜ 上値余地-13.91%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはHold、平均目標株価は現在値比-13.91%。化学市況・事業再編期待の織り込みに注意。<br><strong>💴 現在値:</strong> 1086円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="医薬品" data-o="1" data-c="4502" data-n="武田薬品工業">
+<td>146</td><td class="wl-code">4502</td><td>武田薬品工業</td><td>医薬品</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-dv">高配当</span></td>
+<td>48.41</td><td>1.08</td><td>2.23</td>
+<td>4.01</td><td>47.9</td><td>7.48</td>
+<td><span class="wl-con-buy">Buy</span></td><td>19.78%</td><td>配当4.01%（高配当＋財務安定）; 海外Buy</td><td>ROE2.2%（低水準）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 引当金計上・決算短信修正、ROE低い。<br><strong>🌍 海外評価:</strong> Buy ｜ 目標株価 6130（4900〜7900） ｜ アナリスト15名 ｜ 上値余地19.78%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはBuy、平均目標株価は現在値比+19.78%。大型医薬として海外評価を重視。<br><strong>💴 現在値:</strong> 5087円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="電気機器" data-o="1" data-c="6645" data-n="オムロン">
+<td>147</td><td class="wl-code">6645</td><td>オムロン</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>40.13</td><td>1.32</td><td>3.29</td>
+<td>1.85</td><td>55.13</td><td>7.81</td>
+<td><span class="wl-con-hold">Hold</span></td><td>0.43%</td><td>-</td><td>ROE3.3%（改善待ち）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> TOB材料ありだがROE低い。<br><strong>🌍 海外評価:</strong> Hold ｜ 目標株価 5636（4000〜8000） ｜ アナリスト11名 ｜ 上値余地0.43%<br><strong>📝 海外メモ:</strong> 海外コンセンサスはHold、平均目標株価は現在値比+0.43%。回復期待はあるが上値余地は限定的。<br><strong>💴 現在値:</strong> 5612円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="小売業" data-o="0" data-c="9887" data-n="松屋フーズホールディングス">
+<td>148</td><td class="wl-code">9887</td><td>松屋フーズホールディングス</td><td>小売業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>25.09</td><td>1.65</td><td>6.59</td>
+<td>0.56</td><td>40.96</td><td>4.12</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 減損損失・低利回り。<br><strong>💴 現在値:</strong> 4630円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="小売業" data-o="0" data-c="2764" data-n="ひらまつ">
+<td>149</td><td class="wl-code">2764</td><td>ひらまつ</td><td>小売業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>34.34</td><td>1.62</td><td>4.73</td>
+<td>0.87</td><td>51.16</td><td>2.02</td>
+<td>-</td><td>-</td><td>-</td><td>ROE4.7%（改善待ち）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 27/3期営業利益+70.4予想、復配予定。<br><strong>💴 現在値:</strong> 140円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="サービス業" data-o="0" data-c="6178" data-n="日本郵政">
+<td>150</td><td class="wl-code">6178</td><td>日本郵政</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>15.96</td><td>0.62</td><td>3.91</td>
+<td>2.78</td><td>3.35</td><td>9.37</td>
+<td>-</td><td>-</td><td>-</td><td>ROE3.9%（改善待ち）; 自己資本3.4%（低い）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 自己株式取得終了・中計。<br><strong>💴 現在値:</strong> 2161円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="その他製品" data-o="0" data-c="7911" data-n="凸版印刷">
+<td>151</td><td class="wl-code">7911</td><td>凸版印刷</td><td>その他製品</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>23.14</td><td>0.95</td><td>4.11</td>
+<td>1.28</td><td>52.27</td><td>3.91</td>
+<td>-</td><td>-</td><td>-</td><td>ROE4.1%（改善待ち）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> TOPPAN HD。PBR0.95・自社株買い。<br><strong>💴 現在値:</strong> 4515円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="食料品" data-o="0" data-c="2531" data-n="宝ホールディングス">
+<td>152</td><td class="wl-code">2531</td><td>宝ホールディングス</td><td>食料品</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>36.14</td><td>1.66</td><td>4.59</td>
+<td>1.39</td><td>50.5</td><td>4.33</td>
+<td>-</td><td>-</td><td>-</td><td>ROE4.6%（改善待ち）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 26/3期営業利益-17.1、純利益-27.8。<br><strong>💴 現在値:</strong> 2230円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="パルプ・紙" data-o="0" data-c="3878" data-n="巴川製紙所">
+<td>153</td><td class="wl-code">3878</td><td>巴川製紙所</td><td>パルプ・紙</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>17.32</td><td>0.44</td><td>2.55</td>
+<td>1.89</td><td>34.69</td><td>4.55</td>
+<td>-</td><td>-</td><td>-</td><td>PBR0.44倍（万年割安の可能性）; ROE2.5%（低水準）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 PBR低いがROE弱い。<br><strong>💴 現在値:</strong> 795円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="情報・通信業" data-o="0" data-c="4385" data-n="メルカリ">
+<td>154</td><td class="wl-code">4385</td><td>メルカリ</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>23.77</td><td>5.17</td><td>26.31</td>
+<td>0</td><td>17.83</td><td>14.45</td>
+<td>-</td><td>-</td><td>ROE26.3%（高水準）</td><td>PBR5.17倍（割高）; 自己資本17.8%（低い）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 業績予想修正・高ROEだが無配・高PBR。<br><strong>💴 現在値:</strong> 3763円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="輸送用機器" data-o="0" data-c="7212" data-n="エフテック">
+<td>155</td><td class="wl-code">7212</td><td>エフテック</td><td>輸送用機器</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>14.79</td><td>0.2</td><td>1.38</td>
+<td>3.14</td><td>31.83</td><td>2.88</td>
+<td>-</td><td>-</td><td>-</td><td>PBR0.20倍（万年割安の可能性）; ROE1.4%（低水準）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> PBR0.20・増配だがROE低い。<br><strong>💴 現在値:</strong> 637円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="輸送用機器" data-o="0" data-c="7220" data-n="武蔵精密工業">
+<td>156</td><td class="wl-code">7220</td><td>武蔵精密工業</td><td>輸送用機器</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>45.68</td><td>2.43</td><td>5.33</td>
+<td>0.88</td><td>40.46</td><td>5.92</td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 新規受注あるが割高感。<br><strong>💴 現在値:</strong> 4530円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="その他金融業" data-o="0" data-c="8566" data-n="リコーリース">
+<td>157</td><td class="wl-code">8566</td><td>リコーリース</td><td>その他金融業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-dv">高配当</span></td>
+<td>15.67</td><td>0.77</td><td>4.92</td>
+<td>4.23</td><td>16.49</td><td>対象外</td>
+<td>-</td><td>-</td><td>配当4.23%</td><td>ROE4.9%（改善待ち）; 自己資本16.5%（低い）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 高配当・PBR1倍割れだがROE低め。<br><strong>💴 現在値:</strong> 6050円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="サービス業" data-o="0" data-c="2334" data-n="イオレ">
+<td>158</td><td class="wl-code">2334</td><td>イオレ</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-gr">成長</span></td>
+<td>19.55</td><td>7.1</td><td>36.31</td>
+<td>0</td><td>31.63</td><td>1.41</td>
+<td>-</td><td>-</td><td>ROE36.3%（高水準）</td><td>PBR7.10倍（割高）; 営業利益率1.4%（薄利）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 2026/06/19 Anthropic投資目的SPV持分取得契約解消。<br><strong>💴 現在値:</strong> 606円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="小売業" data-o="0" data-c="2695" data-n="くら寿司">
+<td>159</td><td class="wl-code">2695</td><td>くら寿司</td><td>小売業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>41.7</td><td>1.95</td><td>4.67</td>
+<td>0.95</td><td>39.11</td><td>1.98</td>
+<td>-</td><td>-</td><td>-</td><td>ROE4.7%（改善待ち）; 営業利益率2.0%（薄利）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 2026/06/12 2Q決算。高PER・低ROE。<br><strong>💴 現在値:</strong> 1574円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="小売業" data-o="0" data-c="2928" data-n="ＲＩＺＡＰグループ">
+<td>160</td><td class="wl-code">2928</td><td>ＲＩＺＡＰグループ</td><td>小売業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>71.27</td><td>2.03</td><td>2.85</td>
+<td>0.78</td><td>30.88</td><td>6.63</td>
+<td>-</td><td>-</td><td>-</td><td>PER71.3倍（割高）; ROE2.9%（低水準）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 26/3期営業利益+488.9、純利益+445.5。<br><strong>💴 現在値:</strong> 172円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="卸売業" data-o="0" data-c="3079" data-n="ディーブイエックス">
+<td>161</td><td class="wl-code">3079</td><td>ディーブイエックス</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-rt">還元</span></td>
+<td>32.28</td><td>1.18</td><td>3.65</td>
+<td>5.04</td><td>35.37</td><td>0.53</td>
+<td>-</td><td>-</td><td>-</td><td>ROE3.6%（改善待ち）; 配当5.04%（利益率低く減配リスク）; 営業利益率0.5%（薄利）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 決算短信訂正と株式交換・親会社異動。<br><strong>💴 現在値:</strong> 993円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="電気機器" data-o="0" data-c="6976" data-n="太陽誘電">
+<td>162</td><td class="wl-code">6976</td><td>太陽誘電</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>116.57</td><td>6.09</td><td>5.23</td>
+<td>0.54</td><td>55.95</td><td>5.63</td>
+<td>-</td><td>-</td><td>-</td><td>PER116.6倍（割高）; PBR6.09倍（割高）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> PER/PBR高くROE低め。<br><strong>💴 現在値:</strong> 16780円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="サービス業" data-o="0" data-c="2378" data-n="ルネサンス">
+<td>163</td><td class="wl-code">2378</td><td>ルネサンス</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>37.68</td><td>1.95</td><td>5.17</td>
+<td>1.31</td><td>16.97</td><td>2.65</td>
+<td>-</td><td>-</td><td>-</td><td>自己資本17.0%（低い）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 26/3期純損失21.06億円、減損30.56億円。<br><strong>💴 現在値:</strong> 996円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="小売業" data-o="0" data-c="3178" data-n="チムニー">
+<td>164</td><td class="wl-code">3178</td><td>チムニー</td><td>小売業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>81.49</td><td>3.18</td><td>3.9</td>
+<td>0.47</td><td>40.34</td><td>1.86</td>
+<td>-</td><td>-</td><td>-</td><td>PER81.5倍（割高）; ROE3.9%（改善待ち）; 営業利益率1.9%（薄利）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 月次ありだがPER高・ROE低。<br><strong>💴 現在値:</strong> 1056円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="電気機器" data-o="0" data-c="6897" data-n="ツインバード工業">
+<td>165</td><td class="wl-code">6897</td><td>ツインバード工業</td><td>電気機器</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-vl">バリュー</span></td>
+<td>173.02</td><td>1.19</td><td>0.69</td>
+<td>1.78</td><td>66.13</td><td>-9.5</td>
+<td>-</td><td>-</td><td>-</td><td>PER173.0倍（割高）; ROE0.7%（低水準）; 営業利益率-9.5%（薄利）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> PER極端に高くROE低い。<br><strong>💴 現在値:</strong> 730円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="小売業" data-o="0" data-c="7616" data-n="コロワイド">
+<td>166</td><td class="wl-code">7616</td><td>コロワイド</td><td>小売業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>71.75</td><td>2.27</td><td>3.17</td>
+<td>0.28</td><td>24</td><td>3.13</td>
+<td>-</td><td>-</td><td>-</td><td>PER71.8倍（割高）; ROE3.2%（改善待ち）; 自己資本24.0%（やや低い）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 優待人気を除く投資指標弱い。<br><strong>💴 現在値:</strong> 1802円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="小売業" data-o="0" data-c="2698" data-n="キャンドゥ">
+<td>167</td><td class="wl-code">2698</td><td>キャンドゥ</td><td>小売業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>121.08</td><td>5.17</td><td>4.27</td>
+<td>0.5</td><td>31.92</td><td>1.76</td>
+<td>-</td><td>-</td><td>-</td><td>PER121.1倍（割高）; PBR5.17倍（割高）; ROE4.3%（改善待ち）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> ➖【C】 2026/06/08 月次、PER高くROE低め。<br><strong>💴 現在値:</strong> 3405円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="化学" data-o="0" data-c="4088" data-n="エア・ウォーター">
+<td>168</td><td class="wl-code">4088</td><td>エア・ウォーター</td><td>化学</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-ca">要注意</span></td>
+<td>赤字</td><td>1.43</td><td>赤字</td>
+<td>2.7</td><td>38.56</td><td>6.99</td>
+<td>-</td><td>-</td><td>-</td><td>赤字</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 有報提出期限延長検討・調査委員会。<br><strong>💴 現在値:</strong> 2778円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="情報・通信業" data-o="0" data-c="3994" data-n="マネーフォワード">
+<td>169</td><td class="wl-code">3994</td><td>マネーフォワード</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>138.79</td><td>5.27</td><td>4.1</td>
+<td>0</td><td>26.06</td><td>-5.27</td>
+<td>-</td><td>-</td><td>-</td><td>PER138.8倍（割高）; PBR5.27倍（割高）; ROE4.1%（改善待ち）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 業績予想修正・優待導入だがPER高・無配。<br><strong>💴 現在値:</strong> 3973円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="情報・通信業" data-o="0" data-c="3656" data-n="ＫＬａｂ">
+<td>170</td><td class="wl-code">3656</td><td>ＫＬａｂ</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-ca">要注意</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>赤字</td><td>1.59</td><td>赤字</td>
+<td>0</td><td>79.8</td><td>-19.02</td>
+<td>-</td><td>-</td><td>自己資本79.8%（堅固）</td><td>赤字; 営業利益率-19.0%（薄利）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 赤字・無配、ゲーム新作材料あり。<br><strong>💴 現在値:</strong> 210円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="卸売業" data-o="0" data-c="8105" data-n="堀田丸正">
+<td>171</td><td class="wl-code">8105</td><td>堀田丸正</td><td>卸売業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-ca">要注意</span> <span class="wl-tb wl-t-st">安定</span></td>
+<td>赤字</td><td>2.47</td><td>赤字</td>
+<td>0</td><td>86.23</td><td>-15.61</td>
+<td>-</td><td>-</td><td>自己資本86.2%（堅固）</td><td>赤字; 営業利益率-15.6%（薄利）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> Bitcoin Japan。赤字・希薄化/転換リスク。<br><strong>💴 現在値:</strong> 153円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="情報・通信業" data-o="0" data-c="3807" data-n="フィスコ">
+<td>172</td><td class="wl-code">3807</td><td>フィスコ</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-st">安定</span></td>
+<td>221.45</td><td>5.78</td><td>2.61</td>
+<td>0</td><td>31.21</td><td>0.48</td>
+<td>-</td><td>-</td><td>-</td><td>PER221.4倍（割高）; PBR5.78倍（割高）; ROE2.6%（低水準）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> PER高・ROE低・無配。<br><strong>💴 現在値:</strong> 87円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="機械" data-o="0" data-c="6228" data-n="ジェイ・イー・ティ">
+<td>173</td><td class="wl-code">6228</td><td>ジェイ・イー・ティ</td><td>機械</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-ca">要注意</span></td>
+<td>赤字</td><td>0.69</td><td>赤字</td>
+<td>0</td><td>49.82</td><td>-10.18</td>
+<td>-</td><td>-</td><td>-</td><td>赤字; 営業利益率-10.2%（薄利）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 猶予期間入り・違約金徴求。<br><strong>💴 現在値:</strong> 512円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="情報・通信業" data-o="0" data-c="9417" data-n="スマートバリュー">
+<td>174</td><td class="wl-code">9417</td><td>スマートバリュー</td><td>情報・通信業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-ca">要注意</span></td>
+<td>赤字</td><td>2.35</td><td>赤字</td>
+<td>3</td><td>6.24</td><td>4.4</td>
+<td>-</td><td>-</td><td>-</td><td>赤字; 自己資本6.2%（低い）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 赤字・自己資本比率低い。<br><strong>💴 現在値:</strong> 333円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="サービス業" data-o="0" data-c="4755" data-n="楽天グループ">
+<td>175</td><td class="wl-code">4755</td><td>楽天グループ</td><td>サービス業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-ca">要注意</span></td>
+<td>赤字</td><td>1.66</td><td>赤字</td>
+<td>0</td><td>3.07</td><td>0.58</td>
+<td>-</td><td>-</td><td>-</td><td>赤字; 自己資本3.1%（低い）; 営業利益率0.6%（薄利）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 赤字・無配・自己資本比率低い。<br><strong>💴 現在値:</strong> 690円</div></td></tr>
+<tr class="wl-row" data-g="D" data-s="小売業" data-o="0" data-c="7412" data-n="アトム">
+<td>176</td><td class="wl-code">7412</td><td>アトム</td><td>小売業</td>
+<td><span class="wl-gb wl-g-d">D</span></td><td><span class="wl-tb wl-t-ca">要注意</span></td>
+<td>74743.73</td><td>20.31</td><td>0.03</td>
+<td>0</td><td>25.35</td><td>0.08</td>
+<td>-</td><td>-</td><td>-</td><td>PER74744倍（実質無益）; PBR20.31倍（割高）; ROE0.0%（低水準）</td><td>除外検討</td></tr>
+<tr class="wl-dr"><td colspan="17"><div class="wl-dc"><strong>📋 直近材料:</strong> 優待変更・特損、投資指標は厳しい。<br><strong>💴 現在値:</strong> 387円</div></td></tr>
+</tbody></table></div>
+<p class="wl-note">※行クリックで直近材料・海外評価を展開。列ヘッダクリックでソート。</p></div>
+<div class="wl-tc" id="wl-t3">
+<div class="wl-block"><div class="wl-sh"><span class="wl-gb wl-g-s">S</span> S — かなり有望（2銘柄）</div>
+<table><tr><th>コード</th><th>銘柄名</th><th>業種</th><th>理由</th></tr>
+<tr><td class="wl-code">2670</td><td>エービーシー・マート</td><td>小売業</td><td>PER15.2倍（業種内割安）; ROE11.7%</td></tr>
+<tr><td class="wl-code">2127</td><td>日本Ｍ＆Ａセンターホールディ</td><td>サービス業</td><td>ROE26.7%（高水準）; 配当4.68%（高配当＋財務安定）</td></tr>
+</table>
+</div>
+<div class="wl-block"><div class="wl-sh"><span class="wl-gb wl-g-a">A</span> A — 有望（36銘柄）</div>
+<table><tr><th>コード</th><th>銘柄名</th><th>業種</th><th>理由</th></tr>
+<tr><td class="wl-code">4536</td><td>参天製薬</td><td>医薬品</td><td>ROE13.5%; 自己資本70.2%（堅固）</td></tr>
+<tr><td class="wl-code">4928</td><td>ノエビアホールディングス</td><td>化学</td><td>ROE16.8%（高水準）; 配当5.27%（高配当＋財務安定）</td></tr>
+<tr><td class="wl-code">6758</td><td>ソニーグループ</td><td>電気機器</td><td>ROE14.3%; 海外Strong Buy</td></tr>
+<tr><td class="wl-code">8214</td><td>ＡＯＫＩホールディングス</td><td>小売業</td><td>PER13.7倍（業種内割安）; 配当5.52%（高配当＋財務安定）</td></tr>
+<tr><td class="wl-code">6080</td><td>Ｍ＆Ａキャピタルパートナーズ</td><td>サービス業</td><td>ROE15.9%（高水準）; 自己資本79.2%（堅固）</td></tr>
+<tr><td class="wl-code">9672</td><td>東京都競馬</td><td>サービス業</td><td>ROE11.4%; 自己資本78.1%（堅固）</td></tr>
+<tr><td class="wl-code">1911</td><td>住友林業</td><td>建設業</td><td>PER8.9倍（業種内割安）; 海外Buy</td></tr>
+<tr><td class="wl-code">2270</td><td>雪印メグミルク</td><td>食料品</td><td>PER9.1倍（業種内割安）; ROE10.3%</td></tr>
+<tr><td class="wl-code">3920</td><td>アイビーシー</td><td>情報・通信業</td><td>ROE17.9%（高水準）; 営業利益率23.5%（高収益）</td></tr>
+<tr><td class="wl-code">4568</td><td>第一三共</td><td>医薬品</td><td>ROE15.6%（高水準）; 海外Strong Buy</td></tr>
+<tr><td class="wl-code">4826</td><td>ＣＩＪ</td><td>情報・通信業</td><td>ROE11.3%; 配当4.02%（高配当＋財務安定）</td></tr>
+<tr><td class="wl-code">6702</td><td>富士通</td><td>電気機器</td><td>ROE15.3%（高水準）; 海外Buy</td></tr>
+<tr><td class="wl-code">7734</td><td>理研計器</td><td>精密機器</td><td>ROE11.2%; 自己資本84.5%（堅固）</td></tr>
+<tr><td class="wl-code">4543</td><td>テルモ</td><td>精密機器</td><td>ROE10.4%; 海外Buy</td></tr>
+<tr><td class="wl-code">6741</td><td>日本信号</td><td>電気機器</td><td>PER9.9倍（業種内割安）</td></tr>
+<tr><td class="wl-code">6701</td><td>日本電気</td><td>電気機器</td><td>ROE12.3%; 海外Strong Buy</td></tr>
+<tr><td class="wl-code">7102</td><td>日本車輌製造</td><td>輸送用機器</td><td>PER6.3倍（業種内割安）</td></tr>
+<tr><td class="wl-code">7611</td><td>ハイデイ日高</td><td>小売業</td><td>ROE18.1%（高水準）; 自己資本72.8%（堅固）</td></tr>
+<tr><td class="wl-code">9765</td><td>オオバ</td><td>サービス業</td><td>ROE10.6%; 配当4.01%（高配当＋財務安定）</td></tr>
+<tr><td class="wl-code">9989</td><td>サンドラッグ</td><td>小売業</td><td>PER13.8倍（業種内割安）; ROE11.2%</td></tr>
+<tr><td class="wl-code">1802</td><td>大林組</td><td>建設業</td><td>ROE12.5%; 海外Buy</td></tr>
+<tr><td class="wl-code">5020</td><td>ＥＮＥＯＳホールディングス</td><td>石油・石炭製品</td><td>PER7.9倍（業種内割安）; ROE12.3%</td></tr>
+<tr><td class="wl-code">6420</td><td>フクシマガリレイ</td><td>機械</td><td>ROE10.9%; 自己資本73.4%（堅固）</td></tr>
+<tr><td class="wl-code">7466</td><td>ＳＰＫ</td><td>卸売業</td><td>PER9.4倍（業種内割安）</td></tr>
+<tr><td class="wl-code">9974</td><td>ベルク</td><td>小売業</td><td>PER10.5倍（業種内割安）; ROE10.6%</td></tr>
+<tr><td class="wl-code">1801</td><td>大成建設</td><td>建設業</td><td>ROE15.9%（高水準）; 海外Buy</td></tr>
+<tr><td class="wl-code">2288</td><td>丸大食品</td><td>食料品</td><td>PER8.5倍（業種内割安）</td></tr>
+<tr><td class="wl-code">4666</td><td>パーク２４</td><td>不動産業</td><td>PER8.0倍（業種内割安）; ROE39.8%（高水準）</td></tr>
+<tr><td class="wl-code">5015</td><td>ビーピー・カストロール</td><td>石油・石炭製品</td><td>ROE11.7%; 配当4.96%（高配当＋財務安定）</td></tr>
+<tr><td class="wl-code">7003</td><td>三井Ｅ＆Ｓホールディングス</td><td>機械</td><td>ROE13.1%; 海外Strong Buy</td></tr>
+<tr><td class="wl-code">7458</td><td>第一興商</td><td>卸売業</td><td>配当4.06%（高配当＋財務安定）</td></tr>
+<tr><td class="wl-code">7751</td><td>キヤノン</td><td>電気機器</td><td>PER11.1倍（業種内割安）</td></tr>
+<tr><td class="wl-code">7846</td><td>パイロットコーポレーション</td><td>その他製品</td><td>ROE10.2%; 自己資本79.2%（堅固）</td></tr>
+<tr><td class="wl-code">8227</td><td>しまむら</td><td>小売業</td><td>PER14.2倍（業種内割安）; 自己資本88.1%（堅固）</td></tr>
+<tr><td class="wl-code">9201</td><td>日本航空</td><td>空運業</td><td>海外Buy</td></tr>
+<tr><td class="wl-code">9936</td><td>王将フードサービス</td><td>小売業</td><td>ROE10.9%; 自己資本76.5%（堅固）</td></tr>
+</table>
+</div>
+<div class="wl-block"><div class="wl-sh"><span class="wl-gb wl-g-b">B</span> B — ウォッチ継続（61銘柄）</div>
+<table><tr><th>コード</th><th>銘柄名</th><th>業種</th><th>理由</th></tr>
+<tr><td class="wl-code">2371</td><td>カカクコム</td><td>サービス業</td><td>ROE31.9%（高水準）; 自己資本70.3%（堅固）</td></tr>
+<tr><td class="wl-code">2915</td><td>ケンコーマヨネーズ</td><td>食料品</td><td>PER10.3倍（業種内割安）</td></tr>
+<tr><td class="wl-code">3661</td><td>エムアップホールディングス</td><td>情報・通信業</td><td>ROE37.3%（高水準）</td></tr>
+<tr><td class="wl-code">6954</td><td>ファナック</td><td>電気機器</td><td>自己資本89.2%（堅固）; 営業利益率21.4%（高収益）</td></tr>
+<tr><td class="wl-code">7692</td><td>アースインフィニティ</td><td>小売業</td><td>PER14.6倍（業種内割安）; ROE43.9%（高水準）</td></tr>
+<tr><td class="wl-code">8316</td><td>三井住友フィナンシャルグルー</td><td>銀行業</td><td>ROE10.8%; 海外Buy</td></tr>
+<tr><td class="wl-code">8876</td><td>リログループ</td><td>サービス業</td><td>ROE24.4%（高水準）; 営業利益率20.4%（高収益）</td></tr>
+<tr><td class="wl-code">9433</td><td>ＫＤＤＩ</td><td>情報・通信業</td><td>ROE13.9%</td></tr>
+<tr><td class="wl-code">9986</td><td>蔵王産業</td><td>卸売業</td><td>配当4.08%（高配当＋財務安定）; 自己資本86.0%（堅固）</td></tr>
+<tr><td class="wl-code">3401</td><td>帝人</td><td>繊維製品</td><td>PER7.0倍（業種内割安）; ROE12.3%</td></tr>
+<tr><td class="wl-code">3543</td><td>コメダホールディングス</td><td>卸売業</td><td>ROE13.8%</td></tr>
+<tr><td class="wl-code">5233</td><td>太平洋セメント</td><td>ガラス・土石製品</td><td>PER9.5倍（業種内割安）</td></tr>
+<tr><td class="wl-code">6273</td><td>ＳＭＣ</td><td>機械</td><td>自己資本91.5%（堅固）; 営業利益率22.6%（高収益）</td></tr>
+<tr><td class="wl-code">6501</td><td>日立製作所</td><td>電気機器</td><td>ROE12.9%; 海外Buy</td></tr>
+<tr><td class="wl-code">6745</td><td>ホーチキ</td><td>電気機器</td><td>ROE13.2%</td></tr>
+<tr><td class="wl-code">6861</td><td>キーエンス</td><td>電気機器</td><td>ROE13.0%; 自己資本94.6%（堅固）</td></tr>
+<tr><td class="wl-code">7453</td><td>良品計画</td><td>小売業</td><td>ROE16.4%（高水準）; 海外Buy</td></tr>
+<tr><td class="wl-code">7564</td><td>ワークマン</td><td>小売業</td><td>ROE14.6%; 自己資本82.8%（堅固）</td></tr>
+<tr><td class="wl-code">8801</td><td>三井不動産</td><td>不動産業</td><td>海外Strong Buy; 上値余地47%</td></tr>
+<tr><td class="wl-code">9432</td><td>日本電信電話</td><td>情報・通信業</td><td>ROE10.1%; 海外Buy</td></tr>
+<tr><td class="wl-code">9980</td><td>ＭＲＫホールディングス</td><td>小売業</td><td>PER6.8倍（業種内割安）; 自己資本77.7%（堅固）</td></tr>
+<tr><td class="wl-code">2181</td><td>パーソルホールディングス</td><td>サービス業</td><td>ROE20.3%（高水準）; 配当5.49%</td></tr>
+<tr><td class="wl-code">2269</td><td>明治ホールディングス</td><td>食料品</td><td>-</td></tr>
+<tr><td class="wl-code">2282</td><td>日本ハム</td><td>食料品</td><td>配当8.87%</td></tr>
+<tr><td class="wl-code">3046</td><td>ジンズホールディングス</td><td>小売業</td><td>ROE25.4%（高水準）</td></tr>
+<tr><td class="wl-code">4768</td><td>大塚商会</td><td>情報・通信業</td><td>ROE15.6%（高水準）</td></tr>
+<tr><td class="wl-code">6503</td><td>三菱電機</td><td>電気機器</td><td>ROE10.6%; 海外Buy</td></tr>
+<tr><td class="wl-code">7781</td><td>平山ホールディングス</td><td>精密機器</td><td>ROE15.8%（高水準）</td></tr>
+<tr><td class="wl-code">8002</td><td>丸紅</td><td>卸売業</td><td>ROE13.3%; 海外Buy</td></tr>
+<tr><td class="wl-code">8022</td><td>美津濃</td><td>その他製品</td><td>ROE11.0%</td></tr>
+<tr><td class="wl-code">8053</td><td>住友商事</td><td>卸売業</td><td>ROE13.6%; 海外Buy</td></tr>
+<tr><td class="wl-code">9101</td><td>日本郵船</td><td>海運業</td><td>-</td></tr>
+<tr><td class="wl-code">9843</td><td>ニトリホールディングス</td><td>小売業</td><td>PER15.2倍（業種内割安）</td></tr>
+<tr><td class="wl-code">4203</td><td>住友ベークライト</td><td>化学</td><td>自己資本71.7%（堅固）</td></tr>
+<tr><td class="wl-code">4528</td><td>小野薬品工業</td><td>医薬品</td><td>自己資本76.9%（堅固）</td></tr>
+<tr><td class="wl-code">4689</td><td>Ｚホールディングス</td><td>情報・通信業</td><td>自己資本26.8%（やや低い）</td></tr>
+<tr><td class="wl-code">7936</td><td>アシックス</td><td>その他製品</td><td>ROE34.8%（高水準）; 海外Buy</td></tr>
+<tr><td class="wl-code">8136</td><td>サンリオ</td><td>卸売業</td><td>ROE41.0%（高水準）; 営業利益率40.1%（高収益）</td></tr>
+<tr><td class="wl-code">2587</td><td>サントリー食品インターナショ</td><td>食料品</td><td>-</td></tr>
+<tr><td class="wl-code">2751</td><td>テンポスホールディングス</td><td>卸売業</td><td>ROE15.6%（高水準）</td></tr>
+<tr><td class="wl-code">2802</td><td>味の素</td><td>食料品</td><td>ROE15.6%（高水準）; 海外Buy</td></tr>
+<tr><td class="wl-code">3407</td><td>旭化成</td><td>化学</td><td>-</td></tr>
+<tr><td class="wl-code">6788</td><td>日本トリム</td><td>電気機器</td><td>-</td></tr>
+<tr><td class="wl-code">8031</td><td>三井物産</td><td>卸売業</td><td>ROE10.5%</td></tr>
+<tr><td class="wl-code">8058</td><td>三菱商事</td><td>卸売業</td><td>ROE11.7%; 海外Buy</td></tr>
+<tr><td class="wl-code">9412</td><td>スカパーＪＳＡＴホールディン</td><td>情報・通信業</td><td>自己資本74.4%（堅固）; 営業利益率27.6%（高収益）</td></tr>
+<tr><td class="wl-code">1377</td><td>サカタのタネ</td><td>水産・農林業</td><td>自己資本82.3%（堅固）</td></tr>
+<tr><td class="wl-code">2331</td><td>綜合警備保障</td><td>サービス業</td><td>-</td></tr>
+<tr><td class="wl-code">2432</td><td>ディー・エヌ・エー</td><td>サービス業</td><td>-</td></tr>
+<tr><td class="wl-code">2811</td><td>カゴメ</td><td>食料品</td><td>-</td></tr>
+<tr><td class="wl-code">3097</td><td>物語コーポレーション</td><td>小売業</td><td>ROE16.8%（高水準）</td></tr>
+<tr><td class="wl-code">7012</td><td>川崎重工業</td><td>輸送用機器</td><td>ROE12.5%; 海外Buy</td></tr>
+<tr><td class="wl-code">7272</td><td>ヤマハ発動機</td><td>輸送用機器</td><td>-</td></tr>
+<tr><td class="wl-code">7752</td><td>リコー</td><td>電気機器</td><td>PER13.2倍（業種内割安）</td></tr>
+<tr><td class="wl-code">7984</td><td>コクヨ</td><td>その他製品</td><td>自己資本73.1%（堅固）</td></tr>
+<tr><td class="wl-code">8411</td><td>みずほフィナンシャルグループ</td><td>銀行業</td><td>ROE11.5%; 海外Buy</td></tr>
+<tr><td class="wl-code">2229</td><td>カルビー</td><td>食料品</td><td>海外Sell</td></tr>
+<tr><td class="wl-code">2809</td><td>キユーピー</td><td>食料品</td><td>-</td></tr>
+<tr><td class="wl-code">3099</td><td>三越伊勢丹ホールディングス</td><td>小売業</td><td>-</td></tr>
+<tr><td class="wl-code">6298</td><td>ワイエイシイホールディングス</td><td>機械</td><td>ROE11.8%</td></tr>
+<tr><td class="wl-code">7550</td><td>ゼンショーホールディングス</td><td>小売業</td><td>ROE14.7%; 上値余地32%</td></tr>
+</table>
+</div>
+<div class="wl-block"><div class="wl-sh"><span class="wl-gb wl-g-c">C</span> C — 決め手不足（42銘柄）</div>
+<table><tr><th>コード</th><th>銘柄名</th><th>業種</th><th>理由</th></tr>
+<tr><td class="wl-code">2009</td><td>鳥越製粉</td><td>食料品</td><td>配当4.53%; 自己資本79.5%（堅固）</td></tr>
+<tr><td class="wl-code">4229</td><td>群栄化学工業</td><td>化学</td><td>自己資本80.3%（堅固）</td></tr>
+<tr><td class="wl-code">4293</td><td>セプテーニ・ホールディングス</td><td>サービス業</td><td>-</td></tr>
+<tr><td class="wl-code">5411</td><td>ＪＦＥホールディングス</td><td>鉄鋼</td><td>配当5.17%</td></tr>
+<tr><td class="wl-code">5949</td><td>ユニプレス</td><td>輸送用機器</td><td>配当5.74%</td></tr>
+<tr><td class="wl-code">6952</td><td>カシオ計算機</td><td>電気機器</td><td>-</td></tr>
+<tr><td class="wl-code">9006</td><td>京浜急行電鉄</td><td>陸運業</td><td>-</td></tr>
+<tr><td class="wl-code">9020</td><td>東日本旅客鉄道</td><td>陸運業</td><td>海外Buy</td></tr>
+<tr><td class="wl-code">9434</td><td>ソフトバンク</td><td>情報・通信業</td><td>ROE18.9%（高水準）; 配当4.29%</td></tr>
+<tr><td class="wl-code">2810</td><td>ハウス食品グループ本社</td><td>食料品</td><td>-</td></tr>
+<tr><td class="wl-code">3031</td><td>ラクーンホールディングス</td><td>情報・通信業</td><td>営業利益率20.1%（高収益）</td></tr>
+<tr><td class="wl-code">4912</td><td>ライオン</td><td>化学</td><td>-</td></tr>
+<tr><td class="wl-code">5332</td><td>ＴＯＴＯ</td><td>ガラス・土石製品</td><td>-</td></tr>
+<tr><td class="wl-code">6460</td><td>セガサミーホールディングス</td><td>機械</td><td>-</td></tr>
+<tr><td class="wl-code">6724</td><td>セイコーエプソン</td><td>電気機器</td><td>PER14.6倍（業種内割安）</td></tr>
+<tr><td class="wl-code">7309</td><td>シマノ</td><td>輸送用機器</td><td>自己資本92.5%（堅固）</td></tr>
+<tr><td class="wl-code">9202</td><td>ＡＮＡホールディングス</td><td>空運業</td><td>-</td></tr>
+<tr><td class="wl-code">2193</td><td>クックパッド</td><td>サービス業</td><td>自己資本90.8%（堅固）</td></tr>
+<tr><td class="wl-code">3391</td><td>ツルハホールディングス</td><td>小売業</td><td>ROE4.7%（改善待ち）</td></tr>
+<tr><td class="wl-code">4922</td><td>コーセー</td><td>化学</td><td>自己資本72.1%（堅固）</td></tr>
+<tr><td class="wl-code">5943</td><td>ノーリツ</td><td>金属製品</td><td>配当4.20%（利益率低く減配リスク）; 営業利益率1.2%（薄利）</td></tr>
+<tr><td class="wl-code">6027</td><td>弁護士ドットコム</td><td>サービス業</td><td>ROE28.1%（高水準）</td></tr>
+<tr><td class="wl-code">6366</td><td>千代田化工建設</td><td>建設業</td><td>ROE10.5%</td></tr>
+<tr><td class="wl-code">6506</td><td>安川電機</td><td>電気機器</td><td>海外Buy</td></tr>
+<tr><td class="wl-code">7461</td><td>キムラ</td><td>卸売業</td><td>PBR0.40倍（万年割安の可能性）; ROE3.8%（改善待ち）</td></tr>
+<tr><td class="wl-code">7762</td><td>シチズン時計</td><td>精密機器</td><td>-</td></tr>
+<tr><td class="wl-code">3101</td><td>東洋紡</td><td>繊維製品</td><td>-</td></tr>
+<tr><td class="wl-code">5110</td><td>住友ゴム工業</td><td>ゴム製品</td><td>営業利益率1.4%（薄利）</td></tr>
+<tr><td class="wl-code">6752</td><td>パナソニック　ホールディング</td><td>電気機器</td><td>海外Buy</td></tr>
+<tr><td class="wl-code">2220</td><td>亀田製菓</td><td>食料品</td><td>ROE4.2%（改善待ち）</td></tr>
+<tr><td class="wl-code">2678</td><td>アスクル</td><td>小売業</td><td>ROE11.8%</td></tr>
+<tr><td class="wl-code">3197</td><td>すかいらーくホールディングス</td><td>小売業</td><td>ROE10.3%</td></tr>
+<tr><td class="wl-code">6844</td><td>新電元工業</td><td>電気機器</td><td>ROE3.7%（改善待ち）</td></tr>
+<tr><td class="wl-code">6971</td><td>京セラ</td><td>電気機器</td><td>自己資本71.9%（堅固）</td></tr>
+<tr><td class="wl-code">7182</td><td>ゆうちょ銀行</td><td>銀行業</td><td>-</td></tr>
+<tr><td class="wl-code">9735</td><td>セコム</td><td>サービス業</td><td>-</td></tr>
+<tr><td class="wl-code">2341</td><td>アルバイトタイムス</td><td>サービス業</td><td>自己資本79.0%（堅固）</td></tr>
+<tr><td class="wl-code">4911</td><td>資生堂</td><td>化学</td><td>海外Buy</td></tr>
+<tr><td class="wl-code">4967</td><td>小林製薬</td><td>化学</td><td>自己資本81.7%（堅固）</td></tr>
+<tr><td class="wl-code">6753</td><td>シャープ</td><td>電気機器</td><td>PER9.4倍（業種内割安）; ROE15.0%</td></tr>
+<tr><td class="wl-code">7459</td><td>メディパルホールディングス</td><td>卸売業</td><td>営業利益率1.4%（薄利）</td></tr>
+<tr><td class="wl-code">8999</td><td>グランディハウス</td><td>不動産業</td><td>配当6.34%</td></tr>
+</table>
+</div>
+<div class="wl-block"><div class="wl-sh"><span class="wl-gb wl-g-d">D</span> D — 除外・要注意（35銘柄）</div>
+<table><tr><th>コード</th><th>銘柄名</th><th>業種</th><th>理由</th></tr>
+<tr><td class="wl-code">2177</td><td>ベンチャーリパブリック</td><td>サービス業</td><td>自己資本72.5%（堅固）</td></tr>
+<tr><td class="wl-code">3103</td><td>ユニチカ</td><td>繊維製品</td><td>-</td></tr>
+<tr><td class="wl-code">3140</td><td>ＢＲＵＮＯ</td><td>卸売業</td><td>-</td></tr>
+<tr><td class="wl-code">4188</td><td>三菱ケミカルグループ</td><td>化学</td><td>PER11.6倍（業種内割安）</td></tr>
+<tr><td class="wl-code">4502</td><td>武田薬品工業</td><td>医薬品</td><td>配当4.01%（高配当＋財務安定）; 海外Buy</td></tr>
+<tr><td class="wl-code">6645</td><td>オムロン</td><td>電気機器</td><td>ROE3.3%（改善待ち）</td></tr>
+<tr><td class="wl-code">9887</td><td>松屋フーズホールディングス</td><td>小売業</td><td>-</td></tr>
+<tr><td class="wl-code">2764</td><td>ひらまつ</td><td>小売業</td><td>ROE4.7%（改善待ち）</td></tr>
+<tr><td class="wl-code">6178</td><td>日本郵政</td><td>サービス業</td><td>ROE3.9%（改善待ち）; 自己資本3.4%（低い）</td></tr>
+<tr><td class="wl-code">7911</td><td>凸版印刷</td><td>その他製品</td><td>ROE4.1%（改善待ち）</td></tr>
+<tr><td class="wl-code">2531</td><td>宝ホールディングス</td><td>食料品</td><td>ROE4.6%（改善待ち）</td></tr>
+<tr><td class="wl-code">3878</td><td>巴川製紙所</td><td>パルプ・紙</td><td>PBR0.44倍（万年割安の可能性）; ROE2.5%（低水準）</td></tr>
+<tr><td class="wl-code">4385</td><td>メルカリ</td><td>情報・通信業</td><td>ROE26.3%（高水準）</td></tr>
+<tr><td class="wl-code">7212</td><td>エフテック</td><td>輸送用機器</td><td>PBR0.20倍（万年割安の可能性）; ROE1.4%（低水準）</td></tr>
+<tr><td class="wl-code">7220</td><td>武蔵精密工業</td><td>輸送用機器</td><td>-</td></tr>
+<tr><td class="wl-code">8566</td><td>リコーリース</td><td>その他金融業</td><td>配当4.23%</td></tr>
+<tr><td class="wl-code">2334</td><td>イオレ</td><td>サービス業</td><td>ROE36.3%（高水準）</td></tr>
+<tr><td class="wl-code">2695</td><td>くら寿司</td><td>小売業</td><td>ROE4.7%（改善待ち）; 営業利益率2.0%（薄利）</td></tr>
+<tr><td class="wl-code">2928</td><td>ＲＩＺＡＰグループ</td><td>小売業</td><td>PER71.3倍（割高）; ROE2.9%（低水準）</td></tr>
+<tr><td class="wl-code">3079</td><td>ディーブイエックス</td><td>卸売業</td><td>ROE3.6%（改善待ち）; 配当5.04%（利益率低く減配リスク）</td></tr>
+<tr><td class="wl-code">6976</td><td>太陽誘電</td><td>電気機器</td><td>PER116.6倍（割高）; PBR6.09倍（割高）</td></tr>
+<tr><td class="wl-code">2378</td><td>ルネサンス</td><td>サービス業</td><td>自己資本17.0%（低い）</td></tr>
+<tr><td class="wl-code">3178</td><td>チムニー</td><td>小売業</td><td>PER81.5倍（割高）; ROE3.9%（改善待ち）</td></tr>
+<tr><td class="wl-code">6897</td><td>ツインバード工業</td><td>電気機器</td><td>PER173.0倍（割高）; ROE0.7%（低水準）</td></tr>
+<tr><td class="wl-code">7616</td><td>コロワイド</td><td>小売業</td><td>PER71.8倍（割高）; ROE3.2%（改善待ち）</td></tr>
+<tr><td class="wl-code">2698</td><td>キャンドゥ</td><td>小売業</td><td>PER121.1倍（割高）; PBR5.17倍（割高）</td></tr>
+<tr><td class="wl-code">4088</td><td>エア・ウォーター</td><td>化学</td><td>赤字</td></tr>
+<tr><td class="wl-code">3994</td><td>マネーフォワード</td><td>情報・通信業</td><td>PER138.8倍（割高）; PBR5.27倍（割高）</td></tr>
+<tr><td class="wl-code">3656</td><td>ＫＬａｂ</td><td>情報・通信業</td><td>自己資本79.8%（堅固）</td></tr>
+<tr><td class="wl-code">8105</td><td>堀田丸正</td><td>卸売業</td><td>自己資本86.2%（堅固）</td></tr>
+<tr><td class="wl-code">3807</td><td>フィスコ</td><td>情報・通信業</td><td>PER221.4倍（割高）; PBR5.78倍（割高）</td></tr>
+<tr><td class="wl-code">6228</td><td>ジェイ・イー・ティ</td><td>機械</td><td>赤字; 営業利益率-10.2%（薄利）</td></tr>
+<tr><td class="wl-code">9417</td><td>スマートバリュー</td><td>情報・通信業</td><td>赤字; 自己資本6.2%（低い）</td></tr>
+<tr><td class="wl-code">4755</td><td>楽天グループ</td><td>サービス業</td><td>赤字; 自己資本3.1%（低い）</td></tr>
+<tr><td class="wl-code">7412</td><td>アトム</td><td>小売業</td><td>PER74744倍（実質無益）; PBR20.31倍（割高）</td></tr>
+</table>
+</div>
+<div class="wl-block"><div class="wl-sh"><span class="wl-gb wl-g-x">—</span> 対象外（21銘柄）</div>
+<table><tr><th>コード</th><th>銘柄名</th><th>業種</th><th>理由</th></tr>
+<tr><td class="wl-code">2031</td><td>ＮＥＸＴ　ＮＯＴＥＳ　香港ハ</td><td>ETN</td><td>ETN</td></tr>
+<tr><td class="wl-code">2412</td><td>ベネフィット・ワン</td><td>サービス業</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">3141</td><td>ウエルシアホールディングス</td><td>小売業</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">4327</td><td>日本エス・エイチ・エル</td><td>サービス業</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">4555</td><td>沢井製薬</td><td>医薬品</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">4837</td><td>シダックス</td><td>サービス業</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">4921</td><td>ファンケル</td><td>化学</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">5191</td><td>住友理工</td><td>ゴム製品</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">6355</td><td>住友精密工業</td><td>機械</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">6502</td><td>東芝</td><td>電気機器</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">7448</td><td>ジーンズメイト</td><td>小売業</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">7518</td><td>ネットワンシステムズ</td><td>情報・通信業</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">7577</td><td>ＨＡＰｉＮＳ</td><td>小売業</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">7739</td><td>キヤノン電子</td><td>電気機器</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">8028</td><td>ファミリーマート</td><td>小売業</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">8114</td><td>デサント</td><td>繊維製品</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">8279</td><td>ヤオコー</td><td>小売業</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">9058</td><td>トランコム</td><td>陸運業</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">9086</td><td>日立物流</td><td>陸運業</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">9437</td><td>ＮＴＴドコモ</td><td>情報・通信業</td><td>TOB/上場廃止/非上場化</td></tr>
+<tr><td class="wl-code">9783</td><td>ベネッセホールディングス</td><td>サービス業</td><td>TOB/上場廃止/非上場化</td></tr>
+</table></div></div>
+<div class="wl-tc" id="wl-t4">
+<div class="wl-block"><div class="wl-bh">💰 高配当・還元 TOP10</div>
+<div class="wl-tw wl-theme-tw"><table><tr><th>#</th><th>コード</th><th>銘柄名</th><th>評価</th><th>PER</th><th>PBR</th><th>ROE</th><th>配当</th><th>自己資本</th><th>営利率</th><th>海外</th></tr>
+<tr><td>1</td><td class="wl-code">2282</td><td>日本ハム</td><td><span class="wl-gb wl-g-b">B</span></td><td>15.09</td><td>1.07</td><td>7.08</td><td>8.87</td><td>53.83</td><td>3.95</td><td>-</td></tr>
+<tr><td>2</td><td class="wl-code">4928</td><td>ノエビアホールディングス</td><td><span class="wl-gb wl-g-a">A</span></td><td>18.18</td><td>3.05</td><td>16.78</td><td>5.27</td><td>68.11</td><td>17.11</td><td>-</td></tr>
+<tr><td>3</td><td class="wl-code">5015</td><td>ビーピー・カストロール</td><td><span class="wl-gb wl-g-a">A</span></td><td>20.26</td><td>2.36</td><td>11.65</td><td>4.96</td><td>76.23</td><td>10.63</td><td>-</td></tr>
+<tr><td>4</td><td class="wl-code">2127</td><td>日本Ｍ＆Ａセンターホールディ</td><td><span class="wl-gb wl-g-s">S</span></td><td>14.68</td><td>3.92</td><td>26.7</td><td>4.68</td><td>75.78</td><td>37.33</td><td>-</td></tr>
+<tr><td>5</td><td class="wl-code">8214</td><td>ＡＯＫＩホールディングス</td><td><span class="wl-gb wl-g-a">A</span></td><td>13.72</td><td>0.95</td><td>6.9</td><td>5.52</td><td>64.27</td><td>8.71</td><td>-</td></tr>
+<tr><td>6</td><td class="wl-code">7458</td><td>第一興商</td><td><span class="wl-gb wl-g-a">A</span></td><td>14.18</td><td>1.4</td><td>9.87</td><td>4.06</td><td>56.09</td><td>11.06</td><td>-</td></tr>
+<tr><td>7</td><td class="wl-code">4826</td><td>ＣＩＪ</td><td><span class="wl-gb wl-g-a">A</span></td><td>16.69</td><td>1.88</td><td>11.28</td><td>4.02</td><td>75.83</td><td>8.07</td><td>-</td></tr>
+<tr><td>8</td><td class="wl-code">9765</td><td>オオバ</td><td><span class="wl-gb wl-g-a">A</span></td><td>12.43</td><td>1.32</td><td>10.59</td><td>4.01</td><td>57.27</td><td>11.76</td><td>-</td></tr>
+<tr><td>9</td><td class="wl-code">4293</td><td>セプテーニ・ホールディングス</td><td><span class="wl-gb wl-g-c">C</span></td><td>17.98</td><td>1.44</td><td>8.01</td><td>3.96</td><td>64.69</td><td>13.99</td><td>-</td></tr>
+<tr><td>10</td><td class="wl-code">7751</td><td>キヤノン</td><td><span class="wl-gb wl-g-a">A</span></td><td>11.11</td><td>1.08</td><td>9.7</td><td>3.76</td><td>55.04</td><td>9.85</td><td><span class="wl-con-hold">Hold</span></td></tr>
+</table></div></div>
+<div class="wl-block"><div class="wl-bh">📉 割安バリュー TOP10</div>
+<div class="wl-tw wl-theme-tw"><table><tr><th>#</th><th>コード</th><th>銘柄名</th><th>評価</th><th>PER</th><th>PBR</th><th>ROE</th><th>配当</th><th>自己資本</th><th>営利率</th><th>海外</th></tr>
+<tr><td>1</td><td class="wl-code">7212</td><td>エフテック</td><td><span class="wl-gb wl-g-d">D</span></td><td>14.79</td><td>0.2</td><td>1.38</td><td>3.14</td><td>31.83</td><td>2.88</td><td>-</td></tr>
+<tr><td>2</td><td class="wl-code">5411</td><td>ＪＦＥホールディングス</td><td><span class="wl-gb wl-g-c">C</span></td><td>6.56</td><td>0.38</td><td>5.73</td><td>5.17</td><td>44.43</td><td>4.27</td><td><span class="wl-con-hold">Hold</span></td></tr>
+<tr><td>3</td><td class="wl-code">7102</td><td>日本車輌製造</td><td><span class="wl-gb wl-g-a">A</span></td><td>6.26</td><td>0.57</td><td>9.12</td><td>1.54</td><td>53.91</td><td>11.62</td><td>-</td></tr>
+<tr><td>4</td><td class="wl-code">9980</td><td>ＭＲＫホールディングス</td><td><span class="wl-gb wl-g-b">B</span></td><td>6.76</td><td>0.57</td><td>8.49</td><td>1.1</td><td>77.71</td><td>2.73</td><td>-</td></tr>
+<tr><td>5</td><td class="wl-code">3401</td><td>帝人</td><td><span class="wl-gb wl-g-b">B</span></td><td>6.99</td><td>0.86</td><td>12.35</td><td>3.07</td><td>39.61</td><td>-7.14</td><td>-</td></tr>
+<tr><td>6</td><td class="wl-code">5020</td><td>ＥＮＥＯＳホールディングス</td><td><span class="wl-gb wl-g-a">A</span></td><td>7.88</td><td>0.97</td><td>12.32</td><td>2.8</td><td>37.05</td><td>0.86</td><td><span class="wl-con-buy">Buy</span></td></tr>
+<tr><td>7</td><td class="wl-code">7461</td><td>キムラ</td><td><span class="wl-gb wl-g-c">C</span></td><td>10.61</td><td>0.4</td><td>3.82</td><td>3.04</td><td>45.74</td><td>2.87</td><td>-</td></tr>
+<tr><td>8</td><td class="wl-code">2288</td><td>丸大食品</td><td><span class="wl-gb wl-g-a">A</span></td><td>8.5</td><td>0.71</td><td>8.41</td><td>3.57</td><td>61.07</td><td>2.33</td><td>-</td></tr>
+<tr><td>9</td><td class="wl-code">5949</td><td>ユニプレス</td><td><span class="wl-gb wl-g-c">C</span></td><td>12.09</td><td>0.41</td><td>3.39</td><td>5.74</td><td>45.37</td><td>3.26</td><td>-</td></tr>
+<tr><td>10</td><td class="wl-code">1911</td><td>住友林業</td><td><span class="wl-gb wl-g-a">A</span></td><td>8.87</td><td>0.81</td><td>9.13</td><td>3.64</td><td>39.84</td><td>7.44</td><td><span class="wl-con-buy">Buy</span></td></tr>
+</table></div></div>
+<div class="wl-block"><div class="wl-bh">🚀 成長期待 TOP10</div>
+<div class="wl-tw wl-theme-tw"><table><tr><th>#</th><th>コード</th><th>銘柄名</th><th>評価</th><th>PER</th><th>PBR</th><th>ROE</th><th>配当</th><th>自己資本</th><th>営利率</th><th>海外</th></tr>
+<tr><td>1</td><td class="wl-code">8136</td><td>サンリオ</td><td><span class="wl-gb wl-g-b">B</span></td><td>20.75</td><td>8.5</td><td>40.95</td><td>1.47</td><td>66.38</td><td>40.12</td><td>-</td></tr>
+<tr><td>2</td><td class="wl-code">7692</td><td>アースインフィニティ</td><td><span class="wl-gb wl-g-b">B</span></td><td>14.64</td><td>6.42</td><td>43.85</td><td>3.56</td><td>42.45</td><td>10.24</td><td>-</td></tr>
+<tr><td>3</td><td class="wl-code">2371</td><td>カカクコム</td><td><span class="wl-gb wl-g-b">B</span></td><td>31.63</td><td>10.08</td><td>31.85</td><td>1.63</td><td>70.28</td><td>28.94</td><td><span class="wl-con-buy">Buy</span></td></tr>
+<tr><td>4</td><td class="wl-code">2127</td><td>日本Ｍ＆Ａセンターホールディ</td><td><span class="wl-gb wl-g-s">S</span></td><td>14.68</td><td>3.92</td><td>26.7</td><td>4.68</td><td>75.78</td><td>37.33</td><td>-</td></tr>
+<tr><td>5</td><td class="wl-code">3661</td><td>エムアップホールディングス</td><td><span class="wl-gb wl-g-b">B</span></td><td>12.94</td><td>4.82</td><td>37.28</td><td>3.72</td><td>29.7</td><td>15.78</td><td>-</td></tr>
+<tr><td>6</td><td class="wl-code">7936</td><td>アシックス</td><td><span class="wl-gb wl-g-b">B</span></td><td>28.72</td><td>9.99</td><td>34.8</td><td>0.85</td><td>49.38</td><td>17.57</td><td><span class="wl-con-buy">Buy</span></td></tr>
+<tr><td>7</td><td class="wl-code">4666</td><td>パーク２４</td><td><span class="wl-gb wl-g-a">A</span></td><td>8.02</td><td>3.19</td><td>39.79</td><td>3.15</td><td>32.12</td><td>9.25</td><td>-</td></tr>
+<tr><td>8</td><td class="wl-code">6861</td><td>キーエンス</td><td><span class="wl-gb wl-g-b">B</span></td><td>42</td><td>5.39</td><td>13.04</td><td>0.71</td><td>94.57</td><td>50.95</td><td><span class="wl-con-buy">Buy</span></td></tr>
+<tr><td>9</td><td class="wl-code">6027</td><td>弁護士ドットコム</td><td><span class="wl-gb wl-g-c">C</span></td><td>22.97</td><td>6.46</td><td>28.11</td><td>0</td><td>53.18</td><td>13.53</td><td>-</td></tr>
+<tr><td>10</td><td class="wl-code">8876</td><td>リログループ</td><td><span class="wl-gb wl-g-b">B</span></td><td>13.97</td><td>3.41</td><td>24.44</td><td>2.6</td><td>26.08</td><td>20.4</td><td>-</td></tr>
+</table></div></div>
+<div class="wl-block"><div class="wl-bh">🛡️ 財務安定 TOP10</div>
+<div class="wl-tw wl-theme-tw"><table><tr><th>#</th><th>コード</th><th>銘柄名</th><th>評価</th><th>PER</th><th>PBR</th><th>ROE</th><th>配当</th><th>自己資本</th><th>営利率</th><th>海外</th></tr>
+<tr><td>1</td><td class="wl-code">6861</td><td>キーエンス</td><td><span class="wl-gb wl-g-b">B</span></td><td>42</td><td>5.39</td><td>13.04</td><td>0.71</td><td>94.57</td><td>50.95</td><td><span class="wl-con-buy">Buy</span></td></tr>
+<tr><td>2</td><td class="wl-code">9672</td><td>東京都競馬</td><td><span class="wl-gb wl-g-a">A</span></td><td>11.76</td><td>1.34</td><td>11.36</td><td>2.99</td><td>78.07</td><td>36.91</td><td>-</td></tr>
+<tr><td>3</td><td class="wl-code">2127</td><td>日本Ｍ＆Ａセンターホールディ</td><td><span class="wl-gb wl-g-s">S</span></td><td>14.68</td><td>3.92</td><td>26.7</td><td>4.68</td><td>75.78</td><td>37.33</td><td>-</td></tr>
+<tr><td>4</td><td class="wl-code">6080</td><td>Ｍ＆Ａキャピタルパートナーズ</td><td><span class="wl-gb wl-g-a">A</span></td><td>14.88</td><td>2.36</td><td>15.89</td><td>2.02</td><td>79.19</td><td>34.62</td><td>-</td></tr>
+<tr><td>5</td><td class="wl-code">8136</td><td>サンリオ</td><td><span class="wl-gb wl-g-b">B</span></td><td>20.75</td><td>8.5</td><td>40.95</td><td>1.47</td><td>66.38</td><td>40.12</td><td>-</td></tr>
+<tr><td>6</td><td class="wl-code">6273</td><td>ＳＭＣ</td><td><span class="wl-gb wl-g-b">B</span></td><td>26.6</td><td>2.14</td><td>8.04</td><td>1.4</td><td>91.49</td><td>22.62</td><td><span class="wl-con-buy">Buy</span></td></tr>
+<tr><td>7</td><td class="wl-code">6954</td><td>ファナック</td><td><span class="wl-gb wl-g-b">B</span></td><td>35.46</td><td>3.52</td><td>9.91</td><td>1.52</td><td>89.2</td><td>21.42</td><td><span class="wl-con-buy">Buy</span></td></tr>
+<tr><td>8</td><td class="wl-code">9412</td><td>スカパーＪＳＡＴホールディン</td><td><span class="wl-gb wl-g-b">B</span></td><td>26.09</td><td>2.32</td><td>8.89</td><td>1.93</td><td>74.44</td><td>27.65</td><td>-</td></tr>
+<tr><td>9</td><td class="wl-code">7734</td><td>理研計器</td><td><span class="wl-gb wl-g-a">A</span></td><td>17.12</td><td>1.92</td><td>11.24</td><td>1.66</td><td>84.49</td><td>22.5</td><td>-</td></tr>
+<tr><td>10</td><td class="wl-code">2371</td><td>カカクコム</td><td><span class="wl-gb wl-g-b">B</span></td><td>31.63</td><td>10.08</td><td>31.85</td><td>1.63</td><td>70.28</td><td>28.94</td><td><span class="wl-con-buy">Buy</span></td></tr>
+</table></div></div>
+<div class="wl-block"><div class="wl-bh">⚠️ 要注意 TOP10</div>
+<div class="wl-tw wl-theme-tw"><table><tr><th>#</th><th>コード</th><th>銘柄名</th><th>評価</th><th>PER</th><th>PBR</th><th>ROE</th><th>配当</th><th>自己資本</th><th>営利率</th><th>海外</th></tr>
+<tr><td>1</td><td class="wl-code">7412</td><td>アトム</td><td><span class="wl-gb wl-g-d">D</span></td><td>74743.73</td><td>20.31</td><td>0.03</td><td>0</td><td>25.35</td><td>0.08</td><td>-</td></tr>
+<tr><td>2</td><td class="wl-code">4755</td><td>楽天グループ</td><td><span class="wl-gb wl-g-d">D</span></td><td>赤字</td><td>1.66</td><td>赤字</td><td>0</td><td>3.07</td><td>0.58</td><td>-</td></tr>
+<tr><td>3</td><td class="wl-code">6228</td><td>ジェイ・イー・ティ</td><td><span class="wl-gb wl-g-d">D</span></td><td>赤字</td><td>0.69</td><td>赤字</td><td>0</td><td>49.82</td><td>-10.18</td><td>-</td></tr>
+<tr><td>4</td><td class="wl-code">9417</td><td>スマートバリュー</td><td><span class="wl-gb wl-g-d">D</span></td><td>赤字</td><td>2.35</td><td>赤字</td><td>3</td><td>6.24</td><td>4.4</td><td>-</td></tr>
+<tr><td>5</td><td class="wl-code">3807</td><td>フィスコ</td><td><span class="wl-gb wl-g-d">D</span></td><td>221.45</td><td>5.78</td><td>2.61</td><td>0</td><td>31.21</td><td>0.48</td><td>-</td></tr>
+<tr><td>6</td><td class="wl-code">3656</td><td>ＫＬａｂ</td><td><span class="wl-gb wl-g-d">D</span></td><td>赤字</td><td>1.59</td><td>赤字</td><td>0</td><td>79.8</td><td>-19.02</td><td>-</td></tr>
+<tr><td>7</td><td class="wl-code">8105</td><td>堀田丸正</td><td><span class="wl-gb wl-g-d">D</span></td><td>赤字</td><td>2.47</td><td>赤字</td><td>0</td><td>86.23</td><td>-15.61</td><td>-</td></tr>
+<tr><td>8</td><td class="wl-code">3994</td><td>マネーフォワード</td><td><span class="wl-gb wl-g-d">D</span></td><td>138.79</td><td>5.27</td><td>4.1</td><td>0</td><td>26.06</td><td>-5.27</td><td>-</td></tr>
+<tr><td>9</td><td class="wl-code">4088</td><td>エア・ウォーター</td><td><span class="wl-gb wl-g-d">D</span></td><td>赤字</td><td>1.43</td><td>赤字</td><td>2.7</td><td>38.56</td><td>6.99</td><td>-</td></tr>
+<tr><td>10</td><td class="wl-code">2698</td><td>キャンドゥ</td><td><span class="wl-gb wl-g-d">D</span></td><td>121.08</td><td>5.17</td><td>4.27</td><td>0.5</td><td>31.92</td><td>1.76</td><td>-</td></tr>
+</table></div></div>
+</div>
+<div class="wl-tc" id="wl-t5">
+<div class="wl-cc"><div class="wl-cc-h">1. 2670 エービーシー・マート</div>
+<div class="wl-cc-m"><span class="wl-gb wl-g-s">S</span> <span class="wl-tb wl-t-st">安定</span> <span class="wl-tb wl-t-vl">バリュー</span></div>
+<div class="wl-cc-b"><div>✅ <strong>良い点:</strong> PER15.2倍（業種内割安）; ROE11.7%; 自己資本87.5%（堅固）; 海外Buy</div>
+<div>⚠️ <strong>気になる点:</strong> 特段の懸念なし</div>
+<div>📋 <strong>直近材料:</strong> 2026/06/01 韓国FOLDER事業譲受け。</div>
+<div>🔭 <strong>中長期:</strong> 海外Buy。ROEの持続性と利益成長率を注視。</div>
+<div>📌 <strong>次に確認:</strong> 決算資料・中計を確認／海外レポート確認</div></div></div>
+<div class="wl-cc"><div class="wl-cc-h">2. 2127 日本Ｍ＆Ａセンターホールディングス</div>
+<div class="wl-cc-m"><span class="wl-gb wl-g-s">S</span> <span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-dv">高配当</span></div>
+<div class="wl-cc-b"><div>✅ <strong>良い点:</strong> ROE26.7%（高水準）; 配当4.68%（高配当＋財務安定）; 自己資本75.8%（堅固）; 営業利益率37.3%（高収益）</div>
+<div>⚠️ <strong>気になる点:</strong> 特段の懸念なし</div>
+<div>📋 <strong>直近材料:</strong> 2026/06/25 自己株式処分。高ROE・高配当。</div>
+<div>🔭 <strong>中長期:</strong> ROEの持続性と利益成長率を注視。</div>
+<div>📌 <strong>次に確認:</strong> 決算資料・中計を確認</div></div></div>
+<div class="wl-cc"><div class="wl-cc-h">3. 4536 参天製薬</div>
+<div class="wl-cc-m"><span class="wl-gb wl-g-a">A</span> <span class="wl-tb wl-t-st">安定</span></div>
+<div class="wl-cc-b"><div>✅ <strong>良い点:</strong> ROE13.5%; 自己資本70.2%（堅固）; 海外Buy</div>
+<div>⚠️ <strong>気になる点:</strong> 特段の懸念なし</div>
+<div>📋 <strong>直近材料:</strong> ROE・財務良好、決算中心。</div>
+<div>🔭 <strong>中長期:</strong> 海外Buy。ROEの持続性と利益成長率を注視。</div>
+<div>📌 <strong>次に確認:</strong> 決算資料・中計を確認／海外レポート確認</div></div></div>
+<div class="wl-cc"><div class="wl-cc-h">4. 4928 ノエビアホールディングス</div>
+<div class="wl-cc-m"><span class="wl-gb wl-g-a">A</span> <span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-dv">高配当</span></div>
+<div class="wl-cc-b"><div>✅ <strong>良い点:</strong> ROE16.8%（高水準）; 配当5.27%（高配当＋財務安定）</div>
+<div>⚠️ <strong>気になる点:</strong> 特段の懸念なし</div>
+<div>📋 <strong>直近材料:</strong> ROE16.78・配当5.27。</div>
+<div>🔭 <strong>中長期:</strong> ROEの持続性と利益成長率を注視。</div>
+<div>📌 <strong>次に確認:</strong> 決算資料・中計を確認</div></div></div>
+<div class="wl-cc"><div class="wl-cc-h">5. 6758 ソニーグループ</div>
+<div class="wl-cc-m"><span class="wl-gb wl-g-a">A</span> <span class="wl-tb wl-t-gr">成長</span></div>
+<div class="wl-cc-b"><div>✅ <strong>良い点:</strong> ROE14.3%; 海外Strong Buy; 上値余地42%</div>
+<div>⚠️ <strong>気になる点:</strong> 特段の懸念なし</div>
+<div>📋 <strong>直近材料:</strong> 自社株買い・TSMC提携基本合意。</div>
+<div>🔭 <strong>中長期:</strong> 海外Strong Buy。ROEの持続性と利益成長率を注視。</div>
+<div>📌 <strong>次に確認:</strong> 決算資料・中計を確認／海外レポート確認</div></div></div>
+<div class="wl-cc"><div class="wl-cc-h">6. 8214 ＡＯＫＩホールディングス</div>
+<div class="wl-cc-m"><span class="wl-gb wl-g-a">A</span> <span class="wl-tb wl-t-dv">高配当</span> <span class="wl-tb wl-t-vl">バリュー</span></div>
+<div class="wl-cc-b"><div>✅ <strong>良い点:</strong> PER13.7倍（業種内割安）; 配当5.52%（高配当＋財務安定）</div>
+<div>⚠️ <strong>気になる点:</strong> 特段の懸念なし</div>
+<div>📋 <strong>直近材料:</strong> 高配当・PBR1倍割れ。</div>
+<div>🔭 <strong>中長期:</strong> 減配リスクと業績推移を注視。</div>
+<div>📌 <strong>次に確認:</strong> 決算資料・中計を確認</div></div></div>
+<div class="wl-cc"><div class="wl-cc-h">7. 6080 Ｍ＆Ａキャピタルパートナーズ</div>
+<div class="wl-cc-m"><span class="wl-gb wl-g-a">A</span> <span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-st">安定</span></div>
+<div class="wl-cc-b"><div>✅ <strong>良い点:</strong> ROE15.9%（高水準）; 自己資本79.2%（堅固）; 営業利益率34.6%（高収益）</div>
+<div>⚠️ <strong>気になる点:</strong> 特段の懸念なし</div>
+<div>📋 <strong>直近材料:</strong> 岐阜新聞社との業務提携。</div>
+<div>🔭 <strong>中長期:</strong> ROEの持続性と利益成長率を注視。</div>
+<div>📌 <strong>次に確認:</strong> 決算資料・中計を確認</div></div></div>
+<div class="wl-cc"><div class="wl-cc-h">8. 9672 東京都競馬</div>
+<div class="wl-cc-m"><span class="wl-gb wl-g-a">A</span> <span class="wl-tb wl-t-gr">成長</span> <span class="wl-tb wl-t-st">安定</span></div>
+<div class="wl-cc-b"><div>✅ <strong>良い点:</strong> ROE11.4%; 自己資本78.1%（堅固）; 営業利益率36.9%（高収益）</div>
+<div>⚠️ <strong>気になる点:</strong> 特段の懸念なし</div>
+<div>📋 <strong>直近材料:</strong> 収益性・財務安全性良好。</div>
+<div>🔭 <strong>中長期:</strong> ROEの持続性と利益成長率を注視。</div>
+<div>📌 <strong>次に確認:</strong> 決算資料・中計を確認</div></div></div>
+<div class="wl-cc"><div class="wl-cc-h">9. 1911 住友林業</div>
+<div class="wl-cc-m"><span class="wl-gb wl-g-a">A</span> <span class="wl-tb wl-t-rt">還元</span> <span class="wl-tb wl-t-vl">バリュー</span></div>
+<div class="wl-cc-b"><div>✅ <strong>良い点:</strong> PER8.9倍（業種内割安）; 海外Buy; 上値余地35%</div>
+<div>⚠️ <strong>気になる点:</strong> 特段の懸念なし</div>
+<div>📋 <strong>直近材料:</strong> 2026/05/14 米Tri Pointe Homes株式取得完了、子会社化。</div>
+<div>🔭 <strong>中長期:</strong> 海外Buy。減配リスクと業績推移を注視。</div>
+<div>📌 <strong>次に確認:</strong> 決算資料・中計を確認／海外レポート確認</div></div></div>
+<div class="wl-cc"><div class="wl-cc-h">10. 2270 雪印メグミルク</div>
+<div class="wl-cc-m"><span class="wl-gb wl-g-a">A</span> <span class="wl-tb wl-t-vl">バリュー</span></div>
+<div class="wl-cc-b"><div>✅ <strong>良い点:</strong> PER9.1倍（業種内割安）; ROE10.3%</div>
+<div>⚠️ <strong>気になる点:</strong> 特段の懸念なし</div>
+<div>📋 <strong>直近材料:</strong> 2026/06/02 自己株式取得状況、代表取締役異動。</div>
+<div>🔭 <strong>中長期:</strong> ROEの持続性と利益成長率を注視。</div>
+<div>📌 <strong>次に確認:</strong> 決算資料・中計を確認</div></div></div>
+</div>
+<div class="wl-tc" id="wl-t6">
+<div class="wl-block"><div class="wl-sh wl-cv-s">🔥 すぐに詳しく調べたい候補（10銘柄）</div><div class="wl-cg">
+<div class="wl-ci"><span class="wl-code">2670</span>エービーシー・マート</div>
+<div class="wl-ci"><span class="wl-code">2127</span>日本Ｍ＆Ａセンターホールディ</div>
+<div class="wl-ci"><span class="wl-code">4536</span>参天製薬</div>
+<div class="wl-ci"><span class="wl-code">4928</span>ノエビアホールディングス</div>
+<div class="wl-ci"><span class="wl-code">6758</span>ソニーグループ</div>
+<div class="wl-ci"><span class="wl-code">8214</span>ＡＯＫＩホールディングス</div>
+<div class="wl-ci"><span class="wl-code">6080</span>Ｍ＆Ａキャピタルパートナーズ</div>
+<div class="wl-ci"><span class="wl-code">9672</span>東京都競馬</div>
+<div class="wl-ci"><span class="wl-code">1911</span>住友林業</div>
+<div class="wl-ci"><span class="wl-code">2270</span>雪印メグミルク</div>
+</div></div>
+<div class="wl-block"><div class="wl-sh wl-cv-a">⏳ 株価次第で検討したい候補（20銘柄）</div><div class="wl-cg">
+<div class="wl-ci"><span class="wl-code">3920</span>アイビーシー</div>
+<div class="wl-ci"><span class="wl-code">4568</span>第一三共</div>
+<div class="wl-ci"><span class="wl-code">4826</span>ＣＩＪ</div>
+<div class="wl-ci"><span class="wl-code">6702</span>富士通</div>
+<div class="wl-ci"><span class="wl-code">7734</span>理研計器</div>
+<div class="wl-ci"><span class="wl-code">4543</span>テルモ</div>
+<div class="wl-ci"><span class="wl-code">6741</span>日本信号</div>
+<div class="wl-ci"><span class="wl-code">6701</span>日本電気</div>
+<div class="wl-ci"><span class="wl-code">7102</span>日本車輌製造</div>
+<div class="wl-ci"><span class="wl-code">7611</span>ハイデイ日高</div>
+<div class="wl-ci"><span class="wl-code">9765</span>オオバ</div>
+<div class="wl-ci"><span class="wl-code">9989</span>サンドラッグ</div>
+<div class="wl-ci"><span class="wl-code">1802</span>大林組</div>
+<div class="wl-ci"><span class="wl-code">5020</span>ＥＮＥＯＳホールディングス</div>
+<div class="wl-ci"><span class="wl-code">6420</span>フクシマガリレイ</div>
+<div class="wl-ci"><span class="wl-code">7466</span>ＳＰＫ</div>
+<div class="wl-ci"><span class="wl-code">9974</span>ベルク</div>
+<div class="wl-ci"><span class="wl-code">1801</span>大成建設</div>
+<div class="wl-ci"><span class="wl-code">2288</span>丸大食品</div>
+<div class="wl-ci"><span class="wl-code">4666</span>パーク２４</div>
+</div></div>
+<div class="wl-block"><div class="wl-sh wl-cv-b">👀 ウォッチ継続でよい候補（61銘柄）</div><div class="wl-cg">
+<div class="wl-ci"><span class="wl-code">2371</span>カカクコム</div>
+<div class="wl-ci"><span class="wl-code">2915</span>ケンコーマヨネーズ</div>
+<div class="wl-ci"><span class="wl-code">3661</span>エムアップホールディングス</div>
+<div class="wl-ci"><span class="wl-code">6954</span>ファナック</div>
+<div class="wl-ci"><span class="wl-code">7692</span>アースインフィニティ</div>
+<div class="wl-ci"><span class="wl-code">8316</span>三井住友フィナンシャルグルー</div>
+<div class="wl-ci"><span class="wl-code">8876</span>リログループ</div>
+<div class="wl-ci"><span class="wl-code">9433</span>ＫＤＤＩ</div>
+<div class="wl-ci"><span class="wl-code">9986</span>蔵王産業</div>
+<div class="wl-ci"><span class="wl-code">3401</span>帝人</div>
+<div class="wl-ci"><span class="wl-code">3543</span>コメダホールディングス</div>
+<div class="wl-ci"><span class="wl-code">5233</span>太平洋セメント</div>
+<div class="wl-ci"><span class="wl-code">6273</span>ＳＭＣ</div>
+<div class="wl-ci"><span class="wl-code">6501</span>日立製作所</div>
+<div class="wl-ci"><span class="wl-code">6745</span>ホーチキ</div>
+<div class="wl-ci"><span class="wl-code">6861</span>キーエンス</div>
+<div class="wl-ci"><span class="wl-code">7453</span>良品計画</div>
+<div class="wl-ci"><span class="wl-code">7564</span>ワークマン</div>
+<div class="wl-ci"><span class="wl-code">8801</span>三井不動産</div>
+<div class="wl-ci"><span class="wl-code">9432</span>日本電信電話</div>
+<div class="wl-ci"><span class="wl-code">9980</span>ＭＲＫホールディングス</div>
+<div class="wl-ci"><span class="wl-code">2181</span>パーソルホールディングス</div>
+<div class="wl-ci"><span class="wl-code">2269</span>明治ホールディングス</div>
+<div class="wl-ci"><span class="wl-code">2282</span>日本ハム</div>
+<div class="wl-ci"><span class="wl-code">3046</span>ジンズホールディングス</div>
+<div class="wl-ci"><span class="wl-code">4768</span>大塚商会</div>
+<div class="wl-ci"><span class="wl-code">6503</span>三菱電機</div>
+<div class="wl-ci"><span class="wl-code">7781</span>平山ホールディングス</div>
+<div class="wl-ci"><span class="wl-code">8002</span>丸紅</div>
+<div class="wl-ci"><span class="wl-code">8022</span>美津濃</div>
+<div class="wl-ci"><span class="wl-code">8053</span>住友商事</div>
+<div class="wl-ci"><span class="wl-code">9101</span>日本郵船</div>
+<div class="wl-ci"><span class="wl-code">9843</span>ニトリホールディングス</div>
+<div class="wl-ci"><span class="wl-code">4203</span>住友ベークライト</div>
+<div class="wl-ci"><span class="wl-code">4528</span>小野薬品工業</div>
+<div class="wl-ci"><span class="wl-code">4689</span>Ｚホールディングス</div>
+<div class="wl-ci"><span class="wl-code">7936</span>アシックス</div>
+<div class="wl-ci"><span class="wl-code">8136</span>サンリオ</div>
+<div class="wl-ci"><span class="wl-code">2587</span>サントリー食品インターナショ</div>
+<div class="wl-ci"><span class="wl-code">2751</span>テンポスホールディングス</div>
+<div class="wl-ci"><span class="wl-code">2802</span>味の素</div>
+<div class="wl-ci"><span class="wl-code">3407</span>旭化成</div>
+<div class="wl-ci"><span class="wl-code">6788</span>日本トリム</div>
+<div class="wl-ci"><span class="wl-code">8031</span>三井物産</div>
+<div class="wl-ci"><span class="wl-code">8058</span>三菱商事</div>
+<div class="wl-ci"><span class="wl-code">9412</span>スカパーＪＳＡＴホールディン</div>
+<div class="wl-ci"><span class="wl-code">1377</span>サカタのタネ</div>
+<div class="wl-ci"><span class="wl-code">2331</span>綜合警備保障</div>
+<div class="wl-ci"><span class="wl-code">2432</span>ディー・エヌ・エー</div>
+<div class="wl-ci"><span class="wl-code">2811</span>カゴメ</div>
+<div class="wl-ci"><span class="wl-code">3097</span>物語コーポレーション</div>
+<div class="wl-ci"><span class="wl-code">7012</span>川崎重工業</div>
+<div class="wl-ci"><span class="wl-code">7272</span>ヤマハ発動機</div>
+<div class="wl-ci"><span class="wl-code">7752</span>リコー</div>
+<div class="wl-ci"><span class="wl-code">7984</span>コクヨ</div>
+<div class="wl-ci"><span class="wl-code">8411</span>みずほフィナンシャルグループ</div>
+<div class="wl-ci"><span class="wl-code">2229</span>カルビー</div>
+<div class="wl-ci"><span class="wl-code">2809</span>キユーピー</div>
+<div class="wl-ci"><span class="wl-code">3099</span>三越伊勢丹ホールディングス</div>
+<div class="wl-ci"><span class="wl-code">6298</span>ワイエイシイホールディングス</div>
+<div class="wl-ci"><span class="wl-code">7550</span>ゼンショーホールディングス</div>
+</div></div>
+<div class="wl-block"><div class="wl-sh wl-cv-c">📎 優先度低めの候補（42銘柄）</div><div class="wl-cg">
+<div class="wl-ci"><span class="wl-code">2009</span>鳥越製粉</div>
+<div class="wl-ci"><span class="wl-code">4229</span>群栄化学工業</div>
+<div class="wl-ci"><span class="wl-code">4293</span>セプテーニ・ホールディングス</div>
+<div class="wl-ci"><span class="wl-code">5411</span>ＪＦＥホールディングス</div>
+<div class="wl-ci"><span class="wl-code">5949</span>ユニプレス</div>
+<div class="wl-ci"><span class="wl-code">6952</span>カシオ計算機</div>
+<div class="wl-ci"><span class="wl-code">9006</span>京浜急行電鉄</div>
+<div class="wl-ci"><span class="wl-code">9020</span>東日本旅客鉄道</div>
+<div class="wl-ci"><span class="wl-code">9434</span>ソフトバンク</div>
+<div class="wl-ci"><span class="wl-code">2810</span>ハウス食品グループ本社</div>
+<div class="wl-ci"><span class="wl-code">3031</span>ラクーンホールディングス</div>
+<div class="wl-ci"><span class="wl-code">4912</span>ライオン</div>
+<div class="wl-ci"><span class="wl-code">5332</span>ＴＯＴＯ</div>
+<div class="wl-ci"><span class="wl-code">6460</span>セガサミーホールディングス</div>
+<div class="wl-ci"><span class="wl-code">6724</span>セイコーエプソン</div>
+<div class="wl-ci"><span class="wl-code">7309</span>シマノ</div>
+<div class="wl-ci"><span class="wl-code">9202</span>ＡＮＡホールディングス</div>
+<div class="wl-ci"><span class="wl-code">2193</span>クックパッド</div>
+<div class="wl-ci"><span class="wl-code">3391</span>ツルハホールディングス</div>
+<div class="wl-ci"><span class="wl-code">4922</span>コーセー</div>
+<div class="wl-ci"><span class="wl-code">5943</span>ノーリツ</div>
+<div class="wl-ci"><span class="wl-code">6027</span>弁護士ドットコム</div>
+<div class="wl-ci"><span class="wl-code">6366</span>千代田化工建設</div>
+<div class="wl-ci"><span class="wl-code">6506</span>安川電機</div>
+<div class="wl-ci"><span class="wl-code">7461</span>キムラ</div>
+<div class="wl-ci"><span class="wl-code">7762</span>シチズン時計</div>
+<div class="wl-ci"><span class="wl-code">3101</span>東洋紡</div>
+<div class="wl-ci"><span class="wl-code">5110</span>住友ゴム工業</div>
+<div class="wl-ci"><span class="wl-code">6752</span>パナソニック　ホールディング</div>
+<div class="wl-ci"><span class="wl-code">2220</span>亀田製菓</div>
+<div class="wl-ci"><span class="wl-code">2678</span>アスクル</div>
+<div class="wl-ci"><span class="wl-code">3197</span>すかいらーくホールディングス</div>
+<div class="wl-ci"><span class="wl-code">6844</span>新電元工業</div>
+<div class="wl-ci"><span class="wl-code">6971</span>京セラ</div>
+<div class="wl-ci"><span class="wl-code">7182</span>ゆうちょ銀行</div>
+<div class="wl-ci"><span class="wl-code">9735</span>セコム</div>
+<div class="wl-ci"><span class="wl-code">2341</span>アルバイトタイムス</div>
+<div class="wl-ci"><span class="wl-code">4911</span>資生堂</div>
+<div class="wl-ci"><span class="wl-code">4967</span>小林製薬</div>
+<div class="wl-ci"><span class="wl-code">6753</span>シャープ</div>
+<div class="wl-ci"><span class="wl-code">7459</span>メディパルホールディングス</div>
+<div class="wl-ci"><span class="wl-code">8999</span>グランディハウス</div>
+</div></div>
+<div class="wl-block"><div class="wl-sh wl-cv-d">🗑️ 外してよさそうな候補（56銘柄）</div><div class="wl-cg">
+<div class="wl-ci"><span class="wl-code">2177</span>ベンチャーリパブリック</div>
+<div class="wl-ci"><span class="wl-code">3103</span>ユニチカ</div>
+<div class="wl-ci"><span class="wl-code">3140</span>ＢＲＵＮＯ</div>
+<div class="wl-ci"><span class="wl-code">4188</span>三菱ケミカルグループ</div>
+<div class="wl-ci"><span class="wl-code">4502</span>武田薬品工業</div>
+<div class="wl-ci"><span class="wl-code">6645</span>オムロン</div>
+<div class="wl-ci"><span class="wl-code">9887</span>松屋フーズホールディングス</div>
+<div class="wl-ci"><span class="wl-code">2764</span>ひらまつ</div>
+<div class="wl-ci"><span class="wl-code">6178</span>日本郵政</div>
+<div class="wl-ci"><span class="wl-code">7911</span>凸版印刷</div>
+<div class="wl-ci"><span class="wl-code">2531</span>宝ホールディングス</div>
+<div class="wl-ci"><span class="wl-code">3878</span>巴川製紙所</div>
+<div class="wl-ci"><span class="wl-code">4385</span>メルカリ</div>
+<div class="wl-ci"><span class="wl-code">7212</span>エフテック</div>
+<div class="wl-ci"><span class="wl-code">7220</span>武蔵精密工業</div>
+<div class="wl-ci"><span class="wl-code">8566</span>リコーリース</div>
+<div class="wl-ci"><span class="wl-code">2334</span>イオレ</div>
+<div class="wl-ci"><span class="wl-code">2695</span>くら寿司</div>
+<div class="wl-ci"><span class="wl-code">2928</span>ＲＩＺＡＰグループ</div>
+<div class="wl-ci"><span class="wl-code">3079</span>ディーブイエックス</div>
+<div class="wl-ci"><span class="wl-code">6976</span>太陽誘電</div>
+<div class="wl-ci"><span class="wl-code">2378</span>ルネサンス</div>
+<div class="wl-ci"><span class="wl-code">3178</span>チムニー</div>
+<div class="wl-ci"><span class="wl-code">6897</span>ツインバード工業</div>
+<div class="wl-ci"><span class="wl-code">7616</span>コロワイド</div>
+<div class="wl-ci"><span class="wl-code">2698</span>キャンドゥ</div>
+<div class="wl-ci"><span class="wl-code">4088</span>エア・ウォーター</div>
+<div class="wl-ci"><span class="wl-code">3994</span>マネーフォワード</div>
+<div class="wl-ci"><span class="wl-code">3656</span>ＫＬａｂ</div>
+<div class="wl-ci"><span class="wl-code">8105</span>堀田丸正</div>
+<div class="wl-ci"><span class="wl-code">3807</span>フィスコ</div>
+<div class="wl-ci"><span class="wl-code">6228</span>ジェイ・イー・ティ</div>
+<div class="wl-ci"><span class="wl-code">9417</span>スマートバリュー</div>
+<div class="wl-ci"><span class="wl-code">4755</span>楽天グループ</div>
+<div class="wl-ci"><span class="wl-code">7412</span>アトム</div>
+<div class="wl-ci"><span class="wl-code">2031</span>ＮＥＸＴ　ＮＯＴＥＳ　香港ハ</div>
+<div class="wl-ci"><span class="wl-code">2412</span>ベネフィット・ワン</div>
+<div class="wl-ci"><span class="wl-code">3141</span>ウエルシアホールディングス</div>
+<div class="wl-ci"><span class="wl-code">4327</span>日本エス・エイチ・エル</div>
+<div class="wl-ci"><span class="wl-code">4555</span>沢井製薬</div>
+<div class="wl-ci"><span class="wl-code">4837</span>シダックス</div>
+<div class="wl-ci"><span class="wl-code">4921</span>ファンケル</div>
+<div class="wl-ci"><span class="wl-code">5191</span>住友理工</div>
+<div class="wl-ci"><span class="wl-code">6355</span>住友精密工業</div>
+<div class="wl-ci"><span class="wl-code">6502</span>東芝</div>
+<div class="wl-ci"><span class="wl-code">7448</span>ジーンズメイト</div>
+<div class="wl-ci"><span class="wl-code">7518</span>ネットワンシステムズ</div>
+<div class="wl-ci"><span class="wl-code">7577</span>ＨＡＰｉＮＳ</div>
+<div class="wl-ci"><span class="wl-code">7739</span>キヤノン電子</div>
+<div class="wl-ci"><span class="wl-code">8028</span>ファミリーマート</div>
+<div class="wl-ci"><span class="wl-code">8114</span>デサント</div>
+<div class="wl-ci"><span class="wl-code">8279</span>ヤオコー</div>
+<div class="wl-ci"><span class="wl-code">9058</span>トランコム</div>
+<div class="wl-ci"><span class="wl-code">9086</span>日立物流</div>
+<div class="wl-ci"><span class="wl-code">9437</span>ＮＴＴドコモ</div>
+<div class="wl-ci"><span class="wl-code">9783</span>ベネッセホールディングス</div>
+</div></div>
+</div>
+<div class="wl-tc" id="wl-t7">
+<div class="wl-block"><div class="wl-sh">1. 決算・中計を読むべき（S・A評価）</div><ul class="wl-nl">
+<li><span class="wl-code">2670</span> エービーシー・マート — PER15.2倍（業種内割安）; ROE11.7%</li>
+<li><span class="wl-code">2127</span> 日本Ｍ＆Ａセンターホールディ — ROE26.7%（高水準）; 配当4.68%（高配当＋財務安定）</li>
+<li><span class="wl-code">4536</span> 参天製薬 — ROE13.5%; 自己資本70.2%（堅固）</li>
+<li><span class="wl-code">4928</span> ノエビアホールディングス — ROE16.8%（高水準）; 配当5.27%（高配当＋財務安定）</li>
+<li><span class="wl-code">6758</span> ソニーグループ — ROE14.3%; 海外Strong Buy</li>
+<li><span class="wl-code">8214</span> ＡＯＫＩホールディングス — PER13.7倍（業種内割安）; 配当5.52%（高配当＋財務安定）</li>
+<li><span class="wl-code">6080</span> Ｍ＆Ａキャピタルパートナーズ — ROE15.9%（高水準）; 自己資本79.2%（堅固）</li>
+<li><span class="wl-code">9672</span> 東京都競馬 — ROE11.4%; 自己資本78.1%（堅固）</li>
+<li><span class="wl-code">1911</span> 住友林業 — PER8.9倍（業種内割安）; 海外Buy</li>
+<li><span class="wl-code">2270</span> 雪印メグミルク — PER9.1倍（業種内割安）; ROE10.3%</li>
+<li><span class="wl-code">3920</span> アイビーシー — ROE17.9%（高水準）; 営業利益率23.5%（高収益）</li>
+<li><span class="wl-code">4568</span> 第一三共 — ROE15.6%（高水準）; 海外Strong Buy</li>
+<li><span class="wl-code">4826</span> ＣＩＪ — ROE11.3%; 配当4.02%（高配当＋財務安定）</li>
+<li><span class="wl-code">6702</span> 富士通 — ROE15.3%（高水準）; 海外Buy</li>
+<li><span class="wl-code">7734</span> 理研計器 — ROE11.2%; 自己資本84.5%（堅固）</li>
+<li><span class="wl-code">4543</span> テルモ — ROE10.4%; 海外Buy</li>
+<li><span class="wl-code">6741</span> 日本信号 — PER9.9倍（業種内割安）</li>
+<li><span class="wl-code">6701</span> 日本電気 — ROE12.3%; 海外Strong Buy</li>
+<li><span class="wl-code">7102</span> 日本車輌製造 — PER6.3倍（業種内割安）</li>
+<li><span class="wl-code">7611</span> ハイデイ日高 — ROE18.1%（高水準）; 自己資本72.8%（堅固）</li>
+<li><span class="wl-code">9765</span> オオバ — ROE10.6%; 配当4.01%（高配当＋財務安定）</li>
+<li><span class="wl-code">9989</span> サンドラッグ — PER13.8倍（業種内割安）; ROE11.2%</li>
+<li><span class="wl-code">1802</span> 大林組 — ROE12.5%; 海外Buy</li>
+<li><span class="wl-code">5020</span> ＥＮＥＯＳホールディングス — PER7.9倍（業種内割安）; ROE12.3%</li>
+<li><span class="wl-code">6420</span> フクシマガリレイ — ROE10.9%; 自己資本73.4%（堅固）</li>
+<li><span class="wl-code">7466</span> ＳＰＫ — PER9.4倍（業種内割安）</li>
+<li><span class="wl-code">9974</span> ベルク — PER10.5倍（業種内割安）; ROE10.6%</li>
+<li><span class="wl-code">1801</span> 大成建設 — ROE15.9%（高水準）; 海外Buy</li>
+<li><span class="wl-code">2288</span> 丸大食品 — PER8.5倍（業種内割安）</li>
+<li><span class="wl-code">4666</span> パーク２４ — PER8.0倍（業種内割安）; ROE39.8%（高水準）</li>
+<li><span class="wl-code">5015</span> ビーピー・カストロール — ROE11.7%; 配当4.96%（高配当＋財務安定）</li>
+<li><span class="wl-code">7003</span> 三井Ｅ＆Ｓホールディングス — ROE13.1%; 海外Strong Buy</li>
+<li><span class="wl-code">7458</span> 第一興商 — 配当4.06%（高配当＋財務安定）</li>
+<li><span class="wl-code">7751</span> キヤノン — PER11.1倍（業種内割安）</li>
+<li><span class="wl-code">7846</span> パイロットコーポレーション — ROE10.2%; 自己資本79.2%（堅固）</li>
+<li><span class="wl-code">8227</span> しまむら — PER14.2倍（業種内割安）; 自己資本88.1%（堅固）</li>
+<li><span class="wl-code">9201</span> 日本航空 — 海外Buy</li>
+<li><span class="wl-code">9936</span> 王将フードサービス — ROE10.9%; 自己資本76.5%（堅固）</li>
+</ul></div>
+<div class="wl-block"><div class="wl-sh">2. 海外レポート確認（Buy+上値余地大）</div><ul class="wl-nl">
+<li><span class="wl-code">6758</span> ソニーグループ — Strong Buy / 上値余地42.21%</li>
+<li><span class="wl-code">1911</span> 住友林業 — Buy / 上値余地34.73%</li>
+<li><span class="wl-code">4568</span> 第一三共 — Strong Buy / 上値余地63.85%</li>
+<li><span class="wl-code">6702</span> 富士通 — Buy / 上値余地40.62%</li>
+<li><span class="wl-code">4543</span> テルモ — Buy / 上値余地34.62%</li>
+<li><span class="wl-code">6701</span> 日本電気 — Strong Buy / 上値余地58.30%</li>
+<li><span class="wl-code">1802</span> 大林組 — Buy / 上値余地37.13%</li>
+<li><span class="wl-code">5020</span> ＥＮＥＯＳホールディングス — Buy / 上値余地24.54%</li>
+<li><span class="wl-code">1801</span> 大成建設 — Buy / 上値余地30.94%</li>
+<li><span class="wl-code">7003</span> 三井Ｅ＆Ｓホールディングス — Strong Buy / 上値余地93.74%</li>
+<li><span class="wl-code">6501</span> 日立製作所 — Buy / 上値余地31.84%</li>
+<li><span class="wl-code">8801</span> 三井不動産 — Strong Buy / 上値余地47.17%</li>
+<li><span class="wl-code">2181</span> パーソルホールディングス — Buy / 上値余地23.70%</li>
+<li><span class="wl-code">8002</span> 丸紅 — Buy / 上値余地28.16%</li>
+<li><span class="wl-code">8053</span> 住友商事 — Buy / 上値余地410.93%</li>
+<li><span class="wl-code">7936</span> アシックス — Buy / 上値余地22.19%</li>
+<li><span class="wl-code">7012</span> 川崎重工業 — Buy / 上値余地31.13%</li>
+<li><span class="wl-code">9020</span> 東日本旅客鉄道 — Buy / 上値余地21.32%</li>
+<li><span class="wl-code">4911</span> 資生堂 — Buy / 上値余地26.37%</li>
+</ul></div>
+<div class="wl-block"><div class="wl-sh">3. 配当方針確認（高配当+リスク要因）</div><ul class="wl-nl">
+<li><span class="wl-code">2288</span> 丸大食品 — 配当3.57% / ROE8.41 / 営利率2.33%</li>
+<li><span class="wl-code">9986</span> 蔵王産業 — 配当4.08% / ROE5.74 / 営利率11.6%</li>
+<li><span class="wl-code">2181</span> パーソルホールディングス — 配当5.49% / ROE20.27 / 営利率3.96%</li>
+<li><span class="wl-code">2282</span> 日本ハム — 配当8.87% / ROE7.08 / 営利率3.95%</li>
+<li><span class="wl-code">7781</span> 平山ホールディングス — 配当3.59% / ROE15.81 / 営利率3.55%</li>
+<li><span class="wl-code">7272</span> ヤマハ発動機 — 配当3.97% / ROE8.6 / 営利率4.99%</li>
+<li><span class="wl-code">2009</span> 鳥越製粉 — 配当4.53% / ROE3.09 / 営利率4.99%</li>
+<li><span class="wl-code">5411</span> ＪＦＥホールディングス — 配当5.17% / ROE5.73 / 営利率4.27%</li>
+<li><span class="wl-code">5949</span> ユニプレス — 配当5.74% / ROE3.39 / 営利率3.26%</li>
+<li><span class="wl-code">5943</span> ノーリツ — 配当4.2% / ROE6.03 / 営利率1.18%</li>
+<li><span class="wl-code">5110</span> 住友ゴム工業 — 配当3.86% / ROE7.58 / 営利率1.36%</li>
+<li><span class="wl-code">8999</span> グランディハウス — 配当6.34% / ROE4.37 / 営利率3.57%</li>
+<li><span class="wl-code">4502</span> 武田薬品工業 — 配当4.01% / ROE2.23 / 営利率7.48%</li>
+<li><span class="wl-code">8566</span> リコーリース — 配当4.23% / ROE4.92 / 営利率対象外%</li>
+<li><span class="wl-code">3079</span> ディーブイエックス — 配当5.04% / ROE3.65 / 営利率0.53%</li>
+</ul></div>
+<div class="wl-block"><div class="wl-sh">4. 株価待ち（割高だが質良好）</div><ul class="wl-nl">
+<li><span class="wl-code">2371</span> カカクコム — PER31.63 / ROE31.85</li>
+<li><span class="wl-code">6861</span> キーエンス — PER42 / ROE13.04</li>
+<li><span class="wl-code">7453</span> 良品計画 — PER29.98 / ROE16.45</li>
+<li><span class="wl-code">6503</span> 三菱電機 — PER25.24 / ROE10.59</li>
+<li><span class="wl-code">7936</span> アシックス — PER28.72 / ROE34.8</li>
+<li><span class="wl-code">2802</span> 味の素 — PER45.69 / ROE15.57</li>
+<li><span class="wl-code">3197</span> すかいらーくホールディングス — PER32.29 / ROE10.26</li>
+</ul></div>
+<div class="wl-block"><div class="wl-sh">5. ウォッチリストから削除すべき</div><ul class="wl-nl">
+<li><span class="wl-code">2177</span> ベンチャーリパブリック — </li>
+<li><span class="wl-code">3103</span> ユニチカ — </li>
+<li><span class="wl-code">3140</span> ＢＲＵＮＯ — </li>
+<li><span class="wl-code">4188</span> 三菱ケミカルグループ — 自己資本30.0%（やや低い）; 営業利益率0.8%（薄利）</li>
+<li><span class="wl-code">4502</span> 武田薬品工業 — ROE2.2%（低水準）</li>
+<li><span class="wl-code">6645</span> オムロン — ROE3.3%（改善待ち）</li>
+<li><span class="wl-code">9887</span> 松屋フーズホールディングス — </li>
+<li><span class="wl-code">2764</span> ひらまつ — ROE4.7%（改善待ち）</li>
+<li><span class="wl-code">6178</span> 日本郵政 — ROE3.9%（改善待ち）; 自己資本3.4%（低い）</li>
+<li><span class="wl-code">7911</span> 凸版印刷 — ROE4.1%（改善待ち）</li>
+<li><span class="wl-code">2531</span> 宝ホールディングス — ROE4.6%（改善待ち）</li>
+<li><span class="wl-code">3878</span> 巴川製紙所 — PBR0.44倍（万年割安の可能性）; ROE2.5%（低水準）</li>
+<li><span class="wl-code">4385</span> メルカリ — PBR5.17倍（割高）; 自己資本17.8%（低い）</li>
+<li><span class="wl-code">7212</span> エフテック — PBR0.20倍（万年割安の可能性）; ROE1.4%（低水準）</li>
+<li><span class="wl-code">7220</span> 武蔵精密工業 — </li>
+<li><span class="wl-code">8566</span> リコーリース — ROE4.9%（改善待ち）; 自己資本16.5%（低い）</li>
+<li><span class="wl-code">2334</span> イオレ — PBR7.10倍（割高）; 営業利益率1.4%（薄利）</li>
+<li><span class="wl-code">2695</span> くら寿司 — ROE4.7%（改善待ち）; 営業利益率2.0%（薄利）</li>
+<li><span class="wl-code">2928</span> ＲＩＺＡＰグループ — PER71.3倍（割高）; ROE2.9%（低水準）</li>
+<li><span class="wl-code">3079</span> ディーブイエックス — ROE3.6%（改善待ち）; 配当5.04%（利益率低く減配リスク）</li>
+<li><span class="wl-code">6976</span> 太陽誘電 — PER116.6倍（割高）; PBR6.09倍（割高）</li>
+<li><span class="wl-code">2378</span> ルネサンス — 自己資本17.0%（低い）</li>
+<li><span class="wl-code">3178</span> チムニー — PER81.5倍（割高）; ROE3.9%（改善待ち）</li>
+<li><span class="wl-code">6897</span> ツインバード工業 — PER173.0倍（割高）; ROE0.7%（低水準）</li>
+<li><span class="wl-code">7616</span> コロワイド — PER71.8倍（割高）; ROE3.2%（改善待ち）</li>
+<li><span class="wl-code">2698</span> キャンドゥ — PER121.1倍（割高）; PBR5.17倍（割高）</li>
+<li><span class="wl-code">4088</span> エア・ウォーター — 赤字</li>
+<li><span class="wl-code">3994</span> マネーフォワード — PER138.8倍（割高）; PBR5.27倍（割高）</li>
+<li><span class="wl-code">3656</span> ＫＬａｂ — 赤字; 営業利益率-19.0%（薄利）</li>
+<li><span class="wl-code">8105</span> 堀田丸正 — 赤字; 営業利益率-15.6%（薄利）</li>
+<li><span class="wl-code">3807</span> フィスコ — PER221.4倍（割高）; PBR5.78倍（割高）</li>
+<li><span class="wl-code">6228</span> ジェイ・イー・ティ — 赤字; 営業利益率-10.2%（薄利）</li>
+<li><span class="wl-code">9417</span> スマートバリュー — 赤字; 自己資本6.2%（低い）</li>
+<li><span class="wl-code">4755</span> 楽天グループ — 赤字; 自己資本3.1%（低い）</li>
+<li><span class="wl-code">7412</span> アトム — PER74744倍（実質無益）; PBR20.31倍（割高）</li>
+<li><span class="wl-code">2031</span> ＮＥＸＴ　ＮＯＴＥＳ　香港ハ — ETN</li>
+<li><span class="wl-code">2412</span> ベネフィット・ワン — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">3141</span> ウエルシアホールディングス — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">4327</span> 日本エス・エイチ・エル — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">4555</span> 沢井製薬 — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">4837</span> シダックス — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">4921</span> ファンケル — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">5191</span> 住友理工 — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">6355</span> 住友精密工業 — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">6502</span> 東芝 — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">7448</span> ジーンズメイト — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">7518</span> ネットワンシステムズ — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">7577</span> ＨＡＰｉＮＳ — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">7739</span> キヤノン電子 — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">8028</span> ファミリーマート — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">8114</span> デサント — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">8279</span> ヤオコー — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">9058</span> トランコム — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">9086</span> 日立物流 — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">9437</span> ＮＴＴドコモ — TOB/上場廃止/非上場化</li>
+<li><span class="wl-code">9783</span> ベネッセホールディングス — TOB/上場廃止/非上場化</li>
+</ul></div></div>
+<script>
+(function(){
+  function ready(fn){
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
+    window.addEventListener('load', fn);
+  }
+
+  function init(R){
+    if(!R || R.getAttribute('data-wl-ready') === '1') return;
+    R.setAttribute('data-wl-ready', '1');
+
+    function activateTab(id){
+      var panel = R.querySelector('#' + id);
+      if(!panel) return;
+      R.querySelectorAll('.wl-tab').forEach(function(x){x.classList.remove('wl-active')});
+      R.querySelectorAll('.wl-tc').forEach(function(x){x.classList.remove('wl-active')});
+      var tab = R.querySelector('.wl-tab[data-wltab="' + id + '"]');
+      if(tab) tab.classList.add('wl-active');
+      panel.classList.add('wl-active');
+      var radio = R.querySelector('.wl-tab-radio[id="wl-tab-' + id.replace('wl-t', '') + '"]');
+      if(radio) radio.checked = true;
+    }
+
+    R.querySelectorAll('.wl-tab').forEach(function(tab){
+      tab.addEventListener('click', function(){
+        activateTab(tab.getAttribute('data-wltab'));
+      });
+      tab.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          activateTab(tab.getAttribute('data-wltab'));
+        }
+      });
+    });
+
+    R.querySelectorAll('.wl-tab-radio').forEach(function(radio){
+      radio.addEventListener('change', function(){
+        if(radio.checked) activateTab('wl-t' + radio.id.replace('wl-tab-', ''));
+      });
+    });
+
+    function toggleRow(row){
+      var d = row.nextElementSibling;
+      if(d && d.classList.contains('wl-dr')) d.classList.toggle('wl-open');
+    }
+    window.wlTgl = toggleRow;
+    R.addEventListener('click', function(e){
+      var row = e.target.closest ? e.target.closest('.wl-row') : null;
+      if(row && R.contains(row)) toggleRow(row);
+    });
+
+    var fG=R.querySelector('#wl-fg'),fS=R.querySelector('#wl-fs'),fO=R.querySelector('#wl-fo'),fT=R.querySelector('#wl-ft');
+    function af(){
+      var g=fG?fG.value:'',s=fS?fS.value:'',o=fO?fO.value:'',t=(fT?fT.value:'').toLowerCase().trim();
+      R.querySelectorAll('#wl-mt .wl-row').forEach(function(row){
+        var det=row.nextElementSibling,sh=true,c=row.getAttribute('data-c')||'',n=(row.getAttribute('data-n')||'').toLowerCase(),txt=row.textContent.toLowerCase();
+        if(g&&row.getAttribute('data-g')!==g) sh=false;
+        if(s&&row.getAttribute('data-s')!==s) sh=false;
+        if(o==='has'&&row.getAttribute('data-o')==='0') sh=false;
+        if(o==='none'&&row.getAttribute('data-o')==='1') sh=false;
+        if(t&&c.indexOf(t)<0&&n.indexOf(t)<0&&txt.indexOf(t)<0) sh=false;
+        row.style.display=sh?'':'none';
+        if(det&&det.classList.contains('wl-dr')){if(!sh) det.classList.remove('wl-open');det.style.display=sh?'':'none';}
+      });
+    }
+    R.wlApplyFilter=af;
+    window.wlApplyFilter=function(src){
+      var root=src&&src.closest?src.closest('#wl-analyzer'):R;
+      if(root&&root.wlApplyFilter) root.wlApplyFilter();
+    };
+    [fG,fS,fO].forEach(function(el){if(el) el.addEventListener('change',af)});
+    if(fT) fT.addEventListener('input',af);
+
+    var sc=-1,sa=true;
+    R.querySelectorAll('#wl-mt thead th').forEach(function(th,i){
+      th.addEventListener('click',function(){
+        if(sc===i) sa=!sa; else{sc=i;sa=true;}
+        var tb=R.querySelector('#wl-mt tbody'),ps=[],rs=Array.from(tb.querySelectorAll('tr'));
+        for(var j=0;j<rs.length;j+=2) ps.push([rs[j],rs[j+1]]);
+        ps.sort(function(a,b){
+          var va=a[0].children[i]?a[0].children[i].textContent:'',vb=b[0].children[i]?b[0].children[i].textContent:'';
+          var na=parseFloat(va),nb=parseFloat(vb);
+          if(!isNaN(na)&&!isNaN(nb)) return sa?na-nb:nb-na;
+          return sa?va.localeCompare(vb):vb.localeCompare(va);
+        });
+        ps.forEach(function(p){tb.appendChild(p[0]);tb.appendChild(p[1]);});
+      });
+    });
+  }
+
+  ready(function(){
+    document.querySelectorAll('#wl-analyzer').forEach(init);
+  });
+})();
+</script>
+</div><!-- /wl-analyzer -->
