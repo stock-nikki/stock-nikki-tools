@@ -74,15 +74,9 @@ jobs:
     timeout-minutes: 60
     env:
       # ⚠️ 注意: これはcronの実行タイミングには影響しない（cronは常にUTC評価、上のscheduleコメント参照）。
-      #    これが必要な理由: japan-stock-radar.py内でdatetime.now()を使って
-      #    「今日の日付」をファイル名(japan-stock-radar_YYYYMMDD_...)に埋め込んでいるが、
-      #    ubuntu-latestランナーのデフォルトTZはUTCなので、そのままだと
-      #    JST 0:00〜9:00の実行では前日の日付でファイルが作られてしまう。
-      #    このワークフロー側（Resolve range and output directoryステップ）の
-      #    run_date計算はJSTで行っているため、両者の日付がズレて
-      #    「Merge chunk outputs」でのファイル名マッチングが失敗し、
-      #    latestが更新されない不具合があった（2026/7/2に実際に発生）。
-      #    そのためジョブ全体をJSTに統一している。
+      #    japan-stock-radar.py は datetime.now(_JST) で明示的にJSTを使うため、
+      #    この TZ 設定がなくてもファイル名の日付は正しく動く。
+      #    ただし date コマンドや他ツールのログもJSTにしたいのでフォールバックとして残す。
       TZ: 'Asia/Tokyo'
 
     steps:

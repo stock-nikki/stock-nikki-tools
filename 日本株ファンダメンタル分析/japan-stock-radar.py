@@ -74,7 +74,10 @@ import random
 import logging
 import argparse
 import os
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
+
+# GitHub Actions ランナーは UTC。ファイル名・ログを JST にするため明示指定。
+_JST = timezone(timedelta(hours=9))
 
 # ============================================================
 # 銘柄リスト読み込み
@@ -348,7 +351,7 @@ def calc_consecutive_dividend_growth(dividends):
         if clean.empty:
             return ""
         clean = pd.Series(clean.values, index=pd.to_datetime(clean.index))
-        current_year = datetime.now().year
+        current_year = datetime.now(_JST).year
         clean = clean[clean.index.year < current_year]
         if clean.empty:
             return ""
@@ -715,7 +718,7 @@ def main():
     args = parser.parse_args()
     columns = output_columns(args.detail)
 
-    today = datetime.now().strftime("%Y%m%d")
+    today = datetime.now(_JST).strftime("%Y%m%d")
     log_file = f"japan-stock-radar_error_{today}.log"
     logger = setup_logger(log_file)
 
@@ -758,7 +761,7 @@ def main():
         print("  詳細モード  : ON")
     print(f"  出力TSV     : {tsv_file}")
     print(f"  エラーログ  : {log_file}")
-    print(f"  開始時刻    : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"  開始時刻    : {datetime.now(_JST).strftime('%Y-%m-%d %H:%M:%S')}")
     print()
     print("  Ctrl+C で中断しても取得済みデータは保存されます")
     print("=" * 65)
@@ -879,7 +882,7 @@ def main():
     else:
         run_time_str = f"{run_sec:.1f}秒"
 
-    print(f"  完了時刻: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"  完了時刻: {datetime.now(_JST).strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"  総実行時間: {run_time_str}")
     print()
     logger.info(f"=== 実行完了 (yf={total_yf_ok}, warns={warn_count}, 総実行時間={run_time_str}) ===")
