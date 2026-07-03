@@ -1,0 +1,74 @@
+2026-07-04 01:29:11,117 [INFO] === 実行開始 (9銘柄) ===
+2026-07-04 01:29:11,803 [DEBUG] [TIME] 1301 info: 0.69s
+2026-07-04 01:29:11,803 [DEBUG] yfinance OK: 1301
+2026-07-04 01:29:12,052 [DEBUG] [TIME] 1301 income_stmt: 0.25s
+2026-07-04 01:29:12,358 [DEBUG] [TIME] 1301 balance_sheet: 0.30s
+2026-07-04 01:29:12,565 [DEBUG] [TIME] 1301 cashflow: 0.21s
+2026-07-04 01:29:13,254 [DEBUG] [TIME] 1301 dividends: 0.69s
+2026-07-04 01:29:13,256 [INFO] [DETAIL] 1301 極洋: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-07-04 01:29:13,256 [INFO] [TIME] 1301 極洋 処理時間: 2.14s
+2026-07-04 01:29:14,540 [DEBUG] [TIME] 130A info: 0.26s
+2026-07-04 01:29:14,540 [DEBUG] yfinance OK: 130A
+2026-07-04 01:29:14,781 [DEBUG] [TIME] 130A income_stmt: 0.24s
+2026-07-04 01:29:15,020 [DEBUG] [TIME] 130A balance_sheet: 0.24s
+2026-07-04 01:29:15,286 [DEBUG] [TIME] 130A cashflow: 0.26s
+2026-07-04 01:29:15,554 [DEBUG] [TIME] 130A dividends: 0.27s
+2026-07-04 01:29:15,554 [INFO] [DETAIL] 130A Ｖｅｒｉｔａｓ　Ｉｎ　Ｓｉｌｉｃｏ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-07-04 01:29:15,554 [INFO] [TIME] 130A Ｖｅｒｉｔａｓ　Ｉｎ　Ｓｉｌｉｃｏ 処理時間: 1.28s
+2026-07-04 01:29:17,437 [DEBUG] [TIME] 1332 info: 0.23s
+2026-07-04 01:29:17,437 [DEBUG] yfinance OK: 1332
+2026-07-04 01:29:17,695 [DEBUG] [TIME] 1332 income_stmt: 0.26s
+2026-07-04 01:29:18,015 [DEBUG] [TIME] 1332 balance_sheet: 0.32s
+2026-07-04 01:29:18,276 [DEBUG] [TIME] 1332 cashflow: 0.26s
+2026-07-04 01:29:18,900 [DEBUG] [TIME] 1332 dividends: 0.62s
+2026-07-04 01:29:18,901 [INFO] [DETAIL] 1332 ニッスイ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-07-04 01:29:18,901 [INFO] [TIME] 1332 ニッスイ 処理時間: 1.70s
+2026-07-04 01:29:20,285 [DEBUG] [TIME] 1333 info: 0.24s
+2026-07-04 01:29:20,285 [DEBUG] yfinance OK: 1333
+2026-07-04 01:29:20,546 [DEBUG] [TIME] 1333 income_stmt: 0.26s
+2026-07-04 01:29:20,860 [DEBUG] [TIME] 1333 balance_sheet: 0.31s
+2026-07-04 01:29:21,136 [DEBUG] [TIME] 1333 cashflow: 0.28s
+2026-07-04 01:29:21,493 [DEBUG] [TIME] 1333 dividends: 0.36s
+2026-07-04 01:29:21,494 [INFO] [DETAIL] 1333 Ｕｍｉｏｓ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-07-04 01:29:21,494 [INFO] [TIME] 1333 Ｕｍｉｏｓ 処理時間: 1.45s
+2026-07-04 01:29:23,183 [DEBUG] [TIME] 135A info: 0.24s
+2026-07-04 01:29:23,183 [DEBUG] yfinance OK: 135A
+2026-07-04 01:29:23,442 [DEBUG] [TIME] 135A income_stmt: 0.26s
+2026-07-04 01:29:23,742 [DEBUG] [TIME] 135A balance_sheet: 0.30s
+2026-07-04 01:29:24,011 [DEBUG] [TIME] 135A cashflow: 0.27s
+2026-07-04 01:29:24,357 [DEBUG] [TIME] 135A dividends: 0.35s
+2026-07-04 01:29:24,357 [INFO] [DETAIL] 135A ＶＲＡＩＮ　Ｓｏｌｕｔｉｏｎ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-07-04 01:29:24,357 [INFO] [TIME] 135A ＶＲＡＩＮ　Ｓｏｌｕｔｉｏｎ 処理時間: 1.41s
+2026-07-04 01:29:25,671 [DEBUG] [TIME] 1375 info: 0.25s
+2026-07-04 01:29:25,672 [DEBUG] yfinance OK: 1375
+2026-07-04 01:29:25,933 [DEBUG] [TIME] 1375 income_stmt: 0.26s
+2026-07-04 01:29:26,222 [DEBUG] [TIME] 1375 balance_sheet: 0.29s
+2026-07-04 01:29:26,535 [DEBUG] [TIME] 1375 cashflow: 0.31s
+2026-07-04 01:29:26,842 [DEBUG] [TIME] 1375 dividends: 0.31s
+2026-07-04 01:29:26,844 [INFO] [DETAIL] 1375 ユキグニファクトリー: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-07-04 01:29:26,844 [INFO] [TIME] 1375 ユキグニファクトリー 処理時間: 1.43s
+2026-07-04 01:29:28,132 [DEBUG] [TIME] 1376 info: 0.24s
+2026-07-04 01:29:28,133 [DEBUG] yfinance OK: 1376
+2026-07-04 01:29:28,371 [DEBUG] [TIME] 1376 income_stmt: 0.24s
+2026-07-04 01:29:28,626 [DEBUG] [TIME] 1376 balance_sheet: 0.25s
+2026-07-04 01:29:28,862 [DEBUG] [TIME] 1376 cashflow: 0.24s
+2026-07-04 01:29:29,548 [DEBUG] [TIME] 1376 dividends: 0.69s
+2026-07-04 01:29:29,550 [INFO] [DETAIL] 1376 カネコ種苗: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-07-04 01:29:29,550 [INFO] [TIME] 1376 カネコ種苗 処理時間: 1.66s
+2026-07-04 01:29:31,449 [DEBUG] [TIME] 1377 info: 0.24s
+2026-07-04 01:29:31,449 [DEBUG] yfinance OK: 1377
+2026-07-04 01:29:31,688 [DEBUG] [TIME] 1377 income_stmt: 0.24s
+2026-07-04 01:29:31,965 [DEBUG] [TIME] 1377 balance_sheet: 0.28s
+2026-07-04 01:29:32,162 [DEBUG] [TIME] 1377 cashflow: 0.20s
+2026-07-04 01:29:32,761 [DEBUG] [TIME] 1377 dividends: 0.60s
+2026-07-04 01:29:32,762 [INFO] [DETAIL] 1377 サカタのタネ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-07-04 01:29:32,762 [INFO] [TIME] 1377 サカタのタネ 処理時間: 1.56s
+2026-07-04 01:29:35,000 [DEBUG] [TIME] 1379 info: 0.27s
+2026-07-04 01:29:35,000 [DEBUG] yfinance OK: 1379
+2026-07-04 01:29:35,229 [DEBUG] [TIME] 1379 income_stmt: 0.23s
+2026-07-04 01:29:35,524 [DEBUG] [TIME] 1379 balance_sheet: 0.29s
+2026-07-04 01:29:35,783 [DEBUG] [TIME] 1379 cashflow: 0.26s
+2026-07-04 01:29:36,337 [DEBUG] [TIME] 1379 dividends: 0.55s
+2026-07-04 01:29:36,338 [INFO] [DETAIL] 1379 ホクト: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-07-04 01:29:36,338 [INFO] [TIME] 1379 ホクト 処理時間: 1.61s
+2026-07-04 01:29:37,656 [INFO] === 実行完了 (yf=9, warns=2, 総実行時間=26.5秒) ===
