@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       start:
-        description: "開始行番号"
-        required: true
-        default: "1"
+        description: "開始行番号。最初から実行する場合は空欄"
+        required: false
+        default: ""
       end:
         description: "終了行番号。最後まで実行する場合は空欄"
         required: false
-        default: "500"
+        default: ""
 
   schedule:
     # ⚠️ 注意: GitHub Actionsのschedule(cron)は常にUTCで評価される。
