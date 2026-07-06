@@ -15,6 +15,10 @@
 
 ## 更新対象と手順
 
+### BLOCK 0: REPORT_DATE（レポート基準日）
+- `YYYY/M/D` 形式で当日の日付に更新（例: `const REPORT_DATE = "2026/7/6";`）
+- BLOCK 1末尾に追記するweekラベルと日付を揃えること
+
 ### BLOCK 1: HISTORY（週次推移）
 - SBIスクショ最下部の合計行から「評価額合計」「含み損益合計」を読み取る
 - 投資額 = 評価額合計 − 含み損益合計
@@ -66,8 +70,8 @@
 3. **配列長一致**: SECTORSの全銘柄のpnl配列長 = WEEKSの長さ = HISTORYのエントリ数
 4. **合計値一致**: STOCKS_HEATMAPのvalue合計 ≒ HISTORYの最新value（差額1円以内）
 5. **ソート順**: STOCKSがpct降順、STOCKS_HEATMAPがvalue降順であること
-6. **日付整合**: ヘッダーコメントの日付・BLOCK 1末尾のweek・WEEKS末尾ラベルがすべて当日と一致すること
-7. **定義変数の完全性**: HISTORY / STOCKS / STOCKS_HEATMAP / WEEKS / SECTORS / MKT_RAW の6変数がすべて定義されていること
+6. **日付整合**: ヘッダーコメントの日付・REPORT_DATE・BLOCK 1末尾のweek・WEEKS末尾ラベルがすべて当日と一致すること
+7. **定義変数の完全性**: REPORT_DATE / HISTORY / STOCKS / STOCKS_HEATMAP / WEEKS / SECTORS / MKT_RAW の7変数がすべて定義されていること
 
 ※1つでもNGがあれば修正してから出力する
 

@@ -334,7 +334,9 @@ const COLD_TH = { d:-3, w:-5, m:-10, h:-15, y:-10 };
 
 // ---- サマリー ----
 const latest = HISTORY[HISTORY.length - 1];
-document.getElementById("report-date").textContent = "更新日: " + latest.week + " 時点";
+// 更新日表示：data.jsのREPORT_DATE優先、未定義なら最新weekにフォールバック
+document.getElementById("report-date").textContent =
+  "更新日: " + (typeof REPORT_DATE !== "undefined" ? REPORT_DATE : latest.week) + " 時点";
 document.getElementById("total-invested").textContent = "¥" + latest.invested.toLocaleString();
 document.getElementById("total-value").textContent    = "¥" + latest.value.toLocaleString();
 const pnlEl = document.getElementById("total-pnl");
