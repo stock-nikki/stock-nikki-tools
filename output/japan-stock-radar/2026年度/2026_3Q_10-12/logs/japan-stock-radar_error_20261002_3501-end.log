@@ -1,0 +1,1872 @@
+2026-10-02 08:52:33,854 [INFO] === 実行開始 (235銘柄) ===
+2026-10-02 08:52:34,350 [DEBUG] [TIME] 9414 info: 0.50s
+2026-10-02 08:52:34,350 [DEBUG] yfinance OK: 9414
+2026-10-02 08:52:34,567 [DEBUG] [TIME] 9414 income_stmt: 0.22s
+2026-10-02 08:52:34,783 [DEBUG] [TIME] 9414 balance_sheet: 0.22s
+2026-10-02 08:52:34,956 [DEBUG] [TIME] 9414 cashflow: 0.17s
+2026-10-02 08:52:35,337 [DEBUG] [TIME] 9414 dividends: 0.38s
+2026-10-02 08:52:35,338 [INFO] [DETAIL] 9414 日本ＢＳ放送: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:52:35,338 [INFO] [TIME] 9414 日本ＢＳ放送 処理時間: 1.48s
+2026-10-02 08:52:37,068 [DEBUG] [TIME] 9416 info: 0.28s
+2026-10-02 08:52:37,068 [DEBUG] yfinance OK: 9416
+2026-10-02 08:52:37,254 [DEBUG] [TIME] 9416 income_stmt: 0.19s
+2026-10-02 08:52:37,528 [DEBUG] [TIME] 9416 balance_sheet: 0.27s
+2026-10-02 08:52:37,671 [DEBUG] [TIME] 9416 cashflow: 0.14s
+2026-10-02 08:52:38,095 [DEBUG] [TIME] 9416 dividends: 0.42s
+2026-10-02 08:52:38,096 [INFO] [DETAIL] 9416 ビジョン: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:52:38,096 [INFO] [TIME] 9416 ビジョン 処理時間: 1.31s
+2026-10-02 08:52:39,891 [DEBUG] [TIME] 9417 info: 0.21s
+2026-10-02 08:52:39,891 [DEBUG] yfinance OK: 9417
+2026-10-02 08:52:40,033 [DEBUG] [TIME] 9417 income_stmt: 0.14s
+2026-10-02 08:52:40,295 [DEBUG] [TIME] 9417 balance_sheet: 0.26s
+2026-10-02 08:52:40,476 [DEBUG] [TIME] 9417 cashflow: 0.18s
+2026-10-02 08:52:40,720 [DEBUG] [TIME] 9417 dividends: 0.24s
+2026-10-02 08:52:40,721 [INFO] [DETAIL] 9417 スマートバリュー: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:52:40,721 [INFO] [TIME] 9417 スマートバリュー 処理時間: 1.04s
+2026-10-02 08:52:42,194 [DEBUG] [TIME] 9418 info: 0.22s
+2026-10-02 08:52:42,194 [DEBUG] yfinance OK: 9418
+2026-10-02 08:52:42,421 [DEBUG] [TIME] 9418 income_stmt: 0.23s
+2026-10-02 08:52:42,640 [DEBUG] [TIME] 9418 balance_sheet: 0.22s
+2026-10-02 08:52:42,820 [DEBUG] [TIME] 9418 cashflow: 0.18s
+2026-10-02 08:52:43,202 [DEBUG] [TIME] 9418 dividends: 0.38s
+2026-10-02 08:52:43,203 [INFO] [DETAIL] 9418 Ｕ－ＮＥＸＴ　ＨＯＬＤＩＮＧＳ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:52:43,203 [INFO] [TIME] 9418 Ｕ－ＮＥＸＴ　ＨＯＬＤＩＮＧＳ 処理時間: 1.23s
+2026-10-02 08:52:45,333 [DEBUG] [TIME] 9419 info: 0.21s
+2026-10-02 08:52:45,333 [DEBUG] yfinance OK: 9419
+2026-10-02 08:52:45,575 [DEBUG] [TIME] 9419 income_stmt: 0.24s
+2026-10-02 08:52:45,780 [DEBUG] [TIME] 9419 balance_sheet: 0.20s
+2026-10-02 08:52:46,044 [DEBUG] [TIME] 9419 cashflow: 0.26s
+2026-10-02 08:52:46,287 [DEBUG] [TIME] 9419 dividends: 0.24s
+2026-10-02 08:52:46,288 [INFO] [DETAIL] 9419 ワイヤレスゲート: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:52:46,288 [INFO] [TIME] 9419 ワイヤレスゲート 処理時間: 1.17s
+2026-10-02 08:52:48,454 [DEBUG] [TIME] 9421 info: 0.21s
+2026-10-02 08:52:48,454 [DEBUG] yfinance OK: 9421
+2026-10-02 08:52:48,654 [DEBUG] [TIME] 9421 income_stmt: 0.20s
+2026-10-02 08:52:48,839 [DEBUG] [TIME] 9421 balance_sheet: 0.18s
+2026-10-02 08:52:49,032 [DEBUG] [TIME] 9421 cashflow: 0.19s
+2026-10-02 08:52:49,349 [DEBUG] [TIME] 9421 dividends: 0.32s
+2026-10-02 08:52:49,349 [INFO] [DETAIL] 9421 エヌジェイホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:52:49,350 [INFO] [TIME] 9421 エヌジェイホールディングス 処理時間: 1.10s
+2026-10-02 08:52:50,599 [DEBUG] [TIME] 9423 info: 0.21s
+2026-10-02 08:52:50,599 [DEBUG] yfinance OK: 9423
+2026-10-02 08:52:50,737 [DEBUG] [TIME] 9423 income_stmt: 0.14s
+2026-10-02 08:52:51,026 [DEBUG] [TIME] 9423 balance_sheet: 0.29s
+2026-10-02 08:52:51,238 [DEBUG] [TIME] 9423 cashflow: 0.21s
+2026-10-02 08:52:51,904 [DEBUG] [TIME] 9423 dividends: 0.67s
+2026-10-02 08:52:51,904 [INFO] [DETAIL] 9423 フォーバル・リアルストレート: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:52:51,904 [INFO] [TIME] 9423 フォーバル・リアルストレート 処理時間: 1.51s
+2026-10-02 08:52:53,880 [DEBUG] [TIME] 9424 info: 0.22s
+2026-10-02 08:52:53,880 [DEBUG] yfinance OK: 9424
+2026-10-02 08:52:54,102 [DEBUG] [TIME] 9424 income_stmt: 0.22s
+2026-10-02 08:52:54,279 [DEBUG] [TIME] 9424 balance_sheet: 0.18s
+2026-10-02 08:52:54,495 [DEBUG] [TIME] 9424 cashflow: 0.22s
+2026-10-02 08:52:54,708 [DEBUG] [TIME] 9424 dividends: 0.21s
+2026-10-02 08:52:54,708 [INFO] [DETAIL] 9424 日本通信: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:52:54,708 [INFO] [TIME] 9424 日本通信 処理時間: 1.05s
+2026-10-02 08:52:56,790 [DEBUG] [TIME] 9425 info: 0.29s
+2026-10-02 08:52:56,790 [DEBUG] yfinance OK: 9425
+2026-10-02 08:52:56,991 [DEBUG] [TIME] 9425 income_stmt: 0.20s
+2026-10-02 08:52:57,258 [DEBUG] [TIME] 9425 balance_sheet: 0.27s
+2026-10-02 08:52:57,460 [DEBUG] [TIME] 9425 cashflow: 0.20s
+2026-10-02 08:52:57,702 [DEBUG] [TIME] 9425 dividends: 0.24s
+2026-10-02 08:52:57,702 [INFO] [DETAIL] 9425 ＲｅＹｕｕ　Ｊａｐａｎ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:52:57,702 [INFO] [TIME] 9425 ＲｅＹｕｕ　Ｊａｐａｎ 処理時間: 1.20s
+2026-10-02 08:52:58,994 [DEBUG] [TIME] 9428 info: 0.22s
+2026-10-02 08:52:58,995 [DEBUG] yfinance OK: 9428
+2026-10-02 08:52:59,185 [DEBUG] [TIME] 9428 income_stmt: 0.19s
+2026-10-02 08:52:59,498 [DEBUG] [TIME] 9428 balance_sheet: 0.31s
+2026-10-02 08:52:59,736 [DEBUG] [TIME] 9428 cashflow: 0.24s
+2026-10-02 08:53:00,140 [DEBUG] [TIME] 9428 dividends: 0.40s
+2026-10-02 08:53:00,141 [INFO] [DETAIL] 9428 クロップス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:00,141 [INFO] [TIME] 9428 クロップス 処理時間: 1.36s
+2026-10-02 08:53:02,317 [DEBUG] [TIME] 9432 info: 0.25s
+2026-10-02 08:53:02,317 [DEBUG] yfinance OK: 9432
+2026-10-02 08:53:02,515 [DEBUG] [TIME] 9432 income_stmt: 0.20s
+2026-10-02 08:53:02,671 [DEBUG] [TIME] 9432 balance_sheet: 0.16s
+2026-10-02 08:53:02,825 [DEBUG] [TIME] 9432 cashflow: 0.15s
+2026-10-02 08:53:03,334 [DEBUG] [TIME] 9432 dividends: 0.51s
+2026-10-02 08:53:03,335 [INFO] [DETAIL] 9432 ＮＴＴ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:03,335 [INFO] [TIME] 9432 ＮＴＴ 処理時間: 1.27s
+2026-10-02 08:53:05,206 [DEBUG] [TIME] 9433 info: 0.23s
+2026-10-02 08:53:05,206 [DEBUG] yfinance OK: 9433
+2026-10-02 08:53:05,343 [DEBUG] [TIME] 9433 income_stmt: 0.14s
+2026-10-02 08:53:05,491 [DEBUG] [TIME] 9433 balance_sheet: 0.15s
+2026-10-02 08:53:05,771 [DEBUG] [TIME] 9433 cashflow: 0.28s
+2026-10-02 08:53:06,239 [DEBUG] [TIME] 9433 dividends: 0.47s
+2026-10-02 08:53:06,239 [INFO] [DETAIL] 9433 ＫＤＤＩ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:06,240 [INFO] [TIME] 9433 ＫＤＤＩ 処理時間: 1.26s
+2026-10-02 08:53:08,106 [DEBUG] [TIME] 9434 info: 0.28s
+2026-10-02 08:53:08,106 [DEBUG] yfinance OK: 9434
+2026-10-02 08:53:08,304 [DEBUG] [TIME] 9434 income_stmt: 0.20s
+2026-10-02 08:53:08,513 [DEBUG] [TIME] 9434 balance_sheet: 0.21s
+2026-10-02 08:53:08,738 [DEBUG] [TIME] 9434 cashflow: 0.22s
+2026-10-02 08:53:09,041 [DEBUG] [TIME] 9434 dividends: 0.30s
+2026-10-02 08:53:09,041 [INFO] [DETAIL] 9434 ソフトバンク: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:09,041 [INFO] [TIME] 9434 ソフトバンク 処理時間: 1.22s
+2026-10-02 08:53:10,930 [DEBUG] [TIME] 94345 info: 0.21s
+2026-10-02 08:53:10,930 [DEBUG] yfinance OK: 94345
+2026-10-02 08:53:11,155 [DEBUG] [TIME] 94345 income_stmt: 0.23s
+2026-10-02 08:53:11,416 [DEBUG] [TIME] 94345 balance_sheet: 0.26s
+2026-10-02 08:53:11,696 [DEBUG] [TIME] 94345 cashflow: 0.28s
+2026-10-02 08:53:11,948 [DEBUG] [TIME] 94345 dividends: 0.25s
+2026-10-02 08:53:11,949 [INFO] [DETAIL] 94345 ソフトバンク第１回社債型種類株式: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:11,949 [INFO] [TIME] 94345 ソフトバンク第１回社債型種類株式 処理時間: 1.23s
+2026-10-02 08:53:14,142 [DEBUG] [TIME] 94346 info: 0.23s
+2026-10-02 08:53:14,142 [DEBUG] yfinance OK: 94346
+2026-10-02 08:53:14,360 [DEBUG] [TIME] 94346 income_stmt: 0.22s
+2026-10-02 08:53:14,583 [DEBUG] [TIME] 94346 balance_sheet: 0.22s
+2026-10-02 08:53:14,834 [DEBUG] [TIME] 94346 cashflow: 0.25s
+2026-10-02 08:53:15,007 [DEBUG] [TIME] 94346 dividends: 0.17s
+2026-10-02 08:53:15,008 [INFO] [DETAIL] 94346 ソフトバンク第２回社債型種類株式: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:15,008 [INFO] [TIME] 94346 ソフトバンク第２回社債型種類株式 処理時間: 1.10s
+2026-10-02 08:53:16,470 [DEBUG] [TIME] 9435 info: 0.29s
+2026-10-02 08:53:16,470 [DEBUG] yfinance OK: 9435
+2026-10-02 08:53:16,724 [DEBUG] [TIME] 9435 income_stmt: 0.25s
+2026-10-02 08:53:16,997 [DEBUG] [TIME] 9435 balance_sheet: 0.27s
+2026-10-02 08:53:17,209 [DEBUG] [TIME] 9435 cashflow: 0.21s
+2026-10-02 08:53:17,598 [DEBUG] [TIME] 9435 dividends: 0.39s
+2026-10-02 08:53:17,599 [INFO] [DETAIL] 9435 光通信: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:17,599 [INFO] [TIME] 9435 光通信 処理時間: 1.42s
+2026-10-02 08:53:19,877 [DEBUG] [TIME] 9436 info: 0.28s
+2026-10-02 08:53:19,877 [DEBUG] yfinance OK: 9436
+2026-10-02 08:53:20,060 [DEBUG] [TIME] 9436 income_stmt: 0.18s
+2026-10-02 08:53:20,286 [DEBUG] [TIME] 9436 balance_sheet: 0.23s
+2026-10-02 08:53:20,464 [DEBUG] [TIME] 9436 cashflow: 0.18s
+2026-10-02 08:53:20,863 [DEBUG] [TIME] 9436 dividends: 0.40s
+2026-10-02 08:53:20,864 [INFO] [DETAIL] 9436 沖縄セルラー電話: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:20,865 [INFO] [TIME] 9436 沖縄セルラー電話 処理時間: 1.27s
+2026-10-02 08:53:22,621 [DEBUG] [TIME] 9438 info: 0.28s
+2026-10-02 08:53:22,621 [DEBUG] yfinance OK: 9438
+2026-10-02 08:53:22,777 [DEBUG] [TIME] 9438 income_stmt: 0.16s
+2026-10-02 08:53:23,039 [DEBUG] [TIME] 9438 balance_sheet: 0.26s
+2026-10-02 08:53:23,293 [DEBUG] [TIME] 9438 cashflow: 0.25s
+2026-10-02 08:53:23,651 [DEBUG] [TIME] 9438 dividends: 0.36s
+2026-10-02 08:53:23,652 [INFO] [DETAIL] 9438 エムティーアイ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:23,652 [INFO] [TIME] 9438 エムティーアイ 処理時間: 1.31s
+2026-10-02 08:53:25,421 [DEBUG] [TIME] 9439 info: 0.22s
+2026-10-02 08:53:25,421 [DEBUG] yfinance OK: 9439
+2026-10-02 08:53:25,584 [DEBUG] [TIME] 9439 income_stmt: 0.16s
+2026-10-02 08:53:25,785 [DEBUG] [TIME] 9439 balance_sheet: 0.20s
+2026-10-02 08:53:25,969 [DEBUG] [TIME] 9439 cashflow: 0.18s
+2026-10-02 08:53:26,338 [DEBUG] [TIME] 9439 dividends: 0.37s
+2026-10-02 08:53:26,339 [INFO] [DETAIL] 9439 エム・エイチ・グループ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:26,339 [INFO] [TIME] 9439 エム・エイチ・グループ 処理時間: 1.14s
+2026-10-02 08:53:27,967 [DEBUG] [TIME] 9441 info: 0.22s
+2026-10-02 08:53:27,967 [DEBUG] yfinance OK: 9441
+2026-10-02 08:53:28,203 [DEBUG] [TIME] 9441 income_stmt: 0.24s
+2026-10-02 08:53:28,482 [DEBUG] [TIME] 9441 balance_sheet: 0.28s
+2026-10-02 08:53:28,651 [DEBUG] [TIME] 9441 cashflow: 0.17s
+2026-10-02 08:53:29,093 [DEBUG] [TIME] 9441 dividends: 0.44s
+2026-10-02 08:53:29,094 [INFO] [DETAIL] 9441 ベルパーク: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:29,094 [INFO] [TIME] 9441 ベルパーク 処理時間: 1.35s
+2026-10-02 08:53:31,307 [DEBUG] [TIME] 9444 info: 0.24s
+2026-10-02 08:53:31,307 [DEBUG] yfinance OK: 9444
+2026-10-02 08:53:31,461 [DEBUG] [TIME] 9444 income_stmt: 0.15s
+2026-10-02 08:53:31,725 [DEBUG] [TIME] 9444 balance_sheet: 0.26s
+2026-10-02 08:53:31,923 [DEBUG] [TIME] 9444 cashflow: 0.20s
+2026-10-02 08:53:32,280 [DEBUG] [TIME] 9444 dividends: 0.36s
+2026-10-02 08:53:32,281 [INFO] [DETAIL] 9444 トーシンホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:32,281 [INFO] [TIME] 9444 トーシンホールディングス 処理時間: 1.21s
+2026-10-02 08:53:34,209 [DEBUG] [TIME] 9445 info: 0.22s
+2026-10-02 08:53:34,209 [DEBUG] yfinance OK: 9445
+2026-10-02 08:53:34,407 [DEBUG] [TIME] 9445 income_stmt: 0.20s
+2026-10-02 08:53:34,662 [DEBUG] [TIME] 9445 balance_sheet: 0.25s
+2026-10-02 08:53:35,225 [DEBUG] [TIME] 9445 cashflow: 0.56s
+2026-10-02 08:53:35,615 [DEBUG] [TIME] 9445 dividends: 0.39s
+2026-10-02 08:53:35,616 [INFO] [DETAIL] 9445 フォーバルテレコム: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:35,616 [INFO] [TIME] 9445 フォーバルテレコム 処理時間: 1.62s
+2026-10-02 08:53:37,606 [DEBUG] [TIME] 9446 info: 0.22s
+2026-10-02 08:53:37,606 [DEBUG] yfinance OK: 9446
+2026-10-02 08:53:37,774 [DEBUG] [TIME] 9446 income_stmt: 0.17s
+2026-10-02 08:53:38,032 [DEBUG] [TIME] 9446 balance_sheet: 0.26s
+2026-10-02 08:53:38,230 [DEBUG] [TIME] 9446 cashflow: 0.20s
+2026-10-02 08:53:38,702 [DEBUG] [TIME] 9446 dividends: 0.47s
+2026-10-02 08:53:38,703 [INFO] [DETAIL] 9446 サカイホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:38,703 [INFO] [TIME] 9446 サカイホールディングス 処理時間: 1.32s
+2026-10-02 08:53:40,339 [DEBUG] [TIME] 9449 info: 0.26s
+2026-10-02 08:53:40,339 [DEBUG] yfinance OK: 9449
+2026-10-02 08:53:40,573 [DEBUG] [TIME] 9449 income_stmt: 0.23s
+2026-10-02 08:53:40,819 [DEBUG] [TIME] 9449 balance_sheet: 0.25s
+2026-10-02 08:53:41,067 [DEBUG] [TIME] 9449 cashflow: 0.25s
+2026-10-02 08:53:41,566 [DEBUG] [TIME] 9449 dividends: 0.50s
+2026-10-02 08:53:41,567 [INFO] [DETAIL] 9449 ＧＭＯインターネットグループ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:41,567 [INFO] [TIME] 9449 ＧＭＯインターネットグループ 処理時間: 1.49s
+2026-10-02 08:53:43,619 [DEBUG] [TIME] 9450 info: 0.21s
+2026-10-02 08:53:43,619 [DEBUG] yfinance OK: 9450
+2026-10-02 08:53:43,806 [DEBUG] [TIME] 9450 income_stmt: 0.19s
+2026-10-02 08:53:43,995 [DEBUG] [TIME] 9450 balance_sheet: 0.19s
+2026-10-02 08:53:44,213 [DEBUG] [TIME] 9450 cashflow: 0.22s
+2026-10-02 08:53:44,486 [DEBUG] [TIME] 9450 dividends: 0.27s
+2026-10-02 08:53:44,487 [INFO] [DETAIL] 9450 ファイバーゲート: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:44,487 [INFO] [TIME] 9450 ファイバーゲート 処理時間: 1.08s
+2026-10-02 08:53:46,050 [DEBUG] [TIME] 9466 info: 0.31s
+2026-10-02 08:53:46,050 [DEBUG] yfinance OK: 9466
+2026-10-02 08:53:46,268 [DEBUG] [TIME] 9466 income_stmt: 0.22s
+2026-10-02 08:53:46,501 [DEBUG] [TIME] 9466 balance_sheet: 0.23s
+2026-10-02 08:53:46,693 [DEBUG] [TIME] 9466 cashflow: 0.19s
+2026-10-02 08:53:46,966 [DEBUG] [TIME] 9466 dividends: 0.27s
+2026-10-02 08:53:46,967 [INFO] [DETAIL] 9466 アイドママーケティングコミュニケーション: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:46,967 [INFO] [TIME] 9466 アイドママーケティングコミュニケーション 処理時間: 1.22s
+2026-10-02 08:53:48,189 [DEBUG] [TIME] 9467 info: 0.21s
+2026-10-02 08:53:48,190 [DEBUG] yfinance OK: 9467
+2026-10-02 08:53:48,414 [DEBUG] [TIME] 9467 income_stmt: 0.22s
+2026-10-02 08:53:48,681 [DEBUG] [TIME] 9467 balance_sheet: 0.27s
+2026-10-02 08:53:48,866 [DEBUG] [TIME] 9467 cashflow: 0.18s
+2026-10-02 08:53:49,226 [DEBUG] [TIME] 9467 dividends: 0.36s
+2026-10-02 08:53:49,227 [INFO] [DETAIL] 9467 アルファポリス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:49,227 [INFO] [TIME] 9467 アルファポリス 処理時間: 1.25s
+2026-10-02 08:53:50,927 [DEBUG] [TIME] 9468 info: 0.40s
+2026-10-02 08:53:50,927 [DEBUG] yfinance OK: 9468
+2026-10-02 08:53:51,185 [DEBUG] [TIME] 9468 income_stmt: 0.26s
+2026-10-02 08:53:51,450 [DEBUG] [TIME] 9468 balance_sheet: 0.26s
+2026-10-02 08:53:51,708 [DEBUG] [TIME] 9468 cashflow: 0.26s
+2026-10-02 08:53:51,932 [DEBUG] [TIME] 9468 dividends: 0.22s
+2026-10-02 08:53:51,933 [INFO] [DETAIL] 9468 ＫＡＤＯＫＡＷＡ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:51,933 [INFO] [TIME] 9468 ＫＡＤＯＫＡＷＡ 処理時間: 1.41s
+2026-10-02 08:53:53,530 [DEBUG] [TIME] 9470 info: 0.21s
+2026-10-02 08:53:53,531 [DEBUG] yfinance OK: 9470
+2026-10-02 08:53:53,692 [DEBUG] [TIME] 9470 income_stmt: 0.16s
+2026-10-02 08:53:53,974 [DEBUG] [TIME] 9470 balance_sheet: 0.28s
+2026-10-02 08:53:54,121 [DEBUG] [TIME] 9470 cashflow: 0.15s
+2026-10-02 08:53:54,520 [DEBUG] [TIME] 9470 dividends: 0.40s
+2026-10-02 08:53:54,521 [INFO] [DETAIL] 9470 学研ホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:54,521 [INFO] [TIME] 9470 学研ホールディングス 処理時間: 1.21s
+2026-10-02 08:53:56,198 [DEBUG] [TIME] 9474 info: 0.28s
+2026-10-02 08:53:56,198 [DEBUG] yfinance OK: 9474
+2026-10-02 08:53:56,403 [DEBUG] [TIME] 9474 income_stmt: 0.20s
+2026-10-02 08:53:56,697 [DEBUG] [TIME] 9474 balance_sheet: 0.29s
+2026-10-02 08:53:56,986 [DEBUG] [TIME] 9474 cashflow: 0.29s
+2026-10-02 08:53:57,469 [DEBUG] [TIME] 9474 dividends: 0.48s
+2026-10-02 08:53:57,470 [INFO] [DETAIL] 9474 ゼンリン: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:57,470 [INFO] [TIME] 9474 ゼンリン 処理時間: 1.55s
+2026-10-02 08:53:58,754 [DEBUG] [TIME] 9475 info: 0.21s
+2026-10-02 08:53:58,754 [DEBUG] yfinance OK: 9475
+2026-10-02 08:53:59,017 [DEBUG] [TIME] 9475 income_stmt: 0.26s
+2026-10-02 08:53:59,276 [DEBUG] [TIME] 9475 balance_sheet: 0.26s
+2026-10-02 08:53:59,569 [DEBUG] [TIME] 9475 cashflow: 0.29s
+2026-10-02 08:53:59,987 [DEBUG] [TIME] 9475 dividends: 0.42s
+2026-10-02 08:53:59,988 [INFO] [DETAIL] 9475 昭文社ホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:53:59,988 [INFO] [TIME] 9475 昭文社ホールディングス 処理時間: 1.44s
+2026-10-02 08:54:01,762 [DEBUG] [TIME] 9476 info: 0.21s
+2026-10-02 08:54:01,762 [DEBUG] yfinance OK: 9476
+2026-10-02 08:54:01,925 [DEBUG] [TIME] 9476 income_stmt: 0.16s
+2026-10-02 08:54:02,154 [DEBUG] [TIME] 9476 balance_sheet: 0.23s
+2026-10-02 08:54:02,318 [DEBUG] [TIME] 9476 cashflow: 0.16s
+2026-10-02 08:54:02,668 [DEBUG] [TIME] 9476 dividends: 0.35s
+2026-10-02 08:54:02,669 [INFO] [DETAIL] 9476 中央経済社ホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:02,669 [INFO] [TIME] 9476 中央経済社ホールディングス 処理時間: 1.12s
+2026-10-02 08:54:04,882 [DEBUG] [TIME] 9478 info: 0.25s
+2026-10-02 08:54:04,882 [DEBUG] yfinance OK: 9478
+2026-10-02 08:54:05,034 [DEBUG] [TIME] 9478 income_stmt: 0.15s
+2026-10-02 08:54:05,215 [DEBUG] [TIME] 9478 balance_sheet: 0.18s
+2026-10-02 08:54:05,424 [DEBUG] [TIME] 9478 cashflow: 0.21s
+2026-10-02 08:54:05,805 [DEBUG] [TIME] 9478 dividends: 0.38s
+2026-10-02 08:54:05,806 [INFO] [DETAIL] 9478 ＳＥホールディングス・アンド・インキュベーションズ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:05,806 [INFO] [TIME] 9478 ＳＥホールディングス・アンド・インキュベーションズ 処理時間: 1.17s
+2026-10-02 08:54:07,463 [DEBUG] [TIME] 9501 info: 0.28s
+2026-10-02 08:54:07,463 [DEBUG] yfinance OK: 9501
+2026-10-02 08:54:07,674 [DEBUG] [TIME] 9501 income_stmt: 0.21s
+2026-10-02 08:54:07,867 [DEBUG] [TIME] 9501 balance_sheet: 0.19s
+2026-10-02 08:54:08,114 [DEBUG] [TIME] 9501 cashflow: 0.25s
+2026-10-02 08:54:08,373 [DEBUG] [TIME] 9501 dividends: 0.26s
+2026-10-02 08:54:08,374 [INFO] [DETAIL] 9501 東京電力ホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:08,374 [INFO] [TIME] 9501 東京電力ホールディングス 処理時間: 1.19s
+2026-10-02 08:54:10,191 [DEBUG] [TIME] 9502 info: 0.28s
+2026-10-02 08:54:10,191 [DEBUG] yfinance OK: 9502
+2026-10-02 08:54:10,427 [DEBUG] [TIME] 9502 income_stmt: 0.24s
+2026-10-02 08:54:10,659 [DEBUG] [TIME] 9502 balance_sheet: 0.23s
+2026-10-02 08:54:10,833 [DEBUG] [TIME] 9502 cashflow: 0.17s
+2026-10-02 08:54:11,331 [DEBUG] [TIME] 9502 dividends: 0.50s
+2026-10-02 08:54:11,332 [INFO] [DETAIL] 9502 中部電力: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:11,332 [INFO] [TIME] 9502 中部電力 処理時間: 1.43s
+2026-10-02 08:54:13,542 [DEBUG] [TIME] 9503 info: 0.21s
+2026-10-02 08:54:13,543 [DEBUG] yfinance OK: 9503
+2026-10-02 08:54:13,775 [DEBUG] [TIME] 9503 income_stmt: 0.23s
+2026-10-02 08:54:14,064 [DEBUG] [TIME] 9503 balance_sheet: 0.29s
+2026-10-02 08:54:14,315 [DEBUG] [TIME] 9503 cashflow: 0.25s
+2026-10-02 08:54:14,677 [DEBUG] [TIME] 9503 dividends: 0.36s
+2026-10-02 08:54:14,678 [INFO] [DETAIL] 9503 関西電力: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:14,678 [INFO] [TIME] 9503 関西電力 処理時間: 1.35s
+2026-10-02 08:54:16,465 [DEBUG] [TIME] 9504 info: 0.29s
+2026-10-02 08:54:16,465 [DEBUG] yfinance OK: 9504
+2026-10-02 08:54:16,650 [DEBUG] [TIME] 9504 income_stmt: 0.18s
+2026-10-02 08:54:16,947 [DEBUG] [TIME] 9504 balance_sheet: 0.30s
+2026-10-02 08:54:17,113 [DEBUG] [TIME] 9504 cashflow: 0.17s
+2026-10-02 08:54:17,603 [DEBUG] [TIME] 9504 dividends: 0.49s
+2026-10-02 08:54:17,604 [INFO] [DETAIL] 9504 中国電力: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:17,604 [INFO] [TIME] 9504 中国電力 処理時間: 1.43s
+2026-10-02 08:54:19,677 [DEBUG] [TIME] 9505 info: 0.21s
+2026-10-02 08:54:19,677 [DEBUG] yfinance OK: 9505
+2026-10-02 08:54:19,878 [DEBUG] [TIME] 9505 income_stmt: 0.20s
+2026-10-02 08:54:20,111 [DEBUG] [TIME] 9505 balance_sheet: 0.23s
+2026-10-02 08:54:20,264 [DEBUG] [TIME] 9505 cashflow: 0.15s
+2026-10-02 08:54:20,595 [DEBUG] [TIME] 9505 dividends: 0.33s
+2026-10-02 08:54:20,596 [INFO] [DETAIL] 9505 北陸電力: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:20,596 [INFO] [TIME] 9505 北陸電力 処理時間: 1.13s
+2026-10-02 08:54:22,048 [DEBUG] [TIME] 9506 info: 0.21s
+2026-10-02 08:54:22,048 [DEBUG] yfinance OK: 9506
+2026-10-02 08:54:22,219 [DEBUG] [TIME] 9506 income_stmt: 0.17s
+2026-10-02 08:54:22,474 [DEBUG] [TIME] 9506 balance_sheet: 0.25s
+2026-10-02 08:54:22,656 [DEBUG] [TIME] 9506 cashflow: 0.18s
+2026-10-02 08:54:23,029 [DEBUG] [TIME] 9506 dividends: 0.37s
+2026-10-02 08:54:23,030 [INFO] [DETAIL] 9506 東北電力: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:23,030 [INFO] [TIME] 9506 東北電力 処理時間: 1.19s
+2026-10-02 08:54:25,237 [DEBUG] [TIME] 9507 info: 0.22s
+2026-10-02 08:54:25,237 [DEBUG] yfinance OK: 9507
+2026-10-02 08:54:25,433 [DEBUG] [TIME] 9507 income_stmt: 0.20s
+2026-10-02 08:54:25,665 [DEBUG] [TIME] 9507 balance_sheet: 0.23s
+2026-10-02 08:54:25,845 [DEBUG] [TIME] 9507 cashflow: 0.18s
+2026-10-02 08:54:26,250 [DEBUG] [TIME] 9507 dividends: 0.40s
+2026-10-02 08:54:26,250 [INFO] [DETAIL] 9507 四国電力: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:26,251 [INFO] [TIME] 9507 四国電力 処理時間: 1.24s
+2026-10-02 08:54:28,042 [DEBUG] [TIME] 9508 info: 0.22s
+2026-10-02 08:54:28,042 [DEBUG] yfinance OK: 9508
+2026-10-02 08:54:28,284 [DEBUG] [TIME] 9508 income_stmt: 0.24s
+2026-10-02 08:54:28,676 [DEBUG] [TIME] 9508 balance_sheet: 0.39s
+2026-10-02 08:54:28,877 [DEBUG] [TIME] 9508 cashflow: 0.20s
+2026-10-02 08:54:29,216 [DEBUG] [TIME] 9508 dividends: 0.34s
+2026-10-02 08:54:29,217 [INFO] [DETAIL] 9508 九州電力: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:29,217 [INFO] [TIME] 9508 九州電力 処理時間: 1.40s
+2026-10-02 08:54:30,977 [DEBUG] [TIME] 9509 info: 0.22s
+2026-10-02 08:54:30,977 [DEBUG] yfinance OK: 9509
+2026-10-02 08:54:31,200 [DEBUG] [TIME] 9509 income_stmt: 0.22s
+2026-10-02 08:54:31,496 [DEBUG] [TIME] 9509 balance_sheet: 0.30s
+2026-10-02 08:54:31,656 [DEBUG] [TIME] 9509 cashflow: 0.16s
+2026-10-02 08:54:32,005 [DEBUG] [TIME] 9509 dividends: 0.35s
+2026-10-02 08:54:32,006 [INFO] [DETAIL] 9509 北海道電力: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:32,006 [INFO] [TIME] 9509 北海道電力 処理時間: 1.25s
+2026-10-02 08:54:33,969 [DEBUG] [TIME] 9511 info: 0.22s
+2026-10-02 08:54:33,969 [DEBUG] yfinance OK: 9511
+2026-10-02 08:54:34,174 [DEBUG] [TIME] 9511 income_stmt: 0.21s
+2026-10-02 08:54:34,389 [DEBUG] [TIME] 9511 balance_sheet: 0.21s
+2026-10-02 08:54:34,543 [DEBUG] [TIME] 9511 cashflow: 0.15s
+2026-10-02 08:54:34,921 [DEBUG] [TIME] 9511 dividends: 0.38s
+2026-10-02 08:54:34,921 [INFO] [DETAIL] 9511 沖縄電力: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:34,922 [INFO] [TIME] 9511 沖縄電力 処理時間: 1.18s
+2026-10-02 08:54:36,337 [DEBUG] [TIME] 9513 info: 0.28s
+2026-10-02 08:54:36,337 [DEBUG] yfinance OK: 9513
+2026-10-02 08:54:36,547 [DEBUG] [TIME] 9513 income_stmt: 0.21s
+2026-10-02 08:54:36,808 [DEBUG] [TIME] 9513 balance_sheet: 0.26s
+2026-10-02 08:54:36,970 [DEBUG] [TIME] 9513 cashflow: 0.16s
+2026-10-02 08:54:37,341 [DEBUG] [TIME] 9513 dividends: 0.37s
+2026-10-02 08:54:37,342 [INFO] [DETAIL] 9513 電源開発: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:37,342 [INFO] [TIME] 9513 電源開発 処理時間: 1.28s
+2026-10-02 08:54:39,306 [DEBUG] [TIME] 9514 info: 0.34s
+2026-10-02 08:54:39,306 [DEBUG] yfinance OK: 9514
+2026-10-02 08:54:39,512 [DEBUG] [TIME] 9514 income_stmt: 0.21s
+2026-10-02 08:54:39,756 [DEBUG] [TIME] 9514 balance_sheet: 0.24s
+2026-10-02 08:54:39,932 [DEBUG] [TIME] 9514 cashflow: 0.18s
+2026-10-02 08:54:40,360 [DEBUG] [TIME] 9514 dividends: 0.43s
+2026-10-02 08:54:40,361 [INFO] [DETAIL] 9514 エフオン: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:40,361 [INFO] [TIME] 9514 エフオン 処理時間: 1.40s
+2026-10-02 08:54:41,586 [DEBUG] [TIME] 9517 info: 0.21s
+2026-10-02 08:54:41,586 [DEBUG] yfinance OK: 9517
+2026-10-02 08:54:41,795 [DEBUG] [TIME] 9517 income_stmt: 0.21s
+2026-10-02 08:54:42,040 [DEBUG] [TIME] 9517 balance_sheet: 0.24s
+2026-10-02 08:54:42,263 [DEBUG] [TIME] 9517 cashflow: 0.22s
+2026-10-02 08:54:42,580 [DEBUG] [TIME] 9517 dividends: 0.32s
+2026-10-02 08:54:42,581 [INFO] [DETAIL] 9517 イーレックス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:42,581 [INFO] [TIME] 9517 イーレックス 処理時間: 1.20s
+2026-10-02 08:54:44,496 [DEBUG] [TIME] 9519 info: 0.22s
+2026-10-02 08:54:44,496 [DEBUG] yfinance OK: 9519
+2026-10-02 08:54:44,670 [DEBUG] [TIME] 9519 income_stmt: 0.17s
+2026-10-02 08:54:44,829 [DEBUG] [TIME] 9519 balance_sheet: 0.16s
+2026-10-02 08:54:45,007 [DEBUG] [TIME] 9519 cashflow: 0.18s
+2026-10-02 08:54:45,254 [DEBUG] [TIME] 9519 dividends: 0.25s
+2026-10-02 08:54:45,254 [INFO] [DETAIL] 9519 レノバ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:54:45,254 [INFO] [TIME] 9519 レノバ 処理時間: 0.98s
+2026-10-02 08:54:47,184 [DEBUG] [TIME] 9531 info: 0.28s
+2026-10-02 08:54:47,184 [DEBUG] yfinance OK: 9531
+2026-10-02 08:54:47,377 [DEBUG] [TIME] 9531 income_stmt: 0.19s
+2026-10-02 08:54:47,575 [DEBUG] [TIME] 9531 balance_sheet: 0.20s
+2026-10-02 08:54:47,776 [DEBUG] [TIME] 9531 cashflow: 0.20s
+2026-10-02 08:54:48,109 [DEBUG] [TIME] 9531 dividends: 0.33s
+2026-10-02 08:54:48,110 [INFO] [DETAIL] 9531 東京瓦斯: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:48,110 [INFO] [TIME] 9531 東京瓦斯 処理時間: 1.21s
+2026-10-02 08:54:49,453 [DEBUG] [TIME] 9532 info: 0.22s
+2026-10-02 08:54:49,453 [DEBUG] yfinance OK: 9532
+2026-10-02 08:54:49,638 [DEBUG] [TIME] 9532 income_stmt: 0.18s
+2026-10-02 08:54:49,851 [DEBUG] [TIME] 9532 balance_sheet: 0.21s
+2026-10-02 08:54:50,096 [DEBUG] [TIME] 9532 cashflow: 0.24s
+2026-10-02 08:54:50,500 [DEBUG] [TIME] 9532 dividends: 0.40s
+2026-10-02 08:54:50,501 [INFO] [DETAIL] 9532 大阪瓦斯: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:50,501 [INFO] [TIME] 9532 大阪瓦斯 処理時間: 1.26s
+2026-10-02 08:54:51,867 [DEBUG] [TIME] 9533 info: 0.32s
+2026-10-02 08:54:51,867 [DEBUG] yfinance OK: 9533
+2026-10-02 08:54:52,057 [DEBUG] [TIME] 9533 income_stmt: 0.19s
+2026-10-02 08:54:52,322 [DEBUG] [TIME] 9533 balance_sheet: 0.27s
+2026-10-02 08:54:52,500 [DEBUG] [TIME] 9533 cashflow: 0.18s
+2026-10-02 08:54:52,836 [DEBUG] [TIME] 9533 dividends: 0.34s
+2026-10-02 08:54:52,837 [INFO] [DETAIL] 9533 東邦瓦斯: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:52,837 [INFO] [TIME] 9533 東邦瓦斯 処理時間: 1.29s
+2026-10-02 08:54:54,694 [DEBUG] [TIME] 9534 info: 0.29s
+2026-10-02 08:54:54,694 [DEBUG] yfinance OK: 9534
+2026-10-02 08:54:54,914 [DEBUG] [TIME] 9534 income_stmt: 0.22s
+2026-10-02 08:54:55,113 [DEBUG] [TIME] 9534 balance_sheet: 0.20s
+2026-10-02 08:54:55,308 [DEBUG] [TIME] 9534 cashflow: 0.19s
+2026-10-02 08:54:55,711 [DEBUG] [TIME] 9534 dividends: 0.40s
+2026-10-02 08:54:55,712 [INFO] [DETAIL] 9534 北海道瓦斯: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:55,712 [INFO] [TIME] 9534 北海道瓦斯 処理時間: 1.31s
+2026-10-02 08:54:57,011 [DEBUG] [TIME] 9535 info: 0.21s
+2026-10-02 08:54:57,011 [DEBUG] yfinance OK: 9535
+2026-10-02 08:54:57,198 [DEBUG] [TIME] 9535 income_stmt: 0.19s
+2026-10-02 08:54:57,509 [DEBUG] [TIME] 9535 balance_sheet: 0.31s
+2026-10-02 08:54:57,656 [DEBUG] [TIME] 9535 cashflow: 0.15s
+2026-10-02 08:54:58,030 [DEBUG] [TIME] 9535 dividends: 0.37s
+2026-10-02 08:54:58,031 [INFO] [DETAIL] 9535 広島ガス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:54:58,031 [INFO] [TIME] 9535 広島ガス 処理時間: 1.23s
+2026-10-02 08:54:59,495 [DEBUG] [TIME] 9536 info: 0.28s
+2026-10-02 08:54:59,495 [DEBUG] yfinance OK: 9536
+2026-10-02 08:54:59,806 [DEBUG] [TIME] 9536 income_stmt: 0.31s
+2026-10-02 08:54:59,978 [DEBUG] [TIME] 9536 balance_sheet: 0.17s
+2026-10-02 08:55:00,231 [DEBUG] [TIME] 9536 cashflow: 0.25s
+2026-10-02 08:55:00,627 [DEBUG] [TIME] 9536 dividends: 0.39s
+2026-10-02 08:55:00,627 [INFO] [DETAIL] 9536 西部ガスホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:00,628 [INFO] [TIME] 9536 西部ガスホールディングス 処理時間: 1.41s
+2026-10-02 08:55:02,219 [DEBUG] [TIME] 9537 info: 0.24s
+2026-10-02 08:55:02,220 [DEBUG] yfinance OK: 9537
+2026-10-02 08:55:02,424 [DEBUG] [TIME] 9537 income_stmt: 0.20s
+2026-10-02 08:55:02,615 [DEBUG] [TIME] 9537 balance_sheet: 0.19s
+2026-10-02 08:55:02,780 [DEBUG] [TIME] 9537 cashflow: 0.16s
+2026-10-02 08:55:03,157 [DEBUG] [TIME] 9537 dividends: 0.38s
+2026-10-02 08:55:03,158 [INFO] [DETAIL] 9537 北陸瓦斯: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:03,158 [INFO] [TIME] 9537 北陸瓦斯 処理時間: 1.18s
+2026-10-02 08:55:04,684 [DEBUG] [TIME] 9539 info: 0.21s
+2026-10-02 08:55:04,684 [DEBUG] yfinance OK: 9539
+2026-10-02 08:55:04,886 [DEBUG] [TIME] 9539 income_stmt: 0.20s
+2026-10-02 08:55:05,058 [DEBUG] [TIME] 9539 balance_sheet: 0.17s
+2026-10-02 08:55:05,265 [DEBUG] [TIME] 9539 cashflow: 0.21s
+2026-10-02 08:55:05,588 [DEBUG] [TIME] 9539 dividends: 0.32s
+2026-10-02 08:55:05,589 [INFO] [DETAIL] 9539 京葉瓦斯: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:05,589 [INFO] [TIME] 9539 京葉瓦斯 処理時間: 1.12s
+2026-10-02 08:55:07,735 [DEBUG] [TIME] 9543 info: 0.23s
+2026-10-02 08:55:07,735 [DEBUG] yfinance OK: 9543
+2026-10-02 08:55:07,930 [DEBUG] [TIME] 9543 income_stmt: 0.19s
+2026-10-02 08:55:08,197 [DEBUG] [TIME] 9543 balance_sheet: 0.27s
+2026-10-02 08:55:08,362 [DEBUG] [TIME] 9543 cashflow: 0.16s
+2026-10-02 08:55:08,745 [DEBUG] [TIME] 9543 dividends: 0.38s
+2026-10-02 08:55:08,745 [INFO] [DETAIL] 9543 静岡ガス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:08,746 [INFO] [TIME] 9543 静岡ガス 処理時間: 1.24s
+2026-10-02 08:55:10,412 [DEBUG] [TIME] 9551 info: 0.29s
+2026-10-02 08:55:10,412 [DEBUG] yfinance OK: 9551
+2026-10-02 08:55:10,614 [DEBUG] [TIME] 9551 income_stmt: 0.20s
+2026-10-02 08:55:10,915 [DEBUG] [TIME] 9551 balance_sheet: 0.30s
+2026-10-02 08:55:11,101 [DEBUG] [TIME] 9551 cashflow: 0.18s
+2026-10-02 08:55:11,355 [DEBUG] [TIME] 9551 dividends: 0.25s
+2026-10-02 08:55:11,356 [INFO] [DETAIL] 9551 メタウォーター: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:11,356 [INFO] [TIME] 9551 メタウォーター 処理時間: 1.24s
+2026-10-02 08:55:12,676 [DEBUG] [TIME] 9552 info: 0.29s
+2026-10-02 08:55:12,676 [DEBUG] yfinance OK: 9552
+2026-10-02 08:55:12,867 [DEBUG] [TIME] 9552 income_stmt: 0.19s
+2026-10-02 08:55:13,096 [DEBUG] [TIME] 9552 balance_sheet: 0.23s
+2026-10-02 08:55:13,329 [DEBUG] [TIME] 9552 cashflow: 0.23s
+2026-10-02 08:55:13,606 [DEBUG] [TIME] 9552 dividends: 0.28s
+2026-10-02 08:55:13,607 [INFO] [DETAIL] 9552 クオンツ総研ホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:13,607 [INFO] [TIME] 9552 クオンツ総研ホールディングス 処理時間: 1.22s
+2026-10-02 08:55:15,057 [DEBUG] [TIME] 9553 info: 0.24s
+2026-10-02 08:55:15,057 [DEBUG] yfinance OK: 9553
+2026-10-02 08:55:15,229 [DEBUG] [TIME] 9553 income_stmt: 0.17s
+2026-10-02 08:55:15,529 [DEBUG] [TIME] 9553 balance_sheet: 0.30s
+2026-10-02 08:55:15,759 [DEBUG] [TIME] 9553 cashflow: 0.23s
+2026-10-02 08:55:15,933 [DEBUG] [TIME] 9553 dividends: 0.17s
+2026-10-02 08:55:15,933 [INFO] [DETAIL] 9553 マイクロアド: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:55:15,933 [INFO] [TIME] 9553 マイクロアド 処理時間: 1.12s
+2026-10-02 08:55:17,493 [DEBUG] [TIME] 9554 info: 0.21s
+2026-10-02 08:55:17,493 [DEBUG] yfinance OK: 9554
+2026-10-02 08:55:17,672 [DEBUG] [TIME] 9554 income_stmt: 0.18s
+2026-10-02 08:55:17,849 [DEBUG] [TIME] 9554 balance_sheet: 0.18s
+2026-10-02 08:55:18,051 [DEBUG] [TIME] 9554 cashflow: 0.20s
+2026-10-02 08:55:18,319 [DEBUG] [TIME] 9554 dividends: 0.27s
+2026-10-02 08:55:18,319 [INFO] [DETAIL] 9554 ＡＶｉＣ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:55:18,319 [INFO] [TIME] 9554 ＡＶｉＣ 処理時間: 1.04s
+2026-10-02 08:55:20,441 [DEBUG] [TIME] 9556 info: 0.21s
+2026-10-02 08:55:20,441 [DEBUG] yfinance OK: 9556
+2026-10-02 08:55:20,589 [DEBUG] [TIME] 9556 income_stmt: 0.15s
+2026-10-02 08:55:20,827 [DEBUG] [TIME] 9556 balance_sheet: 0.24s
+2026-10-02 08:55:21,048 [DEBUG] [TIME] 9556 cashflow: 0.22s
+2026-10-02 08:55:21,256 [DEBUG] [TIME] 9556 dividends: 0.21s
+2026-10-02 08:55:21,256 [INFO] [DETAIL] 9556 ＩＮＴＬＯＯＰ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:55:21,256 [INFO] [TIME] 9556 ＩＮＴＬＯＯＰ 処理時間: 1.03s
+2026-10-02 08:55:23,226 [DEBUG] [TIME] 9557 info: 0.36s
+2026-10-02 08:55:23,226 [DEBUG] yfinance OK: 9557
+2026-10-02 08:55:23,387 [DEBUG] [TIME] 9557 income_stmt: 0.16s
+2026-10-02 08:55:23,747 [DEBUG] [TIME] 9557 balance_sheet: 0.36s
+2026-10-02 08:55:24,027 [DEBUG] [TIME] 9557 cashflow: 0.28s
+2026-10-02 08:55:24,172 [DEBUG] [TIME] 9557 dividends: 0.14s
+2026-10-02 08:55:24,172 [INFO] [DETAIL] 9557 エアークローゼット: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:55:24,172 [INFO] [TIME] 9557 エアークローゼット 処理時間: 1.30s
+2026-10-02 08:55:26,203 [DEBUG] [TIME] 9558 info: 0.21s
+2026-10-02 08:55:26,203 [DEBUG] yfinance OK: 9558
+2026-10-02 08:55:26,368 [DEBUG] [TIME] 9558 income_stmt: 0.17s
+2026-10-02 08:55:26,549 [DEBUG] [TIME] 9558 balance_sheet: 0.18s
+2026-10-02 08:55:26,758 [DEBUG] [TIME] 9558 cashflow: 0.21s
+2026-10-02 08:55:26,944 [DEBUG] [TIME] 9558 dividends: 0.18s
+2026-10-02 08:55:26,944 [INFO] [DETAIL] 9558 ジャパニアス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:26,944 [INFO] [TIME] 9558 ジャパニアス 処理時間: 0.96s
+2026-10-02 08:55:28,797 [DEBUG] [TIME] 9560 info: 0.21s
+2026-10-02 08:55:28,797 [DEBUG] yfinance OK: 9560
+2026-10-02 08:55:29,014 [DEBUG] [TIME] 9560 income_stmt: 0.22s
+2026-10-02 08:55:29,201 [DEBUG] [TIME] 9560 balance_sheet: 0.19s
+2026-10-02 08:55:29,416 [DEBUG] [TIME] 9560 cashflow: 0.21s
+2026-10-02 08:55:29,594 [DEBUG] [TIME] 9560 dividends: 0.18s
+2026-10-02 08:55:29,595 [INFO] [DETAIL] 9560 プログリット: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:29,595 [INFO] [TIME] 9560 プログリット 処理時間: 1.01s
+2026-10-02 08:55:31,024 [DEBUG] [TIME] 9561 info: 0.22s
+2026-10-02 08:55:31,024 [DEBUG] yfinance OK: 9561
+2026-10-02 08:55:31,226 [DEBUG] [TIME] 9561 income_stmt: 0.20s
+2026-10-02 08:55:31,586 [DEBUG] [TIME] 9561 balance_sheet: 0.36s
+2026-10-02 08:55:31,767 [DEBUG] [TIME] 9561 cashflow: 0.18s
+2026-10-02 08:55:31,911 [DEBUG] [TIME] 9561 dividends: 0.14s
+2026-10-02 08:55:31,911 [INFO] [DETAIL] 9561 グラッドキューブ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:55:31,911 [INFO] [TIME] 9561 グラッドキューブ 処理時間: 1.11s
+2026-10-02 08:55:33,643 [DEBUG] [TIME] 9562 info: 0.21s
+2026-10-02 08:55:33,643 [DEBUG] yfinance OK: 9562
+2026-10-02 08:55:33,853 [DEBUG] [TIME] 9562 income_stmt: 0.21s
+2026-10-02 08:55:34,090 [DEBUG] [TIME] 9562 balance_sheet: 0.24s
+2026-10-02 08:55:34,222 [DEBUG] [TIME] 9562 cashflow: 0.13s
+2026-10-02 08:55:34,447 [DEBUG] [TIME] 9562 dividends: 0.22s
+2026-10-02 08:55:34,448 [INFO] [DETAIL] 9562 ビジネスコーチ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:34,448 [INFO] [TIME] 9562 ビジネスコーチ 処理時間: 1.01s
+2026-10-02 08:55:36,323 [DEBUG] [TIME] 9563 info: 0.21s
+2026-10-02 08:55:36,323 [DEBUG] yfinance OK: 9563
+2026-10-02 08:55:36,497 [DEBUG] [TIME] 9563 income_stmt: 0.17s
+2026-10-02 08:55:36,687 [DEBUG] [TIME] 9563 balance_sheet: 0.19s
+2026-10-02 08:55:36,919 [DEBUG] [TIME] 9563 cashflow: 0.23s
+2026-10-02 08:55:37,093 [DEBUG] [TIME] 9563 dividends: 0.17s
+2026-10-02 08:55:37,093 [INFO] [DETAIL] 9563 Ａｔｌａｓ　Ｔｅｃｈｎｏｌｏｇｉｅｓ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:55:37,093 [INFO] [TIME] 9563 Ａｔｌａｓ　Ｔｅｃｈｎｏｌｏｇｉｅｓ 処理時間: 0.98s
+2026-10-02 08:55:38,864 [DEBUG] [TIME] 9564 info: 0.28s
+2026-10-02 08:55:38,864 [DEBUG] yfinance OK: 9564
+2026-10-02 08:55:39,048 [DEBUG] [TIME] 9564 income_stmt: 0.18s
+2026-10-02 08:55:39,216 [DEBUG] [TIME] 9564 balance_sheet: 0.17s
+2026-10-02 08:55:39,441 [DEBUG] [TIME] 9564 cashflow: 0.22s
+2026-10-02 08:55:39,720 [DEBUG] [TIME] 9564 dividends: 0.28s
+2026-10-02 08:55:39,720 [INFO] [DETAIL] 9564 ＦＣＥ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:39,720 [INFO] [TIME] 9564 ＦＣＥ 処理時間: 1.14s
+2026-10-02 08:55:41,321 [DEBUG] [TIME] 9565 info: 0.21s
+2026-10-02 08:55:41,321 [DEBUG] yfinance OK: 9565
+2026-10-02 08:55:41,468 [DEBUG] [TIME] 9565 income_stmt: 0.15s
+2026-10-02 08:55:41,679 [DEBUG] [TIME] 9565 balance_sheet: 0.21s
+2026-10-02 08:55:41,920 [DEBUG] [TIME] 9565 cashflow: 0.24s
+2026-10-02 08:55:42,094 [DEBUG] [TIME] 9565 dividends: 0.17s
+2026-10-02 08:55:42,094 [INFO] [DETAIL] 9565 ＧＬＯＥ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:55:42,095 [INFO] [TIME] 9565 ＧＬＯＥ 処理時間: 0.98s
+2026-10-02 08:55:43,762 [DEBUG] [TIME] 9601 info: 0.22s
+2026-10-02 08:55:43,762 [DEBUG] yfinance OK: 9601
+2026-10-02 08:55:43,945 [DEBUG] [TIME] 9601 income_stmt: 0.18s
+2026-10-02 08:55:44,140 [DEBUG] [TIME] 9601 balance_sheet: 0.19s
+2026-10-02 08:55:44,418 [DEBUG] [TIME] 9601 cashflow: 0.28s
+2026-10-02 08:55:44,782 [DEBUG] [TIME] 9601 dividends: 0.36s
+2026-10-02 08:55:44,782 [INFO] [DETAIL] 9601 松竹: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:44,782 [INFO] [TIME] 9601 松竹 処理時間: 1.24s
+2026-10-02 08:55:46,459 [DEBUG] [TIME] 9602 info: 0.28s
+2026-10-02 08:55:46,459 [DEBUG] yfinance OK: 9602
+2026-10-02 08:55:46,684 [DEBUG] [TIME] 9602 income_stmt: 0.22s
+2026-10-02 08:55:47,043 [DEBUG] [TIME] 9602 balance_sheet: 0.36s
+2026-10-02 08:55:47,280 [DEBUG] [TIME] 9602 cashflow: 0.24s
+2026-10-02 08:55:47,720 [DEBUG] [TIME] 9602 dividends: 0.44s
+2026-10-02 08:55:47,721 [INFO] [DETAIL] 9602 東宝: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:47,721 [INFO] [TIME] 9602 東宝 処理時間: 1.54s
+2026-10-02 08:55:49,557 [DEBUG] [TIME] 9603 info: 0.27s
+2026-10-02 08:55:49,557 [DEBUG] yfinance OK: 9603
+2026-10-02 08:55:49,772 [DEBUG] [TIME] 9603 income_stmt: 0.21s
+2026-10-02 08:55:50,049 [DEBUG] [TIME] 9603 balance_sheet: 0.28s
+2026-10-02 08:55:50,238 [DEBUG] [TIME] 9603 cashflow: 0.19s
+2026-10-02 08:55:50,569 [DEBUG] [TIME] 9603 dividends: 0.33s
+2026-10-02 08:55:50,570 [INFO] [DETAIL] 9603 エイチ・アイ・エス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:50,570 [INFO] [TIME] 9603 エイチ・アイ・エス 処理時間: 1.29s
+2026-10-02 08:55:52,572 [DEBUG] [TIME] 9605 info: 0.24s
+2026-10-02 08:55:52,572 [DEBUG] yfinance OK: 9605
+2026-10-02 08:55:52,758 [DEBUG] [TIME] 9605 income_stmt: 0.19s
+2026-10-02 08:55:53,056 [DEBUG] [TIME] 9605 balance_sheet: 0.30s
+2026-10-02 08:55:53,313 [DEBUG] [TIME] 9605 cashflow: 0.26s
+2026-10-02 08:55:53,753 [DEBUG] [TIME] 9605 dividends: 0.44s
+2026-10-02 08:55:53,754 [INFO] [DETAIL] 9605 東映: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:53,754 [INFO] [TIME] 9605 東映 処理時間: 1.42s
+2026-10-02 08:55:55,483 [DEBUG] [TIME] 9610 info: 0.22s
+2026-10-02 08:55:55,483 [DEBUG] yfinance OK: 9610
+2026-10-02 08:55:55,700 [DEBUG] [TIME] 9610 income_stmt: 0.22s
+2026-10-02 08:55:56,002 [DEBUG] [TIME] 9610 balance_sheet: 0.30s
+2026-10-02 08:55:56,197 [DEBUG] [TIME] 9610 cashflow: 0.19s
+2026-10-02 08:55:56,556 [DEBUG] [TIME] 9610 dividends: 0.36s
+2026-10-02 08:55:56,556 [INFO] [DETAIL] 9610 ウィルソン・ラーニング　ワールドワイド: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:55:56,556 [INFO] [TIME] 9610 ウィルソン・ラーニング　ワールドワイド 処理時間: 1.29s
+2026-10-02 08:55:57,840 [DEBUG] [TIME] 9612 info: 0.23s
+2026-10-02 08:55:57,841 [DEBUG] yfinance OK: 9612
+2026-10-02 08:55:58,059 [DEBUG] [TIME] 9612 income_stmt: 0.22s
+2026-10-02 08:55:58,267 [DEBUG] [TIME] 9612 balance_sheet: 0.21s
+2026-10-02 08:55:58,448 [DEBUG] [TIME] 9612 cashflow: 0.18s
+2026-10-02 08:55:58,750 [DEBUG] [TIME] 9612 dividends: 0.30s
+2026-10-02 08:55:58,750 [INFO] [DETAIL] 9612 ラックランド: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:55:58,750 [INFO] [TIME] 9612 ラックランド 処理時間: 1.14s
+2026-10-02 08:56:00,283 [DEBUG] [TIME] 9616 info: 0.25s
+2026-10-02 08:56:00,283 [DEBUG] yfinance OK: 9616
+2026-10-02 08:56:00,572 [DEBUG] [TIME] 9616 income_stmt: 0.29s
+2026-10-02 08:56:00,785 [DEBUG] [TIME] 9616 balance_sheet: 0.21s
+2026-10-02 08:56:01,149 [DEBUG] [TIME] 9616 cashflow: 0.36s
+2026-10-02 08:56:01,546 [DEBUG] [TIME] 9616 dividends: 0.40s
+2026-10-02 08:56:01,547 [INFO] [DETAIL] 9616 共立メンテナンス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:01,547 [INFO] [TIME] 9616 共立メンテナンス 処理時間: 1.52s
+2026-10-02 08:56:02,921 [DEBUG] [TIME] 9619 info: 0.21s
+2026-10-02 08:56:02,921 [DEBUG] yfinance OK: 9619
+2026-10-02 08:56:03,177 [DEBUG] [TIME] 9619 income_stmt: 0.26s
+2026-10-02 08:56:03,424 [DEBUG] [TIME] 9619 balance_sheet: 0.25s
+2026-10-02 08:56:03,595 [DEBUG] [TIME] 9619 cashflow: 0.17s
+2026-10-02 08:56:03,970 [DEBUG] [TIME] 9619 dividends: 0.37s
+2026-10-02 08:56:03,971 [INFO] [DETAIL] 9619 イチネンホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:03,971 [INFO] [TIME] 9619 イチネンホールディングス 処理時間: 1.26s
+2026-10-02 08:56:05,944 [DEBUG] [TIME] 9621 info: 0.21s
+2026-10-02 08:56:05,944 [DEBUG] yfinance OK: 9621
+2026-10-02 08:56:06,134 [DEBUG] [TIME] 9621 income_stmt: 0.19s
+2026-10-02 08:56:06,300 [DEBUG] [TIME] 9621 balance_sheet: 0.17s
+2026-10-02 08:56:06,462 [DEBUG] [TIME] 9621 cashflow: 0.16s
+2026-10-02 08:56:06,836 [DEBUG] [TIME] 9621 dividends: 0.37s
+2026-10-02 08:56:06,837 [INFO] [DETAIL] 9621 建設技術研究所: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:06,837 [INFO] [TIME] 9621 建設技術研究所 処理時間: 1.11s
+2026-10-02 08:56:08,369 [DEBUG] [TIME] 9622 info: 0.28s
+2026-10-02 08:56:08,369 [DEBUG] yfinance OK: 9622
+2026-10-02 08:56:08,583 [DEBUG] [TIME] 9622 income_stmt: 0.21s
+2026-10-02 08:56:08,844 [DEBUG] [TIME] 9622 balance_sheet: 0.26s
+2026-10-02 08:56:09,013 [DEBUG] [TIME] 9622 cashflow: 0.17s
+2026-10-02 08:56:09,426 [DEBUG] [TIME] 9622 dividends: 0.41s
+2026-10-02 08:56:09,427 [INFO] [DETAIL] 9622 スペース: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:09,427 [INFO] [TIME] 9622 スペース 処理時間: 1.34s
+2026-10-02 08:56:11,087 [DEBUG] [TIME] 9625 info: 0.21s
+2026-10-02 08:56:11,087 [DEBUG] yfinance OK: 9625
+2026-10-02 08:56:11,239 [DEBUG] [TIME] 9625 income_stmt: 0.15s
+2026-10-02 08:56:11,501 [DEBUG] [TIME] 9625 balance_sheet: 0.26s
+2026-10-02 08:56:11,699 [DEBUG] [TIME] 9625 cashflow: 0.20s
+2026-10-02 08:56:12,069 [DEBUG] [TIME] 9625 dividends: 0.37s
+2026-10-02 08:56:12,070 [INFO] [DETAIL] 9625 セレスポ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:12,070 [INFO] [TIME] 9625 セレスポ 処理時間: 1.19s
+2026-10-02 08:56:13,949 [DEBUG] [TIME] 9627 info: 0.21s
+2026-10-02 08:56:13,949 [DEBUG] yfinance OK: 9627
+2026-10-02 08:56:14,107 [DEBUG] [TIME] 9627 income_stmt: 0.16s
+2026-10-02 08:56:14,327 [DEBUG] [TIME] 9627 balance_sheet: 0.22s
+2026-10-02 08:56:14,503 [DEBUG] [TIME] 9627 cashflow: 0.18s
+2026-10-02 08:56:14,866 [DEBUG] [TIME] 9627 dividends: 0.36s
+2026-10-02 08:56:14,866 [INFO] [DETAIL] 9627 アインホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:14,866 [INFO] [TIME] 9627 アインホールディングス 処理時間: 1.13s
+2026-10-02 08:56:17,005 [DEBUG] [TIME] 9628 info: 0.29s
+2026-10-02 08:56:17,005 [DEBUG] yfinance OK: 9628
+2026-10-02 08:56:17,191 [DEBUG] [TIME] 9628 income_stmt: 0.19s
+2026-10-02 08:56:17,441 [DEBUG] [TIME] 9628 balance_sheet: 0.25s
+2026-10-02 08:56:17,579 [DEBUG] [TIME] 9628 cashflow: 0.14s
+2026-10-02 08:56:17,908 [DEBUG] [TIME] 9628 dividends: 0.33s
+2026-10-02 08:56:17,908 [INFO] [DETAIL] 9628 燦ホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:17,908 [INFO] [TIME] 9628 燦ホールディングス 処理時間: 1.19s
+2026-10-02 08:56:19,750 [DEBUG] [TIME] 9629 info: 0.29s
+2026-10-02 08:56:19,750 [DEBUG] yfinance OK: 9629
+2026-10-02 08:56:19,941 [DEBUG] [TIME] 9629 income_stmt: 0.19s
+2026-10-02 08:56:20,320 [DEBUG] [TIME] 9629 balance_sheet: 0.38s
+2026-10-02 08:56:20,559 [DEBUG] [TIME] 9629 cashflow: 0.24s
+2026-10-02 08:56:20,951 [DEBUG] [TIME] 9629 dividends: 0.39s
+2026-10-02 08:56:20,951 [INFO] [DETAIL] 9629 ピー・シー・エー: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:20,951 [INFO] [TIME] 9629 ピー・シー・エー 処理時間: 1.49s
+2026-10-02 08:56:22,790 [DEBUG] [TIME] 9632 info: 0.25s
+2026-10-02 08:56:22,790 [DEBUG] yfinance OK: 9632
+2026-10-02 08:56:22,966 [DEBUG] [TIME] 9632 income_stmt: 0.18s
+2026-10-02 08:56:23,238 [DEBUG] [TIME] 9632 balance_sheet: 0.27s
+2026-10-02 08:56:23,511 [DEBUG] [TIME] 9632 cashflow: 0.27s
+2026-10-02 08:56:23,929 [DEBUG] [TIME] 9632 dividends: 0.42s
+2026-10-02 08:56:23,930 [INFO] [DETAIL] 9632 スバル興業: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:23,930 [INFO] [TIME] 9632 スバル興業 処理時間: 1.39s
+2026-10-02 08:56:25,779 [DEBUG] [TIME] 9633 info: 0.28s
+2026-10-02 08:56:25,779 [DEBUG] yfinance OK: 9633
+2026-10-02 08:56:25,925 [DEBUG] [TIME] 9633 income_stmt: 0.15s
+2026-10-02 08:56:26,129 [DEBUG] [TIME] 9633 balance_sheet: 0.20s
+2026-10-02 08:56:26,308 [DEBUG] [TIME] 9633 cashflow: 0.18s
+2026-10-02 08:56:26,762 [DEBUG] [TIME] 9633 dividends: 0.45s
+2026-10-02 08:56:26,763 [INFO] [DETAIL] 9633 東京テアトル: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:26,763 [INFO] [TIME] 9633 東京テアトル 処理時間: 1.27s
+2026-10-02 08:56:28,331 [DEBUG] [TIME] 9635 info: 0.28s
+2026-10-02 08:56:28,331 [DEBUG] yfinance OK: 9635
+2026-10-02 08:56:28,528 [DEBUG] [TIME] 9635 income_stmt: 0.20s
+2026-10-02 08:56:28,712 [DEBUG] [TIME] 9635 balance_sheet: 0.18s
+2026-10-02 08:56:28,918 [DEBUG] [TIME] 9635 cashflow: 0.21s
+2026-10-02 08:56:29,181 [DEBUG] [TIME] 9635 dividends: 0.26s
+2026-10-02 08:56:29,181 [INFO] [DETAIL] 9635 武蔵野興業: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:56:29,182 [INFO] [TIME] 9635 武蔵野興業 処理時間: 1.13s
+2026-10-02 08:56:31,144 [DEBUG] [TIME] 9636 info: 0.28s
+2026-10-02 08:56:31,144 [DEBUG] yfinance OK: 9636
+2026-10-02 08:56:31,285 [DEBUG] [TIME] 9636 income_stmt: 0.14s
+2026-10-02 08:56:31,472 [DEBUG] [TIME] 9636 balance_sheet: 0.19s
+2026-10-02 08:56:31,697 [DEBUG] [TIME] 9636 cashflow: 0.22s
+2026-10-02 08:56:32,063 [DEBUG] [TIME] 9636 dividends: 0.37s
+2026-10-02 08:56:32,064 [INFO] [DETAIL] 9636 きんえい: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:32,064 [INFO] [TIME] 9636 きんえい 処理時間: 1.20s
+2026-10-02 08:56:33,373 [DEBUG] [TIME] 9639 info: 0.21s
+2026-10-02 08:56:33,373 [DEBUG] yfinance OK: 9639
+2026-10-02 08:56:33,680 [DEBUG] [TIME] 9639 income_stmt: 0.31s
+2026-10-02 08:56:33,967 [DEBUG] [TIME] 9639 balance_sheet: 0.29s
+2026-10-02 08:56:34,221 [DEBUG] [TIME] 9639 cashflow: 0.25s
+2026-10-02 08:56:34,591 [DEBUG] [TIME] 9639 dividends: 0.37s
+2026-10-02 08:56:34,592 [INFO] [DETAIL] 9639 三協フロンテア: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:34,592 [INFO] [TIME] 9639 三協フロンテア 処理時間: 1.43s
+2026-10-02 08:56:36,196 [DEBUG] [TIME] 9640 info: 0.28s
+2026-10-02 08:56:36,196 [DEBUG] yfinance OK: 9640
+2026-10-02 08:56:36,454 [DEBUG] [TIME] 9640 income_stmt: 0.26s
+2026-10-02 08:56:36,774 [DEBUG] [TIME] 9640 balance_sheet: 0.32s
+2026-10-02 08:56:36,939 [DEBUG] [TIME] 9640 cashflow: 0.16s
+2026-10-02 08:56:37,340 [DEBUG] [TIME] 9640 dividends: 0.40s
+2026-10-02 08:56:37,340 [INFO] [DETAIL] 9640 セゾンテクノロジー: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:37,340 [INFO] [TIME] 9640 セゾンテクノロジー 処理時間: 1.43s
+2026-10-02 08:56:38,801 [DEBUG] [TIME] 9644 info: 0.22s
+2026-10-02 08:56:38,801 [DEBUG] yfinance OK: 9644
+2026-10-02 08:56:39,037 [DEBUG] [TIME] 9644 income_stmt: 0.24s
+2026-10-02 08:56:39,260 [DEBUG] [TIME] 9644 balance_sheet: 0.22s
+2026-10-02 08:56:39,429 [DEBUG] [TIME] 9644 cashflow: 0.17s
+2026-10-02 08:56:39,766 [DEBUG] [TIME] 9644 dividends: 0.34s
+2026-10-02 08:56:39,767 [INFO] [DETAIL] 9644 タナベコンサルティンググループ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:39,767 [INFO] [TIME] 9644 タナベコンサルティンググループ 処理時間: 1.19s
+2026-10-02 08:56:41,683 [DEBUG] [TIME] 9647 info: 0.24s
+2026-10-02 08:56:41,683 [DEBUG] yfinance OK: 9647
+2026-10-02 08:56:41,834 [DEBUG] [TIME] 9647 income_stmt: 0.15s
+2026-10-02 08:56:42,093 [DEBUG] [TIME] 9647 balance_sheet: 0.26s
+2026-10-02 08:56:42,248 [DEBUG] [TIME] 9647 cashflow: 0.15s
+2026-10-02 08:56:42,697 [DEBUG] [TIME] 9647 dividends: 0.45s
+2026-10-02 08:56:42,698 [INFO] [DETAIL] 9647 協和コンサルタンツ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:42,698 [INFO] [TIME] 9647 協和コンサルタンツ 処理時間: 1.26s
+2026-10-02 08:56:44,272 [DEBUG] [TIME] 9651 info: 0.21s
+2026-10-02 08:56:44,272 [DEBUG] yfinance OK: 9651
+2026-10-02 08:56:44,579 [DEBUG] [TIME] 9651 income_stmt: 0.31s
+2026-10-02 08:56:44,802 [DEBUG] [TIME] 9651 balance_sheet: 0.22s
+2026-10-02 08:56:45,014 [DEBUG] [TIME] 9651 cashflow: 0.21s
+2026-10-02 08:56:45,367 [DEBUG] [TIME] 9651 dividends: 0.35s
+2026-10-02 08:56:45,368 [INFO] [DETAIL] 9651 日本プロセス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:45,368 [INFO] [TIME] 9651 日本プロセス 処理時間: 1.31s
+2026-10-02 08:56:47,347 [DEBUG] [TIME] 9656 info: 0.22s
+2026-10-02 08:56:47,347 [DEBUG] yfinance OK: 9656
+2026-10-02 08:56:47,557 [DEBUG] [TIME] 9656 income_stmt: 0.21s
+2026-10-02 08:56:47,804 [DEBUG] [TIME] 9656 balance_sheet: 0.25s
+2026-10-02 08:56:47,977 [DEBUG] [TIME] 9656 cashflow: 0.17s
+2026-10-02 08:56:48,373 [DEBUG] [TIME] 9656 dividends: 0.40s
+2026-10-02 08:56:48,374 [INFO] [DETAIL] 9656 グリーンランドリゾート: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:48,374 [INFO] [TIME] 9656 グリーンランドリゾート 処理時間: 1.25s
+2026-10-02 08:56:50,657 [DEBUG] [TIME] 9658 info: 0.30s
+2026-10-02 08:56:50,657 [DEBUG] yfinance OK: 9658
+2026-10-02 08:56:50,854 [DEBUG] [TIME] 9658 income_stmt: 0.20s
+2026-10-02 08:56:51,085 [DEBUG] [TIME] 9658 balance_sheet: 0.23s
+2026-10-02 08:56:51,346 [DEBUG] [TIME] 9658 cashflow: 0.26s
+2026-10-02 08:56:51,706 [DEBUG] [TIME] 9658 dividends: 0.36s
+2026-10-02 08:56:51,707 [INFO] [DETAIL] 9658 ビジネスブレイン太田昭和: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:51,707 [INFO] [TIME] 9658 ビジネスブレイン太田昭和 処理時間: 1.35s
+2026-10-02 08:56:53,627 [DEBUG] [TIME] 9661 info: 0.21s
+2026-10-02 08:56:53,627 [DEBUG] yfinance OK: 9661
+2026-10-02 08:56:53,874 [DEBUG] [TIME] 9661 income_stmt: 0.25s
+2026-10-02 08:56:54,151 [DEBUG] [TIME] 9661 balance_sheet: 0.28s
+2026-10-02 08:56:54,299 [DEBUG] [TIME] 9661 cashflow: 0.15s
+2026-10-02 08:56:54,732 [DEBUG] [TIME] 9661 dividends: 0.43s
+2026-10-02 08:56:54,733 [INFO] [DETAIL] 9661 歌舞伎座: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:54,733 [INFO] [TIME] 9661 歌舞伎座 処理時間: 1.32s
+2026-10-02 08:56:56,215 [DEBUG] [TIME] 9663 info: 0.28s
+2026-10-02 08:56:56,215 [DEBUG] yfinance OK: 9663
+2026-10-02 08:56:56,498 [DEBUG] [TIME] 9663 income_stmt: 0.28s
+2026-10-02 08:56:56,750 [DEBUG] [TIME] 9663 balance_sheet: 0.25s
+2026-10-02 08:56:56,943 [DEBUG] [TIME] 9663 cashflow: 0.19s
+2026-10-02 08:56:57,395 [DEBUG] [TIME] 9663 dividends: 0.45s
+2026-10-02 08:56:57,396 [INFO] [DETAIL] 9663 ナガワ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:57,396 [INFO] [TIME] 9663 ナガワ 処理時間: 1.46s
+2026-10-02 08:56:58,641 [DEBUG] [TIME] 9672 info: 0.22s
+2026-10-02 08:56:58,641 [DEBUG] yfinance OK: 9672
+2026-10-02 08:56:58,794 [DEBUG] [TIME] 9672 income_stmt: 0.15s
+2026-10-02 08:56:59,022 [DEBUG] [TIME] 9672 balance_sheet: 0.23s
+2026-10-02 08:56:59,264 [DEBUG] [TIME] 9672 cashflow: 0.24s
+2026-10-02 08:56:59,704 [DEBUG] [TIME] 9672 dividends: 0.44s
+2026-10-02 08:56:59,705 [INFO] [DETAIL] 9672 東京都競馬: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:56:59,705 [INFO] [TIME] 9672 東京都競馬 処理時間: 1.28s
+2026-10-02 08:57:01,481 [DEBUG] [TIME] 9678 info: 0.21s
+2026-10-02 08:57:01,481 [DEBUG] yfinance OK: 9678
+2026-10-02 08:57:01,647 [DEBUG] [TIME] 9678 income_stmt: 0.17s
+2026-10-02 08:57:01,856 [DEBUG] [TIME] 9678 balance_sheet: 0.21s
+2026-10-02 08:57:02,099 [DEBUG] [TIME] 9678 cashflow: 0.24s
+2026-10-02 08:57:02,644 [DEBUG] [TIME] 9678 dividends: 0.55s
+2026-10-02 08:57:02,645 [INFO] [DETAIL] 9678 カナモト: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:02,645 [INFO] [TIME] 9678 カナモト 処理時間: 1.38s
+2026-10-02 08:57:04,679 [DEBUG] [TIME] 9679 info: 0.29s
+2026-10-02 08:57:04,679 [DEBUG] yfinance OK: 9679
+2026-10-02 08:57:04,852 [DEBUG] [TIME] 9679 income_stmt: 0.17s
+2026-10-02 08:57:05,022 [DEBUG] [TIME] 9679 balance_sheet: 0.17s
+2026-10-02 08:57:05,252 [DEBUG] [TIME] 9679 cashflow: 0.23s
+2026-10-02 08:57:05,650 [DEBUG] [TIME] 9679 dividends: 0.40s
+2026-10-02 08:57:05,650 [INFO] [DETAIL] 9679 ホウライ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:05,651 [INFO] [TIME] 9679 ホウライ 処理時間: 1.26s
+2026-10-02 08:57:07,081 [DEBUG] [TIME] 9682 info: 0.22s
+2026-10-02 08:57:07,081 [DEBUG] yfinance OK: 9682
+2026-10-02 08:57:07,310 [DEBUG] [TIME] 9682 income_stmt: 0.23s
+2026-10-02 08:57:07,524 [DEBUG] [TIME] 9682 balance_sheet: 0.21s
+2026-10-02 08:57:07,708 [DEBUG] [TIME] 9682 cashflow: 0.18s
+2026-10-02 08:57:08,011 [DEBUG] [TIME] 9682 dividends: 0.30s
+2026-10-02 08:57:08,012 [INFO] [DETAIL] 9682 ＤＴＳ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:08,012 [INFO] [TIME] 9682 ＤＴＳ 処理時間: 1.15s
+2026-10-02 08:57:10,202 [DEBUG] [TIME] 9684 info: 0.28s
+2026-10-02 08:57:10,202 [DEBUG] yfinance OK: 9684
+2026-10-02 08:57:10,419 [DEBUG] [TIME] 9684 income_stmt: 0.22s
+2026-10-02 08:57:10,653 [DEBUG] [TIME] 9684 balance_sheet: 0.23s
+2026-10-02 08:57:10,860 [DEBUG] [TIME] 9684 cashflow: 0.21s
+2026-10-02 08:57:11,270 [DEBUG] [TIME] 9684 dividends: 0.41s
+2026-10-02 08:57:11,271 [INFO] [DETAIL] 9684 スクウェア・エニックス・ホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:11,271 [INFO] [TIME] 9684 スクウェア・エニックス・ホールディングス 処理時間: 1.35s
+2026-10-02 08:57:12,592 [DEBUG] [TIME] 9685 info: 0.21s
+2026-10-02 08:57:12,592 [DEBUG] yfinance OK: 9685
+2026-10-02 08:57:12,739 [DEBUG] [TIME] 9685 income_stmt: 0.15s
+2026-10-02 08:57:12,926 [DEBUG] [TIME] 9685 balance_sheet: 0.19s
+2026-10-02 08:57:13,194 [DEBUG] [TIME] 9685 cashflow: 0.27s
+2026-10-02 08:57:13,489 [DEBUG] [TIME] 9685 dividends: 0.29s
+2026-10-02 08:57:13,490 [INFO] [DETAIL] 9685 ＫＹＣＯＭホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:13,490 [INFO] [TIME] 9685 ＫＹＣＯＭホールディングス 処理時間: 1.11s
+2026-10-02 08:57:15,738 [DEBUG] [TIME] 9686 info: 0.28s
+2026-10-02 08:57:15,738 [DEBUG] yfinance OK: 9686
+2026-10-02 08:57:15,926 [DEBUG] [TIME] 9686 income_stmt: 0.19s
+2026-10-02 08:57:16,102 [DEBUG] [TIME] 9686 balance_sheet: 0.18s
+2026-10-02 08:57:16,394 [DEBUG] [TIME] 9686 cashflow: 0.29s
+2026-10-02 08:57:16,740 [DEBUG] [TIME] 9686 dividends: 0.35s
+2026-10-02 08:57:16,741 [INFO] [DETAIL] 9686 東洋テック: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:16,741 [INFO] [TIME] 9686 東洋テック 処理時間: 1.28s
+2026-10-02 08:57:18,700 [DEBUG] [TIME] 9687 info: 0.21s
+2026-10-02 08:57:18,700 [DEBUG] yfinance OK: 9687
+2026-10-02 08:57:18,908 [DEBUG] [TIME] 9687 income_stmt: 0.21s
+2026-10-02 08:57:19,106 [DEBUG] [TIME] 9687 balance_sheet: 0.20s
+2026-10-02 08:57:19,315 [DEBUG] [TIME] 9687 cashflow: 0.21s
+2026-10-02 08:57:19,697 [DEBUG] [TIME] 9687 dividends: 0.38s
+2026-10-02 08:57:19,698 [INFO] [DETAIL] 9687 ＫＳＫ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:19,698 [INFO] [TIME] 9687 ＫＳＫ 処理時間: 1.21s
+2026-10-02 08:57:21,886 [DEBUG] [TIME] 9691 info: 0.29s
+2026-10-02 08:57:21,886 [DEBUG] yfinance OK: 9691
+2026-10-02 08:57:22,108 [DEBUG] [TIME] 9691 income_stmt: 0.22s
+2026-10-02 08:57:22,326 [DEBUG] [TIME] 9691 balance_sheet: 0.22s
+2026-10-02 08:57:22,480 [DEBUG] [TIME] 9691 cashflow: 0.15s
+2026-10-02 08:57:22,895 [DEBUG] [TIME] 9691 dividends: 0.41s
+2026-10-02 08:57:22,896 [INFO] [DETAIL] 9691 両毛システムズ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:22,896 [INFO] [TIME] 9691 両毛システムズ 処理時間: 1.30s
+2026-10-02 08:57:24,711 [DEBUG] [TIME] 9692 info: 0.22s
+2026-10-02 08:57:24,711 [DEBUG] yfinance OK: 9692
+2026-10-02 08:57:24,894 [DEBUG] [TIME] 9692 income_stmt: 0.18s
+2026-10-02 08:57:25,092 [DEBUG] [TIME] 9692 balance_sheet: 0.20s
+2026-10-02 08:57:25,335 [DEBUG] [TIME] 9692 cashflow: 0.24s
+2026-10-02 08:57:25,816 [DEBUG] [TIME] 9692 dividends: 0.48s
+2026-10-02 08:57:25,817 [INFO] [DETAIL] 9692 シーイーシー: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:25,817 [INFO] [TIME] 9692 シーイーシー 処理時間: 1.33s
+2026-10-02 08:57:27,217 [DEBUG] [TIME] 9697 info: 0.28s
+2026-10-02 08:57:27,217 [DEBUG] yfinance OK: 9697
+2026-10-02 08:57:27,429 [DEBUG] [TIME] 9697 income_stmt: 0.21s
+2026-10-02 08:57:27,664 [DEBUG] [TIME] 9697 balance_sheet: 0.23s
+2026-10-02 08:57:27,819 [DEBUG] [TIME] 9697 cashflow: 0.15s
+2026-10-02 08:57:28,158 [DEBUG] [TIME] 9697 dividends: 0.34s
+2026-10-02 08:57:28,159 [INFO] [DETAIL] 9697 カプコン: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:28,159 [INFO] [TIME] 9697 カプコン 処理時間: 1.22s
+2026-10-02 08:57:29,600 [DEBUG] [TIME] 9698 info: 0.21s
+2026-10-02 08:57:29,600 [DEBUG] yfinance OK: 9698
+2026-10-02 08:57:29,811 [DEBUG] [TIME] 9698 income_stmt: 0.21s
+2026-10-02 08:57:30,026 [DEBUG] [TIME] 9698 balance_sheet: 0.21s
+2026-10-02 08:57:30,184 [DEBUG] [TIME] 9698 cashflow: 0.16s
+2026-10-02 08:57:30,636 [DEBUG] [TIME] 9698 dividends: 0.45s
+2026-10-02 08:57:30,637 [INFO] [DETAIL] 9698 クレオ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:30,637 [INFO] [TIME] 9698 クレオ 処理時間: 1.25s
+2026-10-02 08:57:32,079 [DEBUG] [TIME] 9699 info: 0.29s
+2026-10-02 08:57:32,079 [DEBUG] yfinance OK: 9699
+2026-10-02 08:57:32,283 [DEBUG] [TIME] 9699 income_stmt: 0.20s
+2026-10-02 08:57:32,463 [DEBUG] [TIME] 9699 balance_sheet: 0.18s
+2026-10-02 08:57:32,665 [DEBUG] [TIME] 9699 cashflow: 0.20s
+2026-10-02 08:57:33,073 [DEBUG] [TIME] 9699 dividends: 0.41s
+2026-10-02 08:57:33,074 [INFO] [DETAIL] 9699 ニシオホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:33,074 [INFO] [TIME] 9699 ニシオホールディングス 処理時間: 1.28s
+2026-10-02 08:57:34,946 [DEBUG] [TIME] 9701 info: 0.21s
+2026-10-02 08:57:34,946 [DEBUG] yfinance OK: 9701
+2026-10-02 08:57:35,280 [DEBUG] [TIME] 9701 income_stmt: 0.33s
+2026-10-02 08:57:35,523 [DEBUG] [TIME] 9701 balance_sheet: 0.24s
+2026-10-02 08:57:35,781 [DEBUG] [TIME] 9701 cashflow: 0.26s
+2026-10-02 08:57:36,143 [DEBUG] [TIME] 9701 dividends: 0.36s
+2026-10-02 08:57:36,144 [INFO] [DETAIL] 9701 東京會舘: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:36,144 [INFO] [TIME] 9701 東京會舘 処理時間: 1.41s
+2026-10-02 08:57:38,324 [DEBUG] [TIME] 9702 info: 0.28s
+2026-10-02 08:57:38,324 [DEBUG] yfinance OK: 9702
+2026-10-02 08:57:38,488 [DEBUG] [TIME] 9702 income_stmt: 0.16s
+2026-10-02 08:57:38,720 [DEBUG] [TIME] 9702 balance_sheet: 0.23s
+2026-10-02 08:57:38,872 [DEBUG] [TIME] 9702 cashflow: 0.15s
+2026-10-02 08:57:39,194 [DEBUG] [TIME] 9702 dividends: 0.32s
+2026-10-02 08:57:39,195 [INFO] [DETAIL] 9702 アイ・エス・ビー: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:39,195 [INFO] [TIME] 9702 アイ・エス・ビー 処理時間: 1.15s
+2026-10-02 08:57:40,987 [DEBUG] [TIME] 9704 info: 0.28s
+2026-10-02 08:57:40,987 [DEBUG] yfinance OK: 9704
+2026-10-02 08:57:41,168 [DEBUG] [TIME] 9704 income_stmt: 0.18s
+2026-10-02 08:57:41,490 [DEBUG] [TIME] 9704 balance_sheet: 0.32s
+2026-10-02 08:57:41,755 [DEBUG] [TIME] 9704 cashflow: 0.26s
+2026-10-02 08:57:42,122 [DEBUG] [TIME] 9704 dividends: 0.37s
+2026-10-02 08:57:42,122 [INFO] [DETAIL] 9704 アゴーラ　ホスピタリティー　グループ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 08:57:42,122 [INFO] [TIME] 9704 アゴーラ　ホスピタリティー　グループ 処理時間: 1.41s
+2026-10-02 08:57:44,273 [DEBUG] [TIME] 9706 info: 0.21s
+2026-10-02 08:57:44,273 [DEBUG] yfinance OK: 9706
+2026-10-02 08:57:44,514 [DEBUG] [TIME] 9706 income_stmt: 0.24s
+2026-10-02 08:57:44,791 [DEBUG] [TIME] 9706 balance_sheet: 0.28s
+2026-10-02 08:57:44,995 [DEBUG] [TIME] 9706 cashflow: 0.20s
+2026-10-02 08:57:45,446 [DEBUG] [TIME] 9706 dividends: 0.45s
+2026-10-02 08:57:45,446 [INFO] [DETAIL] 9706 日本空港ビルデング: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:45,447 [INFO] [TIME] 9706 日本空港ビルデング 処理時間: 1.38s
+2026-10-02 08:57:47,195 [DEBUG] [TIME] 9708 info: 0.21s
+2026-10-02 08:57:47,195 [DEBUG] yfinance OK: 9708
+2026-10-02 08:57:47,362 [DEBUG] [TIME] 9708 income_stmt: 0.17s
+2026-10-02 08:57:47,531 [DEBUG] [TIME] 9708 balance_sheet: 0.17s
+2026-10-02 08:57:47,664 [DEBUG] [TIME] 9708 cashflow: 0.13s
+2026-10-02 08:57:48,056 [DEBUG] [TIME] 9708 dividends: 0.39s
+2026-10-02 08:57:48,057 [INFO] [DETAIL] 9708 帝国ホテル: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:48,057 [INFO] [TIME] 9708 帝国ホテル 処理時間: 1.08s
+2026-10-02 08:57:49,800 [DEBUG] [TIME] 9709 info: 0.27s
+2026-10-02 08:57:49,800 [DEBUG] yfinance OK: 9709
+2026-10-02 08:57:49,972 [DEBUG] [TIME] 9709 income_stmt: 0.17s
+2026-10-02 08:57:50,207 [DEBUG] [TIME] 9709 balance_sheet: 0.23s
+2026-10-02 08:57:50,358 [DEBUG] [TIME] 9709 cashflow: 0.15s
+2026-10-02 08:57:50,738 [DEBUG] [TIME] 9709 dividends: 0.38s
+2026-10-02 08:57:50,739 [INFO] [DETAIL] 9709 ＮＣＳ＆Ａ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:50,739 [INFO] [TIME] 9709 ＮＣＳ＆Ａ 処理時間: 1.21s
+2026-10-02 08:57:52,782 [DEBUG] [TIME] 9713 info: 0.23s
+2026-10-02 08:57:52,782 [DEBUG] yfinance OK: 9713
+2026-10-02 08:57:53,014 [DEBUG] [TIME] 9713 income_stmt: 0.23s
+2026-10-02 08:57:53,233 [DEBUG] [TIME] 9713 balance_sheet: 0.22s
+2026-10-02 08:57:53,417 [DEBUG] [TIME] 9713 cashflow: 0.18s
+2026-10-02 08:57:53,779 [DEBUG] [TIME] 9713 dividends: 0.36s
+2026-10-02 08:57:53,779 [INFO] [DETAIL] 9713 ロイヤルホテル: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:53,780 [INFO] [TIME] 9713 ロイヤルホテル 処理時間: 1.23s
+2026-10-02 08:57:55,346 [DEBUG] [TIME] 9715 info: 0.22s
+2026-10-02 08:57:55,346 [DEBUG] yfinance OK: 9715
+2026-10-02 08:57:55,563 [DEBUG] [TIME] 9715 income_stmt: 0.22s
+2026-10-02 08:57:55,899 [DEBUG] [TIME] 9715 balance_sheet: 0.34s
+2026-10-02 08:57:56,184 [DEBUG] [TIME] 9715 cashflow: 0.29s
+2026-10-02 08:57:56,564 [DEBUG] [TIME] 9715 dividends: 0.38s
+2026-10-02 08:57:56,564 [INFO] [DETAIL] 9715 トランス・コスモス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:56,565 [INFO] [TIME] 9715 トランス・コスモス 処理時間: 1.44s
+2026-10-02 08:57:58,626 [DEBUG] [TIME] 9716 info: 0.28s
+2026-10-02 08:57:58,627 [DEBUG] yfinance OK: 9716
+2026-10-02 08:57:58,782 [DEBUG] [TIME] 9716 income_stmt: 0.16s
+2026-10-02 08:57:58,926 [DEBUG] [TIME] 9716 balance_sheet: 0.14s
+2026-10-02 08:57:59,073 [DEBUG] [TIME] 9716 cashflow: 0.15s
+2026-10-02 08:57:59,462 [DEBUG] [TIME] 9716 dividends: 0.39s
+2026-10-02 08:57:59,463 [INFO] [DETAIL] 9716 乃村工藝社: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:57:59,463 [INFO] [TIME] 9716 乃村工藝社 処理時間: 1.11s
+2026-10-02 08:58:01,641 [DEBUG] [TIME] 9720 info: 0.28s
+2026-10-02 08:58:01,641 [DEBUG] yfinance OK: 9720
+2026-10-02 08:58:01,823 [DEBUG] [TIME] 9720 income_stmt: 0.18s
+2026-10-02 08:58:01,990 [DEBUG] [TIME] 9720 balance_sheet: 0.17s
+2026-10-02 08:58:02,199 [DEBUG] [TIME] 9720 cashflow: 0.21s
+2026-10-02 08:58:02,602 [DEBUG] [TIME] 9720 dividends: 0.40s
+2026-10-02 08:58:02,603 [INFO] [DETAIL] 9720 ホテル、ニューグランド: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:02,603 [INFO] [TIME] 9720 ホテル、ニューグランド 処理時間: 1.25s
+2026-10-02 08:58:04,372 [DEBUG] [TIME] 9722 info: 0.28s
+2026-10-02 08:58:04,372 [DEBUG] yfinance OK: 9722
+2026-10-02 08:58:04,533 [DEBUG] [TIME] 9722 income_stmt: 0.16s
+2026-10-02 08:58:04,729 [DEBUG] [TIME] 9722 balance_sheet: 0.20s
+2026-10-02 08:58:04,890 [DEBUG] [TIME] 9722 cashflow: 0.16s
+2026-10-02 08:58:05,266 [DEBUG] [TIME] 9722 dividends: 0.38s
+2026-10-02 08:58:05,267 [INFO] [DETAIL] 9722 藤田観光: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:05,267 [INFO] [TIME] 9722 藤田観光 処理時間: 1.17s
+2026-10-02 08:58:06,606 [DEBUG] [TIME] 9723 info: 0.21s
+2026-10-02 08:58:06,606 [DEBUG] yfinance OK: 9723
+2026-10-02 08:58:06,813 [DEBUG] [TIME] 9723 income_stmt: 0.21s
+2026-10-02 08:58:07,195 [DEBUG] [TIME] 9723 balance_sheet: 0.38s
+2026-10-02 08:58:07,408 [DEBUG] [TIME] 9723 cashflow: 0.21s
+2026-10-02 08:58:07,772 [DEBUG] [TIME] 9723 dividends: 0.36s
+2026-10-02 08:58:07,773 [INFO] [DETAIL] 9723 京都ホテル: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:07,773 [INFO] [TIME] 9723 京都ホテル 処理時間: 1.38s
+2026-10-02 08:58:09,097 [DEBUG] [TIME] 9726 info: 0.22s
+2026-10-02 08:58:09,097 [DEBUG] yfinance OK: 9726
+2026-10-02 08:58:09,322 [DEBUG] [TIME] 9726 income_stmt: 0.22s
+2026-10-02 08:58:09,562 [DEBUG] [TIME] 9726 balance_sheet: 0.24s
+2026-10-02 08:58:09,780 [DEBUG] [TIME] 9726 cashflow: 0.22s
+2026-10-02 08:58:10,064 [DEBUG] [TIME] 9726 dividends: 0.28s
+2026-10-02 08:58:10,064 [INFO] [DETAIL] 9726 ＫＮＴ－ＣＴホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:10,064 [INFO] [TIME] 9726 ＫＮＴ－ＣＴホールディングス 処理時間: 1.18s
+2026-10-02 08:58:12,012 [DEBUG] [TIME] 9729 info: 0.21s
+2026-10-02 08:58:12,012 [DEBUG] yfinance OK: 9729
+2026-10-02 08:58:12,240 [DEBUG] [TIME] 9729 income_stmt: 0.23s
+2026-10-02 08:58:12,513 [DEBUG] [TIME] 9729 balance_sheet: 0.27s
+2026-10-02 08:58:12,728 [DEBUG] [TIME] 9729 cashflow: 0.21s
+2026-10-02 08:58:12,981 [DEBUG] [TIME] 9729 dividends: 0.25s
+2026-10-02 08:58:12,982 [INFO] [DETAIL] 9729 トーカイ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:12,982 [INFO] [TIME] 9729 トーカイ 処理時間: 1.18s
+2026-10-02 08:58:14,408 [DEBUG] [TIME] 9731 info: 0.24s
+2026-10-02 08:58:14,409 [DEBUG] yfinance OK: 9731
+2026-10-02 08:58:14,630 [DEBUG] [TIME] 9731 income_stmt: 0.22s
+2026-10-02 08:58:14,853 [DEBUG] [TIME] 9731 balance_sheet: 0.22s
+2026-10-02 08:58:15,066 [DEBUG] [TIME] 9731 cashflow: 0.21s
+2026-10-02 08:58:15,441 [DEBUG] [TIME] 9731 dividends: 0.37s
+2026-10-02 08:58:15,442 [INFO] [DETAIL] 9731 白洋舎: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:15,442 [INFO] [TIME] 9731 白洋舎 処理時間: 1.27s
+2026-10-02 08:58:16,681 [DEBUG] [TIME] 9733 info: 0.21s
+2026-10-02 08:58:16,681 [DEBUG] yfinance OK: 9733
+2026-10-02 08:58:16,854 [DEBUG] [TIME] 9733 income_stmt: 0.17s
+2026-10-02 08:58:17,069 [DEBUG] [TIME] 9733 balance_sheet: 0.22s
+2026-10-02 08:58:17,214 [DEBUG] [TIME] 9733 cashflow: 0.14s
+2026-10-02 08:58:17,657 [DEBUG] [TIME] 9733 dividends: 0.44s
+2026-10-02 08:58:17,658 [INFO] [DETAIL] 9733 ナガセ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:17,658 [INFO] [TIME] 9733 ナガセ 処理時間: 1.19s
+2026-10-02 08:58:19,577 [DEBUG] [TIME] 9735 info: 0.22s
+2026-10-02 08:58:19,577 [DEBUG] yfinance OK: 9735
+2026-10-02 08:58:19,745 [DEBUG] [TIME] 9735 income_stmt: 0.17s
+2026-10-02 08:58:20,058 [DEBUG] [TIME] 9735 balance_sheet: 0.31s
+2026-10-02 08:58:20,317 [DEBUG] [TIME] 9735 cashflow: 0.26s
+2026-10-02 08:58:20,670 [DEBUG] [TIME] 9735 dividends: 0.35s
+2026-10-02 08:58:20,671 [INFO] [DETAIL] 9735 セコム: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:20,671 [INFO] [TIME] 9735 セコム 処理時間: 1.32s
+2026-10-02 08:58:22,614 [DEBUG] [TIME] 9739 info: 0.21s
+2026-10-02 08:58:22,614 [DEBUG] yfinance OK: 9739
+2026-10-02 08:58:22,763 [DEBUG] [TIME] 9739 income_stmt: 0.15s
+2026-10-02 08:58:22,997 [DEBUG] [TIME] 9739 balance_sheet: 0.23s
+2026-10-02 08:58:23,246 [DEBUG] [TIME] 9739 cashflow: 0.25s
+2026-10-02 08:58:23,590 [DEBUG] [TIME] 9739 dividends: 0.34s
+2026-10-02 08:58:23,591 [INFO] [DETAIL] 9739 ＮＳＷ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:23,591 [INFO] [TIME] 9739 ＮＳＷ 処理時間: 1.19s
+2026-10-02 08:58:25,018 [DEBUG] [TIME] 9740 info: 0.28s
+2026-10-02 08:58:25,019 [DEBUG] yfinance OK: 9740
+2026-10-02 08:58:25,244 [DEBUG] [TIME] 9740 income_stmt: 0.23s
+2026-10-02 08:58:25,481 [DEBUG] [TIME] 9740 balance_sheet: 0.24s
+2026-10-02 08:58:25,751 [DEBUG] [TIME] 9740 cashflow: 0.27s
+2026-10-02 08:58:26,155 [DEBUG] [TIME] 9740 dividends: 0.40s
+2026-10-02 08:58:26,156 [INFO] [DETAIL] 9740 セントラル警備保障: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:26,156 [INFO] [TIME] 9740 セントラル警備保障 処理時間: 1.42s
+2026-10-02 08:58:28,225 [DEBUG] [TIME] 9742 info: 0.30s
+2026-10-02 08:58:28,225 [DEBUG] yfinance OK: 9742
+2026-10-02 08:58:28,413 [DEBUG] [TIME] 9742 income_stmt: 0.19s
+2026-10-02 08:58:28,628 [DEBUG] [TIME] 9742 balance_sheet: 0.21s
+2026-10-02 08:58:28,809 [DEBUG] [TIME] 9742 cashflow: 0.18s
+2026-10-02 08:58:29,148 [DEBUG] [TIME] 9742 dividends: 0.34s
+2026-10-02 08:58:29,149 [INFO] [DETAIL] 9742 アイネス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:29,149 [INFO] [TIME] 9742 アイネス 処理時間: 1.22s
+2026-10-02 08:58:30,389 [DEBUG] [TIME] 9743 info: 0.21s
+2026-10-02 08:58:30,389 [DEBUG] yfinance OK: 9743
+2026-10-02 08:58:30,573 [DEBUG] [TIME] 9743 income_stmt: 0.18s
+2026-10-02 08:58:30,794 [DEBUG] [TIME] 9743 balance_sheet: 0.22s
+2026-10-02 08:58:31,125 [DEBUG] [TIME] 9743 cashflow: 0.33s
+2026-10-02 08:58:31,517 [DEBUG] [TIME] 9743 dividends: 0.39s
+2026-10-02 08:58:31,518 [INFO] [DETAIL] 9743 丹青社: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:31,518 [INFO] [TIME] 9743 丹青社 処理時間: 1.34s
+2026-10-02 08:58:33,473 [DEBUG] [TIME] 9744 info: 0.27s
+2026-10-02 08:58:33,473 [DEBUG] yfinance OK: 9744
+2026-10-02 08:58:33,636 [DEBUG] [TIME] 9744 income_stmt: 0.16s
+2026-10-02 08:58:33,784 [DEBUG] [TIME] 9744 balance_sheet: 0.15s
+2026-10-02 08:58:33,980 [DEBUG] [TIME] 9744 cashflow: 0.20s
+2026-10-02 08:58:34,339 [DEBUG] [TIME] 9744 dividends: 0.36s
+2026-10-02 08:58:34,340 [INFO] [DETAIL] 9744 メイテックグループホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:34,340 [INFO] [TIME] 9744 メイテックグループホールディングス 処理時間: 1.14s
+2026-10-02 08:58:36,282 [DEBUG] [TIME] 9746 info: 0.22s
+2026-10-02 08:58:36,283 [DEBUG] yfinance OK: 9746
+2026-10-02 08:58:36,465 [DEBUG] [TIME] 9746 income_stmt: 0.18s
+2026-10-02 08:58:36,741 [DEBUG] [TIME] 9746 balance_sheet: 0.28s
+2026-10-02 08:58:36,984 [DEBUG] [TIME] 9746 cashflow: 0.24s
+2026-10-02 08:58:37,351 [DEBUG] [TIME] 9746 dividends: 0.37s
+2026-10-02 08:58:37,351 [INFO] [DETAIL] 9746 ＴＫＣ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:37,351 [INFO] [TIME] 9746 ＴＫＣ 処理時間: 1.29s
+2026-10-02 08:58:39,232 [DEBUG] [TIME] 9753 info: 0.21s
+2026-10-02 08:58:39,232 [DEBUG] yfinance OK: 9753
+2026-10-02 08:58:39,471 [DEBUG] [TIME] 9753 income_stmt: 0.24s
+2026-10-02 08:58:39,723 [DEBUG] [TIME] 9753 balance_sheet: 0.25s
+2026-10-02 08:58:39,964 [DEBUG] [TIME] 9753 cashflow: 0.24s
+2026-10-02 08:58:40,359 [DEBUG] [TIME] 9753 dividends: 0.39s
+2026-10-02 08:58:40,360 [INFO] [DETAIL] 9753 アイエックス・ナレッジ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:40,360 [INFO] [TIME] 9753 アイエックス・ナレッジ 処理時間: 1.34s
+2026-10-02 08:58:42,108 [DEBUG] [TIME] 9755 info: 0.21s
+2026-10-02 08:58:42,108 [DEBUG] yfinance OK: 9755
+2026-10-02 08:58:42,324 [DEBUG] [TIME] 9755 income_stmt: 0.22s
+2026-10-02 08:58:42,525 [DEBUG] [TIME] 9755 balance_sheet: 0.20s
+2026-10-02 08:58:42,771 [DEBUG] [TIME] 9755 cashflow: 0.24s
+2026-10-02 08:58:43,211 [DEBUG] [TIME] 9755 dividends: 0.44s
+2026-10-02 08:58:43,212 [INFO] [DETAIL] 9755 応用地質: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:43,212 [INFO] [TIME] 9755 応用地質 処理時間: 1.32s
+2026-10-02 08:58:45,191 [DEBUG] [TIME] 9757 info: 0.21s
+2026-10-02 08:58:45,192 [DEBUG] yfinance OK: 9757
+2026-10-02 08:58:45,437 [DEBUG] [TIME] 9757 income_stmt: 0.24s
+2026-10-02 08:58:45,743 [DEBUG] [TIME] 9757 balance_sheet: 0.31s
+2026-10-02 08:58:45,991 [DEBUG] [TIME] 9757 cashflow: 0.25s
+2026-10-02 08:58:46,512 [DEBUG] [TIME] 9757 dividends: 0.52s
+2026-10-02 08:58:46,513 [INFO] [DETAIL] 9757 船井総研ホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:46,513 [INFO] [TIME] 9757 船井総研ホールディングス 処理時間: 1.53s
+2026-10-02 08:58:48,761 [DEBUG] [TIME] 9759 info: 0.30s
+2026-10-02 08:58:48,761 [DEBUG] yfinance OK: 9759
+2026-10-02 08:58:48,933 [DEBUG] [TIME] 9759 income_stmt: 0.17s
+2026-10-02 08:58:49,301 [DEBUG] [TIME] 9759 balance_sheet: 0.37s
+2026-10-02 08:58:49,518 [DEBUG] [TIME] 9759 cashflow: 0.22s
+2026-10-02 08:58:49,950 [DEBUG] [TIME] 9759 dividends: 0.43s
+2026-10-02 08:58:49,952 [INFO] [DETAIL] 9759 ＮＳＤ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:49,952 [INFO] [TIME] 9759 ＮＳＤ 処理時間: 1.49s
+2026-10-02 08:58:51,283 [DEBUG] [TIME] 9760 info: 0.22s
+2026-10-02 08:58:51,283 [DEBUG] yfinance OK: 9760
+2026-10-02 08:58:51,430 [DEBUG] [TIME] 9760 income_stmt: 0.15s
+2026-10-02 08:58:51,626 [DEBUG] [TIME] 9760 balance_sheet: 0.20s
+2026-10-02 08:58:51,903 [DEBUG] [TIME] 9760 cashflow: 0.28s
+2026-10-02 08:58:52,345 [DEBUG] [TIME] 9760 dividends: 0.44s
+2026-10-02 08:58:52,345 [INFO] [DETAIL] 9760 進学会ホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:52,346 [INFO] [TIME] 9760 進学会ホールディングス 処理時間: 1.28s
+2026-10-02 08:58:54,592 [DEBUG] [TIME] 9761 info: 0.29s
+2026-10-02 08:58:54,593 [DEBUG] yfinance OK: 9761
+2026-10-02 08:58:54,812 [DEBUG] [TIME] 9761 income_stmt: 0.22s
+2026-10-02 08:58:55,083 [DEBUG] [TIME] 9761 balance_sheet: 0.27s
+2026-10-02 08:58:55,288 [DEBUG] [TIME] 9761 cashflow: 0.20s
+2026-10-02 08:58:55,750 [DEBUG] [TIME] 9761 dividends: 0.46s
+2026-10-02 08:58:55,750 [INFO] [DETAIL] 9761 東海リース: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:55,750 [INFO] [TIME] 9761 東海リース 処理時間: 1.45s
+2026-10-02 08:58:57,434 [DEBUG] [TIME] 9763 info: 0.22s
+2026-10-02 08:58:57,434 [DEBUG] yfinance OK: 9763
+2026-10-02 08:58:57,602 [DEBUG] [TIME] 9763 income_stmt: 0.17s
+2026-10-02 08:58:57,868 [DEBUG] [TIME] 9763 balance_sheet: 0.27s
+2026-10-02 08:58:58,034 [DEBUG] [TIME] 9763 cashflow: 0.16s
+2026-10-02 08:58:58,474 [DEBUG] [TIME] 9763 dividends: 0.44s
+2026-10-02 08:58:58,475 [INFO] [DETAIL] 9763 丸建リース: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:58:58,475 [INFO] [TIME] 9763 丸建リース 処理時間: 1.26s
+2026-10-02 08:59:00,010 [DEBUG] [TIME] 9765 info: 0.28s
+2026-10-02 08:59:00,010 [DEBUG] yfinance OK: 9765
+2026-10-02 08:59:00,214 [DEBUG] [TIME] 9765 income_stmt: 0.20s
+2026-10-02 08:59:00,447 [DEBUG] [TIME] 9765 balance_sheet: 0.23s
+2026-10-02 08:59:00,608 [DEBUG] [TIME] 9765 cashflow: 0.16s
+2026-10-02 08:59:00,945 [DEBUG] [TIME] 9765 dividends: 0.34s
+2026-10-02 08:59:00,946 [INFO] [DETAIL] 9765 オオバ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:00,946 [INFO] [TIME] 9765 オオバ 処理時間: 1.21s
+2026-10-02 08:59:03,040 [DEBUG] [TIME] 9766 info: 0.22s
+2026-10-02 08:59:03,040 [DEBUG] yfinance OK: 9766
+2026-10-02 08:59:03,260 [DEBUG] [TIME] 9766 income_stmt: 0.22s
+2026-10-02 08:59:03,574 [DEBUG] [TIME] 9766 balance_sheet: 0.31s
+2026-10-02 08:59:03,789 [DEBUG] [TIME] 9766 cashflow: 0.21s
+2026-10-02 08:59:04,176 [DEBUG] [TIME] 9766 dividends: 0.39s
+2026-10-02 08:59:04,177 [INFO] [DETAIL] 9766 コナミグループ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:04,177 [INFO] [TIME] 9766 コナミグループ 処理時間: 1.36s
+2026-10-02 08:59:06,075 [DEBUG] [TIME] 9767 info: 0.22s
+2026-10-02 08:59:06,076 [DEBUG] yfinance OK: 9767
+2026-10-02 08:59:06,220 [DEBUG] [TIME] 9767 income_stmt: 0.14s
+2026-10-02 08:59:06,433 [DEBUG] [TIME] 9767 balance_sheet: 0.21s
+2026-10-02 08:59:06,705 [DEBUG] [TIME] 9767 cashflow: 0.27s
+2026-10-02 08:59:07,023 [DEBUG] [TIME] 9767 dividends: 0.32s
+2026-10-02 08:59:07,024 [INFO] [DETAIL] 9767 日建工学: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:07,024 [INFO] [TIME] 9767 日建工学 処理時間: 1.17s
+2026-10-02 08:59:08,508 [DEBUG] [TIME] 9768 info: 0.28s
+2026-10-02 08:59:08,508 [DEBUG] yfinance OK: 9768
+2026-10-02 08:59:08,794 [DEBUG] [TIME] 9768 income_stmt: 0.29s
+2026-10-02 08:59:09,075 [DEBUG] [TIME] 9768 balance_sheet: 0.28s
+2026-10-02 08:59:09,245 [DEBUG] [TIME] 9768 cashflow: 0.17s
+2026-10-02 08:59:09,600 [DEBUG] [TIME] 9768 dividends: 0.35s
+2026-10-02 08:59:09,601 [INFO] [DETAIL] 9768 いであ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:09,601 [INFO] [TIME] 9768 いであ 処理時間: 1.38s
+2026-10-02 08:59:11,414 [DEBUG] [TIME] 9769 info: 0.27s
+2026-10-02 08:59:11,414 [DEBUG] yfinance OK: 9769
+2026-10-02 08:59:11,599 [DEBUG] [TIME] 9769 income_stmt: 0.18s
+2026-10-02 08:59:11,809 [DEBUG] [TIME] 9769 balance_sheet: 0.21s
+2026-10-02 08:59:11,973 [DEBUG] [TIME] 9769 cashflow: 0.16s
+2026-10-02 08:59:12,403 [DEBUG] [TIME] 9769 dividends: 0.43s
+2026-10-02 08:59:12,403 [INFO] [DETAIL] 9769 学究社: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:12,404 [INFO] [TIME] 9769 学究社 処理時間: 1.26s
+2026-10-02 08:59:14,673 [DEBUG] [TIME] 9778 info: 0.28s
+2026-10-02 08:59:14,673 [DEBUG] yfinance OK: 9778
+2026-10-02 08:59:14,959 [DEBUG] [TIME] 9778 income_stmt: 0.29s
+2026-10-02 08:59:15,246 [DEBUG] [TIME] 9778 balance_sheet: 0.29s
+2026-10-02 08:59:15,485 [DEBUG] [TIME] 9778 cashflow: 0.24s
+2026-10-02 08:59:15,872 [DEBUG] [TIME] 9778 dividends: 0.39s
+2026-10-02 08:59:15,873 [INFO] [DETAIL] 9778 昴: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:15,873 [INFO] [TIME] 9778 昴 処理時間: 1.48s
+2026-10-02 08:59:18,067 [DEBUG] [TIME] 9780 info: 0.32s
+2026-10-02 08:59:18,068 [DEBUG] yfinance OK: 9780
+2026-10-02 08:59:18,227 [DEBUG] [TIME] 9780 income_stmt: 0.16s
+2026-10-02 08:59:18,495 [DEBUG] [TIME] 9780 balance_sheet: 0.27s
+2026-10-02 08:59:18,675 [DEBUG] [TIME] 9780 cashflow: 0.18s
+2026-10-02 08:59:19,057 [DEBUG] [TIME] 9780 dividends: 0.38s
+2026-10-02 08:59:19,058 [INFO] [DETAIL] 9780 ハリマビステム: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:19,058 [INFO] [TIME] 9780 ハリマビステム 処理時間: 1.32s
+2026-10-02 08:59:21,281 [DEBUG] [TIME] 9782 info: 0.24s
+2026-10-02 08:59:21,281 [DEBUG] yfinance OK: 9782
+2026-10-02 08:59:21,453 [DEBUG] [TIME] 9782 income_stmt: 0.17s
+2026-10-02 08:59:21,657 [DEBUG] [TIME] 9782 balance_sheet: 0.20s
+2026-10-02 08:59:21,904 [DEBUG] [TIME] 9782 cashflow: 0.25s
+2026-10-02 08:59:22,567 [DEBUG] [TIME] 9782 dividends: 0.66s
+2026-10-02 08:59:22,568 [INFO] [DETAIL] 9782 ディーエムエス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:22,568 [INFO] [TIME] 9782 ディーエムエス 処理時間: 1.52s
+2026-10-02 08:59:24,622 [DEBUG] [TIME] 9788 info: 0.22s
+2026-10-02 08:59:24,622 [DEBUG] yfinance OK: 9788
+2026-10-02 08:59:24,767 [DEBUG] [TIME] 9788 income_stmt: 0.15s
+2026-10-02 08:59:25,043 [DEBUG] [TIME] 9788 balance_sheet: 0.28s
+2026-10-02 08:59:25,240 [DEBUG] [TIME] 9788 cashflow: 0.20s
+2026-10-02 08:59:25,620 [DEBUG] [TIME] 9788 dividends: 0.38s
+2026-10-02 08:59:25,620 [INFO] [DETAIL] 9788 ナック: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:25,620 [INFO] [TIME] 9788 ナック 処理時間: 1.22s
+2026-10-02 08:59:27,776 [DEBUG] [TIME] 9790 info: 0.22s
+2026-10-02 08:59:27,776 [DEBUG] yfinance OK: 9790
+2026-10-02 08:59:27,970 [DEBUG] [TIME] 9790 income_stmt: 0.19s
+2026-10-02 08:59:28,211 [DEBUG] [TIME] 9790 balance_sheet: 0.24s
+2026-10-02 08:59:28,362 [DEBUG] [TIME] 9790 cashflow: 0.15s
+2026-10-02 08:59:28,714 [DEBUG] [TIME] 9790 dividends: 0.35s
+2026-10-02 08:59:28,715 [INFO] [DETAIL] 9790 福井コンピュータホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:28,715 [INFO] [TIME] 9790 福井コンピュータホールディングス 処理時間: 1.16s
+2026-10-02 08:59:30,022 [DEBUG] [TIME] 9791 info: 0.21s
+2026-10-02 08:59:30,022 [DEBUG] yfinance OK: 9791
+2026-10-02 08:59:30,189 [DEBUG] [TIME] 9791 income_stmt: 0.17s
+2026-10-02 08:59:30,362 [DEBUG] [TIME] 9791 balance_sheet: 0.17s
+2026-10-02 08:59:30,574 [DEBUG] [TIME] 9791 cashflow: 0.21s
+2026-10-02 08:59:30,975 [DEBUG] [TIME] 9791 dividends: 0.40s
+2026-10-02 08:59:30,976 [INFO] [DETAIL] 9791 ビケンテクノ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:30,976 [INFO] [TIME] 9791 ビケンテクノ 処理時間: 1.16s
+2026-10-02 08:59:33,123 [DEBUG] [TIME] 9793 info: 0.21s
+2026-10-02 08:59:33,123 [DEBUG] yfinance OK: 9793
+2026-10-02 08:59:33,293 [DEBUG] [TIME] 9793 income_stmt: 0.17s
+2026-10-02 08:59:33,464 [DEBUG] [TIME] 9793 balance_sheet: 0.17s
+2026-10-02 08:59:33,699 [DEBUG] [TIME] 9793 cashflow: 0.23s
+2026-10-02 08:59:34,132 [DEBUG] [TIME] 9793 dividends: 0.43s
+2026-10-02 08:59:34,133 [INFO] [DETAIL] 9793 ダイセキ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:34,133 [INFO] [TIME] 9793 ダイセキ 処理時間: 1.22s
+2026-10-02 08:59:35,386 [DEBUG] [TIME] 9795 info: 0.22s
+2026-10-02 08:59:35,386 [DEBUG] yfinance OK: 9795
+2026-10-02 08:59:35,615 [DEBUG] [TIME] 9795 income_stmt: 0.23s
+2026-10-02 08:59:35,777 [DEBUG] [TIME] 9795 balance_sheet: 0.16s
+2026-10-02 08:59:35,892 [DEBUG] [TIME] 9795 cashflow: 0.11s
+2026-10-02 08:59:36,284 [DEBUG] [TIME] 9795 dividends: 0.39s
+2026-10-02 08:59:36,285 [INFO] [DETAIL] 9795 ステップ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:36,285 [INFO] [TIME] 9795 ステップ 処理時間: 1.12s
+2026-10-02 08:59:38,365 [DEBUG] [TIME] 9799 info: 0.22s
+2026-10-02 08:59:38,365 [DEBUG] yfinance OK: 9799
+2026-10-02 08:59:38,577 [DEBUG] [TIME] 9799 income_stmt: 0.21s
+2026-10-02 08:59:38,836 [DEBUG] [TIME] 9799 balance_sheet: 0.26s
+2026-10-02 08:59:39,050 [DEBUG] [TIME] 9799 cashflow: 0.21s
+2026-10-02 08:59:39,465 [DEBUG] [TIME] 9799 dividends: 0.41s
+2026-10-02 08:59:39,466 [INFO] [DETAIL] 9799 旭情報サービス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:39,466 [INFO] [TIME] 9799 旭情報サービス 処理時間: 1.32s
+2026-10-02 08:59:41,592 [DEBUG] [TIME] 9812 info: 0.21s
+2026-10-02 08:59:41,592 [DEBUG] yfinance OK: 9812
+2026-10-02 08:59:41,769 [DEBUG] [TIME] 9812 income_stmt: 0.18s
+2026-10-02 08:59:41,988 [DEBUG] [TIME] 9812 balance_sheet: 0.22s
+2026-10-02 08:59:42,209 [DEBUG] [TIME] 9812 cashflow: 0.22s
+2026-10-02 08:59:42,541 [DEBUG] [TIME] 9812 dividends: 0.33s
+2026-10-02 08:59:42,542 [INFO] [DETAIL] 9812 テーオーホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:42,542 [INFO] [TIME] 9812 テーオーホールディングス 処理時間: 1.16s
+2026-10-02 08:59:44,603 [DEBUG] [TIME] 9816 info: 0.27s
+2026-10-02 08:59:44,603 [DEBUG] yfinance OK: 9816
+2026-10-02 08:59:44,789 [DEBUG] [TIME] 9816 income_stmt: 0.19s
+2026-10-02 08:59:45,116 [DEBUG] [TIME] 9816 balance_sheet: 0.33s
+2026-10-02 08:59:45,348 [DEBUG] [TIME] 9816 cashflow: 0.23s
+2026-10-02 08:59:45,630 [DEBUG] [TIME] 9816 dividends: 0.28s
+2026-10-02 08:59:45,631 [INFO] [DETAIL] 9816 ストライダーズ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:45,631 [INFO] [TIME] 9816 ストライダーズ 処理時間: 1.30s
+2026-10-02 08:59:47,801 [DEBUG] [TIME] 9818 info: 0.21s
+2026-10-02 08:59:47,801 [DEBUG] yfinance OK: 9818
+2026-10-02 08:59:47,957 [DEBUG] [TIME] 9818 income_stmt: 0.16s
+2026-10-02 08:59:48,345 [DEBUG] [TIME] 9818 balance_sheet: 0.39s
+2026-10-02 08:59:48,506 [DEBUG] [TIME] 9818 cashflow: 0.16s
+2026-10-02 08:59:48,869 [DEBUG] [TIME] 9818 dividends: 0.36s
+2026-10-02 08:59:48,869 [INFO] [DETAIL] 9818 大丸エナウィン: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:48,870 [INFO] [TIME] 9818 大丸エナウィン 処理時間: 1.28s
+2026-10-02 08:59:50,364 [DEBUG] [TIME] 9820 info: 0.28s
+2026-10-02 08:59:50,364 [DEBUG] yfinance OK: 9820
+2026-10-02 08:59:50,500 [DEBUG] [TIME] 9820 income_stmt: 0.14s
+2026-10-02 08:59:50,756 [DEBUG] [TIME] 9820 balance_sheet: 0.26s
+2026-10-02 08:59:50,918 [DEBUG] [TIME] 9820 cashflow: 0.16s
+2026-10-02 08:59:51,418 [DEBUG] [TIME] 9820 dividends: 0.50s
+2026-10-02 08:59:51,419 [INFO] [DETAIL] 9820 エムティジェネックス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:51,419 [INFO] [TIME] 9820 エムティジェネックス 処理時間: 1.33s
+2026-10-02 08:59:52,893 [DEBUG] [TIME] 9823 info: 0.28s
+2026-10-02 08:59:52,893 [DEBUG] yfinance OK: 9823
+2026-10-02 08:59:53,100 [DEBUG] [TIME] 9823 income_stmt: 0.21s
+2026-10-02 08:59:53,359 [DEBUG] [TIME] 9823 balance_sheet: 0.26s
+2026-10-02 08:59:53,592 [DEBUG] [TIME] 9823 cashflow: 0.23s
+2026-10-02 08:59:54,065 [DEBUG] [TIME] 9823 dividends: 0.47s
+2026-10-02 08:59:54,066 [INFO] [DETAIL] 9823 マミーマートホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:54,066 [INFO] [TIME] 9823 マミーマートホールディングス 処理時間: 1.45s
+2026-10-02 08:59:56,042 [DEBUG] [TIME] 9824 info: 0.27s
+2026-10-02 08:59:56,042 [DEBUG] yfinance OK: 9824
+2026-10-02 08:59:56,219 [DEBUG] [TIME] 9824 income_stmt: 0.18s
+2026-10-02 08:59:56,458 [DEBUG] [TIME] 9824 balance_sheet: 0.24s
+2026-10-02 08:59:56,623 [DEBUG] [TIME] 9824 cashflow: 0.16s
+2026-10-02 08:59:57,072 [DEBUG] [TIME] 9824 dividends: 0.45s
+2026-10-02 08:59:57,073 [INFO] [DETAIL] 9824 泉州電業: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:57,073 [INFO] [TIME] 9824 泉州電業 処理時間: 1.31s
+2026-10-02 08:59:58,982 [DEBUG] [TIME] 9827 info: 0.22s
+2026-10-02 08:59:58,982 [DEBUG] yfinance OK: 9827
+2026-10-02 08:59:59,201 [DEBUG] [TIME] 9827 income_stmt: 0.22s
+2026-10-02 08:59:59,465 [DEBUG] [TIME] 9827 balance_sheet: 0.26s
+2026-10-02 08:59:59,625 [DEBUG] [TIME] 9827 cashflow: 0.16s
+2026-10-02 08:59:59,992 [DEBUG] [TIME] 9827 dividends: 0.37s
+2026-10-02 08:59:59,993 [INFO] [DETAIL] 9827 リリカラ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 08:59:59,993 [INFO] [TIME] 9827 リリカラ 処理時間: 1.23s
+2026-10-02 09:00:01,738 [DEBUG] [TIME] 9828 info: 0.29s
+2026-10-02 09:00:01,739 [DEBUG] yfinance OK: 9828
+2026-10-02 09:00:01,959 [DEBUG] [TIME] 9828 income_stmt: 0.22s
+2026-10-02 09:00:02,170 [DEBUG] [TIME] 9828 balance_sheet: 0.21s
+2026-10-02 09:00:02,423 [DEBUG] [TIME] 9828 cashflow: 0.25s
+2026-10-02 09:00:02,818 [DEBUG] [TIME] 9828 dividends: 0.39s
+2026-10-02 09:00:02,818 [INFO] [DETAIL] 9828 Ｇｅｎｋｉ　Ｇｌｏｂａｌ　Ｄｉｎｉｎｇ　Ｃｏｎｃｅｐｔｓ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:02,819 [INFO] [TIME] 9828 Ｇｅｎｋｉ　Ｇｌｏｂａｌ　Ｄｉｎｉｎｇ　Ｃｏｎｃｅｐｔｓ 処理時間: 1.37s
+2026-10-02 09:00:04,314 [DEBUG] [TIME] 9830 info: 0.22s
+2026-10-02 09:00:04,314 [DEBUG] yfinance OK: 9830
+2026-10-02 09:00:04,487 [DEBUG] [TIME] 9830 income_stmt: 0.17s
+2026-10-02 09:00:04,650 [DEBUG] [TIME] 9830 balance_sheet: 0.16s
+2026-10-02 09:00:04,865 [DEBUG] [TIME] 9830 cashflow: 0.21s
+2026-10-02 09:00:05,304 [DEBUG] [TIME] 9830 dividends: 0.44s
+2026-10-02 09:00:05,305 [INFO] [DETAIL] 9830 トラスコ中山: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:05,305 [INFO] [TIME] 9830 トラスコ中山 処理時間: 1.21s
+2026-10-02 09:00:06,608 [DEBUG] [TIME] 9831 info: 0.22s
+2026-10-02 09:00:06,608 [DEBUG] yfinance OK: 9831
+2026-10-02 09:00:06,791 [DEBUG] [TIME] 9831 income_stmt: 0.18s
+2026-10-02 09:00:06,956 [DEBUG] [TIME] 9831 balance_sheet: 0.17s
+2026-10-02 09:00:07,178 [DEBUG] [TIME] 9831 cashflow: 0.22s
+2026-10-02 09:00:07,543 [DEBUG] [TIME] 9831 dividends: 0.36s
+2026-10-02 09:00:07,543 [INFO] [DETAIL] 9831 ヤマダホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:07,544 [INFO] [TIME] 9831 ヤマダホールディングス 処理時間: 1.16s
+2026-10-02 09:00:09,233 [DEBUG] [TIME] 9832 info: 0.21s
+2026-10-02 09:00:09,234 [DEBUG] yfinance OK: 9832
+2026-10-02 09:00:09,387 [DEBUG] [TIME] 9832 income_stmt: 0.15s
+2026-10-02 09:00:09,565 [DEBUG] [TIME] 9832 balance_sheet: 0.18s
+2026-10-02 09:00:09,897 [DEBUG] [TIME] 9832 cashflow: 0.33s
+2026-10-02 09:00:10,290 [DEBUG] [TIME] 9832 dividends: 0.39s
+2026-10-02 09:00:10,291 [INFO] [DETAIL] 9832 オートバックスセブン: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:10,291 [INFO] [TIME] 9832 オートバックスセブン 処理時間: 1.27s
+2026-10-02 09:00:11,613 [DEBUG] [TIME] 9835 info: 0.25s
+2026-10-02 09:00:11,614 [DEBUG] yfinance OK: 9835
+2026-10-02 09:00:11,851 [DEBUG] [TIME] 9835 income_stmt: 0.24s
+2026-10-02 09:00:12,146 [DEBUG] [TIME] 9835 balance_sheet: 0.30s
+2026-10-02 09:00:12,285 [DEBUG] [TIME] 9835 cashflow: 0.14s
+2026-10-02 09:00:12,584 [DEBUG] [TIME] 9835 dividends: 0.30s
+2026-10-02 09:00:12,585 [INFO] [DETAIL] 9835 ジュンテンドー: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:12,585 [INFO] [TIME] 9835 ジュンテンドー 処理時間: 1.22s
+2026-10-02 09:00:14,293 [DEBUG] [TIME] 9837 info: 0.21s
+2026-10-02 09:00:14,293 [DEBUG] yfinance OK: 9837
+2026-10-02 09:00:14,459 [DEBUG] [TIME] 9837 income_stmt: 0.17s
+2026-10-02 09:00:14,750 [DEBUG] [TIME] 9837 balance_sheet: 0.29s
+2026-10-02 09:00:15,019 [DEBUG] [TIME] 9837 cashflow: 0.27s
+2026-10-02 09:00:15,469 [DEBUG] [TIME] 9837 dividends: 0.45s
+2026-10-02 09:00:15,470 [INFO] [DETAIL] 9837 モリト: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:15,470 [INFO] [TIME] 9837 モリト 処理時間: 1.39s
+2026-10-02 09:00:16,775 [DEBUG] [TIME] 9842 info: 0.22s
+2026-10-02 09:00:16,775 [DEBUG] yfinance OK: 9842
+2026-10-02 09:00:16,927 [DEBUG] [TIME] 9842 income_stmt: 0.15s
+2026-10-02 09:00:17,166 [DEBUG] [TIME] 9842 balance_sheet: 0.24s
+2026-10-02 09:00:17,449 [DEBUG] [TIME] 9842 cashflow: 0.28s
+2026-10-02 09:00:17,804 [DEBUG] [TIME] 9842 dividends: 0.35s
+2026-10-02 09:00:17,805 [INFO] [DETAIL] 9842 アークランズ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:17,805 [INFO] [TIME] 9842 アークランズ 処理時間: 1.25s
+2026-10-02 09:00:20,092 [DEBUG] [TIME] 9843 info: 0.29s
+2026-10-02 09:00:20,092 [DEBUG] yfinance OK: 9843
+2026-10-02 09:00:20,294 [DEBUG] [TIME] 9843 income_stmt: 0.20s
+2026-10-02 09:00:20,463 [DEBUG] [TIME] 9843 balance_sheet: 0.17s
+2026-10-02 09:00:20,637 [DEBUG] [TIME] 9843 cashflow: 0.17s
+2026-10-02 09:00:21,102 [DEBUG] [TIME] 9843 dividends: 0.46s
+2026-10-02 09:00:21,103 [INFO] [DETAIL] 9843 ニトリホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:21,103 [INFO] [TIME] 9843 ニトリホールディングス 処理時間: 1.30s
+2026-10-02 09:00:23,235 [DEBUG] [TIME] 9845 info: 0.24s
+2026-10-02 09:00:23,235 [DEBUG] yfinance OK: 9845
+2026-10-02 09:00:23,402 [DEBUG] [TIME] 9845 income_stmt: 0.17s
+2026-10-02 09:00:23,603 [DEBUG] [TIME] 9845 balance_sheet: 0.20s
+2026-10-02 09:00:23,935 [DEBUG] [TIME] 9845 cashflow: 0.33s
+2026-10-02 09:00:24,287 [DEBUG] [TIME] 9845 dividends: 0.35s
+2026-10-02 09:00:24,288 [INFO] [DETAIL] 9845 パーカーコーポレーション: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:24,288 [INFO] [TIME] 9845 パーカーコーポレーション 処理時間: 1.29s
+2026-10-02 09:00:26,027 [DEBUG] [TIME] 9846 info: 0.29s
+2026-10-02 09:00:26,027 [DEBUG] yfinance OK: 9846
+2026-10-02 09:00:26,225 [DEBUG] [TIME] 9846 income_stmt: 0.20s
+2026-10-02 09:00:26,452 [DEBUG] [TIME] 9846 balance_sheet: 0.23s
+2026-10-02 09:00:26,708 [DEBUG] [TIME] 9846 cashflow: 0.26s
+2026-10-02 09:00:27,215 [DEBUG] [TIME] 9846 dividends: 0.51s
+2026-10-02 09:00:27,216 [INFO] [DETAIL] 9846 天満屋ストア: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:27,216 [INFO] [TIME] 9846 天満屋ストア 処理時間: 1.48s
+2026-10-02 09:00:28,964 [DEBUG] [TIME] 9849 info: 0.23s
+2026-10-02 09:00:28,964 [DEBUG] yfinance OK: 9849
+2026-10-02 09:00:29,117 [DEBUG] [TIME] 9849 income_stmt: 0.15s
+2026-10-02 09:00:29,444 [DEBUG] [TIME] 9849 balance_sheet: 0.33s
+2026-10-02 09:00:29,651 [DEBUG] [TIME] 9849 cashflow: 0.21s
+2026-10-02 09:00:30,063 [DEBUG] [TIME] 9849 dividends: 0.41s
+2026-10-02 09:00:30,064 [INFO] [DETAIL] 9849 共同紙販ホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:30,064 [INFO] [TIME] 9849 共同紙販ホールディングス 処理時間: 1.33s
+2026-10-02 09:00:32,081 [DEBUG] [TIME] 9850 info: 0.23s
+2026-10-02 09:00:32,081 [DEBUG] yfinance OK: 9850
+2026-10-02 09:00:32,239 [DEBUG] [TIME] 9850 income_stmt: 0.16s
+2026-10-02 09:00:32,433 [DEBUG] [TIME] 9850 balance_sheet: 0.19s
+2026-10-02 09:00:32,629 [DEBUG] [TIME] 9850 cashflow: 0.20s
+2026-10-02 09:00:33,049 [DEBUG] [TIME] 9850 dividends: 0.42s
+2026-10-02 09:00:33,050 [INFO] [DETAIL] 9850 グルメ杵屋: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:33,050 [INFO] [TIME] 9850 グルメ杵屋 処理時間: 1.20s
+2026-10-02 09:00:34,452 [DEBUG] [TIME] 9853 info: 0.24s
+2026-10-02 09:00:34,452 [DEBUG] yfinance OK: 9853
+2026-10-02 09:00:34,646 [DEBUG] [TIME] 9853 income_stmt: 0.19s
+2026-10-02 09:00:34,820 [DEBUG] [TIME] 9853 balance_sheet: 0.17s
+2026-10-02 09:00:35,013 [DEBUG] [TIME] 9853 cashflow: 0.19s
+2026-10-02 09:00:35,471 [DEBUG] [TIME] 9853 dividends: 0.46s
+2026-10-02 09:00:35,472 [INFO] [DETAIL] 9853 銀座ルノアール: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:35,472 [INFO] [TIME] 9853 銀座ルノアール 処理時間: 1.26s
+2026-10-02 09:00:37,213 [DEBUG] [TIME] 9854 info: 0.28s
+2026-10-02 09:00:37,213 [DEBUG] yfinance OK: 9854
+2026-10-02 09:00:37,441 [DEBUG] [TIME] 9854 income_stmt: 0.23s
+2026-10-02 09:00:37,584 [DEBUG] [TIME] 9854 balance_sheet: 0.14s
+2026-10-02 09:00:37,741 [DEBUG] [TIME] 9854 cashflow: 0.16s
+2026-10-02 09:00:38,077 [DEBUG] [TIME] 9854 dividends: 0.34s
+2026-10-02 09:00:38,078 [INFO] [DETAIL] 9854 愛眼: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:38,078 [INFO] [TIME] 9854 愛眼 処理時間: 1.14s
+2026-10-02 09:00:40,208 [DEBUG] [TIME] 9856 info: 0.22s
+2026-10-02 09:00:40,208 [DEBUG] yfinance OK: 9856
+2026-10-02 09:00:40,363 [DEBUG] [TIME] 9856 income_stmt: 0.15s
+2026-10-02 09:00:40,659 [DEBUG] [TIME] 9856 balance_sheet: 0.30s
+2026-10-02 09:00:40,848 [DEBUG] [TIME] 9856 cashflow: 0.19s
+2026-10-02 09:00:41,173 [DEBUG] [TIME] 9856 dividends: 0.32s
+2026-10-02 09:00:41,173 [INFO] [DETAIL] 9856 ケーユーホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:41,173 [INFO] [TIME] 9856 ケーユーホールディングス 処理時間: 1.18s
+2026-10-02 09:00:42,549 [DEBUG] [TIME] 9857 info: 0.28s
+2026-10-02 09:00:42,549 [DEBUG] yfinance OK: 9857
+2026-10-02 09:00:42,713 [DEBUG] [TIME] 9857 income_stmt: 0.16s
+2026-10-02 09:00:43,004 [DEBUG] [TIME] 9857 balance_sheet: 0.29s
+2026-10-02 09:00:43,190 [DEBUG] [TIME] 9857 cashflow: 0.18s
+2026-10-02 09:00:43,523 [DEBUG] [TIME] 9857 dividends: 0.33s
+2026-10-02 09:00:43,524 [INFO] [DETAIL] 9857 英和: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:43,524 [INFO] [TIME] 9857 英和 処理時間: 1.25s
+2026-10-02 09:00:45,247 [DEBUG] [TIME] 9861 info: 0.23s
+2026-10-02 09:00:45,247 [DEBUG] yfinance OK: 9861
+2026-10-02 09:00:45,454 [DEBUG] [TIME] 9861 income_stmt: 0.21s
+2026-10-02 09:00:45,674 [DEBUG] [TIME] 9861 balance_sheet: 0.22s
+2026-10-02 09:00:45,849 [DEBUG] [TIME] 9861 cashflow: 0.17s
+2026-10-02 09:00:46,249 [DEBUG] [TIME] 9861 dividends: 0.40s
+2026-10-02 09:00:46,250 [INFO] [DETAIL] 9861 吉野家ホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:46,250 [INFO] [TIME] 9861 吉野家ホールディングス 処理時間: 1.23s
+2026-10-02 09:00:48,111 [DEBUG] [TIME] 9867 info: 0.21s
+2026-10-02 09:00:48,111 [DEBUG] yfinance OK: 9867
+2026-10-02 09:00:48,435 [DEBUG] [TIME] 9867 income_stmt: 0.32s
+2026-10-02 09:00:48,745 [DEBUG] [TIME] 9867 balance_sheet: 0.31s
+2026-10-02 09:00:48,988 [DEBUG] [TIME] 9867 cashflow: 0.24s
+2026-10-02 09:00:49,486 [DEBUG] [TIME] 9867 dividends: 0.50s
+2026-10-02 09:00:49,487 [INFO] [DETAIL] 9867 ソレキア: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:49,487 [INFO] [TIME] 9867 ソレキア 処理時間: 1.59s
+2026-10-02 09:00:50,959 [DEBUG] [TIME] 9869 info: 0.22s
+2026-10-02 09:00:50,960 [DEBUG] yfinance OK: 9869
+2026-10-02 09:00:51,113 [DEBUG] [TIME] 9869 income_stmt: 0.15s
+2026-10-02 09:00:51,296 [DEBUG] [TIME] 9869 balance_sheet: 0.18s
+2026-10-02 09:00:51,475 [DEBUG] [TIME] 9869 cashflow: 0.18s
+2026-10-02 09:00:51,887 [DEBUG] [TIME] 9869 dividends: 0.41s
+2026-10-02 09:00:51,888 [INFO] [DETAIL] 9869 加藤産業: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:51,888 [INFO] [TIME] 9869 加藤産業 処理時間: 1.15s
+2026-10-02 09:00:53,415 [DEBUG] [TIME] 9872 info: 0.28s
+2026-10-02 09:00:53,415 [DEBUG] yfinance OK: 9872
+2026-10-02 09:00:53,572 [DEBUG] [TIME] 9872 income_stmt: 0.16s
+2026-10-02 09:00:53,881 [DEBUG] [TIME] 9872 balance_sheet: 0.31s
+2026-10-02 09:00:54,191 [DEBUG] [TIME] 9872 cashflow: 0.31s
+2026-10-02 09:00:54,532 [DEBUG] [TIME] 9872 dividends: 0.34s
+2026-10-02 09:00:54,533 [INFO] [DETAIL] 9872 北恵: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:54,533 [INFO] [TIME] 9872 北恵 処理時間: 1.40s
+2026-10-02 09:00:55,763 [DEBUG] [TIME] 9876 info: 0.22s
+2026-10-02 09:00:55,763 [DEBUG] yfinance OK: 9876
+2026-10-02 09:00:55,979 [DEBUG] [TIME] 9876 income_stmt: 0.22s
+2026-10-02 09:00:56,255 [DEBUG] [TIME] 9876 balance_sheet: 0.28s
+2026-10-02 09:00:56,579 [DEBUG] [TIME] 9876 cashflow: 0.32s
+2026-10-02 09:00:56,888 [DEBUG] [TIME] 9876 dividends: 0.31s
+2026-10-02 09:00:56,889 [INFO] [DETAIL] 9876 コックス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 09:00:56,889 [INFO] [TIME] 9876 コックス 処理時間: 1.35s
+2026-10-02 09:00:58,210 [DEBUG] [TIME] 9878 info: 0.29s
+2026-10-02 09:00:58,210 [DEBUG] yfinance OK: 9878
+2026-10-02 09:00:58,438 [DEBUG] [TIME] 9878 income_stmt: 0.23s
+2026-10-02 09:00:58,651 [DEBUG] [TIME] 9878 balance_sheet: 0.21s
+2026-10-02 09:00:58,879 [DEBUG] [TIME] 9878 cashflow: 0.23s
+2026-10-02 09:00:59,257 [DEBUG] [TIME] 9878 dividends: 0.38s
+2026-10-02 09:00:59,258 [INFO] [DETAIL] 9878 セキド: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:00:59,258 [INFO] [TIME] 9878 セキド 処理時間: 1.34s
+2026-10-02 09:01:01,302 [DEBUG] [TIME] 9880 info: 0.22s
+2026-10-02 09:01:01,303 [DEBUG] yfinance OK: 9880
+2026-10-02 09:01:01,517 [DEBUG] [TIME] 9880 income_stmt: 0.21s
+2026-10-02 09:01:01,742 [DEBUG] [TIME] 9880 balance_sheet: 0.22s
+2026-10-02 09:01:01,938 [DEBUG] [TIME] 9880 cashflow: 0.20s
+2026-10-02 09:01:02,365 [DEBUG] [TIME] 9880 dividends: 0.43s
+2026-10-02 09:01:02,365 [INFO] [DETAIL] 9880 イノテック: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:02,366 [INFO] [TIME] 9880 イノテック 処理時間: 1.28s
+2026-10-02 09:01:03,893 [DEBUG] [TIME] 9882 info: 0.35s
+2026-10-02 09:01:03,893 [DEBUG] yfinance OK: 9882
+2026-10-02 09:01:04,125 [DEBUG] [TIME] 9882 income_stmt: 0.23s
+2026-10-02 09:01:04,413 [DEBUG] [TIME] 9882 balance_sheet: 0.29s
+2026-10-02 09:01:04,618 [DEBUG] [TIME] 9882 cashflow: 0.21s
+2026-10-02 09:01:04,950 [DEBUG] [TIME] 9882 dividends: 0.33s
+2026-10-02 09:01:04,951 [INFO] [DETAIL] 9882 イエローハット: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:04,951 [INFO] [TIME] 9882 イエローハット 処理時間: 1.40s
+2026-10-02 09:01:06,798 [DEBUG] [TIME] 9885 info: 0.24s
+2026-10-02 09:01:06,798 [DEBUG] yfinance OK: 9885
+2026-10-02 09:01:06,939 [DEBUG] [TIME] 9885 income_stmt: 0.14s
+2026-10-02 09:01:07,201 [DEBUG] [TIME] 9885 balance_sheet: 0.26s
+2026-10-02 09:01:07,350 [DEBUG] [TIME] 9885 cashflow: 0.15s
+2026-10-02 09:01:07,742 [DEBUG] [TIME] 9885 dividends: 0.39s
+2026-10-02 09:01:07,743 [INFO] [DETAIL] 9885 シャルレ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:07,743 [INFO] [TIME] 9885 シャルレ 処理時間: 1.18s
+2026-10-02 09:01:09,809 [DEBUG] [TIME] 9887 info: 0.22s
+2026-10-02 09:01:09,809 [DEBUG] yfinance OK: 9887
+2026-10-02 09:01:09,987 [DEBUG] [TIME] 9887 income_stmt: 0.18s
+2026-10-02 09:01:10,225 [DEBUG] [TIME] 9887 balance_sheet: 0.24s
+2026-10-02 09:01:10,460 [DEBUG] [TIME] 9887 cashflow: 0.23s
+2026-10-02 09:01:10,818 [DEBUG] [TIME] 9887 dividends: 0.36s
+2026-10-02 09:01:10,819 [INFO] [DETAIL] 9887 松屋フーズホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:10,819 [INFO] [TIME] 9887 松屋フーズホールディングス 処理時間: 1.23s
+2026-10-02 09:01:12,985 [DEBUG] [TIME] 9888 info: 0.29s
+2026-10-02 09:01:12,985 [DEBUG] yfinance OK: 9888
+2026-10-02 09:01:13,187 [DEBUG] [TIME] 9888 income_stmt: 0.20s
+2026-10-02 09:01:13,502 [DEBUG] [TIME] 9888 balance_sheet: 0.31s
+2026-10-02 09:01:13,725 [DEBUG] [TIME] 9888 cashflow: 0.22s
+2026-10-02 09:01:14,173 [DEBUG] [TIME] 9888 dividends: 0.45s
+2026-10-02 09:01:14,174 [INFO] [DETAIL] 9888 ＵＥＸ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:14,174 [INFO] [TIME] 9888 ＵＥＸ 処理時間: 1.48s
+2026-10-02 09:01:15,736 [DEBUG] [TIME] 9889 info: 0.22s
+2026-10-02 09:01:15,736 [DEBUG] yfinance OK: 9889
+2026-10-02 09:01:15,911 [DEBUG] [TIME] 9889 income_stmt: 0.18s
+2026-10-02 09:01:16,131 [DEBUG] [TIME] 9889 balance_sheet: 0.22s
+2026-10-02 09:01:16,379 [DEBUG] [TIME] 9889 cashflow: 0.25s
+2026-10-02 09:01:16,873 [DEBUG] [TIME] 9889 dividends: 0.49s
+2026-10-02 09:01:16,874 [INFO] [DETAIL] 9889 ＪＢＣＣホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:16,874 [INFO] [TIME] 9889 ＪＢＣＣホールディングス 処理時間: 1.36s
+2026-10-02 09:01:18,203 [DEBUG] [TIME] 9890 info: 0.22s
+2026-10-02 09:01:18,203 [DEBUG] yfinance OK: 9890
+2026-10-02 09:01:18,418 [DEBUG] [TIME] 9890 income_stmt: 0.21s
+2026-10-02 09:01:18,750 [DEBUG] [TIME] 9890 balance_sheet: 0.33s
+2026-10-02 09:01:18,979 [DEBUG] [TIME] 9890 cashflow: 0.23s
+2026-10-02 09:01:19,358 [DEBUG] [TIME] 9890 dividends: 0.38s
+2026-10-02 09:01:19,358 [INFO] [DETAIL] 9890 マキヤ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:19,359 [INFO] [TIME] 9890 マキヤ 処理時間: 1.37s
+2026-10-02 09:01:21,136 [DEBUG] [TIME] 9895 info: 0.22s
+2026-10-02 09:01:21,136 [DEBUG] yfinance OK: 9895
+2026-10-02 09:01:21,317 [DEBUG] [TIME] 9895 income_stmt: 0.18s
+2026-10-02 09:01:21,589 [DEBUG] [TIME] 9895 balance_sheet: 0.27s
+2026-10-02 09:01:21,753 [DEBUG] [TIME] 9895 cashflow: 0.16s
+2026-10-02 09:01:22,192 [DEBUG] [TIME] 9895 dividends: 0.44s
+2026-10-02 09:01:22,193 [INFO] [DETAIL] 9895 コンセック: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:22,193 [INFO] [TIME] 9895 コンセック 処理時間: 1.27s
+2026-10-02 09:01:23,439 [DEBUG] [TIME] 9896 info: 0.22s
+2026-10-02 09:01:23,439 [DEBUG] yfinance OK: 9896
+2026-10-02 09:01:23,669 [DEBUG] [TIME] 9896 income_stmt: 0.23s
+2026-10-02 09:01:23,939 [DEBUG] [TIME] 9896 balance_sheet: 0.27s
+2026-10-02 09:01:24,126 [DEBUG] [TIME] 9896 cashflow: 0.19s
+2026-10-02 09:01:24,516 [DEBUG] [TIME] 9896 dividends: 0.39s
+2026-10-02 09:01:24,517 [INFO] [DETAIL] 9896 ＪＫホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:24,517 [INFO] [TIME] 9896 ＪＫホールディングス 処理時間: 1.30s
+2026-10-02 09:01:26,095 [DEBUG] [TIME] 9900 info: 0.27s
+2026-10-02 09:01:26,095 [DEBUG] yfinance OK: 9900
+2026-10-02 09:01:26,289 [DEBUG] [TIME] 9900 income_stmt: 0.19s
+2026-10-02 09:01:26,581 [DEBUG] [TIME] 9900 balance_sheet: 0.29s
+2026-10-02 09:01:26,825 [DEBUG] [TIME] 9900 cashflow: 0.24s
+2026-10-02 09:01:27,296 [DEBUG] [TIME] 9900 dividends: 0.47s
+2026-10-02 09:01:27,297 [INFO] [DETAIL] 9900 サガミホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:27,297 [INFO] [TIME] 9900 サガミホールディングス 処理時間: 1.47s
+2026-10-02 09:01:29,060 [DEBUG] [TIME] 9902 info: 0.24s
+2026-10-02 09:01:29,060 [DEBUG] yfinance OK: 9902
+2026-10-02 09:01:29,234 [DEBUG] [TIME] 9902 income_stmt: 0.17s
+2026-10-02 09:01:29,537 [DEBUG] [TIME] 9902 balance_sheet: 0.30s
+2026-10-02 09:01:29,720 [DEBUG] [TIME] 9902 cashflow: 0.18s
+2026-10-02 09:01:30,092 [DEBUG] [TIME] 9902 dividends: 0.37s
+2026-10-02 09:01:30,093 [INFO] [DETAIL] 9902 日伝: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:30,093 [INFO] [TIME] 9902 日伝 処理時間: 1.27s
+2026-10-02 09:01:31,843 [DEBUG] [TIME] 9903 info: 0.22s
+2026-10-02 09:01:31,843 [DEBUG] yfinance OK: 9903
+2026-10-02 09:01:32,049 [DEBUG] [TIME] 9903 income_stmt: 0.21s
+2026-10-02 09:01:32,402 [DEBUG] [TIME] 9903 balance_sheet: 0.35s
+2026-10-02 09:01:32,575 [DEBUG] [TIME] 9903 cashflow: 0.17s
+2026-10-02 09:01:32,930 [DEBUG] [TIME] 9903 dividends: 0.35s
+2026-10-02 09:01:32,931 [INFO] [DETAIL] 9903 カンセキ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:32,931 [INFO] [TIME] 9903 カンセキ 処理時間: 1.31s
+2026-10-02 09:01:34,478 [DEBUG] [TIME] 9904 info: 0.28s
+2026-10-02 09:01:34,478 [DEBUG] yfinance OK: 9904
+2026-10-02 09:01:34,681 [DEBUG] [TIME] 9904 income_stmt: 0.20s
+2026-10-02 09:01:34,872 [DEBUG] [TIME] 9904 balance_sheet: 0.19s
+2026-10-02 09:01:35,137 [DEBUG] [TIME] 9904 cashflow: 0.26s
+2026-10-02 09:01:35,473 [DEBUG] [TIME] 9904 dividends: 0.34s
+2026-10-02 09:01:35,474 [INFO] [DETAIL] 9904 ベリテ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:35,474 [INFO] [TIME] 9904 ベリテ 処理時間: 1.28s
+2026-10-02 09:01:36,999 [DEBUG] [TIME] 9906 info: 0.29s
+2026-10-02 09:01:36,999 [DEBUG] yfinance OK: 9906
+2026-10-02 09:01:37,159 [DEBUG] [TIME] 9906 income_stmt: 0.16s
+2026-10-02 09:01:37,366 [DEBUG] [TIME] 9906 balance_sheet: 0.21s
+2026-10-02 09:01:37,606 [DEBUG] [TIME] 9906 cashflow: 0.24s
+2026-10-02 09:01:38,104 [DEBUG] [TIME] 9906 dividends: 0.50s
+2026-10-02 09:01:38,104 [INFO] [DETAIL] 9906 藤井産業: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:38,105 [INFO] [TIME] 9906 藤井産業 処理時間: 1.40s
+2026-10-02 09:01:39,748 [DEBUG] [TIME] 9908 info: 0.21s
+2026-10-02 09:01:39,748 [DEBUG] yfinance OK: 9908
+2026-10-02 09:01:39,897 [DEBUG] [TIME] 9908 income_stmt: 0.15s
+2026-10-02 09:01:40,161 [DEBUG] [TIME] 9908 balance_sheet: 0.26s
+2026-10-02 09:01:40,349 [DEBUG] [TIME] 9908 cashflow: 0.19s
+2026-10-02 09:01:40,697 [DEBUG] [TIME] 9908 dividends: 0.35s
+2026-10-02 09:01:40,698 [INFO] [DETAIL] 9908 日本電計: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:40,698 [INFO] [TIME] 9908 日本電計 処理時間: 1.16s
+2026-10-02 09:01:42,107 [DEBUG] [TIME] 9913 info: 0.28s
+2026-10-02 09:01:42,107 [DEBUG] yfinance OK: 9913
+2026-10-02 09:01:42,277 [DEBUG] [TIME] 9913 income_stmt: 0.17s
+2026-10-02 09:01:42,605 [DEBUG] [TIME] 9913 balance_sheet: 0.33s
+2026-10-02 09:01:42,791 [DEBUG] [TIME] 9913 cashflow: 0.19s
+2026-10-02 09:01:43,147 [DEBUG] [TIME] 9913 dividends: 0.36s
+2026-10-02 09:01:43,148 [INFO] [DETAIL] 9913 日邦産業: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:43,148 [INFO] [TIME] 9913 日邦産業 処理時間: 1.33s
+2026-10-02 09:01:44,603 [DEBUG] [TIME] 9914 info: 0.28s
+2026-10-02 09:01:44,604 [WARNING] yfinance データなし: 9914
+2026-10-02 09:01:44,604 [INFO] [TIME] 9914 植松商会 処理時間: 0.28s
+2026-10-02 09:01:46,202 [DEBUG] [TIME] 9927 info: 0.42s
+2026-10-02 09:01:46,203 [WARNING] yfinance データなし: 9927
+2026-10-02 09:01:46,203 [INFO] [TIME] 9927 ワットマン 処理時間: 0.42s
+2026-10-02 09:01:48,097 [DEBUG] [TIME] 9928 info: 0.27s
+2026-10-02 09:01:48,097 [DEBUG] yfinance OK: 9928
+2026-10-02 09:01:48,259 [DEBUG] [TIME] 9928 income_stmt: 0.16s
+2026-10-02 09:01:48,503 [DEBUG] [TIME] 9928 balance_sheet: 0.24s
+2026-10-02 09:01:48,687 [DEBUG] [TIME] 9928 cashflow: 0.18s
+2026-10-02 09:01:49,048 [DEBUG] [TIME] 9928 dividends: 0.36s
+2026-10-02 09:01:49,049 [INFO] [DETAIL] 9928 ミロク情報サービス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:49,050 [INFO] [TIME] 9928 ミロク情報サービス 処理時間: 1.23s
+2026-10-02 09:01:50,806 [DEBUG] [TIME] 9929 info: 0.29s
+2026-10-02 09:01:50,806 [DEBUG] yfinance OK: 9929
+2026-10-02 09:01:51,048 [DEBUG] [TIME] 9929 income_stmt: 0.24s
+2026-10-02 09:01:51,356 [DEBUG] [TIME] 9929 balance_sheet: 0.31s
+2026-10-02 09:01:51,596 [DEBUG] [TIME] 9929 cashflow: 0.24s
+2026-10-02 09:01:51,892 [DEBUG] [TIME] 9929 dividends: 0.30s
+2026-10-02 09:01:51,893 [INFO] [DETAIL] 9929 平和紙業: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:51,893 [INFO] [TIME] 9929 平和紙業 処理時間: 1.38s
+2026-10-02 09:01:54,136 [DEBUG] [TIME] 9930 info: 0.35s
+2026-10-02 09:01:54,136 [DEBUG] yfinance OK: 9930
+2026-10-02 09:01:54,364 [DEBUG] [TIME] 9930 income_stmt: 0.23s
+2026-10-02 09:01:54,520 [DEBUG] [TIME] 9930 balance_sheet: 0.15s
+2026-10-02 09:01:54,735 [DEBUG] [TIME] 9930 cashflow: 0.21s
+2026-10-02 09:01:55,071 [DEBUG] [TIME] 9930 dividends: 0.34s
+2026-10-02 09:01:55,072 [INFO] [DETAIL] 9930 北沢産業: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:55,072 [INFO] [TIME] 9930 北沢産業 処理時間: 1.29s
+2026-10-02 09:01:56,659 [DEBUG] [TIME] 9932 info: 0.22s
+2026-10-02 09:01:56,659 [DEBUG] yfinance OK: 9932
+2026-10-02 09:01:56,867 [DEBUG] [TIME] 9932 income_stmt: 0.21s
+2026-10-02 09:01:56,999 [DEBUG] [TIME] 9932 balance_sheet: 0.13s
+2026-10-02 09:01:57,206 [DEBUG] [TIME] 9932 cashflow: 0.21s
+2026-10-02 09:01:57,534 [DEBUG] [TIME] 9932 dividends: 0.33s
+2026-10-02 09:01:57,535 [INFO] [DETAIL] 9932 杉本商事: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:01:57,535 [INFO] [TIME] 9932 杉本商事 処理時間: 1.09s
+2026-10-02 09:01:59,327 [DEBUG] [TIME] 9934 info: 0.22s
+2026-10-02 09:01:59,327 [DEBUG] yfinance OK: 9934
+2026-10-02 09:01:59,507 [DEBUG] [TIME] 9934 income_stmt: 0.18s
+2026-10-02 09:01:59,724 [DEBUG] [TIME] 9934 balance_sheet: 0.22s
+2026-10-02 09:01:59,877 [DEBUG] [TIME] 9934 cashflow: 0.15s
+2026-10-02 09:02:00,151 [DEBUG] [TIME] 9934 dividends: 0.27s
+2026-10-02 09:02:00,152 [INFO] [DETAIL] 9934 因幡電機産業: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:00,152 [INFO] [TIME] 9934 因幡電機産業 処理時間: 1.05s
+2026-10-02 09:02:02,123 [DEBUG] [TIME] 9936 info: 0.29s
+2026-10-02 09:02:02,123 [DEBUG] yfinance OK: 9936
+2026-10-02 09:02:02,314 [DEBUG] [TIME] 9936 income_stmt: 0.19s
+2026-10-02 09:02:02,540 [DEBUG] [TIME] 9936 balance_sheet: 0.23s
+2026-10-02 09:02:02,711 [DEBUG] [TIME] 9936 cashflow: 0.17s
+2026-10-02 09:02:03,137 [DEBUG] [TIME] 9936 dividends: 0.43s
+2026-10-02 09:02:03,138 [INFO] [DETAIL] 9936 王将フードサービス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:03,138 [INFO] [TIME] 9936 王将フードサービス 処理時間: 1.30s
+2026-10-02 09:02:05,104 [DEBUG] [TIME] 9941 info: 0.22s
+2026-10-02 09:02:05,104 [DEBUG] yfinance OK: 9941
+2026-10-02 09:02:05,288 [DEBUG] [TIME] 9941 income_stmt: 0.18s
+2026-10-02 09:02:05,531 [DEBUG] [TIME] 9941 balance_sheet: 0.24s
+2026-10-02 09:02:05,769 [DEBUG] [TIME] 9941 cashflow: 0.24s
+2026-10-02 09:02:06,072 [DEBUG] [TIME] 9941 dividends: 0.30s
+2026-10-02 09:02:06,072 [INFO] [DETAIL] 9941 太洋物産: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 09:02:06,072 [INFO] [TIME] 9941 太洋物産 処理時間: 1.18s
+2026-10-02 09:02:07,365 [DEBUG] [TIME] 9946 info: 0.29s
+2026-10-02 09:02:07,365 [DEBUG] yfinance OK: 9946
+2026-10-02 09:02:07,556 [DEBUG] [TIME] 9946 income_stmt: 0.19s
+2026-10-02 09:02:07,793 [DEBUG] [TIME] 9946 balance_sheet: 0.24s
+2026-10-02 09:02:07,955 [DEBUG] [TIME] 9946 cashflow: 0.16s
+2026-10-02 09:02:08,398 [DEBUG] [TIME] 9946 dividends: 0.44s
+2026-10-02 09:02:08,399 [INFO] [DETAIL] 9946 ミニストップ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:08,399 [INFO] [TIME] 9946 ミニストップ 処理時間: 1.32s
+2026-10-02 09:02:09,710 [DEBUG] [TIME] 9948 info: 0.22s
+2026-10-02 09:02:09,711 [DEBUG] yfinance OK: 9948
+2026-10-02 09:02:09,932 [DEBUG] [TIME] 9948 income_stmt: 0.22s
+2026-10-02 09:02:10,169 [DEBUG] [TIME] 9948 balance_sheet: 0.24s
+2026-10-02 09:02:10,375 [DEBUG] [TIME] 9948 cashflow: 0.21s
+2026-10-02 09:02:10,754 [DEBUG] [TIME] 9948 dividends: 0.38s
+2026-10-02 09:02:10,755 [INFO] [DETAIL] 9948 アークス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:10,755 [INFO] [TIME] 9948 アークス 処理時間: 1.26s
+2026-10-02 09:02:12,205 [DEBUG] [TIME] 9950 info: 0.21s
+2026-10-02 09:02:12,205 [DEBUG] yfinance OK: 9950
+2026-10-02 09:02:12,446 [DEBUG] [TIME] 9950 income_stmt: 0.24s
+2026-10-02 09:02:12,670 [DEBUG] [TIME] 9950 balance_sheet: 0.22s
+2026-10-02 09:02:12,941 [DEBUG] [TIME] 9950 cashflow: 0.27s
+2026-10-02 09:02:13,265 [DEBUG] [TIME] 9950 dividends: 0.32s
+2026-10-02 09:02:13,266 [INFO] [DETAIL] 9950 ハチバン: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:13,266 [INFO] [TIME] 9950 ハチバン 処理時間: 1.27s
+2026-10-02 09:02:14,773 [DEBUG] [TIME] 9955 info: 0.32s
+2026-10-02 09:02:14,773 [DEBUG] yfinance OK: 9955
+2026-10-02 09:02:14,929 [DEBUG] [TIME] 9955 income_stmt: 0.16s
+2026-10-02 09:02:15,174 [DEBUG] [TIME] 9955 balance_sheet: 0.24s
+2026-10-02 09:02:15,364 [DEBUG] [TIME] 9955 cashflow: 0.19s
+2026-10-02 09:02:15,758 [DEBUG] [TIME] 9955 dividends: 0.39s
+2026-10-02 09:02:15,759 [INFO] [DETAIL] 9955 ヨンキュウ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:15,759 [INFO] [TIME] 9955 ヨンキュウ 処理時間: 1.31s
+2026-10-02 09:02:17,729 [DEBUG] [TIME] 9956 info: 0.21s
+2026-10-02 09:02:17,729 [DEBUG] yfinance OK: 9956
+2026-10-02 09:02:17,902 [DEBUG] [TIME] 9956 income_stmt: 0.17s
+2026-10-02 09:02:18,105 [DEBUG] [TIME] 9956 balance_sheet: 0.20s
+2026-10-02 09:02:18,277 [DEBUG] [TIME] 9956 cashflow: 0.17s
+2026-10-02 09:02:18,709 [DEBUG] [TIME] 9956 dividends: 0.43s
+2026-10-02 09:02:18,710 [INFO] [DETAIL] 9956 バローホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:18,710 [INFO] [TIME] 9956 バローホールディングス 処理時間: 1.19s
+2026-10-02 09:02:20,777 [DEBUG] [TIME] 9959 info: 0.21s
+2026-10-02 09:02:20,777 [DEBUG] yfinance OK: 9959
+2026-10-02 09:02:20,961 [DEBUG] [TIME] 9959 income_stmt: 0.18s
+2026-10-02 09:02:21,206 [DEBUG] [TIME] 9959 balance_sheet: 0.24s
+2026-10-02 09:02:21,444 [DEBUG] [TIME] 9959 cashflow: 0.24s
+2026-10-02 09:02:21,897 [DEBUG] [TIME] 9959 dividends: 0.45s
+2026-10-02 09:02:21,898 [INFO] [DETAIL] 9959 アシードホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:21,898 [INFO] [TIME] 9959 アシードホールディングス 処理時間: 1.33s
+2026-10-02 09:02:23,454 [DEBUG] [TIME] 9960 info: 0.22s
+2026-10-02 09:02:23,454 [DEBUG] yfinance OK: 9960
+2026-10-02 09:02:23,719 [DEBUG] [TIME] 9960 income_stmt: 0.27s
+2026-10-02 09:02:23,928 [DEBUG] [TIME] 9960 balance_sheet: 0.21s
+2026-10-02 09:02:24,111 [DEBUG] [TIME] 9960 cashflow: 0.18s
+2026-10-02 09:02:24,489 [DEBUG] [TIME] 9960 dividends: 0.38s
+2026-10-02 09:02:24,489 [INFO] [DETAIL] 9960 東テク: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:24,490 [INFO] [TIME] 9960 東テク 処理時間: 1.26s
+2026-10-02 09:02:26,690 [DEBUG] [TIME] 9962 info: 0.24s
+2026-10-02 09:02:26,690 [DEBUG] yfinance OK: 9962
+2026-10-02 09:02:26,842 [DEBUG] [TIME] 9962 income_stmt: 0.15s
+2026-10-02 09:02:27,127 [DEBUG] [TIME] 9962 balance_sheet: 0.28s
+2026-10-02 09:02:27,349 [DEBUG] [TIME] 9962 cashflow: 0.22s
+2026-10-02 09:02:27,683 [DEBUG] [TIME] 9962 dividends: 0.33s
+2026-10-02 09:02:27,683 [INFO] [DETAIL] 9962 ミスミグループ本社: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:27,683 [INFO] [TIME] 9962 ミスミグループ本社 処理時間: 1.23s
+2026-10-02 09:02:29,681 [DEBUG] [TIME] 9969 info: 0.21s
+2026-10-02 09:02:29,681 [DEBUG] yfinance OK: 9969
+2026-10-02 09:02:29,842 [DEBUG] [TIME] 9969 income_stmt: 0.16s
+2026-10-02 09:02:30,154 [DEBUG] [TIME] 9969 balance_sheet: 0.31s
+2026-10-02 09:02:30,343 [DEBUG] [TIME] 9969 cashflow: 0.19s
+2026-10-02 09:02:30,717 [DEBUG] [TIME] 9969 dividends: 0.37s
+2026-10-02 09:02:30,718 [INFO] [DETAIL] 9969 ショクブン: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:30,718 [INFO] [TIME] 9969 ショクブン 処理時間: 1.25s
+2026-10-02 09:02:32,019 [DEBUG] [TIME] 9972 info: 0.23s
+2026-10-02 09:02:32,019 [DEBUG] yfinance OK: 9972
+2026-10-02 09:02:32,209 [DEBUG] [TIME] 9972 income_stmt: 0.19s
+2026-10-02 09:02:32,464 [DEBUG] [TIME] 9972 balance_sheet: 0.25s
+2026-10-02 09:02:32,765 [DEBUG] [TIME] 9972 cashflow: 0.30s
+2026-10-02 09:02:33,148 [DEBUG] [TIME] 9972 dividends: 0.38s
+2026-10-02 09:02:33,149 [INFO] [DETAIL] 9972 アルテック: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:33,149 [INFO] [TIME] 9972 アルテック 処理時間: 1.36s
+2026-10-02 09:02:35,343 [DEBUG] [TIME] 9973 info: 0.21s
+2026-10-02 09:02:35,343 [DEBUG] yfinance OK: 9973
+2026-10-02 09:02:35,610 [DEBUG] [TIME] 9973 income_stmt: 0.27s
+2026-10-02 09:02:35,807 [DEBUG] [TIME] 9973 balance_sheet: 0.20s
+2026-10-02 09:02:36,068 [DEBUG] [TIME] 9973 cashflow: 0.26s
+2026-10-02 09:02:36,487 [DEBUG] [TIME] 9973 dividends: 0.42s
+2026-10-02 09:02:36,487 [INFO] [DETAIL] 9973 ＫＯＺＯホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 09:02:36,487 [INFO] [TIME] 9973 ＫＯＺＯホールディングス 処理時間: 1.35s
+2026-10-02 09:02:37,897 [DEBUG] [TIME] 9974 info: 0.24s
+2026-10-02 09:02:37,897 [DEBUG] yfinance OK: 9974
+2026-10-02 09:02:38,073 [DEBUG] [TIME] 9974 income_stmt: 0.18s
+2026-10-02 09:02:38,392 [DEBUG] [TIME] 9974 balance_sheet: 0.32s
+2026-10-02 09:02:38,659 [DEBUG] [TIME] 9974 cashflow: 0.27s
+2026-10-02 09:02:38,990 [DEBUG] [TIME] 9974 dividends: 0.33s
+2026-10-02 09:02:38,991 [INFO] [DETAIL] 9974 ベルク: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:38,991 [INFO] [TIME] 9974 ベルク 処理時間: 1.34s
+2026-10-02 09:02:40,821 [DEBUG] [TIME] 9976 info: 0.21s
+2026-10-02 09:02:40,821 [DEBUG] yfinance OK: 9976
+2026-10-02 09:02:41,033 [DEBUG] [TIME] 9976 income_stmt: 0.21s
+2026-10-02 09:02:41,280 [DEBUG] [TIME] 9976 balance_sheet: 0.25s
+2026-10-02 09:02:41,449 [DEBUG] [TIME] 9976 cashflow: 0.17s
+2026-10-02 09:02:41,847 [DEBUG] [TIME] 9976 dividends: 0.40s
+2026-10-02 09:02:41,848 [INFO] [DETAIL] 9976 セキチュー: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:41,848 [INFO] [TIME] 9976 セキチュー 処理時間: 1.24s
+2026-10-02 09:02:43,795 [DEBUG] [TIME] 9978 info: 0.24s
+2026-10-02 09:02:43,795 [DEBUG] yfinance OK: 9978
+2026-10-02 09:02:43,991 [DEBUG] [TIME] 9978 income_stmt: 0.20s
+2026-10-02 09:02:44,248 [DEBUG] [TIME] 9978 balance_sheet: 0.26s
+2026-10-02 09:02:44,409 [DEBUG] [TIME] 9978 cashflow: 0.16s
+2026-10-02 09:02:44,747 [DEBUG] [TIME] 9978 dividends: 0.34s
+2026-10-02 09:02:44,747 [INFO] [DETAIL] 9978 文教堂グループホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=EMPTY
+2026-10-02 09:02:44,747 [INFO] [TIME] 9978 文教堂グループホールディングス 処理時間: 1.20s
+2026-10-02 09:02:46,008 [DEBUG] [TIME] 9979 info: 0.22s
+2026-10-02 09:02:46,008 [DEBUG] yfinance OK: 9979
+2026-10-02 09:02:46,245 [DEBUG] [TIME] 9979 income_stmt: 0.24s
+2026-10-02 09:02:46,465 [DEBUG] [TIME] 9979 balance_sheet: 0.22s
+2026-10-02 09:02:46,656 [DEBUG] [TIME] 9979 cashflow: 0.19s
+2026-10-02 09:02:47,070 [DEBUG] [TIME] 9979 dividends: 0.41s
+2026-10-02 09:02:47,071 [INFO] [DETAIL] 9979 大庄: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:47,071 [INFO] [TIME] 9979 大庄 処理時間: 1.28s
+2026-10-02 09:02:49,180 [DEBUG] [TIME] 9980 info: 0.21s
+2026-10-02 09:02:49,180 [DEBUG] yfinance OK: 9980
+2026-10-02 09:02:49,472 [DEBUG] [TIME] 9980 income_stmt: 0.29s
+2026-10-02 09:02:49,794 [DEBUG] [TIME] 9980 balance_sheet: 0.32s
+2026-10-02 09:02:50,114 [DEBUG] [TIME] 9980 cashflow: 0.32s
+2026-10-02 09:02:50,461 [DEBUG] [TIME] 9980 dividends: 0.35s
+2026-10-02 09:02:50,462 [INFO] [DETAIL] 9980 ＭＲＫホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:50,462 [INFO] [TIME] 9980 ＭＲＫホールディングス 処理時間: 1.50s
+2026-10-02 09:02:52,136 [DEBUG] [TIME] 9982 info: 0.21s
+2026-10-02 09:02:52,136 [DEBUG] yfinance OK: 9982
+2026-10-02 09:02:52,395 [DEBUG] [TIME] 9982 income_stmt: 0.26s
+2026-10-02 09:02:52,668 [DEBUG] [TIME] 9982 balance_sheet: 0.27s
+2026-10-02 09:02:52,903 [DEBUG] [TIME] 9982 cashflow: 0.23s
+2026-10-02 09:02:53,408 [DEBUG] [TIME] 9982 dividends: 0.50s
+2026-10-02 09:02:53,409 [INFO] [DETAIL] 9982 タキヒヨー: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:53,409 [INFO] [TIME] 9982 タキヒヨー 処理時間: 1.48s
+2026-10-02 09:02:55,112 [DEBUG] [TIME] 9983 info: 0.24s
+2026-10-02 09:02:55,112 [DEBUG] yfinance OK: 9983
+2026-10-02 09:02:55,352 [DEBUG] [TIME] 9983 income_stmt: 0.24s
+2026-10-02 09:02:55,642 [DEBUG] [TIME] 9983 balance_sheet: 0.29s
+2026-10-02 09:02:55,804 [DEBUG] [TIME] 9983 cashflow: 0.16s
+2026-10-02 09:02:56,170 [DEBUG] [TIME] 9983 dividends: 0.37s
+2026-10-02 09:02:56,170 [INFO] [DETAIL] 9983 ファーストリテイリング: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:56,171 [INFO] [TIME] 9983 ファーストリテイリング 処理時間: 1.29s
+2026-10-02 09:02:58,335 [DEBUG] [TIME] 9984 info: 0.21s
+2026-10-02 09:02:58,335 [DEBUG] yfinance OK: 9984
+2026-10-02 09:02:58,504 [DEBUG] [TIME] 9984 income_stmt: 0.17s
+2026-10-02 09:02:58,774 [DEBUG] [TIME] 9984 balance_sheet: 0.27s
+2026-10-02 09:02:59,009 [DEBUG] [TIME] 9984 cashflow: 0.23s
+2026-10-02 09:02:59,491 [DEBUG] [TIME] 9984 dividends: 0.48s
+2026-10-02 09:02:59,492 [INFO] [DETAIL] 9984 ソフトバンクグループ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:02:59,492 [INFO] [TIME] 9984 ソフトバンクグループ 処理時間: 1.37s
+2026-10-02 09:03:01,654 [DEBUG] [TIME] 9986 info: 0.27s
+2026-10-02 09:03:01,654 [DEBUG] yfinance OK: 9986
+2026-10-02 09:03:01,892 [DEBUG] [TIME] 9986 income_stmt: 0.24s
+2026-10-02 09:03:02,216 [DEBUG] [TIME] 9986 balance_sheet: 0.32s
+2026-10-02 09:03:02,424 [DEBUG] [TIME] 9986 cashflow: 0.21s
+2026-10-02 09:03:02,803 [DEBUG] [TIME] 9986 dividends: 0.38s
+2026-10-02 09:03:02,804 [INFO] [DETAIL] 9986 蔵王産業: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:03:02,804 [INFO] [TIME] 9986 蔵王産業 処理時間: 1.42s
+2026-10-02 09:03:04,824 [DEBUG] [TIME] 9987 info: 0.28s
+2026-10-02 09:03:04,824 [DEBUG] yfinance OK: 9987
+2026-10-02 09:03:05,077 [DEBUG] [TIME] 9987 income_stmt: 0.25s
+2026-10-02 09:03:05,388 [DEBUG] [TIME] 9987 balance_sheet: 0.31s
+2026-10-02 09:03:05,581 [DEBUG] [TIME] 9987 cashflow: 0.19s
+2026-10-02 09:03:06,037 [DEBUG] [TIME] 9987 dividends: 0.46s
+2026-10-02 09:03:06,038 [INFO] [DETAIL] 9987 スズケン: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:03:06,038 [INFO] [TIME] 9987 スズケン 処理時間: 1.50s
+2026-10-02 09:03:07,943 [DEBUG] [TIME] 9989 info: 0.22s
+2026-10-02 09:03:07,944 [DEBUG] yfinance OK: 9989
+2026-10-02 09:03:08,157 [DEBUG] [TIME] 9989 income_stmt: 0.21s
+2026-10-02 09:03:08,429 [DEBUG] [TIME] 9989 balance_sheet: 0.27s
+2026-10-02 09:03:08,634 [DEBUG] [TIME] 9989 cashflow: 0.20s
+2026-10-02 09:03:09,046 [DEBUG] [TIME] 9989 dividends: 0.41s
+2026-10-02 09:03:09,047 [INFO] [DETAIL] 9989 サンドラッグ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:03:09,047 [INFO] [TIME] 9989 サンドラッグ 処理時間: 1.32s
+2026-10-02 09:03:10,917 [DEBUG] [TIME] 9990 info: 0.22s
+2026-10-02 09:03:10,917 [DEBUG] yfinance OK: 9990
+2026-10-02 09:03:11,134 [DEBUG] [TIME] 9990 income_stmt: 0.22s
+2026-10-02 09:03:11,437 [DEBUG] [TIME] 9990 balance_sheet: 0.30s
+2026-10-02 09:03:11,622 [DEBUG] [TIME] 9990 cashflow: 0.18s
+2026-10-02 09:03:11,991 [DEBUG] [TIME] 9990 dividends: 0.37s
+2026-10-02 09:03:11,992 [INFO] [DETAIL] 9990 サックスバー　ホールディングス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:03:11,992 [INFO] [TIME] 9990 サックスバー　ホールディングス 処理時間: 1.29s
+2026-10-02 09:03:13,630 [DEBUG] [TIME] 9991 info: 0.28s
+2026-10-02 09:03:13,630 [DEBUG] yfinance OK: 9991
+2026-10-02 09:03:13,795 [DEBUG] [TIME] 9991 income_stmt: 0.16s
+2026-10-02 09:03:14,019 [DEBUG] [TIME] 9991 balance_sheet: 0.22s
+2026-10-02 09:03:14,156 [DEBUG] [TIME] 9991 cashflow: 0.14s
+2026-10-02 09:03:14,603 [DEBUG] [TIME] 9991 dividends: 0.45s
+2026-10-02 09:03:14,603 [INFO] [DETAIL] 9991 ジェコス: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:03:14,604 [INFO] [TIME] 9991 ジェコス 処理時間: 1.25s
+2026-10-02 09:03:15,925 [DEBUG] [TIME] 9993 info: 0.23s
+2026-10-02 09:03:15,925 [DEBUG] yfinance OK: 9993
+2026-10-02 09:03:16,176 [DEBUG] [TIME] 9993 income_stmt: 0.25s
+2026-10-02 09:03:16,392 [DEBUG] [TIME] 9993 balance_sheet: 0.21s
+2026-10-02 09:03:16,546 [DEBUG] [TIME] 9993 cashflow: 0.15s
+2026-10-02 09:03:16,870 [DEBUG] [TIME] 9993 dividends: 0.32s
+2026-10-02 09:03:16,870 [INFO] [DETAIL] 9993 ヤマザワ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:03:16,871 [INFO] [TIME] 9993 ヤマザワ 処理時間: 1.17s
+2026-10-02 09:03:18,228 [DEBUG] [TIME] 9994 info: 0.21s
+2026-10-02 09:03:18,228 [DEBUG] yfinance OK: 9994
+2026-10-02 09:03:18,369 [DEBUG] [TIME] 9994 income_stmt: 0.14s
+2026-10-02 09:03:18,559 [DEBUG] [TIME] 9994 balance_sheet: 0.19s
+2026-10-02 09:03:18,786 [DEBUG] [TIME] 9994 cashflow: 0.23s
+2026-10-02 09:03:19,253 [DEBUG] [TIME] 9994 dividends: 0.47s
+2026-10-02 09:03:19,254 [INFO] [DETAIL] 9994 やまや: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:03:19,254 [INFO] [TIME] 9994 やまや 処理時間: 1.24s
+2026-10-02 09:03:21,398 [DEBUG] [TIME] 9996 info: 0.22s
+2026-10-02 09:03:21,398 [DEBUG] yfinance OK: 9996
+2026-10-02 09:03:21,587 [DEBUG] [TIME] 9996 income_stmt: 0.19s
+2026-10-02 09:03:21,820 [DEBUG] [TIME] 9996 balance_sheet: 0.23s
+2026-10-02 09:03:22,004 [DEBUG] [TIME] 9996 cashflow: 0.18s
+2026-10-02 09:03:22,377 [DEBUG] [TIME] 9996 dividends: 0.37s
+2026-10-02 09:03:22,378 [INFO] [DETAIL] 9996 サトー商会: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:03:22,378 [INFO] [TIME] 9996 サトー商会 処理時間: 1.20s
+2026-10-02 09:03:24,249 [DEBUG] [TIME] 9997 info: 0.31s
+2026-10-02 09:03:24,249 [DEBUG] yfinance OK: 9997
+2026-10-02 09:03:24,407 [DEBUG] [TIME] 9997 income_stmt: 0.16s
+2026-10-02 09:03:24,654 [DEBUG] [TIME] 9997 balance_sheet: 0.25s
+2026-10-02 09:03:24,838 [DEBUG] [TIME] 9997 cashflow: 0.18s
+2026-10-02 09:03:25,246 [DEBUG] [TIME] 9997 dividends: 0.41s
+2026-10-02 09:03:25,247 [INFO] [DETAIL] 9997 ベルーナ: income_stmt=OK, balance_sheet=OK, cashflow=OK, dividends=OK
+2026-10-02 09:03:25,247 [INFO] [TIME] 9997 ベルーナ 処理時間: 1.30s
+2026-10-02 09:03:26,663 [INFO] === 実行完了 (yf=233, warns=26, 総実行時間=10分52.8秒) ===
